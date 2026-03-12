@@ -1,0 +1,87 @@
+let pjson = {
+	"pJson": [
+		{
+			"T": "Messaging",
+			"P": {
+				"ID": {
+					"H": "EdtrComp_22",
+					"T": "prop"
+				}
+			},
+			"E": {
+				"onBeforeRequest": {
+					"H": "declare let requestObject : any\r\nquick.EM.trace('girdim')\r\nlet pipelineBagStoreValue = quick.store.get(\"#pipelineBagStoreKey\");\r\n\r\n//adding header\r\nrequestObject.headers[\"pipelineKey\"] = \"pipelineValue\"\r\n//adding header from bagStore\r\nrequestObject.headers[\"pipelineBagStoreKey\"] = pipelineBagStoreValue\r\n\r\n//adding header according to url\r\nif(requestObject.url.includes(\"employees\")){\r\n    requestObject.headers[\"pipelineKey2\"] = \"pipelineValue2\"\r\n}",
+					"C": true,
+					"EV": true,
+					"HL": "TS"
+				},
+				"onAfterResponse": {
+					"H": "quick.EM.trace('onAfterResponse started...')\r\nquick.EM.trace(\"OnAfterResponse\");\r\nquick.EM.trace(response);",
+					"C": true,
+					"EV": true,
+					"HL": "TS"
+				}
+			},
+			"C": {},
+			"_Editor": {
+				"eID": "EdtrComp_22"
+			},
+			"O": {
+				"compDomClasses": "newDropBorder",
+				"cType": "child"
+			}
+		}
+	],
+	"cJson": [
+		{
+			"T": "Messaging",
+			"P": {
+				"ID": {
+					"H": "EdtrComp_22",
+					"T": "prop"
+				}
+			},
+			"E": {
+				"onBeforeRequest": {
+					"H": "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\n;\nvar requestObject;\nquick.EM.trace('girdim');\nvar pipelineBagStoreValue = quick.store.get(\"#pipelineBagStoreKey\");\n//adding header\nrequestObject.headers[\"pipelineKey\"] = \"pipelineValue\";\n//adding header from bagStore\nrequestObject.headers[\"pipelineBagStoreKey\"] = pipelineBagStoreValue;\n//adding header according to url\nif (requestObject.url.includes(\"employees\")) {\n    requestObject.headers[\"pipelineKey2\"] = \"pipelineValue2\";\n}\n",
+					"C": true,
+					"EV": true,
+					"HL": "JS"
+				},
+				"onAfterResponse": {
+					"H": "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\n;\nquick.EM.trace('onAfterResponse started...');\nquick.EM.trace(\"OnAfterResponse\");\nquick.EM.trace(response);\n",
+					"C": true,
+					"EV": true,
+					"HL": "JS"
+				}
+			},
+			"C": {},
+			"_Editor": {
+				"eID": "EdtrComp_22"
+			},
+			"O": {
+				"compDomClasses": "newDropBorder",
+				"cType": "child"
+			}
+		}
+	],
+	"lrids": {
+		"tr-TR": {
+			"validationMsg": "'Lütfen zorunlu alanları giriniz.'"
+		},
+		"en-US": {
+			"validationMsg": "'Please enter all required fields'"
+		}
+	},
+	"clrids": {
+		"tr-TR": {
+			"validationMsg": "╬'Lütfen zorunlu alanları giriniz.'╩╩"
+		},
+		"en-US": {
+			"validationMsg": "╬'Please enter all required fields'╩╩"
+		}
+	},
+	"description": {},
+	"opt": {}
+};
+export default pjson

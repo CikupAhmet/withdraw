@@ -1,0 +1,1065 @@
+let pjson = {
+	"pJson": [
+		{
+			"T": "Messaging",
+			"P": {
+				"ID": {
+					"H": "PageComp",
+					"T": "prop"
+				},
+				"triggerOnRestored": {
+					"H": "false",
+					"T": "prop"
+				}
+			},
+			"E": {
+				"PostRender": {
+					"H": "let params = quick.Url.getDeepLinkParams();\r\nquick.store.delete('mockData');\r\ndebugger\r\n// let mockData = setMockData('updateMenu');\r\n// let mockDataMenuItem = setMockDataMenuItem();\r\n// quick.store.set('mockData', mockData);\r\n// quick.store.set('mockDataMenuItem', mockDataMenuItem);\r\n// let params = {\r\n//     'onlineApproveId': '96605',\r\n//     'status': 'WAITING_COMPLETE',\r\n//     'screenMode': 'APPROVER_POOL',\r\n//     'poolId': '12',\r\n//     'islemTipi': 'updateMenu',\r\n//     'menuId': '4323'\r\n// }\r\n\r\n// let params = {\r\n//     'onlineApproveId': '102030',\r\n//     'status': 'WAITING_COMPLETE',\r\n//     'screenMode': 'APPROVER_POOL',\r\n//     'poolId': '12',\r\n//     'islemTipi': 'updateMenu',\r\n//     'menuId': '4366'\r\n// }\r\n\r\n// let mockData = setMockData('insertNewMenu');\r\n// quick.store.set('mockData', mockData);\r\n// params = {\r\n//     'onlineApproveId': '99172',\r\n//     'status': 'WAITING_COMPLETE',\r\n//     'screenMode': 'APPROVER_POOL',\r\n//     'poolId': '11',\r\n//     'islemTipi': 'insertNewMenu',\r\n//     'menuName': 'prodTestMen2'\r\n// }\r\n\r\nquick.store.set('urlParams', params);\r\n\r\nquick.MM.trigger('retrieveJsonData', [{ 'onlineApproveId': params?.onlineApproveId }]);\r\nfunction setMockData(mod) {\r\n    let mockData: any;\r\n    if (mod == 'updateMenu') {\r\n        mockData = {\r\n            \"menuName\": \"Menü Yönetim Paneli - Quick\",\r\n            \"menuUrl\": \"top.advisorDesktop.windowManager.openWindow('Menü Yönetim Paneli - Quick','quick://microui/MenuOperationsService/static/MenuOperations/menuManagementPanel.qjson','','MENU',null,true,null,null,true);|quick://microui/MenuOperationsService/static/MenuOperations/menuManagementPanel.qjson\",\r\n            \"position\": 1,\r\n            \"appOwner\": \"uygulama sahibi alanı\",\r\n            \"appType\": \"Quick\",\r\n            \"rightNames\": \"yetki 1, yetki 22\",\r\n            \"whiteList\": \"110;1840;1816;1841;1843;144;156;146;335;336;337;338;339;343;344;345;346;347;348;349;455;456;457;458;565;566;567;568;569;570;571;572;573;574;575;576;577;578;579;580;581;582;583;584;585;586;587;588;589;590;591;592;593;594;595;596;597;598;599;601;602;603;604;605;606;607;608;609;610;670;671;672;673;674;675;676;677;678;679;680;681;682;683;684;685;549;551;552;553;554;556;557;558;559;622;626;631;640;641;642;664;665;666;667;668;669;686;687;688;689;690;691;692;693;694;695;696;697;698;699;700;701;702;703;705;706;707;708;709;711;613;614;383;384;385;386;387;388;389;431;432;433;663;434;941;942;147;149;150;161;165;215;214;300;301;302;303;304;305;306;307;308;309;713;714;715;716;717;718;719;720;721;722;723;724;725;726;727;728;729;730;731;732;733;734;735;736;737;738;739;740;741;742;743;744;745;746;747;748;749;751;752;753;754;755;756;757;758;759;760;761;762;763;764;765;766;767;768;771;772;773;774;775;776;778;779;780;781;782;783;784;785;786;787;788;789;790;791;792;793;794;795;796;797;798;799;801;802;803;311;312;313;314;315;943;944;459;486;487;488;489;490;491;492;493;494;495;496;497;498;499;500;501;502;503;504;505;506;507;508;509;6800;444;454;449;1800;1801;1802;1803;1806;1807;1813;1832;1871;1872;1842;1844;1846;1880;134;1805;1890;1891;1820;1821;1822;1825;1835;1845\",\r\n            \"blackList\": \"110;1840;1816;1841;1843;144;156;146;335;336;337;338;339;343;344;345;346;347;348;349;455;456;457;458;565;566;567;568;569;570;571;572;573;574;575;576;577;578;579;580;581;582;583;584;585;586;587;588;589;590;591;592;593;594;595;596;597;598;599;601;602;603;604;605;606;607;608;609;610;670;671;672;673;674;675;676;677;678;679;680;681;682;683;684;685;549;551;552;553;554;556;557;558;559;622;626;631;640;641;642;664;665;666;667;668;669;686;687;688;689;690;691;692;693;694;695;696;697;698;699;700;701;702;703;705;706;707;708;709;711;613;614;383;384;385;386;387;388;389;431;432;433;663;434;941;942;147;149;150;161;165;215;214;300;301;302;303;304;305;306;307;308;309;713;714;715;716;717;718;719;720;721;722;723;724;725;726;727;728;729;730;731;732;733;734;735;736;737;738;739;740;741;742;743;744;745;746;747;748;749;751;752;753;754;755;756;757;758;759;760;761;762;763;764;765;766;767;768;771;772;773;774;775;776;778;779;780;781;782;783;784;785;786;787;788;789;790;791;792;793;794;795;796;797;798;799;801;802;803;311;312;313;314;315;943;944;459;486;487;488;489;490;491;492;493;494;495;496;497;498;499;500;501;502;503;504;505;506;507;508;509;6800;444;454;449;1800;1801;1802;1803;1806;1807;1813;1832;1871;1872;1842;1844;1846;1880;134;1805;1890;1891;1820;1821;1822;1825;1835;1845\",\r\n            \"helpLink\": null,\r\n            \"isCustomer\": \"1;2\",\r\n            \"customerType\": \"1;2\",\r\n            \"branchType\": \"B;P;T;K\",\r\n            \"segment\": null,\r\n            \"isNew\": null,\r\n            \"productCode\": \"ürün kodu alanı\",\r\n            \"temporaryClosed\": \"1\",\r\n            \"isMaximized\": \"1\",\r\n            \"regulationTag\": \"[{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isOnbehalfOf\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isComponent\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isFeedback\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"asd\\\",\\\"attributeKey\\\":\\\"instanceKey\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isOpenWithPopup\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isCustomerSession\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"6546\\\",\\\"attributeKey\\\":\\\"whiteListVpn\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"9879\\\",\\\"attributeKey\\\":\\\"blackListVpn\\\",\\\"menuItemId\\\":0}]\",\r\n            \"publishDate\": 1765238400000,\r\n            \"regLinks\": null,\r\n            \"whiteListVpn\": null,\r\n            \"blackListVpn\": null,\r\n            \"isCaption\": \"LEAF\"\r\n        }\r\n    }\r\n    else if (mod == 'insertNewMenu') {\r\n        mockData = {\r\n            \"menuName\": \"RetrieveJsonData_Test \",\r\n            \"menuUrl\": \"top.advisorDesktop.windowManager.openWindow('RetrieveJsonData_Test ','retrieveJsonData','','UniqKeyRetrieveJson',null,true,true,true,true);|retrieveJsonData\",\r\n            \"position\": 1,\r\n            \"appOwner\": \"DŞP\",\r\n            \"appType\": \"Quick\",\r\n            \"rightNames\": \"yetki1, Yetki2\",\r\n            \"whiteList\": \"110;1840;1816;1841;1843;144;156;146;335;336;337;338;339;343;344;345;346;347;348;349;455;456;457;458;565;566;567;568;569;570;571;572;573;574;575;576;577;578;579;580;581;582;583;584;585;586;587;588;589;590;591;592;593;594;595;596;597;598;599;601;602;603;604;605;606;607;608;609;610;670;671;672;673;674;675;676;677;678;679;680;681;682;683;684;685;549;551;552;553;554;556;557;558;559;622;626;631;640;641;642;664;665;666;667;668;669;686;687;688;689;690;691;692;693;694;695;696;697;698;699;700;701;702;703;705;706;707;708;709;711;613;614;383;384;385;386;387;388;389;431;432;433;663;434;941;942;147;149;150;161;165;215;214;300;301;302;303;304;305;306;307;308;309;713;714;715;716;717;718;719;720;721;722;723;724;725;726;727;728;729;730;731;732;733;734;735;736;737;738;739;740;741;742;743;744;745;746;747;748;749;751;752;753;754;755;756;757;758;759;760;761;762;763;764;765;766;767;768;771;772;773;774;775;776;778;779;780;781;782;783;784;785;786;787;788;789;790;791;792;793;794;795;796;797;798;799;801;802;803;311;312;313;314;315;943;944;459;486;487;488;489;490;491;492;493;494;495;496;497;498;499;500;501;502;503;504;505;506;507;508;509;6800;444;454;449;1800;1801;1802;1803;1806;1807;1813;1832;1871;1872;1842;1844;1846;1880;134;1805;1890;1891;1820;1821;1822;1825;1835;1845\",\r\n            \"blackList\": \"110;1840;1816;1841;1843;144;156;146;335;336;337;338;339;343;344;345;346;347;348;349;455;456;457;458;565;566;567;568;569;570;571;572;573;574;575;576;577;578;579;580;581;582;583;584;585;586;587;588;589;590;591;592;593;594;595;596;597;598;599;601;602;603;604;605;606;607;608;609;610;670;671;672;673;674;675;676;677;678;679;680;681;682;683;684;685;549;551;552;553;554;556;557;558;559;622;626;631;640;641;642;664;665;666;667;668;669;686;687;688;689;690;691;692;693;694;695;696;697;698;699;700;701;702;703;705;706;707;708;709;711;613;614;383;384;385;386;387;388;389;431;432;433;663;434;941;942;147;149;150;161;165;215;214;300;301;302;303;304;305;306;307;308;309;713;714;715;716;717;718;719;720;721;722;723;724;725;726;727;728;729;730;731;732;733;734;735;736;737;738;739;740;741;742;743;744;745;746;747;748;749;751;752;753;754;755;756;757;758;759;760;761;762;763;764;765;766;767;768;771;772;773;774;775;776;778;779;780;781;782;783;784;785;786;787;788;789;790;791;792;793;794;795;796;797;798;799;801;802;803;311;312;313;314;315;943;944;459;486;487;488;489;490;491;492;493;494;495;496;497;498;499;500;501;502;503;504;505;506;507;508;509;6800;444;454;449;1800;1801;1802;1803;1806;1807;1813;1832;1871;1872;1842;1844;1846;1880;134;1805;1890;1891;1820;1821;1822;1825;1835;1845\",\r\n            \"helpLink\": null,\r\n            \"isCustomer\": \"1\",\r\n            \"customerType\": \"1;2;3\",\r\n            \"branchType\": \"B;P;T;K\",\r\n            \"segment\": null,\r\n            \"isNew\": null,\r\n            \"productCode\": null,\r\n            \"temporaryClosed\": \"1\",\r\n            \"isMaximized\": \"1\",\r\n            \"regulationTag\": \"[{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isOnbehalfOf\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isComponent\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isFeedback\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"232;1267;\\\",\\\"attributeKey\\\":\\\"whiteListVpn\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"111;564;\\\",\\\"attributeKey\\\":\\\"blackListVpn\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"UniqKeyRetrieveJson\\\",\\\"attributeKey\\\":\\\"instanceKey\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isOpenWithPopup\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isRedirected\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isCustomerSession\\\",\\\"menuItemId\\\":0}]\",\r\n            \"publishDate\": 1767916800000,\r\n            \"regLinks\": null,\r\n            \"whiteListVpn\": null,\r\n            \"blackListVpn\": null,\r\n            \"isCaption\": \"LEAF\"\r\n        }\r\n    }\r\n    else {\r\n        mockData = {};\r\n    }\r\n    return mockData;\r\n}\r\n\r\nfunction setMockDataMenuItem() {\r\n    let mockDataMenuItem = {\r\n        \"menuOffering\": {\r\n            \"menuId\": 4547,\r\n            \"menuParentId\": 0,\r\n            \"menuName\": \"son menü bükücü\",\r\n            \"menuUrl\": \"top.advisorDesktop.windowManager.openWindow('Menü Yönetim Paneli - Quick','quick://microui/MenuOperationsService/static/MenuOperations/menuManagementPanel.qjson','','MENU',null,true,null,null,true);|quick://microui/MenuOperationsService/static/MenuOperations/menuManagementPanel.qjson\",\r\n            \"menuPosition\": 1,\r\n            \"menuIsCaption\": \"LEAF\",\r\n            \"menuAppType\": \"Quick\",\r\n            \"menuAppOwner\": \"uygulama sahibi alanı\",\r\n            \"menuLevel\": 0,\r\n            \"menuSubList\": [],\r\n            \"menuPublishDate\": \"2025-12-09T00:00:00.000+03:00\",\r\n            \"menuPlatformId\": 0,\r\n            \"menuStatus\": true,\r\n            \"menuIsVpn\": false\r\n        },\r\n        \"menuRightList\": [{\r\n            \"menuRightId\": 7425,\r\n            \"menuItemId\": 0,\r\n            \"menuRightName\": \"yetki 1\"\r\n        }, {\r\n            \"menuRightId\": 7426,\r\n            \"menuItemId\": 0,\r\n            \"menuRightName\": \"yetki 22\"\r\n        }\r\n        ],\r\n        \"menuAttributeList\": [{\r\n            \"menuAttributeId\": 25333,\r\n            \"menuAttributeValue\": \"1;2\",\r\n            \"attributeKey\": \"ATTRIBUTEKEY_CUSTOMERTYPE\",\r\n            \"menuItemId\": 4547\r\n        }, {\r\n            \"menuAttributeId\": 25334,\r\n            \"menuAttributeValue\": \"3213\",\r\n            \"attributeKey\": \"ATTRIBUTEKEY_BLACKLIST\",\r\n            \"menuItemId\": 4547\r\n        }, {\r\n            \"menuAttributeId\": 25335,\r\n            \"menuAttributeValue\": \"1\",\r\n            \"attributeKey\": \"ATTRIBUTEKEY_TEMPRORYCLOSED\",\r\n            \"menuItemId\": 4547\r\n        }, {\r\n            \"menuAttributeId\": 25332,\r\n            \"menuAttributeValue\": \"1;2\",\r\n            \"attributeKey\": \"ATTRIBUTEKEY_ISCUSTOMER\",\r\n            \"menuItemId\": 4547\r\n        }, {\r\n            \"menuAttributeId\": 25336,\r\n            \"menuAttributeValue\": \"1\",\r\n            \"attributeKey\": \"ATTRIBUTEKEY_ISMAXIMIZED\",\r\n            \"menuItemId\": 4547\r\n        }, {\r\n            \"menuAttributeId\": 25337,\r\n            \"menuAttributeValue\": \"110;1840;1816;1841;1843;144;156;146;335;336;337;338;339;343;344;345;346;347;348;349;455;456;457;458;565;566;567;568;569;570;571;572;573;574;575;576;577;578;579;580;581;582;583;584;585;586;587;588;589;590;591;592;593;594;595;596;597;598;599;601;602;603;604;605;606;607;608;609;610;670;671;672;673;674;675;676;677;678;679;680;681;682;683;684;685;549;551;552;553;554;556;557;558;559;622;626;631;640;641;642;664;665;666;667;668;669;686;687;688;689;690;691;692;693;694;695;696;697;698;699;700;701;702;703;705;706;707;708;709;711;613;614;383;384;385;386;387;388;389;431;432;433;663;434;941;942;147;149;150;161;165;215;214;300;301;302;303;304;305;306;307;308;309;713;714;715;716;717;718;719;720;721;722;723;724;725;726;727;728;729;730;731;732;733;734;735;736;737;738;739;740;741;742;743;744;745;746;747;748;749;751;752;753;754;755;756;757;758;759;760;761;762;763;764;765;766;767;768;771;772;773;774;775;776;778;779;780;781;782;783;784;785;786;787;788;789;790;791;792;793;794;795;796;797;798;799;801;802;803;311;312;313;314;315;943;944;459;486;487;488;489;490;491;492;493;494;495;496;497;498;499;500;501;502;503;504;505;506;507;508;509;6800;444;454;449;1800;1801;1802;1803;1806;1807;1813;1832;1871;1872;1842;1844;1846;1880;134;1805;1890;1891;1820;1821;1822;1825;1835;1845\",\r\n            \"attributeKey\": \"ATTRIBUTEKEY_WHITELIST\",\r\n            \"menuItemId\": 4547\r\n        }, {\r\n            \"menuAttributeId\": 25338,\r\n            \"menuAttributeValue\": \"B;P;T;K\",\r\n            \"attributeKey\": \"ATTRIBUTEKEY_BRANCHTYPE\",\r\n            \"menuItemId\": 4547\r\n        }, {\r\n            \"menuAttributeId\": 25339,\r\n            \"menuAttributeValue\": \"ürün kodu alanı\",\r\n            \"attributeKey\": \"ATTRIBUTEKEY_PRODUCTCODE\",\r\n            \"menuItemId\": 4547\r\n        }, {\r\n            \"menuAttributeId\": 25340,\r\n            \"menuAttributeValue\": \"iş birimi alanı\",\r\n            \"attributeKey\": \"ATTRIBUTEKEY_REGULATION\",\r\n            \"menuItemId\": 4547\r\n        }, {\r\n            \"menuAttributeId\": 25341,\r\n            \"menuAttributeValue\": \"1;2\",\r\n            \"attributeKey\": \"ATTRIBUTEKEY_ISCUSTOMER\",\r\n            \"menuItemId\": 4547\r\n        }, {\r\n            \"menuAttributeId\": 25342,\r\n            \"menuAttributeValue\": \"1;2\",\r\n            \"attributeKey\": \"ATTRIBUTEKEY_CUSTOMERTYPE\",\r\n            \"menuItemId\": 4547\r\n        }, {\r\n            \"menuAttributeId\": 25343,\r\n            \"menuAttributeValue\": \"3213\",\r\n            \"attributeKey\": \"ATTRIBUTEKEY_BLACKLIST\",\r\n            \"menuItemId\": 4547\r\n        }, {\r\n            \"menuAttributeId\": 25344,\r\n            \"menuAttributeValue\": \"1\",\r\n            \"attributeKey\": \"ATTRIBUTEKEY_TEMPRORYCLOSED\",\r\n            \"menuItemId\": 4547\r\n        }, {\r\n            \"menuAttributeId\": 25345,\r\n            \"menuAttributeValue\": \"1\",\r\n            \"attributeKey\": \"ATTRIBUTEKEY_ISMAXIMIZED\",\r\n            \"menuItemId\": 4547\r\n        }, {\r\n            \"menuAttributeId\": 25346,\r\n            \"menuAttributeValue\": \"110;1840;1816;1841;1843;144;156;146;335;336;337;338;339;343;344;345;346;347;348;349;455;456;457;458;565;566;567;568;569;570;571;572;573;574;575;576;577;578;579;580;581;582;583;584;585;586;587;588;589;590;591;592;593;594;595;596;597;598;599;601;602;603;604;605;606;607;608;609;610;670;671;672;673;674;675;676;677;678;679;680;681;682;683;684;685;549;551;552;553;554;556;557;558;559;622;626;631;640;641;642;664;665;666;667;668;669;686;687;688;689;690;691;692;693;694;695;696;697;698;699;700;701;702;703;705;706;707;708;709;711;613;614;383;384;385;386;387;388;389;431;432;433;663;434;941;942;147;149;150;161;165;215;214;300;301;302;303;304;305;306;307;308;309;713;714;715;716;717;718;719;720;721;722;723;724;725;726;727;728;729;730;731;732;733;734;735;736;737;738;739;740;741;742;743;744;745;746;747;748;749;751;752;753;754;755;756;757;758;759;760;761;762;763;764;765;766;767;768;771;772;773;774;775;776;778;779;780;781;782;783;784;785;786;787;788;789;790;791;792;793;794;795;796;797;798;799;801;802;803;311;312;313;314;315;943;944;459;486;487;488;489;490;491;492;493;494;495;496;497;498;499;500;501;502;503;504;505;506;507;508;509;6800;444;454;449;1800;1801;1802;1803;1806;1807;1813;1832;1871;1872;1842;1844;1846;1880;134;1805;1890;1891;1820;1821;1822;1825;1835;1845\",\r\n            \"attributeKey\": \"ATTRIBUTEKEY_WHITELIST\",\r\n            \"menuItemId\": 4547\r\n        }, {\r\n            \"menuAttributeId\": 25347,\r\n            \"menuAttributeValue\": \"B;P;T;K\",\r\n            \"attributeKey\": \"ATTRIBUTEKEY_BRANCHTYPE\",\r\n            \"menuItemId\": 4547\r\n        }, {\r\n            \"menuAttributeId\": 25348,\r\n            \"menuAttributeValue\": \"ürün kodu alanı\",\r\n            \"attributeKey\": \"ATTRIBUTEKEY_PRODUCTCODE\",\r\n            \"menuItemId\": 4547\r\n        }, {\r\n            \"menuAttributeId\": 25349,\r\n            \"menuAttributeValue\": \"iş birimi alanı\",\r\n            \"attributeKey\": \"ATTRIBUTEKEY_REGULATION\",\r\n            \"menuItemId\": 4547\r\n        }, {\r\n            \"menuAttributeId\": 999999,\r\n            \"menuAttributeValue\": \"[{\\\"menuAttributeId\\\":25350,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isOnbehalfOf\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25351,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isComponent\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25352,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isFeedback\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25353,\\\"menuAttributeValue\\\":\\\"asd\\\",\\\"attributeKey\\\":\\\"instanceKey\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25354,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isOpenWithPopup\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25355,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isRedirected\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25356,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isCustomerSession\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25357,\\\"menuAttributeValue\\\":\\\"6546\\\",\\\"attributeKey\\\":\\\"whiteListVpn\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25358,\\\"menuAttributeValue\\\":\\\"9879\\\",\\\"attributeKey\\\":\\\"blackListVpn\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25359,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isOnbehalfOf\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25360,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isComponent\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25361,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isFeedback\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25362,\\\"menuAttributeValue\\\":\\\"asd\\\",\\\"attributeKey\\\":\\\"instanceKey\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25363,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isOpenWithPopup\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25364,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isRedirected\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25365,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isCustomerSession\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25366,\\\"menuAttributeValue\\\":\\\"6546\\\",\\\"attributeKey\\\":\\\"whiteListVpn\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25367,\\\"menuAttributeValue\\\":\\\"9879\\\",\\\"attributeKey\\\":\\\"blackListVpn\\\",\\\"menuItemId\\\":4547}]\",\r\n            \"attributeKey\": \"ATTRIBUTEKEY_REGULATION\",\r\n            \"menuItemId\": 999999\r\n        }\r\n        ],\r\n        \"menuRegLinkList\": []\r\n    }\r\n    return mockDataMenuItem;\r\n}",
+					"TO": 1,
+					"HL": "TS"
+				},
+				"retrieveJsonData": {
+					"H": "declare let onlineApproveId;\r\n\r\nlet requestData: any = {\r\n    \"onlineApproveId\": onlineApproveId\r\n};\r\n\r\nlet serviceRequest: any = {};\r\n\r\nserviceRequest.blockRender = '';\r\nserviceRequest.data = requestData;\r\nserviceRequest.url = 'PREFIX/api/MenuOperationsApp/retrieveJsonData';\r\nserviceRequest.http = 'POST';\r\nserviceRequest.responseField = {};\r\nlet responseField: any = 'retrieveJsonDataResponse';\r\nserviceRequest.responseField = responseField;\r\nserviceRequest.onSuccess = 'retrieveJsonDataRequestSuccess';\r\nserviceRequest.onFail = 'retrieveJsonDataRequestFail';\r\n// quick.store.set('$customConsumerCode', quick.store.get('customConsumerCode'));\r\nquick.Request.async(serviceRequest);",
+					"C": true,
+					"HL": "TS"
+				},
+				"retrieveJsonDataRequestSuccess": {
+					"H": "let mockData = quick.store.get('mockData');\r\n\r\nlet responseData = mockData ?? response.retrieveJsonDataResponse;\r\n\r\nlet params = quick.store.get('urlParams');\r\ndebugger\r\nif (params?.islemTipi == 'updateMenu') {\r\n    let tableHeaders = [{ 'text': 'İşlem Bilgileri', 'align': 'start', 'sortable': false, 'value': 'label','width':'100px' },\r\n    { 'text': 'Eski Değerler', 'value': 'oldValue', 'sortable': false, 'width': '500px'  },\r\n    { 'text': 'Yeni Değerler', 'value': 'newValue', 'sortable': false, 'width': '500px' }];\r\n\r\n    components.tbl_details.headers = tableHeaders;\r\n\r\n    quick.store.set('jsonData', responseData);\r\n\r\n    quick.MM.trigger('retrieveMenuItem', [{ 'menuId': params.menuId }]);\r\n}\r\nelse if (params?.islemTipi == 'insertNewMenu') {\r\n    let tableHeaders = [{ 'text': 'İşlem Bilgileri', 'align': 'start', 'sortable': false, 'value': 'label','width':'100px' },\r\n    { 'text': 'Yeni Değerler', 'value': 'newValue', 'sortable': false,'width': '500px' }];\r\n\r\n    components.tbl_details.headers = tableHeaders;\r\n\r\n    // isCustomer \r\n\r\n    let isCustomer = '';\r\n    if (responseData?.isCustomer?.includes('1'))\r\n        isCustomer += ', Oturum İçi';\r\n    if (responseData?.isCustomer?.includes('0'))\r\n        isCustomer += ', Oturum Dışı';\r\n    if (responseData?.isCustomer?.includes('2'))\r\n        isCustomer += ', Aday';\r\n    isCustomer = isCustomer.slice(2) != '' ? isCustomer.slice(2) : '-';\r\n\r\n\r\n    // customerType\r\n    let customerType = '';\r\n    if (responseData?.customerType?.includes('1'))\r\n        customerType += ', Bireysel';\r\n    if (responseData?.customerType?.includes('2'))\r\n        customerType += ', Ticari';\r\n    if (responseData?.customerType?.includes('3'))\r\n        customerType += ', GKT';\r\n    customerType = customerType.slice(2) != '' ? customerType.slice(2) : '-';\r\n\r\n\r\n    // branchType\r\n    let branchType = '';\r\n    if (responseData?.branchType?.includes('B'))\r\n        branchType += ', Bireysel';\r\n    if (responseData?.branchType?.includes('P'))\r\n        branchType += ', Karma';\r\n    if (responseData?.branchType?.includes('T'))\r\n        branchType += ', Ticari';\r\n    if (responseData?.branchType?.includes('K'))\r\n        branchType += ', Kurumsal';\r\n    branchType = branchType.slice(2) != '' ? branchType.slice(2) : '-';\r\n    \r\n    let items = [\r\n        { 'label': 'Menü Adı', 'newValue': responseData?.menuName ?? '-' },\r\n        { 'label': 'Menü Url', 'newValue': responseData?.menuUrl ?? '-' },\r\n        { 'label': 'Menü Sırası', 'newValue': responseData?.position ?? '-' },\r\n        { 'label': 'Uygulama Sahibi', 'newValue': responseData?.appOwner ?? '-' },\r\n        { 'label': 'Uygulama Tipi', 'newValue': responseData?.appType ?? '-' },\r\n        { 'label': 'Link/Menü', 'newValue': responseData?.isCaption == 'LEAF' ? 'Link' : 'Menü' },\r\n        { 'label': 'Yayınlanma Tarihi', 'newValue': responseData?.publishDate ? (<any>new Date(responseData?.publishDate).toLocaleDateString('TR-tr')).replaceAll('.', '/') : '-' },\r\n        { 'label': 'Yetkiler', 'newValue': responseData?.rightNames ?? '-' },\r\n        { 'label': 'Beyaz Liste (Pilot Şube)', 'newValue': responseData?.whiteList ?? '-' },\r\n        { 'label': 'Kara Liste', 'newValue': responseData?.blackList ?? '-' },\r\n        { 'label': 'Beyaz Liste (VPN)', 'newValue': responseData?.whiteListVpn ?? '-' },\r\n        { 'label': 'Kara Liste (VPN)', 'newValue': responseData?.blackListVpn ?? '-' },\r\n        { 'label': 'Yardım Linki', 'newValue': responseData?.helpLink ?? '-' },\r\n        { 'label': 'Oturum İçi/Dışı', 'newValue': isCustomer ?? '-' },\r\n        { 'label': 'Müşteri Tipi', 'newValue': customerType ?? '-' },\r\n        { 'label': 'Şube Tipi', 'newValue': branchType ?? '-' },\r\n        { 'label': 'Segment', 'newValue': responseData?.segment ?? '-' },\r\n        { 'label': 'Yeni İkonu', 'newValue': responseData?.isNew ?? '-' },\r\n        { 'label': 'Ürün Kodu', 'newValue': responseData?.productCode ?? '-' },\r\n        { 'label': 'Geçici olarak kapatılsın mı?', 'newValue': responseData?.temporaryClosed == 1 ? 'Evet' : 'Hayır' },\r\n        { 'label': 'Ekran maksimum açılsın mı?', 'newValue': responseData?.isMaximized == 1 ? 'Evet' : 'Hayır' },\r\n        { 'label': 'Mevzuat Etiketi', 'newValue': responseData?.regulationTag ?? '-' },\r\n        { 'label': 'Mevzuat Linkleri', 'newValue': responseData?.regLinks ?? '-' }\r\n    ];\r\n    \r\n    components.tbl_details.items = items;\r\n}\r\nelse {\r\n    // hata\r\n    // işlem tipi bulunamadı\r\n}\r\n",
+					"C": true,
+					"HL": "TS"
+				},
+				"retrieveJsonDataRequestFail": {
+					"H": "let mockData = quick.store.get('mockData');\r\n\r\nif (mockData)\r\n    quick.MM.trigger('retrieveJsonDataRequestSuccess');",
+					"C": true,
+					"HL": "TS"
+				},
+				"retrieveMenuItem": {
+					"H": "declare let menuId;\r\n\r\nquick.store.delete('menuItemData');\r\n\r\nlet requestData: any = {\r\n    menuId: menuId\r\n};\r\n\r\nlet serviceRequest: any = {};\r\n\r\nserviceRequest.blockRender = '';\r\nserviceRequest.data = requestData;\r\nserviceRequest.url = 'PREFIX/api/MenuOperationsApp/retrieveMenuItem';\r\nserviceRequest.http = 'POST';\r\nserviceRequest.responseField = {};\r\nlet responseField: any = 'retrieveMenuItemResponse';\r\nserviceRequest.responseField = responseField;\r\nserviceRequest.onSuccess = 'retrieveMenuItemRequestSuccess';\r\nserviceRequest.onFail = 'retrieveMenuItemRequestFail';\r\nquick.store.set('$customConsumerCode', quick.store.get('customConsumerCode'));\r\nquick.Request.async(serviceRequest);",
+					"C": true,
+					"HL": "TS"
+				},
+				"retrieveMenuItemRequestSuccess": {
+					"H": "let responseData = quick.store.get('mockDataMenuItem') ?? response?.retrieveMenuItemResponse;\r\n\r\nlet newAttributeList = quick.Quick.copy(responseData?.menuAttributeList);\r\n\r\nif (responseData?.menuAttributeList?.length > 0) {\r\n    let tmpAttRegulation = [];\r\n    responseData?.menuAttributeList?.forEach((att) => {\r\n        if (att?.menuAttributeId == 999999 && att?.attributeKey == 'ATTRIBUTEKEY_REGULATION') {\r\n            tmpAttRegulation = JSON.parse(att?.menuAttributeValue);\r\n        }\r\n        else if (att?.menuAttributeId != 999999 && att?.attributeKey == 'ATTRIBUTEKEY_REGULATION') {\r\n            quick.store.set('isBirimi', att?.menuAttributeValue);\r\n        }\r\n    });\r\n\r\n    if (tmpAttRegulation?.length > 0) {\r\n        tmpAttRegulation?.forEach((att) => {\r\n            att.attributeKey = 'ATTRIBUTEKEY_' + att?.attributeKey?.toUpperCase();\r\n\r\n            const tmpAtt = newAttributeList.find(item => item.attributeKey === att.attributeKey);\r\n\r\n            if (tmpAtt) {\r\n                tmpAtt.menuAttributeValue = att.menuAttributeValue;\r\n            }\r\n            else {\r\n                newAttributeList.push(att);\r\n            }\r\n        });\r\n    }\r\n}\r\n\r\nlet jsonData = quick.store.get('jsonData');\r\nlet oldMenuOffering = responseData?.menuOffering;\r\nlet oldMenuRightList = '';\r\nresponseData?.menuRightList?.forEach((item) => {\r\n    oldMenuRightList += ', ' + item?.menuRightName;\r\n});\r\noldMenuRightList = oldMenuRightList.slice(2) != '' ? oldMenuRightList.slice(2) : '-';\r\nlet oldMenuAttributeList = newAttributeList;\r\n\r\n// isCustomer \r\n\r\nlet isCustomer = '';\r\nif (jsonData?.isCustomer?.includes('1'))\r\n    isCustomer += ', Oturum İçi';\r\nif (jsonData?.isCustomer?.includes('0'))\r\n    isCustomer += ', Oturum Dışı';\r\nif (jsonData?.isCustomer?.includes('2'))\r\n    isCustomer += ', Aday';\r\nisCustomer = isCustomer.slice(2) != '' ? isCustomer.slice(2) : '-';\r\n\r\nlet oldIsCustomer = '';\r\nlet oldIsCustomerValue = oldMenuAttributeList.find(item => item.attributeKey == 'ATTRIBUTEKEY_ISCUSTOMER')?.menuAttributeValue ?? '';\r\nif (oldIsCustomerValue?.includes('1'))\r\n    oldIsCustomer += ', Oturum İçi';\r\nif (oldIsCustomerValue?.includes('0'))\r\n    oldIsCustomer += ', Oturum Dışı';\r\nif (oldIsCustomerValue?.includes('2'))\r\n    oldIsCustomer += ', Aday';\r\noldIsCustomer = oldIsCustomer.slice(2) != '' ? oldIsCustomer.slice(2) : '-';\r\n\r\n\r\n// customerType\r\nlet customerType = '';\r\nif (jsonData?.customerType?.includes('1'))\r\n    customerType += ', Bireysel';\r\nif (jsonData?.customerType?.includes('2'))\r\n    customerType += ', Ticari';\r\nif (jsonData?.customerType?.includes('3'))\r\n    customerType += ', GKT';\r\ncustomerType = customerType.slice(2) != '' ? customerType.slice(2) : '-';\r\n\r\nlet oldCustomerType = '';\r\nlet oldCustomerTypeValues = oldMenuAttributeList.find(item => item.attributeKey == 'ATTRIBUTEKEY_CUSTOMERTYPE')?.menuAttributeValue ?? '';\r\nif (oldCustomerTypeValues?.includes('1'))\r\n    oldCustomerType += ', Bireysel';\r\nif (oldCustomerTypeValues?.includes('2'))\r\n    oldCustomerType += ', Ticari';\r\nif (oldCustomerTypeValues?.includes('3'))\r\n    oldCustomerType += ', GKT';\r\noldCustomerType = oldCustomerType.slice(2) != '' ? oldCustomerType.slice(2) : '-';\r\n\r\n\r\n// branchType\r\nlet branchType = '';\r\nif (jsonData?.branchType?.includes('B'))\r\n    branchType += ', Bireysel';\r\nif (jsonData?.branchType?.includes('P'))\r\n    branchType += ', Karma';\r\nif (jsonData?.branchType?.includes('T'))\r\n    branchType += ', Ticari';\r\nif (jsonData?.branchType?.includes('K'))\r\n    branchType += ', Kurumsal';\r\nbranchType = branchType.slice(2) != '' ? branchType.slice(2) : '-';\r\n\r\nlet oldBranchType = '';\r\nlet oldBranchTypeValues = oldMenuAttributeList.find(item => item.attributeKey == 'ATTRIBUTEKEY_BRANCHTYPE')?.menuAttributeValue ?? '';\r\nif (oldBranchTypeValues?.includes('B'))\r\n    oldBranchType += ', Bireysel';\r\nif (oldBranchTypeValues?.includes('P'))\r\n    oldBranchType += ', Karma';\r\nif (oldBranchTypeValues?.includes('T'))\r\n    oldBranchType += ', Ticari';\r\nif (oldBranchTypeValues?.includes('K'))\r\n    oldBranchType += ', Kurumsal';\r\noldBranchType = oldBranchType.slice(2) != '' ? oldBranchType.slice(2) : '-';\r\n\r\nlet items = [\r\n    { 'label': 'Menü Adı', 'oldValue': oldMenuOffering?.menuName ?? '-', 'newValue': jsonData?.menuName ?? '-' },\r\n    { 'label': 'Menü Url', 'oldValue': oldMenuOffering?.menuUrl ??'-', 'newValue': jsonData?.menuUrl ?? '-' },\r\n    { 'label': 'Menü Sırası', 'oldValue': oldMenuOffering?.menuPosition ?? '-', 'newValue': jsonData?.position ?? '-' },\r\n    { 'label': 'Uygulama Sahibi', 'oldValue': oldMenuOffering?.menuAppOwner ?? '-', 'newValue': jsonData?.appOwner ?? '-' },\r\n    { 'label': 'Uygulama Tipi', 'oldValue': oldMenuOffering?.menuAppType ?? '-', 'newValue': jsonData?.appType ?? '-' },\r\n    { 'label': 'Link/Menü', 'oldValue': oldMenuOffering?.menuIsCaption == 'LEAF' ? 'Link' : 'Menü', 'newValue': jsonData?.isCaption == 'LEAF' ? 'Link' : 'Menü' },\r\n    { 'label': 'Yayınlanma Tarihi', 'oldValue': oldMenuOffering?.menuPublishDate ? (<any>new Date(oldMenuOffering?.menuPublishDate).toLocaleDateString('TR-tr')).replaceAll('.', '/') : '-', 'newValue': jsonData?.publishDate ? (<any>new Date(jsonData?.publishDate).toLocaleDateString('TR-tr')).replaceAll('.', '/') : '-' },\r\n    { 'label': 'Yetkiler', 'oldValue': oldMenuRightList ?? '-', 'newValue': jsonData?.rightNames ?? '-' },\r\n    { 'label': 'Mevzuat Linkleri', 'oldValue': '-', 'newValue': '-' },\r\n    { 'label': 'Beyaz Liste (Pilot Şube)', 'oldValue': oldMenuAttributeList?.find(item => item?.attributeKey == 'ATTRIBUTEKEY_WHITELIST')?.menuAttributeValue ?? '-', 'newValue': jsonData?.whiteList ?? '-' },\r\n    { 'label': 'Kara Liste', 'oldValue': oldMenuAttributeList?.find(item => item?.attributeKey == 'ATTRIBUTEKEY_BLACKLIST')?.menuAttributeValue ?? '-', 'newValue': jsonData?.blackList ?? '-' },\r\n    { 'label': 'Beyaz Liste (VPN)', 'oldValue': oldMenuAttributeList?.find(item => item?.attributeKey == 'ATTRIBUTEKEY_WHITELISTVPN')?.menuAttributeValue ?? '-', 'newValue': jsonData?.whiteListVpn ?? '-' },\r\n    { 'label': 'Kara Liste (VPN)', 'oldValue': oldMenuAttributeList?.find(item => item?.attributeKey == 'ATTRIBUTEKEY_BLACKLIST')?.menuAttributeValue ?? '-', 'newValue': jsonData?.blackListVpn ?? '-' },\r\n    { 'label': 'Yardım Linki', 'oldValue': oldMenuOffering?.menuHelpLink ?? '-', 'newValue': jsonData?.helpLink ?? '-' },\r\n    { 'label': 'Oturum İçi/Dışı', 'oldValue': oldIsCustomer ?? '-', 'newValue': isCustomer ?? '-' },\r\n    { 'label': 'Müşteri Tipi', 'oldValue': oldCustomerType ?? '-', 'newValue': customerType ?? '-' },\r\n    { 'label': 'Şube Tipi', 'oldValue': oldBranchType ?? '-', 'newValue': branchType ?? '-' },\r\n    { 'label': 'Segment', 'oldValue': oldMenuAttributeList?.find(item => item?.attributeKey == 'ATTRIBUTEKEY_SEGMENT')?.menuAttributeValue ?? '-', 'newValue': jsonData?.segment ?? '-' },\r\n    { 'label': 'Yeni İkonu', 'oldValue': '-', 'newValue': jsonData?.isNew ?? '-' },\r\n    { 'label': 'Ürün Kodu', 'oldValue': oldMenuAttributeList?.find(item => item?.attributeKey == 'ATTRIBUTEKEY_PRODUCTCODE')?.menuAttributeValue ?? '-', 'newValue': jsonData?.productCode ?? '-' },\r\n    { 'label': 'Geçici olarak kapatılsın mı?', 'oldValue': oldMenuAttributeList?.find(item => item?.attributeKey == 'ATTRIBUTEKEY_TEMPRORYCLOSED')?.menuAttributeValue == '1' ? 'Evet' : 'Hayır', 'newValue': jsonData?.temporaryClosed == 1 ? 'Evet' : 'Hayır' },\r\n    { 'label': 'Ekran maksimum açılsın mı?', 'oldValue': oldMenuAttributeList?.find(item => item?.attributeKey == 'ATTRIBUTEKEY_ISMAXIMIZED')?.menuAttributeValue == '1' ? 'Evet' : 'Hayır', 'newValue': jsonData?.isMaximized == 1 ? 'Evet' : 'Hayır' },\r\n    { 'label': 'Mevzuat Etiketi', 'oldValue': oldMenuAttributeList?.find(item => (item?.attributeKey == 'ATTRIBUTEKEY_REGULATION' && item?.menuAttributeId != 999999))?.menuAttributeValue, 'newValue': jsonData?.regulationTag ?? '-' },\r\n    { 'label': 'Mevzuat Linkleri', 'oldValue': '-', 'newValue': jsonData?.regLinks ?? '-' }\r\n];\r\n\r\ncomponents.tbl_details.items = items;\r\n",
+					"C": true,
+					"HL": "TS"
+				},
+				"retrieveMenuItemRequestFail": {
+					"H": "let mockDataMenuItem = quick.store.get('mockDataMenuItem');\r\n\r\nif (mockDataMenuItem)\r\n    quick.MM.trigger('retrieveMenuItemRequestSuccess');\r\n\r\n\r\n// declare let error\r\n\r\n// // components.lbl_diaError.text = error?.response?.data ?? 'Menü bilgisi alınırken bir hata oluştu. Bağlantınızı kontrol edip tekrar deneyin.';\r\n// quick.store.set('errorPostProcess', errorPostProcess);\r\n// // components.dia_error.qValue = true;\r\n\r\n\r\n// function errorPostProcess() { }",
+					"C": true,
+					"HL": "TS"
+				}
+			},
+			"C": {},
+			"_Editor": {
+				"eID": "EdtrComp_1"
+			},
+			"O": {
+				"cType": "child"
+			},
+			"S": {
+				"xs-xl": {
+					"pageBackgroundColor": "#ffffff",
+					"statusBarColor": "#ffffff"
+				}
+			}
+		},
+		{
+			"T": "VContainer",
+			"P": {
+				"ID": {
+					"H": "VContainerComp",
+					"T": "prop"
+				},
+				"class": {
+					"H": "'container'",
+					"T": "class"
+				},
+				"visible": {
+					"H": "true",
+					"T": "prop"
+				},
+				"eager": {
+					"H": "true",
+					"T": "prop"
+				}
+			},
+			"E": {},
+			"C": {
+				"default": {
+					"c": [
+						{
+							"T": "VRow",
+							"P": {
+								"ID": {
+									"H": "VRowComp",
+									"T": "prop"
+								}
+							},
+							"E": {},
+							"C": {
+								"default": {
+									"c": [
+										{
+											"T": "VCol",
+											"C": {
+												"default": {
+													"c": [
+														{
+															"T": "VDataTable",
+															"P": {
+																"ID": {
+																	"H": "tbl_details",
+																	"T": "prop",
+																	"HL": "QS"
+																},
+																"footerProps": {
+																	"H": "{showFirstLastPage = true,\nfirstIcon = 'mdi-arrow-collapse-left',\nlastIcon = 'mdi-arrow-collapse-right',\nprevIcon = 'mdi-minus',\nnextIcon = 'mdi-plus'}",
+																	"T": "prop"
+																},
+																"headers": {
+																	"H": "[{ text = 'İşlem Bilgileri', align= 'start', sortable= false, value= 'label'},\n{ text = 'Eski Değerler', value= 'oldValue' , sortable = false },\n{ text = 'Yeni Değerler', value= 'newValue', sortable = false }]",
+																	"T": "prop",
+																	"HL": "QS"
+																},
+																"items": {
+																	"H": "[]",
+																	"T": "prop",
+																	"HL": "QS"
+																},
+																"itemsPerPage": {
+																	"H": "5",
+																	"T": "prop"
+																},
+																"mobileBreakpoint": {
+																	"H": "600",
+																	"T": "prop"
+																},
+																"visible": {
+																	"H": "true",
+																	"T": "prop"
+																},
+																"hideDefaultFooter": {
+																	"H": "true",
+																	"T": "prop",
+																	"HL": "QS"
+																},
+																"disablePagination": {
+																	"H": "true",
+																	"T": "prop",
+																	"HL": "QS"
+																},
+																"calculateWidths": {
+																	"H": "true",
+																	"T": "prop",
+																	"HL": "QS"
+																},
+																"DiscardSettings": {
+																	"H": "true",
+																	"T": "prop",
+																	"HL": "QS"
+																},
+																"class": {
+																	"H": "'stickytable'",
+																	"T": "class"
+																},
+																"uniqueSlots": {
+																	"H": "false",
+																	"T": "prop",
+																	"HL": "QS"
+																}
+															},
+															"E": {},
+															"C": {
+																"item.value": {
+																	"c": [
+																		{
+																			"T": "QLabel",
+																			"P": {
+																				"ID": {
+																					"H": "EdtrComp_215",
+																					"T": "prop"
+																				},
+																				"tagType": {
+																					"H": "'span'",
+																					"T": "prop"
+																				},
+																				"text": {
+																					"H": "item.value",
+																					"T": "prop",
+																					"HL": "QS"
+																				},
+																				"visible": {
+																					"H": "true",
+																					"T": "prop"
+																				},
+																				"processHtml": {
+																					"H": "false",
+																					"T": "prop"
+																				}
+																			},
+																			"E": {},
+																			"C": {},
+																			"_Editor": {
+																				"eID": "EdtrComp_215"
+																			},
+																			"S": {
+																				"xs-xl": {
+																					"marginTop": "",
+																					"marginRight": "",
+																					"marginBottom": "",
+																					"marginLeft": "",
+																					"paddingTop": "",
+																					"paddingRight": "",
+																					"paddingBottom": "",
+																					"paddingLeft": "",
+																					"fontColor": "#000000",
+																					"fontFamily": "Roboto",
+																					"fontSize": "16px",
+																					"fontStyle": "normal",
+																					"fontWeight": "400",
+																					"combinedFont": "Roboto-Regular",
+																					"ThemeFont": "Custom",
+																					"lineHeight": "20px",
+																					"textAlign": "left",
+																					"textDecorationLine": "none",
+																					"textDecorationStyle": "solid",
+																					"textDecorationColor": "#000000"
+																				}
+																			},
+																			"O": {
+																				"cType": "slot"
+																			}
+																		}
+																	],
+																	"cType": "scopedSlot"
+																},
+																"item.newValue": {
+																	"c": [
+																		{
+																			"T": "QLabel",
+																			"P": {
+																				"ID": {
+																					"H": "EdtrComp_197",
+																					"T": "prop"
+																				},
+																				"tagType": {
+																					"H": "'span'",
+																					"T": "prop"
+																				},
+																				"text": {
+																					"H": "item.newValue",
+																					"T": "prop",
+																					"HL": "QS"
+																				},
+																				"visible": {
+																					"H": "true",
+																					"T": "prop"
+																				},
+																				"processHtml": {
+																					"H": "false",
+																					"T": "prop"
+																				}
+																			},
+																			"E": {},
+																			"C": {},
+																			"_Editor": {
+																				"eID": "EdtrComp_197"
+																			},
+																			"S": {
+																				"xs-xl": {
+																					"marginTop": "",
+																					"marginRight": "",
+																					"marginBottom": "",
+																					"marginLeft": "",
+																					"paddingTop": "",
+																					"paddingRight": "",
+																					"paddingBottom": "",
+																					"paddingLeft": "",
+																					"fontColor": "#000000",
+																					"fontFamily": "Roboto",
+																					"fontSize": "16px",
+																					"fontStyle": "normal",
+																					"fontWeight": "400",
+																					"combinedFont": "Roboto-Regular",
+																					"ThemeFont": "Custom",
+																					"lineHeight": "20px",
+																					"textAlign": "left",
+																					"textDecorationLine": "none",
+																					"textDecorationStyle": "solid",
+																					"textDecorationColor": "#000000"
+																				}
+																			},
+																			"O": {
+																				"cType": "slot"
+																			}
+																		}
+																	],
+																	"cType": "scopedSlot"
+																},
+																"item.oldValue": {
+																	"c": [
+																		{
+																			"T": "QLabel",
+																			"P": {
+																				"ID": {
+																					"H": "EdtrComp_165",
+																					"T": "prop"
+																				},
+																				"tagType": {
+																					"H": "'span'",
+																					"T": "prop"
+																				},
+																				"text": {
+																					"H": "item.oldValue",
+																					"T": "prop",
+																					"HL": "QS"
+																				},
+																				"visible": {
+																					"H": "true",
+																					"T": "prop"
+																				},
+																				"processHtml": {
+																					"H": "false",
+																					"T": "prop"
+																				}
+																			},
+																			"E": {},
+																			"C": {},
+																			"_Editor": {
+																				"eID": "EdtrComp_165"
+																			},
+																			"S": {
+																				"xs-xl": {
+																					"marginTop": "",
+																					"marginRight": "",
+																					"marginBottom": "",
+																					"marginLeft": "",
+																					"paddingTop": "",
+																					"paddingRight": "",
+																					"paddingBottom": "",
+																					"paddingLeft": "",
+																					"fontColor": "#000000",
+																					"fontFamily": "Roboto",
+																					"fontSize": "16px",
+																					"fontStyle": "normal",
+																					"fontWeight": "400",
+																					"combinedFont": "Roboto-Regular",
+																					"ThemeFont": "Custom",
+																					"lineHeight": "20px",
+																					"textAlign": "left",
+																					"textDecorationLine": "none",
+																					"textDecorationStyle": "solid",
+																					"textDecorationColor": "#000000"
+																				}
+																			},
+																			"O": {
+																				"cType": "slot"
+																			}
+																		}
+																	],
+																	"cType": "scopedSlot"
+																}
+															},
+															"_Editor": {
+																"eID": "EdtrComp_6"
+															},
+															"S": {
+																"xs-xl": {
+																	"marginLeft": "0px",
+																	"marginRight": "0px",
+																	"marginBottom": "0px",
+																	"marginTop": "0px",
+																	"paddingTop": "0px",
+																	"paddingBottom": "0px",
+																	"paddingLeft": "0px",
+																	"paddingRight": "0px",
+																	"height": "",
+																	"maxWidth": "",
+																	"maxHeight": "",
+																	"minWidth": "",
+																	"minHeight": "",
+																	"unlink": "false",
+																	"unlinkMax": "false",
+																	"unlinkMin": "false",
+																	"isSizeCollapsed": "false",
+																	"dense": "true",
+																	"headerFontColor": "#ffffff",
+																	"headerFontFamily": "Roboto",
+																	"headerFontSize": "16px",
+																	"headerFontStyle": "normal",
+																	"headerFontWeight": "400",
+																	"headerCombinedFont": "Roboto-Regular",
+																	"headerThemeFont": "Custom",
+																	"footerText": "#686868",
+																	"footerFontFamily": "Roboto",
+																	"footerFontSize": "12px",
+																	"footerFontStyle": "normal",
+																	"footerFontWeight": "400",
+																	"footerCombinedFont": "Roboto-Regular",
+																	"footerThemeFont": "Custom",
+																	"textColor": "#010101",
+																	"itemFontFamily": "Roboto",
+																	"itemFontSize": "14px",
+																	"itemFontStyle": "normal",
+																	"itemFontWeight": "400",
+																	"itemsCombinedFont": "Roboto-Regular",
+																	"itemsThemeFont": "Custom",
+																	"backgroundColor": "#ffffff",
+																	"hoverColor": "#ffffff",
+																	"footerColor": "#FFFFFF",
+																	"headerColor": "#b2b2b2",
+																	"selectedBackground": "#FFFFFF",
+																	"lineColor": "#0000001f",
+																	"lineSize": "1",
+																	"boxShadow": "",
+																	"boxSizing": "",
+																	"borderTopStyle": "solid",
+																	"borderRightStyle": "solid",
+																	"borderBottomStyle": "solid",
+																	"borderLeftStyle": "solid",
+																	"borderTopLeftRadius": "4px",
+																	"borderTopRightRadius": "4px",
+																	"borderBottomLeftRadius": "4px",
+																	"borderBottomRightRadius": "4px",
+																	"borderTopWidth": "0px",
+																	"borderRightWidth": "0px",
+																	"borderBottomWidth": "0px",
+																	"borderLeftWidth": "0px",
+																	"defaultBorderColor": "",
+																	"sides": "Top,Right,Bottom,Left",
+																	"expandedContent": "#010101"
+																}
+															},
+															"O": {
+																"cType": "scopedSlot"
+															}
+														}
+													],
+													"cType": "slot"
+												}
+											},
+											"E": {},
+											"P": {
+												"ID": {
+													"H": "VColComp",
+													"T": "prop"
+												}
+											},
+											"_Editor": {
+												"eID": "EdtrComp_3"
+											},
+											"O": {
+												"cType": "slot"
+											},
+											"S": {
+												"xs-xl": {
+													"col": "",
+													"flexDirection": "column",
+													"alignItems": "",
+													"justifyContent": "",
+													"marginLeft": "",
+													"marginRight": "",
+													"marginBottom": "",
+													"marginTop": "",
+													"paddingTop": "0px",
+													"paddingBottom": "0px",
+													"paddingLeft": "0px",
+													"paddingRight": "0px",
+													"backgroundColor": "#ffffff",
+													"boxShadow": ""
+												}
+											}
+										}
+									],
+									"cType": "slot"
+								}
+							},
+							"_Editor": {
+								"eID": "EdtrComp_4"
+							},
+							"O": {
+								"cType": "slot"
+							},
+							"S": {
+								"xs-xl": {
+									"marginLeft": "0px",
+									"marginRight": "0px",
+									"marginBottom": "0px",
+									"marginTop": "0px",
+									"paddingTop": "",
+									"paddingBottom": "",
+									"paddingLeft": "",
+									"paddingRight": "",
+									"width": "",
+									"height": "",
+									"backgroundColor": "#ffffff",
+									"boxShadow": ""
+								}
+							}
+						}
+					],
+					"cType": "slot"
+				}
+			},
+			"_Editor": {
+				"eID": "EdtrComp_5"
+			},
+			"O": {
+				"cType": "slot"
+			},
+			"S": {
+				"xs-xl": {
+					"marginLeft": "",
+					"marginRight": "",
+					"marginBottom": "",
+					"marginTop": "",
+					"paddingTop": "0px",
+					"paddingBottom": "0px",
+					"paddingLeft": "0px",
+					"paddingRight": "0px",
+					"width": "1200px",
+					"height": "",
+					"backgroundColor": "#ffffff",
+					"boxShadow": ""
+				}
+			}
+		}
+	],
+	"cJson": [
+		{
+			"T": "Messaging",
+			"P": {
+				"ID": {
+					"H": "PageComp",
+					"T": "prop"
+				},
+				"triggerOnRestored": {
+					"H": "╬false╩╩",
+					"T": "prop"
+				}
+			},
+			"E": {
+				"PostRender": {
+					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nvar params = quick.Url.getDeepLinkParams();\r\nquick.store.delete('mockData');\r\ndebugger;\r\n// let mockData = setMockData('updateMenu');\r\n// let mockDataMenuItem = setMockDataMenuItem();\r\n// quick.store.set('mockData', mockData);\r\n// quick.store.set('mockDataMenuItem', mockDataMenuItem);\r\n// let params = {\r\n//     'onlineApproveId': '96605',\r\n//     'status': 'WAITING_COMPLETE',\r\n//     'screenMode': 'APPROVER_POOL',\r\n//     'poolId': '12',\r\n//     'islemTipi': 'updateMenu',\r\n//     'menuId': '4323'\r\n// }\r\n// let params = {\r\n//     'onlineApproveId': '102030',\r\n//     'status': 'WAITING_COMPLETE',\r\n//     'screenMode': 'APPROVER_POOL',\r\n//     'poolId': '12',\r\n//     'islemTipi': 'updateMenu',\r\n//     'menuId': '4366'\r\n// }\r\n// let mockData = setMockData('insertNewMenu');\r\n// quick.store.set('mockData', mockData);\r\n// params = {\r\n//     'onlineApproveId': '99172',\r\n//     'status': 'WAITING_COMPLETE',\r\n//     'screenMode': 'APPROVER_POOL',\r\n//     'poolId': '11',\r\n//     'islemTipi': 'insertNewMenu',\r\n//     'menuName': 'prodTestMen2'\r\n// }\r\nquick.store.set('urlParams', params);\r\nquick.MM.trigger('retrieveJsonData', [{ 'onlineApproveId': params === null || params === void 0 ? void 0 : params.onlineApproveId }]);\r\nfunction setMockData(mod) {\r\n    var mockData;\r\n    if (mod == 'updateMenu') {\r\n        mockData = {\r\n            \"menuName\": \"Menü Yönetim Paneli - Quick\",\r\n            \"menuUrl\": \"top.advisorDesktop.windowManager.openWindow('Menü Yönetim Paneli - Quick','quick://microui/MenuOperationsService/static/MenuOperations/menuManagementPanel.qjson','','MENU',null,true,null,null,true);|quick://microui/MenuOperationsService/static/MenuOperations/menuManagementPanel.qjson\",\r\n            \"position\": 1,\r\n            \"appOwner\": \"uygulama sahibi alanı\",\r\n            \"appType\": \"Quick\",\r\n            \"rightNames\": \"yetki 1, yetki 22\",\r\n            \"whiteList\": \"110;1840;1816;1841;1843;144;156;146;335;336;337;338;339;343;344;345;346;347;348;349;455;456;457;458;565;566;567;568;569;570;571;572;573;574;575;576;577;578;579;580;581;582;583;584;585;586;587;588;589;590;591;592;593;594;595;596;597;598;599;601;602;603;604;605;606;607;608;609;610;670;671;672;673;674;675;676;677;678;679;680;681;682;683;684;685;549;551;552;553;554;556;557;558;559;622;626;631;640;641;642;664;665;666;667;668;669;686;687;688;689;690;691;692;693;694;695;696;697;698;699;700;701;702;703;705;706;707;708;709;711;613;614;383;384;385;386;387;388;389;431;432;433;663;434;941;942;147;149;150;161;165;215;214;300;301;302;303;304;305;306;307;308;309;713;714;715;716;717;718;719;720;721;722;723;724;725;726;727;728;729;730;731;732;733;734;735;736;737;738;739;740;741;742;743;744;745;746;747;748;749;751;752;753;754;755;756;757;758;759;760;761;762;763;764;765;766;767;768;771;772;773;774;775;776;778;779;780;781;782;783;784;785;786;787;788;789;790;791;792;793;794;795;796;797;798;799;801;802;803;311;312;313;314;315;943;944;459;486;487;488;489;490;491;492;493;494;495;496;497;498;499;500;501;502;503;504;505;506;507;508;509;6800;444;454;449;1800;1801;1802;1803;1806;1807;1813;1832;1871;1872;1842;1844;1846;1880;134;1805;1890;1891;1820;1821;1822;1825;1835;1845\",\r\n            \"blackList\": \"110;1840;1816;1841;1843;144;156;146;335;336;337;338;339;343;344;345;346;347;348;349;455;456;457;458;565;566;567;568;569;570;571;572;573;574;575;576;577;578;579;580;581;582;583;584;585;586;587;588;589;590;591;592;593;594;595;596;597;598;599;601;602;603;604;605;606;607;608;609;610;670;671;672;673;674;675;676;677;678;679;680;681;682;683;684;685;549;551;552;553;554;556;557;558;559;622;626;631;640;641;642;664;665;666;667;668;669;686;687;688;689;690;691;692;693;694;695;696;697;698;699;700;701;702;703;705;706;707;708;709;711;613;614;383;384;385;386;387;388;389;431;432;433;663;434;941;942;147;149;150;161;165;215;214;300;301;302;303;304;305;306;307;308;309;713;714;715;716;717;718;719;720;721;722;723;724;725;726;727;728;729;730;731;732;733;734;735;736;737;738;739;740;741;742;743;744;745;746;747;748;749;751;752;753;754;755;756;757;758;759;760;761;762;763;764;765;766;767;768;771;772;773;774;775;776;778;779;780;781;782;783;784;785;786;787;788;789;790;791;792;793;794;795;796;797;798;799;801;802;803;311;312;313;314;315;943;944;459;486;487;488;489;490;491;492;493;494;495;496;497;498;499;500;501;502;503;504;505;506;507;508;509;6800;444;454;449;1800;1801;1802;1803;1806;1807;1813;1832;1871;1872;1842;1844;1846;1880;134;1805;1890;1891;1820;1821;1822;1825;1835;1845\",\r\n            \"helpLink\": null,\r\n            \"isCustomer\": \"1;2\",\r\n            \"customerType\": \"1;2\",\r\n            \"branchType\": \"B;P;T;K\",\r\n            \"segment\": null,\r\n            \"isNew\": null,\r\n            \"productCode\": \"ürün kodu alanı\",\r\n            \"temporaryClosed\": \"1\",\r\n            \"isMaximized\": \"1\",\r\n            \"regulationTag\": \"[{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isOnbehalfOf\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isComponent\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isFeedback\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"asd\\\",\\\"attributeKey\\\":\\\"instanceKey\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isOpenWithPopup\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isCustomerSession\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"6546\\\",\\\"attributeKey\\\":\\\"whiteListVpn\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"9879\\\",\\\"attributeKey\\\":\\\"blackListVpn\\\",\\\"menuItemId\\\":0}]\",\r\n            \"publishDate\": 1765238400000,\r\n            \"regLinks\": null,\r\n            \"whiteListVpn\": null,\r\n            \"blackListVpn\": null,\r\n            \"isCaption\": \"LEAF\"\r\n        };\r\n    }\r\n    else if (mod == 'insertNewMenu') {\r\n        mockData = {\r\n            \"menuName\": \"RetrieveJsonData_Test \",\r\n            \"menuUrl\": \"top.advisorDesktop.windowManager.openWindow('RetrieveJsonData_Test ','retrieveJsonData','','UniqKeyRetrieveJson',null,true,true,true,true);|retrieveJsonData\",\r\n            \"position\": 1,\r\n            \"appOwner\": \"DŞP\",\r\n            \"appType\": \"Quick\",\r\n            \"rightNames\": \"yetki1, Yetki2\",\r\n            \"whiteList\": \"110;1840;1816;1841;1843;144;156;146;335;336;337;338;339;343;344;345;346;347;348;349;455;456;457;458;565;566;567;568;569;570;571;572;573;574;575;576;577;578;579;580;581;582;583;584;585;586;587;588;589;590;591;592;593;594;595;596;597;598;599;601;602;603;604;605;606;607;608;609;610;670;671;672;673;674;675;676;677;678;679;680;681;682;683;684;685;549;551;552;553;554;556;557;558;559;622;626;631;640;641;642;664;665;666;667;668;669;686;687;688;689;690;691;692;693;694;695;696;697;698;699;700;701;702;703;705;706;707;708;709;711;613;614;383;384;385;386;387;388;389;431;432;433;663;434;941;942;147;149;150;161;165;215;214;300;301;302;303;304;305;306;307;308;309;713;714;715;716;717;718;719;720;721;722;723;724;725;726;727;728;729;730;731;732;733;734;735;736;737;738;739;740;741;742;743;744;745;746;747;748;749;751;752;753;754;755;756;757;758;759;760;761;762;763;764;765;766;767;768;771;772;773;774;775;776;778;779;780;781;782;783;784;785;786;787;788;789;790;791;792;793;794;795;796;797;798;799;801;802;803;311;312;313;314;315;943;944;459;486;487;488;489;490;491;492;493;494;495;496;497;498;499;500;501;502;503;504;505;506;507;508;509;6800;444;454;449;1800;1801;1802;1803;1806;1807;1813;1832;1871;1872;1842;1844;1846;1880;134;1805;1890;1891;1820;1821;1822;1825;1835;1845\",\r\n            \"blackList\": \"110;1840;1816;1841;1843;144;156;146;335;336;337;338;339;343;344;345;346;347;348;349;455;456;457;458;565;566;567;568;569;570;571;572;573;574;575;576;577;578;579;580;581;582;583;584;585;586;587;588;589;590;591;592;593;594;595;596;597;598;599;601;602;603;604;605;606;607;608;609;610;670;671;672;673;674;675;676;677;678;679;680;681;682;683;684;685;549;551;552;553;554;556;557;558;559;622;626;631;640;641;642;664;665;666;667;668;669;686;687;688;689;690;691;692;693;694;695;696;697;698;699;700;701;702;703;705;706;707;708;709;711;613;614;383;384;385;386;387;388;389;431;432;433;663;434;941;942;147;149;150;161;165;215;214;300;301;302;303;304;305;306;307;308;309;713;714;715;716;717;718;719;720;721;722;723;724;725;726;727;728;729;730;731;732;733;734;735;736;737;738;739;740;741;742;743;744;745;746;747;748;749;751;752;753;754;755;756;757;758;759;760;761;762;763;764;765;766;767;768;771;772;773;774;775;776;778;779;780;781;782;783;784;785;786;787;788;789;790;791;792;793;794;795;796;797;798;799;801;802;803;311;312;313;314;315;943;944;459;486;487;488;489;490;491;492;493;494;495;496;497;498;499;500;501;502;503;504;505;506;507;508;509;6800;444;454;449;1800;1801;1802;1803;1806;1807;1813;1832;1871;1872;1842;1844;1846;1880;134;1805;1890;1891;1820;1821;1822;1825;1835;1845\",\r\n            \"helpLink\": null,\r\n            \"isCustomer\": \"1\",\r\n            \"customerType\": \"1;2;3\",\r\n            \"branchType\": \"B;P;T;K\",\r\n            \"segment\": null,\r\n            \"isNew\": null,\r\n            \"productCode\": null,\r\n            \"temporaryClosed\": \"1\",\r\n            \"isMaximized\": \"1\",\r\n            \"regulationTag\": \"[{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isOnbehalfOf\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isComponent\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isFeedback\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"232;1267;\\\",\\\"attributeKey\\\":\\\"whiteListVpn\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"111;564;\\\",\\\"attributeKey\\\":\\\"blackListVpn\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"UniqKeyRetrieveJson\\\",\\\"attributeKey\\\":\\\"instanceKey\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isOpenWithPopup\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isRedirected\\\",\\\"menuItemId\\\":0},{\\\"menuAttributeId\\\":0,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isCustomerSession\\\",\\\"menuItemId\\\":0}]\",\r\n            \"publishDate\": 1767916800000,\r\n            \"regLinks\": null,\r\n            \"whiteListVpn\": null,\r\n            \"blackListVpn\": null,\r\n            \"isCaption\": \"LEAF\"\r\n        };\r\n    }\r\n    else {\r\n        mockData = {};\r\n    }\r\n    return mockData;\r\n}\r\nfunction setMockDataMenuItem() {\r\n    var mockDataMenuItem = {\r\n        \"menuOffering\": {\r\n            \"menuId\": 4547,\r\n            \"menuParentId\": 0,\r\n            \"menuName\": \"son menü bükücü\",\r\n            \"menuUrl\": \"top.advisorDesktop.windowManager.openWindow('Menü Yönetim Paneli - Quick','quick://microui/MenuOperationsService/static/MenuOperations/menuManagementPanel.qjson','','MENU',null,true,null,null,true);|quick://microui/MenuOperationsService/static/MenuOperations/menuManagementPanel.qjson\",\r\n            \"menuPosition\": 1,\r\n            \"menuIsCaption\": \"LEAF\",\r\n            \"menuAppType\": \"Quick\",\r\n            \"menuAppOwner\": \"uygulama sahibi alanı\",\r\n            \"menuLevel\": 0,\r\n            \"menuSubList\": [],\r\n            \"menuPublishDate\": \"2025-12-09T00:00:00.000+03:00\",\r\n            \"menuPlatformId\": 0,\r\n            \"menuStatus\": true,\r\n            \"menuIsVpn\": false\r\n        },\r\n        \"menuRightList\": [{\r\n                \"menuRightId\": 7425,\r\n                \"menuItemId\": 0,\r\n                \"menuRightName\": \"yetki 1\"\r\n            }, {\r\n                \"menuRightId\": 7426,\r\n                \"menuItemId\": 0,\r\n                \"menuRightName\": \"yetki 22\"\r\n            }\r\n        ],\r\n        \"menuAttributeList\": [{\r\n                \"menuAttributeId\": 25333,\r\n                \"menuAttributeValue\": \"1;2\",\r\n                \"attributeKey\": \"ATTRIBUTEKEY_CUSTOMERTYPE\",\r\n                \"menuItemId\": 4547\r\n            }, {\r\n                \"menuAttributeId\": 25334,\r\n                \"menuAttributeValue\": \"3213\",\r\n                \"attributeKey\": \"ATTRIBUTEKEY_BLACKLIST\",\r\n                \"menuItemId\": 4547\r\n            }, {\r\n                \"menuAttributeId\": 25335,\r\n                \"menuAttributeValue\": \"1\",\r\n                \"attributeKey\": \"ATTRIBUTEKEY_TEMPRORYCLOSED\",\r\n                \"menuItemId\": 4547\r\n            }, {\r\n                \"menuAttributeId\": 25332,\r\n                \"menuAttributeValue\": \"1;2\",\r\n                \"attributeKey\": \"ATTRIBUTEKEY_ISCUSTOMER\",\r\n                \"menuItemId\": 4547\r\n            }, {\r\n                \"menuAttributeId\": 25336,\r\n                \"menuAttributeValue\": \"1\",\r\n                \"attributeKey\": \"ATTRIBUTEKEY_ISMAXIMIZED\",\r\n                \"menuItemId\": 4547\r\n            }, {\r\n                \"menuAttributeId\": 25337,\r\n                \"menuAttributeValue\": \"110;1840;1816;1841;1843;144;156;146;335;336;337;338;339;343;344;345;346;347;348;349;455;456;457;458;565;566;567;568;569;570;571;572;573;574;575;576;577;578;579;580;581;582;583;584;585;586;587;588;589;590;591;592;593;594;595;596;597;598;599;601;602;603;604;605;606;607;608;609;610;670;671;672;673;674;675;676;677;678;679;680;681;682;683;684;685;549;551;552;553;554;556;557;558;559;622;626;631;640;641;642;664;665;666;667;668;669;686;687;688;689;690;691;692;693;694;695;696;697;698;699;700;701;702;703;705;706;707;708;709;711;613;614;383;384;385;386;387;388;389;431;432;433;663;434;941;942;147;149;150;161;165;215;214;300;301;302;303;304;305;306;307;308;309;713;714;715;716;717;718;719;720;721;722;723;724;725;726;727;728;729;730;731;732;733;734;735;736;737;738;739;740;741;742;743;744;745;746;747;748;749;751;752;753;754;755;756;757;758;759;760;761;762;763;764;765;766;767;768;771;772;773;774;775;776;778;779;780;781;782;783;784;785;786;787;788;789;790;791;792;793;794;795;796;797;798;799;801;802;803;311;312;313;314;315;943;944;459;486;487;488;489;490;491;492;493;494;495;496;497;498;499;500;501;502;503;504;505;506;507;508;509;6800;444;454;449;1800;1801;1802;1803;1806;1807;1813;1832;1871;1872;1842;1844;1846;1880;134;1805;1890;1891;1820;1821;1822;1825;1835;1845\",\r\n                \"attributeKey\": \"ATTRIBUTEKEY_WHITELIST\",\r\n                \"menuItemId\": 4547\r\n            }, {\r\n                \"menuAttributeId\": 25338,\r\n                \"menuAttributeValue\": \"B;P;T;K\",\r\n                \"attributeKey\": \"ATTRIBUTEKEY_BRANCHTYPE\",\r\n                \"menuItemId\": 4547\r\n            }, {\r\n                \"menuAttributeId\": 25339,\r\n                \"menuAttributeValue\": \"ürün kodu alanı\",\r\n                \"attributeKey\": \"ATTRIBUTEKEY_PRODUCTCODE\",\r\n                \"menuItemId\": 4547\r\n            }, {\r\n                \"menuAttributeId\": 25340,\r\n                \"menuAttributeValue\": \"iş birimi alanı\",\r\n                \"attributeKey\": \"ATTRIBUTEKEY_REGULATION\",\r\n                \"menuItemId\": 4547\r\n            }, {\r\n                \"menuAttributeId\": 25341,\r\n                \"menuAttributeValue\": \"1;2\",\r\n                \"attributeKey\": \"ATTRIBUTEKEY_ISCUSTOMER\",\r\n                \"menuItemId\": 4547\r\n            }, {\r\n                \"menuAttributeId\": 25342,\r\n                \"menuAttributeValue\": \"1;2\",\r\n                \"attributeKey\": \"ATTRIBUTEKEY_CUSTOMERTYPE\",\r\n                \"menuItemId\": 4547\r\n            }, {\r\n                \"menuAttributeId\": 25343,\r\n                \"menuAttributeValue\": \"3213\",\r\n                \"attributeKey\": \"ATTRIBUTEKEY_BLACKLIST\",\r\n                \"menuItemId\": 4547\r\n            }, {\r\n                \"menuAttributeId\": 25344,\r\n                \"menuAttributeValue\": \"1\",\r\n                \"attributeKey\": \"ATTRIBUTEKEY_TEMPRORYCLOSED\",\r\n                \"menuItemId\": 4547\r\n            }, {\r\n                \"menuAttributeId\": 25345,\r\n                \"menuAttributeValue\": \"1\",\r\n                \"attributeKey\": \"ATTRIBUTEKEY_ISMAXIMIZED\",\r\n                \"menuItemId\": 4547\r\n            }, {\r\n                \"menuAttributeId\": 25346,\r\n                \"menuAttributeValue\": \"110;1840;1816;1841;1843;144;156;146;335;336;337;338;339;343;344;345;346;347;348;349;455;456;457;458;565;566;567;568;569;570;571;572;573;574;575;576;577;578;579;580;581;582;583;584;585;586;587;588;589;590;591;592;593;594;595;596;597;598;599;601;602;603;604;605;606;607;608;609;610;670;671;672;673;674;675;676;677;678;679;680;681;682;683;684;685;549;551;552;553;554;556;557;558;559;622;626;631;640;641;642;664;665;666;667;668;669;686;687;688;689;690;691;692;693;694;695;696;697;698;699;700;701;702;703;705;706;707;708;709;711;613;614;383;384;385;386;387;388;389;431;432;433;663;434;941;942;147;149;150;161;165;215;214;300;301;302;303;304;305;306;307;308;309;713;714;715;716;717;718;719;720;721;722;723;724;725;726;727;728;729;730;731;732;733;734;735;736;737;738;739;740;741;742;743;744;745;746;747;748;749;751;752;753;754;755;756;757;758;759;760;761;762;763;764;765;766;767;768;771;772;773;774;775;776;778;779;780;781;782;783;784;785;786;787;788;789;790;791;792;793;794;795;796;797;798;799;801;802;803;311;312;313;314;315;943;944;459;486;487;488;489;490;491;492;493;494;495;496;497;498;499;500;501;502;503;504;505;506;507;508;509;6800;444;454;449;1800;1801;1802;1803;1806;1807;1813;1832;1871;1872;1842;1844;1846;1880;134;1805;1890;1891;1820;1821;1822;1825;1835;1845\",\r\n                \"attributeKey\": \"ATTRIBUTEKEY_WHITELIST\",\r\n                \"menuItemId\": 4547\r\n            }, {\r\n                \"menuAttributeId\": 25347,\r\n                \"menuAttributeValue\": \"B;P;T;K\",\r\n                \"attributeKey\": \"ATTRIBUTEKEY_BRANCHTYPE\",\r\n                \"menuItemId\": 4547\r\n            }, {\r\n                \"menuAttributeId\": 25348,\r\n                \"menuAttributeValue\": \"ürün kodu alanı\",\r\n                \"attributeKey\": \"ATTRIBUTEKEY_PRODUCTCODE\",\r\n                \"menuItemId\": 4547\r\n            }, {\r\n                \"menuAttributeId\": 25349,\r\n                \"menuAttributeValue\": \"iş birimi alanı\",\r\n                \"attributeKey\": \"ATTRIBUTEKEY_REGULATION\",\r\n                \"menuItemId\": 4547\r\n            }, {\r\n                \"menuAttributeId\": 999999,\r\n                \"menuAttributeValue\": \"[{\\\"menuAttributeId\\\":25350,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isOnbehalfOf\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25351,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isComponent\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25352,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isFeedback\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25353,\\\"menuAttributeValue\\\":\\\"asd\\\",\\\"attributeKey\\\":\\\"instanceKey\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25354,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isOpenWithPopup\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25355,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isRedirected\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25356,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isCustomerSession\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25357,\\\"menuAttributeValue\\\":\\\"6546\\\",\\\"attributeKey\\\":\\\"whiteListVpn\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25358,\\\"menuAttributeValue\\\":\\\"9879\\\",\\\"attributeKey\\\":\\\"blackListVpn\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25359,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isOnbehalfOf\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25360,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isComponent\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25361,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isFeedback\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25362,\\\"menuAttributeValue\\\":\\\"asd\\\",\\\"attributeKey\\\":\\\"instanceKey\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25363,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isOpenWithPopup\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25364,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isRedirected\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25365,\\\"menuAttributeValue\\\":\\\"1\\\",\\\"attributeKey\\\":\\\"isCustomerSession\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25366,\\\"menuAttributeValue\\\":\\\"6546\\\",\\\"attributeKey\\\":\\\"whiteListVpn\\\",\\\"menuItemId\\\":4547},{\\\"menuAttributeId\\\":25367,\\\"menuAttributeValue\\\":\\\"9879\\\",\\\"attributeKey\\\":\\\"blackListVpn\\\",\\\"menuItemId\\\":4547}]\",\r\n                \"attributeKey\": \"ATTRIBUTEKEY_REGULATION\",\r\n                \"menuItemId\": 999999\r\n            }\r\n        ],\r\n        \"menuRegLinkList\": []\r\n    };\r\n    return mockDataMenuItem;\r\n}\r\n",
+					"TO": 1,
+					"HL": "JS"
+				},
+				"retrieveJsonData": {
+					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nvar requestData = {\r\n    \"onlineApproveId\": onlineApproveId\r\n};\r\nvar serviceRequest = {};\r\nserviceRequest.blockRender = '';\r\nserviceRequest.data = requestData;\r\nserviceRequest.url = 'PREFIX/api/MenuOperationsApp/retrieveJsonData';\r\nserviceRequest.http = 'POST';\r\nserviceRequest.responseField = {};\r\nvar responseField = 'retrieveJsonDataResponse';\r\nserviceRequest.responseField = responseField;\r\nserviceRequest.onSuccess = 'retrieveJsonDataRequestSuccess';\r\nserviceRequest.onFail = 'retrieveJsonDataRequestFail';\r\n// quick.store.set('$customConsumerCode', quick.store.get('customConsumerCode'));\r\nquick.Request.async(serviceRequest);\r\n",
+					"C": true,
+					"HL": "JS"
+				},
+				"retrieveJsonDataRequestSuccess": {
+					"H": "var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1;\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nvar mockData = quick.store.get('mockData');\r\nvar responseData = mockData !== null && mockData !== void 0 ? mockData : response.retrieveJsonDataResponse;\r\nvar params = quick.store.get('urlParams');\r\ndebugger;\r\nif ((params === null || params === void 0 ? void 0 : params.islemTipi) == 'updateMenu') {\r\n    var tableHeaders = [{ 'text': 'İşlem Bilgileri', 'align': 'start', 'sortable': false, 'value': 'label', 'width': '100px' },\r\n        { 'text': 'Eski Değerler', 'value': 'oldValue', 'sortable': false, 'width': '500px' },\r\n        { 'text': 'Yeni Değerler', 'value': 'newValue', 'sortable': false, 'width': '500px' }];\r\n    components.tbl_details.headers = tableHeaders;\r\n    quick.store.set('jsonData', responseData);\r\n    quick.MM.trigger('retrieveMenuItem', [{ 'menuId': params.menuId }]);\r\n}\r\nelse if ((params === null || params === void 0 ? void 0 : params.islemTipi) == 'insertNewMenu') {\r\n    var tableHeaders = [{ 'text': 'İşlem Bilgileri', 'align': 'start', 'sortable': false, 'value': 'label', 'width': '100px' },\r\n        { 'text': 'Yeni Değerler', 'value': 'newValue', 'sortable': false, 'width': '500px' }];\r\n    components.tbl_details.headers = tableHeaders;\r\n    // isCustomer \r\n    var isCustomer = '';\r\n    if ((_a = responseData === null || responseData === void 0 ? void 0 : responseData.isCustomer) === null || _a === void 0 ? void 0 : _a.includes('1'))\r\n        isCustomer += ', Oturum İçi';\r\n    if ((_b = responseData === null || responseData === void 0 ? void 0 : responseData.isCustomer) === null || _b === void 0 ? void 0 : _b.includes('0'))\r\n        isCustomer += ', Oturum Dışı';\r\n    if ((_c = responseData === null || responseData === void 0 ? void 0 : responseData.isCustomer) === null || _c === void 0 ? void 0 : _c.includes('2'))\r\n        isCustomer += ', Aday';\r\n    isCustomer = isCustomer.slice(2) != '' ? isCustomer.slice(2) : '-';\r\n    // customerType\r\n    var customerType = '';\r\n    if ((_d = responseData === null || responseData === void 0 ? void 0 : responseData.customerType) === null || _d === void 0 ? void 0 : _d.includes('1'))\r\n        customerType += ', Bireysel';\r\n    if ((_e = responseData === null || responseData === void 0 ? void 0 : responseData.customerType) === null || _e === void 0 ? void 0 : _e.includes('2'))\r\n        customerType += ', Ticari';\r\n    if ((_f = responseData === null || responseData === void 0 ? void 0 : responseData.customerType) === null || _f === void 0 ? void 0 : _f.includes('3'))\r\n        customerType += ', GKT';\r\n    customerType = customerType.slice(2) != '' ? customerType.slice(2) : '-';\r\n    // branchType\r\n    var branchType = '';\r\n    if ((_g = responseData === null || responseData === void 0 ? void 0 : responseData.branchType) === null || _g === void 0 ? void 0 : _g.includes('B'))\r\n        branchType += ', Bireysel';\r\n    if ((_h = responseData === null || responseData === void 0 ? void 0 : responseData.branchType) === null || _h === void 0 ? void 0 : _h.includes('P'))\r\n        branchType += ', Karma';\r\n    if ((_j = responseData === null || responseData === void 0 ? void 0 : responseData.branchType) === null || _j === void 0 ? void 0 : _j.includes('T'))\r\n        branchType += ', Ticari';\r\n    if ((_k = responseData === null || responseData === void 0 ? void 0 : responseData.branchType) === null || _k === void 0 ? void 0 : _k.includes('K'))\r\n        branchType += ', Kurumsal';\r\n    branchType = branchType.slice(2) != '' ? branchType.slice(2) : '-';\r\n    var items = [\r\n        { 'label': 'Menü Adı', 'newValue': (_l = responseData === null || responseData === void 0 ? void 0 : responseData.menuName) !== null && _l !== void 0 ? _l : '-' },\r\n        { 'label': 'Menü Url', 'newValue': (_m = responseData === null || responseData === void 0 ? void 0 : responseData.menuUrl) !== null && _m !== void 0 ? _m : '-' },\r\n        { 'label': 'Menü Sırası', 'newValue': (_o = responseData === null || responseData === void 0 ? void 0 : responseData.position) !== null && _o !== void 0 ? _o : '-' },\r\n        { 'label': 'Uygulama Sahibi', 'newValue': (_p = responseData === null || responseData === void 0 ? void 0 : responseData.appOwner) !== null && _p !== void 0 ? _p : '-' },\r\n        { 'label': 'Uygulama Tipi', 'newValue': (_q = responseData === null || responseData === void 0 ? void 0 : responseData.appType) !== null && _q !== void 0 ? _q : '-' },\r\n        { 'label': 'Link/Menü', 'newValue': (responseData === null || responseData === void 0 ? void 0 : responseData.isCaption) == 'LEAF' ? 'Link' : 'Menü' },\r\n        { 'label': 'Yayınlanma Tarihi', 'newValue': (responseData === null || responseData === void 0 ? void 0 : responseData.publishDate) ? new Date(responseData === null || responseData === void 0 ? void 0 : responseData.publishDate).toLocaleDateString('TR-tr').replaceAll('.', '/') : '-' },\r\n        { 'label': 'Yetkiler', 'newValue': (_r = responseData === null || responseData === void 0 ? void 0 : responseData.rightNames) !== null && _r !== void 0 ? _r : '-' },\r\n        { 'label': 'Beyaz Liste (Pilot Şube)', 'newValue': (_s = responseData === null || responseData === void 0 ? void 0 : responseData.whiteList) !== null && _s !== void 0 ? _s : '-' },\r\n        { 'label': 'Kara Liste', 'newValue': (_t = responseData === null || responseData === void 0 ? void 0 : responseData.blackList) !== null && _t !== void 0 ? _t : '-' },\r\n        { 'label': 'Beyaz Liste (VPN)', 'newValue': (_u = responseData === null || responseData === void 0 ? void 0 : responseData.whiteListVpn) !== null && _u !== void 0 ? _u : '-' },\r\n        { 'label': 'Kara Liste (VPN)', 'newValue': (_v = responseData === null || responseData === void 0 ? void 0 : responseData.blackListVpn) !== null && _v !== void 0 ? _v : '-' },\r\n        { 'label': 'Yardım Linki', 'newValue': (_w = responseData === null || responseData === void 0 ? void 0 : responseData.helpLink) !== null && _w !== void 0 ? _w : '-' },\r\n        { 'label': 'Oturum İçi/Dışı', 'newValue': isCustomer !== null && isCustomer !== void 0 ? isCustomer : '-' },\r\n        { 'label': 'Müşteri Tipi', 'newValue': customerType !== null && customerType !== void 0 ? customerType : '-' },\r\n        { 'label': 'Şube Tipi', 'newValue': branchType !== null && branchType !== void 0 ? branchType : '-' },\r\n        { 'label': 'Segment', 'newValue': (_x = responseData === null || responseData === void 0 ? void 0 : responseData.segment) !== null && _x !== void 0 ? _x : '-' },\r\n        { 'label': 'Yeni İkonu', 'newValue': (_y = responseData === null || responseData === void 0 ? void 0 : responseData.isNew) !== null && _y !== void 0 ? _y : '-' },\r\n        { 'label': 'Ürün Kodu', 'newValue': (_z = responseData === null || responseData === void 0 ? void 0 : responseData.productCode) !== null && _z !== void 0 ? _z : '-' },\r\n        { 'label': 'Geçici olarak kapatılsın mı?', 'newValue': (responseData === null || responseData === void 0 ? void 0 : responseData.temporaryClosed) == 1 ? 'Evet' : 'Hayır' },\r\n        { 'label': 'Ekran maksimum açılsın mı?', 'newValue': (responseData === null || responseData === void 0 ? void 0 : responseData.isMaximized) == 1 ? 'Evet' : 'Hayır' },\r\n        { 'label': 'Mevzuat Etiketi', 'newValue': (_0 = responseData === null || responseData === void 0 ? void 0 : responseData.regulationTag) !== null && _0 !== void 0 ? _0 : '-' },\r\n        { 'label': 'Mevzuat Linkleri', 'newValue': (_1 = responseData === null || responseData === void 0 ? void 0 : responseData.regLinks) !== null && _1 !== void 0 ? _1 : '-' }\r\n    ];\r\n    components.tbl_details.items = items;\r\n}\r\nelse {\r\n    // hata\r\n    // işlem tipi bulunamadı\r\n}\r\n",
+					"C": true,
+					"HL": "JS"
+				},
+				"retrieveJsonDataRequestFail": {
+					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nvar mockData = quick.store.get('mockData');\r\nif (mockData)\r\n    quick.MM.trigger('retrieveJsonDataRequestSuccess');\r\n",
+					"C": true,
+					"HL": "JS"
+				},
+				"retrieveMenuItem": {
+					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.store.delete('menuItemData');\r\nvar requestData = {\r\n    menuId: menuId\r\n};\r\nvar serviceRequest = {};\r\nserviceRequest.blockRender = '';\r\nserviceRequest.data = requestData;\r\nserviceRequest.url = 'PREFIX/api/MenuOperationsApp/retrieveMenuItem';\r\nserviceRequest.http = 'POST';\r\nserviceRequest.responseField = {};\r\nvar responseField = 'retrieveMenuItemResponse';\r\nserviceRequest.responseField = responseField;\r\nserviceRequest.onSuccess = 'retrieveMenuItemRequestSuccess';\r\nserviceRequest.onFail = 'retrieveMenuItemRequestFail';\r\nquick.store.set('$customConsumerCode', quick.store.get('customConsumerCode'));\r\nquick.Request.async(serviceRequest);\r\n",
+					"C": true,
+					"HL": "JS"
+				},
+				"retrieveMenuItemRequestSuccess": {
+					"H": "var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32;\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nvar responseData = (_a = quick.store.get('mockDataMenuItem')) !== null && _a !== void 0 ? _a : response === null || response === void 0 ? void 0 : response.retrieveMenuItemResponse;\r\nvar newAttributeList = quick.Quick.copy(responseData === null || responseData === void 0 ? void 0 : responseData.menuAttributeList);\r\nif (((_b = responseData === null || responseData === void 0 ? void 0 : responseData.menuAttributeList) === null || _b === void 0 ? void 0 : _b.length) > 0) {\r\n    var tmpAttRegulation_1 = [];\r\n    (_c = responseData === null || responseData === void 0 ? void 0 : responseData.menuAttributeList) === null || _c === void 0 ? void 0 : _c.forEach(function (att) {\r\n        if ((att === null || att === void 0 ? void 0 : att.menuAttributeId) == 999999 && (att === null || att === void 0 ? void 0 : att.attributeKey) == 'ATTRIBUTEKEY_REGULATION') {\r\n            tmpAttRegulation_1 = JSON.parse(att === null || att === void 0 ? void 0 : att.menuAttributeValue);\r\n        }\r\n        else if ((att === null || att === void 0 ? void 0 : att.menuAttributeId) != 999999 && (att === null || att === void 0 ? void 0 : att.attributeKey) == 'ATTRIBUTEKEY_REGULATION') {\r\n            quick.store.set('isBirimi', att === null || att === void 0 ? void 0 : att.menuAttributeValue);\r\n        }\r\n    });\r\n    if ((tmpAttRegulation_1 === null || tmpAttRegulation_1 === void 0 ? void 0 : tmpAttRegulation_1.length) > 0) {\r\n        tmpAttRegulation_1 === null || tmpAttRegulation_1 === void 0 ? void 0 : tmpAttRegulation_1.forEach(function (att) {\r\n            var _a;\r\n            att.attributeKey = 'ATTRIBUTEKEY_' + ((_a = att === null || att === void 0 ? void 0 : att.attributeKey) === null || _a === void 0 ? void 0 : _a.toUpperCase());\r\n            var tmpAtt = newAttributeList.find(function (item) { return item.attributeKey === att.attributeKey; });\r\n            if (tmpAtt) {\r\n                tmpAtt.menuAttributeValue = att.menuAttributeValue;\r\n            }\r\n            else {\r\n                newAttributeList.push(att);\r\n            }\r\n        });\r\n    }\r\n}\r\nvar jsonData = quick.store.get('jsonData');\r\nvar oldMenuOffering = responseData === null || responseData === void 0 ? void 0 : responseData.menuOffering;\r\nvar oldMenuRightList = '';\r\n(_d = responseData === null || responseData === void 0 ? void 0 : responseData.menuRightList) === null || _d === void 0 ? void 0 : _d.forEach(function (item) {\r\n    oldMenuRightList += ', ' + (item === null || item === void 0 ? void 0 : item.menuRightName);\r\n});\r\noldMenuRightList = oldMenuRightList.slice(2) != '' ? oldMenuRightList.slice(2) : '-';\r\nvar oldMenuAttributeList = newAttributeList;\r\n// isCustomer \r\nvar isCustomer = '';\r\nif ((_e = jsonData === null || jsonData === void 0 ? void 0 : jsonData.isCustomer) === null || _e === void 0 ? void 0 : _e.includes('1'))\r\n    isCustomer += ', Oturum İçi';\r\nif ((_f = jsonData === null || jsonData === void 0 ? void 0 : jsonData.isCustomer) === null || _f === void 0 ? void 0 : _f.includes('0'))\r\n    isCustomer += ', Oturum Dışı';\r\nif ((_g = jsonData === null || jsonData === void 0 ? void 0 : jsonData.isCustomer) === null || _g === void 0 ? void 0 : _g.includes('2'))\r\n    isCustomer += ', Aday';\r\nisCustomer = isCustomer.slice(2) != '' ? isCustomer.slice(2) : '-';\r\nvar oldIsCustomer = '';\r\nvar oldIsCustomerValue = (_j = (_h = oldMenuAttributeList.find(function (item) { return item.attributeKey == 'ATTRIBUTEKEY_ISCUSTOMER'; })) === null || _h === void 0 ? void 0 : _h.menuAttributeValue) !== null && _j !== void 0 ? _j : '';\r\nif (oldIsCustomerValue === null || oldIsCustomerValue === void 0 ? void 0 : oldIsCustomerValue.includes('1'))\r\n    oldIsCustomer += ', Oturum İçi';\r\nif (oldIsCustomerValue === null || oldIsCustomerValue === void 0 ? void 0 : oldIsCustomerValue.includes('0'))\r\n    oldIsCustomer += ', Oturum Dışı';\r\nif (oldIsCustomerValue === null || oldIsCustomerValue === void 0 ? void 0 : oldIsCustomerValue.includes('2'))\r\n    oldIsCustomer += ', Aday';\r\noldIsCustomer = oldIsCustomer.slice(2) != '' ? oldIsCustomer.slice(2) : '-';\r\n// customerType\r\nvar customerType = '';\r\nif ((_k = jsonData === null || jsonData === void 0 ? void 0 : jsonData.customerType) === null || _k === void 0 ? void 0 : _k.includes('1'))\r\n    customerType += ', Bireysel';\r\nif ((_l = jsonData === null || jsonData === void 0 ? void 0 : jsonData.customerType) === null || _l === void 0 ? void 0 : _l.includes('2'))\r\n    customerType += ', Ticari';\r\nif ((_m = jsonData === null || jsonData === void 0 ? void 0 : jsonData.customerType) === null || _m === void 0 ? void 0 : _m.includes('3'))\r\n    customerType += ', GKT';\r\ncustomerType = customerType.slice(2) != '' ? customerType.slice(2) : '-';\r\nvar oldCustomerType = '';\r\nvar oldCustomerTypeValues = (_p = (_o = oldMenuAttributeList.find(function (item) { return item.attributeKey == 'ATTRIBUTEKEY_CUSTOMERTYPE'; })) === null || _o === void 0 ? void 0 : _o.menuAttributeValue) !== null && _p !== void 0 ? _p : '';\r\nif (oldCustomerTypeValues === null || oldCustomerTypeValues === void 0 ? void 0 : oldCustomerTypeValues.includes('1'))\r\n    oldCustomerType += ', Bireysel';\r\nif (oldCustomerTypeValues === null || oldCustomerTypeValues === void 0 ? void 0 : oldCustomerTypeValues.includes('2'))\r\n    oldCustomerType += ', Ticari';\r\nif (oldCustomerTypeValues === null || oldCustomerTypeValues === void 0 ? void 0 : oldCustomerTypeValues.includes('3'))\r\n    oldCustomerType += ', GKT';\r\noldCustomerType = oldCustomerType.slice(2) != '' ? oldCustomerType.slice(2) : '-';\r\n// branchType\r\nvar branchType = '';\r\nif ((_q = jsonData === null || jsonData === void 0 ? void 0 : jsonData.branchType) === null || _q === void 0 ? void 0 : _q.includes('B'))\r\n    branchType += ', Bireysel';\r\nif ((_r = jsonData === null || jsonData === void 0 ? void 0 : jsonData.branchType) === null || _r === void 0 ? void 0 : _r.includes('P'))\r\n    branchType += ', Karma';\r\nif ((_s = jsonData === null || jsonData === void 0 ? void 0 : jsonData.branchType) === null || _s === void 0 ? void 0 : _s.includes('T'))\r\n    branchType += ', Ticari';\r\nif ((_t = jsonData === null || jsonData === void 0 ? void 0 : jsonData.branchType) === null || _t === void 0 ? void 0 : _t.includes('K'))\r\n    branchType += ', Kurumsal';\r\nbranchType = branchType.slice(2) != '' ? branchType.slice(2) : '-';\r\nvar oldBranchType = '';\r\nvar oldBranchTypeValues = (_v = (_u = oldMenuAttributeList.find(function (item) { return item.attributeKey == 'ATTRIBUTEKEY_BRANCHTYPE'; })) === null || _u === void 0 ? void 0 : _u.menuAttributeValue) !== null && _v !== void 0 ? _v : '';\r\nif (oldBranchTypeValues === null || oldBranchTypeValues === void 0 ? void 0 : oldBranchTypeValues.includes('B'))\r\n    oldBranchType += ', Bireysel';\r\nif (oldBranchTypeValues === null || oldBranchTypeValues === void 0 ? void 0 : oldBranchTypeValues.includes('P'))\r\n    oldBranchType += ', Karma';\r\nif (oldBranchTypeValues === null || oldBranchTypeValues === void 0 ? void 0 : oldBranchTypeValues.includes('T'))\r\n    oldBranchType += ', Ticari';\r\nif (oldBranchTypeValues === null || oldBranchTypeValues === void 0 ? void 0 : oldBranchTypeValues.includes('K'))\r\n    oldBranchType += ', Kurumsal';\r\noldBranchType = oldBranchType.slice(2) != '' ? oldBranchType.slice(2) : '-';\r\nvar items = [\r\n    { 'label': 'Menü Adı', 'oldValue': (_w = oldMenuOffering === null || oldMenuOffering === void 0 ? void 0 : oldMenuOffering.menuName) !== null && _w !== void 0 ? _w : '-', 'newValue': (_x = jsonData === null || jsonData === void 0 ? void 0 : jsonData.menuName) !== null && _x !== void 0 ? _x : '-' },\r\n    { 'label': 'Menü Url', 'oldValue': (_y = oldMenuOffering === null || oldMenuOffering === void 0 ? void 0 : oldMenuOffering.menuUrl) !== null && _y !== void 0 ? _y : '-', 'newValue': (_z = jsonData === null || jsonData === void 0 ? void 0 : jsonData.menuUrl) !== null && _z !== void 0 ? _z : '-' },\r\n    { 'label': 'Menü Sırası', 'oldValue': (_0 = oldMenuOffering === null || oldMenuOffering === void 0 ? void 0 : oldMenuOffering.menuPosition) !== null && _0 !== void 0 ? _0 : '-', 'newValue': (_1 = jsonData === null || jsonData === void 0 ? void 0 : jsonData.position) !== null && _1 !== void 0 ? _1 : '-' },\r\n    { 'label': 'Uygulama Sahibi', 'oldValue': (_2 = oldMenuOffering === null || oldMenuOffering === void 0 ? void 0 : oldMenuOffering.menuAppOwner) !== null && _2 !== void 0 ? _2 : '-', 'newValue': (_3 = jsonData === null || jsonData === void 0 ? void 0 : jsonData.appOwner) !== null && _3 !== void 0 ? _3 : '-' },\r\n    { 'label': 'Uygulama Tipi', 'oldValue': (_4 = oldMenuOffering === null || oldMenuOffering === void 0 ? void 0 : oldMenuOffering.menuAppType) !== null && _4 !== void 0 ? _4 : '-', 'newValue': (_5 = jsonData === null || jsonData === void 0 ? void 0 : jsonData.appType) !== null && _5 !== void 0 ? _5 : '-' },\r\n    { 'label': 'Link/Menü', 'oldValue': (oldMenuOffering === null || oldMenuOffering === void 0 ? void 0 : oldMenuOffering.menuIsCaption) == 'LEAF' ? 'Link' : 'Menü', 'newValue': (jsonData === null || jsonData === void 0 ? void 0 : jsonData.isCaption) == 'LEAF' ? 'Link' : 'Menü' },\r\n    { 'label': 'Yayınlanma Tarihi', 'oldValue': (oldMenuOffering === null || oldMenuOffering === void 0 ? void 0 : oldMenuOffering.menuPublishDate) ? new Date(oldMenuOffering === null || oldMenuOffering === void 0 ? void 0 : oldMenuOffering.menuPublishDate).toLocaleDateString('TR-tr').replaceAll('.', '/') : '-', 'newValue': (jsonData === null || jsonData === void 0 ? void 0 : jsonData.publishDate) ? new Date(jsonData === null || jsonData === void 0 ? void 0 : jsonData.publishDate).toLocaleDateString('TR-tr').replaceAll('.', '/') : '-' },\r\n    { 'label': 'Yetkiler', 'oldValue': oldMenuRightList !== null && oldMenuRightList !== void 0 ? oldMenuRightList : '-', 'newValue': (_6 = jsonData === null || jsonData === void 0 ? void 0 : jsonData.rightNames) !== null && _6 !== void 0 ? _6 : '-' },\r\n    { 'label': 'Mevzuat Linkleri', 'oldValue': '-', 'newValue': '-' },\r\n    { 'label': 'Beyaz Liste (Pilot Şube)', 'oldValue': (_8 = (_7 = oldMenuAttributeList === null || oldMenuAttributeList === void 0 ? void 0 : oldMenuAttributeList.find(function (item) { return (item === null || item === void 0 ? void 0 : item.attributeKey) == 'ATTRIBUTEKEY_WHITELIST'; })) === null || _7 === void 0 ? void 0 : _7.menuAttributeValue) !== null && _8 !== void 0 ? _8 : '-', 'newValue': (_9 = jsonData === null || jsonData === void 0 ? void 0 : jsonData.whiteList) !== null && _9 !== void 0 ? _9 : '-' },\r\n    { 'label': 'Kara Liste', 'oldValue': (_11 = (_10 = oldMenuAttributeList === null || oldMenuAttributeList === void 0 ? void 0 : oldMenuAttributeList.find(function (item) { return (item === null || item === void 0 ? void 0 : item.attributeKey) == 'ATTRIBUTEKEY_BLACKLIST'; })) === null || _10 === void 0 ? void 0 : _10.menuAttributeValue) !== null && _11 !== void 0 ? _11 : '-', 'newValue': (_12 = jsonData === null || jsonData === void 0 ? void 0 : jsonData.blackList) !== null && _12 !== void 0 ? _12 : '-' },\r\n    { 'label': 'Beyaz Liste (VPN)', 'oldValue': (_14 = (_13 = oldMenuAttributeList === null || oldMenuAttributeList === void 0 ? void 0 : oldMenuAttributeList.find(function (item) { return (item === null || item === void 0 ? void 0 : item.attributeKey) == 'ATTRIBUTEKEY_WHITELISTVPN'; })) === null || _13 === void 0 ? void 0 : _13.menuAttributeValue) !== null && _14 !== void 0 ? _14 : '-', 'newValue': (_15 = jsonData === null || jsonData === void 0 ? void 0 : jsonData.whiteListVpn) !== null && _15 !== void 0 ? _15 : '-' },\r\n    { 'label': 'Kara Liste (VPN)', 'oldValue': (_17 = (_16 = oldMenuAttributeList === null || oldMenuAttributeList === void 0 ? void 0 : oldMenuAttributeList.find(function (item) { return (item === null || item === void 0 ? void 0 : item.attributeKey) == 'ATTRIBUTEKEY_BLACKLIST'; })) === null || _16 === void 0 ? void 0 : _16.menuAttributeValue) !== null && _17 !== void 0 ? _17 : '-', 'newValue': (_18 = jsonData === null || jsonData === void 0 ? void 0 : jsonData.blackListVpn) !== null && _18 !== void 0 ? _18 : '-' },\r\n    { 'label': 'Yardım Linki', 'oldValue': (_19 = oldMenuOffering === null || oldMenuOffering === void 0 ? void 0 : oldMenuOffering.menuHelpLink) !== null && _19 !== void 0 ? _19 : '-', 'newValue': (_20 = jsonData === null || jsonData === void 0 ? void 0 : jsonData.helpLink) !== null && _20 !== void 0 ? _20 : '-' },\r\n    { 'label': 'Oturum İçi/Dışı', 'oldValue': oldIsCustomer !== null && oldIsCustomer !== void 0 ? oldIsCustomer : '-', 'newValue': isCustomer !== null && isCustomer !== void 0 ? isCustomer : '-' },\r\n    { 'label': 'Müşteri Tipi', 'oldValue': oldCustomerType !== null && oldCustomerType !== void 0 ? oldCustomerType : '-', 'newValue': customerType !== null && customerType !== void 0 ? customerType : '-' },\r\n    { 'label': 'Şube Tipi', 'oldValue': oldBranchType !== null && oldBranchType !== void 0 ? oldBranchType : '-', 'newValue': branchType !== null && branchType !== void 0 ? branchType : '-' },\r\n    { 'label': 'Segment', 'oldValue': (_22 = (_21 = oldMenuAttributeList === null || oldMenuAttributeList === void 0 ? void 0 : oldMenuAttributeList.find(function (item) { return (item === null || item === void 0 ? void 0 : item.attributeKey) == 'ATTRIBUTEKEY_SEGMENT'; })) === null || _21 === void 0 ? void 0 : _21.menuAttributeValue) !== null && _22 !== void 0 ? _22 : '-', 'newValue': (_23 = jsonData === null || jsonData === void 0 ? void 0 : jsonData.segment) !== null && _23 !== void 0 ? _23 : '-' },\r\n    { 'label': 'Yeni İkonu', 'oldValue': '-', 'newValue': (_24 = jsonData === null || jsonData === void 0 ? void 0 : jsonData.isNew) !== null && _24 !== void 0 ? _24 : '-' },\r\n    { 'label': 'Ürün Kodu', 'oldValue': (_26 = (_25 = oldMenuAttributeList === null || oldMenuAttributeList === void 0 ? void 0 : oldMenuAttributeList.find(function (item) { return (item === null || item === void 0 ? void 0 : item.attributeKey) == 'ATTRIBUTEKEY_PRODUCTCODE'; })) === null || _25 === void 0 ? void 0 : _25.menuAttributeValue) !== null && _26 !== void 0 ? _26 : '-', 'newValue': (_27 = jsonData === null || jsonData === void 0 ? void 0 : jsonData.productCode) !== null && _27 !== void 0 ? _27 : '-' },\r\n    { 'label': 'Geçici olarak kapatılsın mı?', 'oldValue': ((_28 = oldMenuAttributeList === null || oldMenuAttributeList === void 0 ? void 0 : oldMenuAttributeList.find(function (item) { return (item === null || item === void 0 ? void 0 : item.attributeKey) == 'ATTRIBUTEKEY_TEMPRORYCLOSED'; })) === null || _28 === void 0 ? void 0 : _28.menuAttributeValue) == '1' ? 'Evet' : 'Hayır', 'newValue': (jsonData === null || jsonData === void 0 ? void 0 : jsonData.temporaryClosed) == 1 ? 'Evet' : 'Hayır' },\r\n    { 'label': 'Ekran maksimum açılsın mı?', 'oldValue': ((_29 = oldMenuAttributeList === null || oldMenuAttributeList === void 0 ? void 0 : oldMenuAttributeList.find(function (item) { return (item === null || item === void 0 ? void 0 : item.attributeKey) == 'ATTRIBUTEKEY_ISMAXIMIZED'; })) === null || _29 === void 0 ? void 0 : _29.menuAttributeValue) == '1' ? 'Evet' : 'Hayır', 'newValue': (jsonData === null || jsonData === void 0 ? void 0 : jsonData.isMaximized) == 1 ? 'Evet' : 'Hayır' },\r\n    { 'label': 'Mevzuat Etiketi', 'oldValue': (_30 = oldMenuAttributeList === null || oldMenuAttributeList === void 0 ? void 0 : oldMenuAttributeList.find(function (item) { return ((item === null || item === void 0 ? void 0 : item.attributeKey) == 'ATTRIBUTEKEY_REGULATION' && (item === null || item === void 0 ? void 0 : item.menuAttributeId) != 999999); })) === null || _30 === void 0 ? void 0 : _30.menuAttributeValue, 'newValue': (_31 = jsonData === null || jsonData === void 0 ? void 0 : jsonData.regulationTag) !== null && _31 !== void 0 ? _31 : '-' },\r\n    { 'label': 'Mevzuat Linkleri', 'oldValue': '-', 'newValue': (_32 = jsonData === null || jsonData === void 0 ? void 0 : jsonData.regLinks) !== null && _32 !== void 0 ? _32 : '-' }\r\n];\r\ncomponents.tbl_details.items = items;\r\n",
+					"C": true,
+					"HL": "JS"
+				},
+				"retrieveMenuItemRequestFail": {
+					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nvar mockDataMenuItem = quick.store.get('mockDataMenuItem');\r\nif (mockDataMenuItem)\r\n    quick.MM.trigger('retrieveMenuItemRequestSuccess');\r\n",
+					"C": true,
+					"HL": "JS"
+				}
+			},
+			"C": {},
+			"_Editor": {
+				"eID": "EdtrComp_1"
+			},
+			"O": {
+				"cType": "child",
+				"compDomClasses": "newDropBorder"
+			},
+			"S": {
+				"xs-xl": {
+					"pageBackgroundColor": "#ffffff",
+					"statusBarColor": "#ffffff"
+				}
+			}
+		},
+		{
+			"T": "VContainer",
+			"P": {
+				"ID": {
+					"H": "VContainerComp",
+					"T": "prop"
+				},
+				"class": {
+					"H": "╬'container'╩╩",
+					"T": "class"
+				},
+				"visible": {
+					"H": "╬true╩╩",
+					"T": "prop"
+				},
+				"eager": {
+					"H": "╬true╩╩",
+					"T": "prop"
+				}
+			},
+			"E": {},
+			"C": {
+				"default": {
+					"c": [
+						{
+							"T": "VRow",
+							"P": {
+								"ID": {
+									"H": "VRowComp",
+									"T": "prop"
+								}
+							},
+							"E": {},
+							"C": {
+								"default": {
+									"c": [
+										{
+											"T": "VCol",
+											"C": {
+												"default": {
+													"c": [
+														{
+															"T": "VDataTable",
+															"P": {
+																"ID": {
+																	"H": "tbl_details",
+																	"T": "prop",
+																	"HL": "QS"
+																},
+																"footerProps": {
+																	"H": "╬{}╠=╣showFirstLastPage╩╠true╩╩╠=╣firstIcon╩╠'mdi-arrow-collapse-left'╩╩╠=╣lastIcon╩╠'mdi-arrow-collapse-right'╩╩╠=╣prevIcon╩╠'mdi-minus'╩╩╠=╣nextIcon╩╠'mdi-plus'╩╩╩╩",
+																	"T": "prop"
+																},
+																"headers": {
+																	"H": "╬[]╠{}╠=╣text╩╠'İşlem Bilgileri'╩╩╠=╣align╩╠'start'╩╩╠=╣sortable╩╠false╩╩╠=╣value╩╠'label'╩╩╩╠{}╠=╣text╩╠'Eski Değerler'╩╩╠=╣value╩╠'oldValue'╩╩╠=╣sortable╩╠false╩╩╩╠{}╠=╣text╩╠'Yeni Değerler'╩╩╠=╣value╩╠'newValue'╩╩╠=╣sortable╩╠false╩╩╩╩╩",
+																	"T": "prop",
+																	"HL": "QS"
+																},
+																"items": {
+																	"H": "╬[]╩╩",
+																	"T": "prop",
+																	"HL": "QS"
+																},
+																"itemsPerPage": {
+																	"H": "╬5╩╩",
+																	"T": "prop"
+																},
+																"mobileBreakpoint": {
+																	"H": "╬600╩╩",
+																	"T": "prop"
+																},
+																"visible": {
+																	"H": "╬true╩╩",
+																	"T": "prop"
+																},
+																"hideDefaultFooter": {
+																	"H": "╬true╩╩",
+																	"T": "prop",
+																	"HL": "QS"
+																},
+																"disablePagination": {
+																	"H": "╬true╩╩",
+																	"T": "prop",
+																	"HL": "QS"
+																},
+																"calculateWidths": {
+																	"H": "╬true╩╩",
+																	"T": "prop",
+																	"HL": "QS"
+																},
+																"DiscardSettings": {
+																	"H": "╬true╩╩",
+																	"T": "prop",
+																	"HL": "QS"
+																},
+																"class": {
+																	"H": "╬'stickytable'╩╩",
+																	"T": "class"
+																},
+																"uniqueSlots": {
+																	"H": "╬false╩╩",
+																	"T": "prop",
+																	"HL": "QS"
+																}
+															},
+															"E": {},
+															"C": {
+																"item.value": {
+																	"c": [
+																		{
+																			"T": "QLabel",
+																			"P": {
+																				"ID": {
+																					"H": "EdtrComp_215",
+																					"T": "prop"
+																				},
+																				"tagType": {
+																					"H": "╬'span'╩╩",
+																					"T": "prop"
+																				},
+																				"text": {
+																					"H": "╬.╣item╩╠value╩╩╩",
+																					"T": "prop",
+																					"HL": "QS"
+																				},
+																				"visible": {
+																					"H": "╬true╩╩",
+																					"T": "prop"
+																				},
+																				"processHtml": {
+																					"H": "╬false╩╩",
+																					"T": "prop"
+																				}
+																			},
+																			"E": {},
+																			"C": {},
+																			"_Editor": {
+																				"eID": "EdtrComp_215"
+																			},
+																			"S": {
+																				"xs-xl": {
+																					"marginTop": "",
+																					"marginRight": "",
+																					"marginBottom": "",
+																					"marginLeft": "",
+																					"paddingTop": "",
+																					"paddingRight": "",
+																					"paddingBottom": "",
+																					"paddingLeft": "",
+																					"fontColor": "#000000",
+																					"fontFamily": "Roboto",
+																					"fontSize": "16px",
+																					"fontStyle": "normal",
+																					"fontWeight": "400",
+																					"combinedFont": "Roboto-Regular",
+																					"ThemeFont": "Custom",
+																					"lineHeight": "20px",
+																					"textAlign": "left",
+																					"textDecorationLine": "none",
+																					"textDecorationStyle": "solid",
+																					"textDecorationColor": "#000000"
+																				}
+																			},
+																			"O": {
+																				"cType": "slot"
+																			}
+																		}
+																	],
+																	"cType": "scopedSlot"
+																},
+																"item.newValue": {
+																	"c": [
+																		{
+																			"T": "QLabel",
+																			"P": {
+																				"ID": {
+																					"H": "EdtrComp_197",
+																					"T": "prop"
+																				},
+																				"tagType": {
+																					"H": "╬'span'╩╩",
+																					"T": "prop"
+																				},
+																				"text": {
+																					"H": "╬.╣item╩╠newValue╩╩╩",
+																					"T": "prop",
+																					"HL": "QS"
+																				},
+																				"visible": {
+																					"H": "╬true╩╩",
+																					"T": "prop"
+																				},
+																				"processHtml": {
+																					"H": "╬false╩╩",
+																					"T": "prop"
+																				}
+																			},
+																			"E": {},
+																			"C": {},
+																			"_Editor": {
+																				"eID": "EdtrComp_197"
+																			},
+																			"S": {
+																				"xs-xl": {
+																					"marginTop": "",
+																					"marginRight": "",
+																					"marginBottom": "",
+																					"marginLeft": "",
+																					"paddingTop": "",
+																					"paddingRight": "",
+																					"paddingBottom": "",
+																					"paddingLeft": "",
+																					"fontColor": "#000000",
+																					"fontFamily": "Roboto",
+																					"fontSize": "16px",
+																					"fontStyle": "normal",
+																					"fontWeight": "400",
+																					"combinedFont": "Roboto-Regular",
+																					"ThemeFont": "Custom",
+																					"lineHeight": "20px",
+																					"textAlign": "left",
+																					"textDecorationLine": "none",
+																					"textDecorationStyle": "solid",
+																					"textDecorationColor": "#000000"
+																				}
+																			},
+																			"O": {
+																				"cType": "slot"
+																			}
+																		}
+																	],
+																	"cType": "scopedSlot"
+																},
+																"item.oldValue": {
+																	"c": [
+																		{
+																			"T": "QLabel",
+																			"P": {
+																				"ID": {
+																					"H": "EdtrComp_165",
+																					"T": "prop"
+																				},
+																				"tagType": {
+																					"H": "╬'span'╩╩",
+																					"T": "prop"
+																				},
+																				"text": {
+																					"H": "╬.╣item╩╠oldValue╩╩╩",
+																					"T": "prop",
+																					"HL": "QS"
+																				},
+																				"visible": {
+																					"H": "╬true╩╩",
+																					"T": "prop"
+																				},
+																				"processHtml": {
+																					"H": "╬false╩╩",
+																					"T": "prop"
+																				}
+																			},
+																			"E": {},
+																			"C": {},
+																			"_Editor": {
+																				"eID": "EdtrComp_165"
+																			},
+																			"S": {
+																				"xs-xl": {
+																					"marginTop": "",
+																					"marginRight": "",
+																					"marginBottom": "",
+																					"marginLeft": "",
+																					"paddingTop": "",
+																					"paddingRight": "",
+																					"paddingBottom": "",
+																					"paddingLeft": "",
+																					"fontColor": "#000000",
+																					"fontFamily": "Roboto",
+																					"fontSize": "16px",
+																					"fontStyle": "normal",
+																					"fontWeight": "400",
+																					"combinedFont": "Roboto-Regular",
+																					"ThemeFont": "Custom",
+																					"lineHeight": "20px",
+																					"textAlign": "left",
+																					"textDecorationLine": "none",
+																					"textDecorationStyle": "solid",
+																					"textDecorationColor": "#000000"
+																				}
+																			},
+																			"O": {
+																				"cType": "slot"
+																			}
+																		}
+																	],
+																	"cType": "scopedSlot"
+																}
+															},
+															"_Editor": {
+																"eID": "EdtrComp_6"
+															},
+															"S": {
+																"xs-xl": {
+																	"marginLeft": "0px",
+																	"marginRight": "0px",
+																	"marginBottom": "0px",
+																	"marginTop": "0px",
+																	"paddingTop": "0px",
+																	"paddingBottom": "0px",
+																	"paddingLeft": "0px",
+																	"paddingRight": "0px",
+																	"height": "",
+																	"maxWidth": "",
+																	"maxHeight": "",
+																	"minWidth": "",
+																	"minHeight": "",
+																	"unlink": "false",
+																	"unlinkMax": "false",
+																	"unlinkMin": "false",
+																	"isSizeCollapsed": "false",
+																	"dense": "true",
+																	"headerFontColor": "#ffffff",
+																	"headerFontFamily": "Roboto",
+																	"headerFontSize": "16px",
+																	"headerFontStyle": "normal",
+																	"headerFontWeight": "400",
+																	"headerCombinedFont": "Roboto-Regular",
+																	"headerThemeFont": "Custom",
+																	"footerText": "#686868",
+																	"footerFontFamily": "Roboto",
+																	"footerFontSize": "12px",
+																	"footerFontStyle": "normal",
+																	"footerFontWeight": "400",
+																	"footerCombinedFont": "Roboto-Regular",
+																	"footerThemeFont": "Custom",
+																	"textColor": "#010101",
+																	"itemFontFamily": "Roboto",
+																	"itemFontSize": "14px",
+																	"itemFontStyle": "normal",
+																	"itemFontWeight": "400",
+																	"itemsCombinedFont": "Roboto-Regular",
+																	"itemsThemeFont": "Custom",
+																	"backgroundColor": "#ffffff",
+																	"hoverColor": "#ffffff",
+																	"footerColor": "#FFFFFF",
+																	"headerColor": "#b2b2b2",
+																	"selectedBackground": "#FFFFFF",
+																	"lineColor": "#0000001f",
+																	"lineSize": "1",
+																	"boxShadow": "",
+																	"boxSizing": "",
+																	"borderTopStyle": "solid",
+																	"borderRightStyle": "solid",
+																	"borderBottomStyle": "solid",
+																	"borderLeftStyle": "solid",
+																	"borderTopLeftRadius": "4px",
+																	"borderTopRightRadius": "4px",
+																	"borderBottomLeftRadius": "4px",
+																	"borderBottomRightRadius": "4px",
+																	"borderTopWidth": "0px",
+																	"borderRightWidth": "0px",
+																	"borderBottomWidth": "0px",
+																	"borderLeftWidth": "0px",
+																	"defaultBorderColor": "",
+																	"sides": "Top,Right,Bottom,Left",
+																	"expandedContent": "#010101"
+																}
+															},
+															"O": {
+																"cType": "scopedSlot",
+																"compDomClasses": "v-data-table v-data-table--dense theme--light stickytable newDropBorder"
+															}
+														}
+													],
+													"cType": "slot"
+												}
+											},
+											"E": {},
+											"P": {
+												"ID": {
+													"H": "VColComp",
+													"T": "prop"
+												}
+											},
+											"_Editor": {
+												"eID": "EdtrComp_3"
+											},
+											"O": {
+												"cType": "slot",
+												"compDomClasses": "col newDropBorder"
+											},
+											"S": {
+												"xs-xl": {
+													"col": "",
+													"flexDirection": "column",
+													"alignItems": "",
+													"justifyContent": "",
+													"marginLeft": "",
+													"marginRight": "",
+													"marginBottom": "",
+													"marginTop": "",
+													"paddingTop": "0px",
+													"paddingBottom": "0px",
+													"paddingLeft": "0px",
+													"paddingRight": "0px",
+													"backgroundColor": "#ffffff",
+													"boxShadow": ""
+												}
+											}
+										}
+									],
+									"cType": "slot"
+								}
+							},
+							"_Editor": {
+								"eID": "EdtrComp_4"
+							},
+							"O": {
+								"cType": "slot",
+								"compDomClasses": "row newDropBorder"
+							},
+							"S": {
+								"xs-xl": {
+									"marginLeft": "0px",
+									"marginRight": "0px",
+									"marginBottom": "0px",
+									"marginTop": "0px",
+									"paddingTop": "",
+									"paddingBottom": "",
+									"paddingLeft": "",
+									"paddingRight": "",
+									"width": "",
+									"height": "",
+									"backgroundColor": "#ffffff",
+									"boxShadow": ""
+								}
+							}
+						}
+					],
+					"cType": "slot"
+				}
+			},
+			"_Editor": {
+				"eID": "EdtrComp_5"
+			},
+			"O": {
+				"cType": "slot",
+				"compDomClasses": "container newDropBorder"
+			},
+			"S": {
+				"xs-xl": {
+					"marginLeft": "",
+					"marginRight": "",
+					"marginBottom": "",
+					"marginTop": "",
+					"paddingTop": "0px",
+					"paddingBottom": "0px",
+					"paddingLeft": "0px",
+					"paddingRight": "0px",
+					"width": "1200px",
+					"height": "",
+					"backgroundColor": "#ffffff",
+					"boxShadow": ""
+				}
+			}
+		}
+	],
+	"lrids": {},
+	"clrids": {},
+	"opt": {
+		"V": 2.2
+	}
+};
+export default pjson
