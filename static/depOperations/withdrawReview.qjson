@@ -19,7 +19,7 @@ let pjson = {
 					"HL": "TS"
 				},
 				"EndRender": {
-					"H": "let params = quick.Url.getDeepLinkParams();\r\nquick.EM.trace(\"url\")\r\nquick.EM.trace(params);\r\n\r\nlet accountListRequest: IRequest = {\r\n    url: '/api/dep-operations/v1/api/dep-operations/retrieveOnlineApprove?approveId=' + params?.onlineApproveId,\r\n    http: 'get',\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessRetrieveOnlineApprove',\r\n    onFail: 'onFaiRetrieveOnlineApprove',\r\n    responseField: 'retrieveOnlineApprove',\r\n    data: null\r\n}\r\nquick.Request.async(accountListRequest);\r\n",
+					"H": "let params = quick.Url.getDeepLinkParams();\r\nquick.EM.trace(\"url\")\r\nquick.EM.trace(params);\r\n\r\nlet accountListRequest: IRequest = {\r\n    url: '/api/dep-operations/retrieveOnlineApprove?approveId=' + params?.onlineApproveId,\r\n    http: 'get',\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessRetrieveOnlineApprove',\r\n    onFail: 'onFaiRetrieveOnlineApprove',\r\n    responseField: 'retrieveOnlineApprove',\r\n    data: null\r\n}\r\nquick.Request.async(accountListRequest);\r\n\r\n",
 					"HL": "TS"
 				},
 				"onSuccessRetrieveOnlineApprove": {
@@ -2210,7 +2210,7 @@ let pjson = {
 																																			},
 																																			"E": {
 																																				"click": {
-																																					"H": "quick.EM.trace(\"Onaya gitmedi\")\r\nquick.store.set(\"$customConsumerCode\",'TANE.DEPVIREMENT');\r\n\r\ncomponents.EdtrComp_191.disabled = true\r\nlet virementRequest: any = {};\r\n\r\nlet onlineApprove = response.retrieveOnlineApprove\r\nquick.EM.trace(onlineApprove);\r\n\r\nlet accountId = onlineApprove.accountId;\r\n//let amount = quick.Quick.toDecimal(onlineApprove.amount, \",\").toString();\r\nlet currencyCode = onlineApprove.currency;\r\nlet description = onlineApprove.description;\r\nlet idempotent = \"sdfsffsfssfd\"\r\n\r\n/*let feeAmountResponse = response.responseCheckWithdrawCreate?.feeAmountResponse;\r\nlet feeAccountId = undefined;\r\nlet feeAccountNumber = undefined;\r\nlet feeAccountBranchCode = undefined;\r\n\r\nlet feePaymentType = quick.store.get(\"feePaymentType\")\r\nif(feePaymentType === \"ANOTHER_ACCOUNT\") {\r\n    feeAccountId = feeAccountInfo.accountId;\r\n    feeAccountNumber = feeAccountInfo.accountNumber;\r\n    feeAccountBranchCode = feeAccountInfo.branchCode;\r\n}\r\n\r\nconst newResponse = {\r\n    ...feeAmountResponse,\r\n    feeAccountId: feeAccountId,\r\n    feeAccountNumber: feeAccountNumber,\r\n    feeAccountBranchCode: feeAccountBranchCode,\r\n    feePaymentType: feePaymentType\r\n}\r\n*/\r\n\r\nvirementRequest.amount = onlineApprove.amount;\r\nvirementRequest.currencyCode = currencyCode;\r\nvirementRequest.description = description;\r\nvirementRequest.feeAmountResponse = onlineApprove.feeAmountResponse;\r\n\r\nlet urlNew = '';\r\n\r\nif (onlineApprove.operationType == 'deposit') {\r\n    urlNew = '/api/dep-operations/v1/api/dep-operations/deposit'\r\n    virementRequest.creditAccountId = accountId;\r\n    quick.store.set(\"$customConsumerCode\",'TANE.DEPDEPOSIT');\r\n} else {\r\n    urlNew = '/api/dep-operations/v1/api/dep-operations/withdraw'\r\n    virementRequest.debitAccountId = accountId;\r\n    quick.store.set(\"$customConsumerCode\",'TANE.DEPWITHDRAW');\r\n}\r\n\r\n\r\nlet withdrawCreateRequest: IRequest = {\r\n    url: urlNew,\r\n    http: 'post',\r\n    headers: { \"x-rly-idempotency-key\":  idempotent},\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessWithdrawCreate',\r\n    onFail: 'onFailWithdrawCreate',\r\n    responseField: 'responseWithdrawCreate',\r\n    data: virementRequest\r\n}\r\nquick.Request.async(withdrawCreateRequest);\r\n",
+																																					"H": "quick.EM.trace(\"Onaya gitmedi\")\r\nquick.store.set(\"$customConsumerCode\",'TANE.DEPVIREMENT');\r\n\r\ncomponents.EdtrComp_191.disabled = true\r\nlet virementRequest: any = {};\r\n\r\nlet onlineApprove = response.retrieveOnlineApprove\r\nquick.EM.trace(onlineApprove);\r\n\r\nlet accountId = onlineApprove.accountId;\r\n//let amount = quick.Quick.toDecimal(onlineApprove.amount, \",\").toString();\r\nlet currencyCode = onlineApprove.currency;\r\nlet description = onlineApprove.description;\r\nlet idempotent = \"sdfsffsfssfd\"\r\n\r\n/*let feeAmountResponse = response.responseCheckWithdrawCreate?.feeAmountResponse;\r\nlet feeAccountId = undefined;\r\nlet feeAccountNumber = undefined;\r\nlet feeAccountBranchCode = undefined;\r\n\r\nlet feePaymentType = quick.store.get(\"feePaymentType\")\r\nif(feePaymentType === \"ANOTHER_ACCOUNT\") {\r\n    feeAccountId = feeAccountInfo.accountId;\r\n    feeAccountNumber = feeAccountInfo.accountNumber;\r\n    feeAccountBranchCode = feeAccountInfo.branchCode;\r\n}\r\n\r\nconst newResponse = {\r\n    ...feeAmountResponse,\r\n    feeAccountId: feeAccountId,\r\n    feeAccountNumber: feeAccountNumber,\r\n    feeAccountBranchCode: feeAccountBranchCode,\r\n    feePaymentType: feePaymentType\r\n}\r\n*/\r\n\r\nvirementRequest.amount = onlineApprove.amount;\r\nvirementRequest.currencyCode = currencyCode;\r\nvirementRequest.description = description;\r\nvirementRequest.feeAmountResponse = onlineApprove.feeAmountResponse;\r\n\r\nlet urlNew = '';\r\n\r\nif (onlineApprove.operationType == 'deposit') {\r\n    urlNew = '/api/dep-operations/deposit'\r\n    virementRequest.creditAccountId = accountId;\r\n    quick.store.set(\"$customConsumerCode\",'TANE.DEPDEPOSIT');\r\n} else {\r\n    urlNew = '/api/dep-operations/withdraw'\r\n    virementRequest.debitAccountId = accountId;\r\n    quick.store.set(\"$customConsumerCode\",'TANE.DEPWITHDRAW');\r\n}\r\n\r\n\r\nlet withdrawCreateRequest: IRequest = {\r\n    url: urlNew,\r\n    http: 'post',\r\n    headers: { \"x-rly-idempotency-key\":  idempotent},\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessWithdrawCreate',\r\n    onFail: 'onFailWithdrawCreate',\r\n    responseField: 'responseWithdrawCreate',\r\n    data: virementRequest\r\n}\r\nquick.Request.async(withdrawCreateRequest);\r\n",
 																																					"P": "mouseEvent:unknown | undefined",
 																																					"HL": "TS"
 																																				},
@@ -2744,7 +2744,7 @@ let pjson = {
 					"HL": "QS"
 				},
 				"QJsonPath": {
-					"H": "'<<qjson:7ips2y3r-mg74-oyof-euq3-elp0mli0u0dq>>'",
+					"H": "'/narMicroUI/dep-operations/static/depOperations/errorDialogWithdraw.qjson'",
 					"T": "prop",
 					"HL": "QS"
 				}
@@ -2768,7 +2768,7 @@ let pjson = {
 					"HL": "QS"
 				},
 				"QJsonPath": {
-					"H": "'<<qjson:uat07ajt-fsgb-3588-qhmd-rid0mli0u0i8>>'",
+					"H": "'/narMicroUI/dep-operations/static/depOperations/successDialogWithdraw.qjson'",
 					"T": "prop",
 					"HL": "QS"
 				}
@@ -2777,60 +2777,6 @@ let pjson = {
 			"C": {},
 			"_Editor": {
 				"eID": "EdtrComp_583"
-			},
-			"O": {
-				"cType": "child",
-				"dynProps": true
-			}
-		},
-		{
-			"T": "CustomComponent",
-			"P": {
-				"ID": {
-					"H": "warningDialogVirement",
-					"T": "prop",
-					"HL": "QS"
-				},
-				"QJsonPath": {
-					"H": "'<<qjson:fjnmfpdj-g9yb-prh8-xzk6-2030mli0u0vl>>'",
-					"T": "prop",
-					"HL": "QS"
-				}
-			},
-			"E": {
-				"searchClickEvent": {
-					"H": "quick.EM.trace(\"searchClickEvent\")\r\n\r\nquick.MM.trigger(\"checkVirement\");",
-					"C": true,
-					"HL": "TS"
-				}
-			},
-			"C": {},
-			"_Editor": {
-				"eID": "EdtrComp_7"
-			},
-			"O": {
-				"cType": "child",
-				"dynProps": true
-			}
-		},
-		{
-			"T": "CustomComponent",
-			"P": {
-				"ID": {
-					"H": "feeAmountDialog",
-					"T": "prop",
-					"HL": "QS"
-				},
-				"QJsonPath": {
-					"H": "'<<qjson:hf8ibfve-u9b8-xmbb-1xpm-a410mli0u0rf>>'",
-					"T": "prop",
-					"HL": "QS"
-				}
-			},
-			"E": {},
-			"C": {},
-			"_Editor": {
-				"eID": "EdtrComp_140"
 			},
 			"O": {
 				"cType": "child",
@@ -2858,7 +2804,7 @@ let pjson = {
 					"HL": "JS"
 				},
 				"EndRender": {
-					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nvar params = quick.Url.getDeepLinkParams();\r\nquick.EM.trace(\"url\");\r\nquick.EM.trace(params);\r\nvar accountListRequest = {\r\n    url: '/api/dep-operations/v1/api/dep-operations/retrieveOnlineApprove?approveId=' + (params === null || params === void 0 ? void 0 : params.onlineApproveId),\r\n    http: 'get',\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessRetrieveOnlineApprove',\r\n    onFail: 'onFaiRetrieveOnlineApprove',\r\n    responseField: 'retrieveOnlineApprove',\r\n    data: null\r\n};\r\nquick.Request.async(accountListRequest);\r\n",
+					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nvar params = quick.Url.getDeepLinkParams();\r\nquick.EM.trace(\"url\");\r\nquick.EM.trace(params);\r\nvar accountListRequest = {\r\n    url: '/api/dep-operations/retrieveOnlineApprove?approveId=' + (params === null || params === void 0 ? void 0 : params.onlineApproveId),\r\n    http: 'get',\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessRetrieveOnlineApprove',\r\n    onFail: 'onFaiRetrieveOnlineApprove',\r\n    responseField: 'retrieveOnlineApprove',\r\n    data: null\r\n};\r\nquick.Request.async(accountListRequest);\r\n",
 					"HL": "JS"
 				},
 				"onSuccessRetrieveOnlineApprove": {
@@ -5097,7 +5043,7 @@ let pjson = {
 																																			},
 																																			"E": {
 																																				"click": {
-																																					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nquick.EM.trace(\"Onaya gitmedi\");\r\nquick.store.set(\"$customConsumerCode\", 'TANE.DEPVIREMENT');\r\ncomponents.EdtrComp_191.disabled = true;\r\nvar virementRequest = {};\r\nvar onlineApprove = response.retrieveOnlineApprove;\r\nquick.EM.trace(onlineApprove);\r\nvar accountId = onlineApprove.accountId;\r\n//let amount = quick.Quick.toDecimal(onlineApprove.amount, \",\").toString();\r\nvar currencyCode = onlineApprove.currency;\r\nvar description = onlineApprove.description;\r\nvar idempotent = \"sdfsffsfssfd\";\r\n/*let feeAmountResponse = response.responseCheckWithdrawCreate?.feeAmountResponse;\r\nlet feeAccountId = undefined;\r\nlet feeAccountNumber = undefined;\r\nlet feeAccountBranchCode = undefined;\r\n\r\nlet feePaymentType = quick.store.get(\"feePaymentType\")\r\nif(feePaymentType === \"ANOTHER_ACCOUNT\") {\r\n    feeAccountId = feeAccountInfo.accountId;\r\n    feeAccountNumber = feeAccountInfo.accountNumber;\r\n    feeAccountBranchCode = feeAccountInfo.branchCode;\r\n}\r\n\r\nconst newResponse = {\r\n    ...feeAmountResponse,\r\n    feeAccountId: feeAccountId,\r\n    feeAccountNumber: feeAccountNumber,\r\n    feeAccountBranchCode: feeAccountBranchCode,\r\n    feePaymentType: feePaymentType\r\n}\r\n*/\r\nvirementRequest.amount = onlineApprove.amount;\r\nvirementRequest.currencyCode = currencyCode;\r\nvirementRequest.description = description;\r\nvirementRequest.feeAmountResponse = onlineApprove.feeAmountResponse;\r\nvar urlNew = '';\r\nif (onlineApprove.operationType == 'deposit') {\r\n    urlNew = '/api/dep-operations/v1/api/dep-operations/deposit';\r\n    virementRequest.creditAccountId = accountId;\r\n    quick.store.set(\"$customConsumerCode\", 'TANE.DEPDEPOSIT');\r\n}\r\nelse {\r\n    urlNew = '/api/dep-operations/v1/api/dep-operations/withdraw';\r\n    virementRequest.debitAccountId = accountId;\r\n    quick.store.set(\"$customConsumerCode\", 'TANE.DEPWITHDRAW');\r\n}\r\nvar withdrawCreateRequest = {\r\n    url: urlNew,\r\n    http: 'post',\r\n    headers: { \"x-rly-idempotency-key\": idempotent },\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessWithdrawCreate',\r\n    onFail: 'onFailWithdrawCreate',\r\n    responseField: 'responseWithdrawCreate',\r\n    data: virementRequest\r\n};\r\nquick.Request.async(withdrawCreateRequest);\r\n",
+																																					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nquick.EM.trace(\"Onaya gitmedi\");\r\nquick.store.set(\"$customConsumerCode\", 'TANE.DEPVIREMENT');\r\ncomponents.EdtrComp_191.disabled = true;\r\nvar virementRequest = {};\r\nvar onlineApprove = response.retrieveOnlineApprove;\r\nquick.EM.trace(onlineApprove);\r\nvar accountId = onlineApprove.accountId;\r\n//let amount = quick.Quick.toDecimal(onlineApprove.amount, \",\").toString();\r\nvar currencyCode = onlineApprove.currency;\r\nvar description = onlineApprove.description;\r\nvar idempotent = \"sdfsffsfssfd\";\r\n/*let feeAmountResponse = response.responseCheckWithdrawCreate?.feeAmountResponse;\r\nlet feeAccountId = undefined;\r\nlet feeAccountNumber = undefined;\r\nlet feeAccountBranchCode = undefined;\r\n\r\nlet feePaymentType = quick.store.get(\"feePaymentType\")\r\nif(feePaymentType === \"ANOTHER_ACCOUNT\") {\r\n    feeAccountId = feeAccountInfo.accountId;\r\n    feeAccountNumber = feeAccountInfo.accountNumber;\r\n    feeAccountBranchCode = feeAccountInfo.branchCode;\r\n}\r\n\r\nconst newResponse = {\r\n    ...feeAmountResponse,\r\n    feeAccountId: feeAccountId,\r\n    feeAccountNumber: feeAccountNumber,\r\n    feeAccountBranchCode: feeAccountBranchCode,\r\n    feePaymentType: feePaymentType\r\n}\r\n*/\r\nvirementRequest.amount = onlineApprove.amount;\r\nvirementRequest.currencyCode = currencyCode;\r\nvirementRequest.description = description;\r\nvirementRequest.feeAmountResponse = onlineApprove.feeAmountResponse;\r\nvar urlNew = '';\r\nif (onlineApprove.operationType == 'deposit') {\r\n    urlNew = '/api/dep-operations/deposit';\r\n    virementRequest.creditAccountId = accountId;\r\n    quick.store.set(\"$customConsumerCode\", 'TANE.DEPDEPOSIT');\r\n}\r\nelse {\r\n    urlNew = '/api/dep-operations/withdraw';\r\n    virementRequest.debitAccountId = accountId;\r\n    quick.store.set(\"$customConsumerCode\", 'TANE.DEPWITHDRAW');\r\n}\r\nvar withdrawCreateRequest = {\r\n    url: urlNew,\r\n    http: 'post',\r\n    headers: { \"x-rly-idempotency-key\": idempotent },\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessWithdrawCreate',\r\n    onFail: 'onFailWithdrawCreate',\r\n    responseField: 'responseWithdrawCreate',\r\n    data: virementRequest\r\n};\r\nquick.Request.async(withdrawCreateRequest);\r\n",
 																																					"P": "mouseEvent:unknown | undefined",
 																																					"HL": "JS"
 																																				},
@@ -5641,7 +5587,7 @@ let pjson = {
 					"HL": "QS"
 				},
 				"QJsonPath": {
-					"H": "╬'<<qjson:7ips2y3r-mg74-oyof-euq3-elp0mli0u0dq>>'╩╩",
+					"H": "╬'/narMicroUI/dep-operations/static/depOperations/errorDialogWithdraw.qjson'╩╩",
 					"T": "prop",
 					"HL": "QS"
 				}
@@ -5666,7 +5612,7 @@ let pjson = {
 					"HL": "QS"
 				},
 				"QJsonPath": {
-					"H": "╬'<<qjson:uat07ajt-fsgb-3588-qhmd-rid0mli0u0i8>>'╩╩",
+					"H": "╬'/narMicroUI/dep-operations/static/depOperations/successDialogWithdraw.qjson'╩╩",
 					"T": "prop",
 					"HL": "QS"
 				}
@@ -5675,62 +5621,6 @@ let pjson = {
 			"C": {},
 			"_Editor": {
 				"eID": "EdtrComp_583"
-			},
-			"O": {
-				"cType": "child",
-				"dynProps": true,
-				"compDomClasses": "newDropBorder"
-			}
-		},
-		{
-			"T": "CustomComponent",
-			"P": {
-				"ID": {
-					"H": "warningDialogVirement",
-					"T": "prop",
-					"HL": "QS"
-				},
-				"QJsonPath": {
-					"H": "╬'<<qjson:fjnmfpdj-g9yb-prh8-xzk6-2030mli0u0vl>>'╩╩",
-					"T": "prop",
-					"HL": "QS"
-				}
-			},
-			"E": {
-				"searchClickEvent": {
-					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"searchClickEvent\");\r\nquick.MM.trigger(\"checkVirement\");\r\n",
-					"C": true,
-					"HL": "JS"
-				}
-			},
-			"C": {},
-			"_Editor": {
-				"eID": "EdtrComp_7"
-			},
-			"O": {
-				"cType": "child",
-				"dynProps": true,
-				"compDomClasses": "newDropBorder"
-			}
-		},
-		{
-			"T": "CustomComponent",
-			"P": {
-				"ID": {
-					"H": "feeAmountDialog",
-					"T": "prop",
-					"HL": "QS"
-				},
-				"QJsonPath": {
-					"H": "╬'<<qjson:hf8ibfve-u9b8-xmbb-1xpm-a410mli0u0rf>>'╩╩",
-					"T": "prop",
-					"HL": "QS"
-				}
-			},
-			"E": {},
-			"C": {},
-			"_Editor": {
-				"eID": "EdtrComp_140"
 			},
 			"O": {
 				"cType": "child",
