@@ -26,7 +26,7 @@ let pjson = {
 					"HL": "TS"
 				},
 				"setAmount": {
-					"H": "quick.EM.trace(\"setAmount\")\r\ndeclare const amount;\r\ndeclare const currency;\r\ndeclare const accountList;\r\ndeclare const feeAmountResponse;\r\nquick.store.set(\"feeAmountResponse\", feeAmountResponse)\r\nquick.EM.trace(\"feeAmountDialogSet\")\r\nquick.EM.trace(accountList)\r\n\r\nif (feeAmountResponse.customizationAllowed) {\r\n    components.totalAmount.readonly = false;\r\n}\r\n\r\nlet scaledValue = Number(feeAmountResponse.feeAmount.unscaledValue) / Math.pow(10, 2);\r\nlet bsmv = Number(feeAmountResponse.bsmv.unscaledValue) / Math.pow(10, 5)\r\n\r\nlet taxAmount = scaledValue * bsmv;\r\n\r\nconst formattedResultTax = new Intl.NumberFormat(\"tr-TR\", {\r\n      minimumFractionDigits: 2,\r\n      maximumFractionDigits: 2\r\n    }).format(taxAmount);\r\n\r\ncomponents.taxAmount.qValue = formattedResultTax;\r\ncomponents.amount.qValue = amount;\r\ncomponents.currency.qValue = currency;\r\ncomponents.anotherAccountInfo.items = accountList;",
+					"H": "quick.EM.trace(\"setAmount\")\r\ndeclare const amount;\r\ndeclare const currency;\r\ndeclare const accountList;\r\ndeclare const feeAmountResponse;\r\nquick.store.set(\"feeAmountResponse\", feeAmountResponse)\r\nquick.EM.trace(\"feeAmountDialogSet\")\r\nquick.EM.trace(accountList)\r\n\r\nif (feeAmountResponse.customizationAllowed) {\r\n    components.amount.readonly = false;\r\n}\r\n\r\nlet scaledValue = Number(feeAmountResponse.feeAmount.unscaledValue) / Math.pow(10, 2);\r\nlet bsmv = Number(feeAmountResponse.feeAmountBsmv.unscaledValue) / Math.pow(10, 2);\r\nlet totalAmount = scaledValue + bsmv;\r\n\r\nconst formattedResultTax = new Intl.NumberFormat(\"tr-TR\", {\r\n      minimumFractionDigits: 2,\r\n      maximumFractionDigits: 2\r\n    }).format(bsmv);\r\n\r\nconst formattedAmount = new Intl.NumberFormat(\"tr-TR\", {\r\n      minimumFractionDigits: 2,\r\n      maximumFractionDigits: 2\r\n    }).format(scaledValue);\r\n\r\nconst formattedTotalAmount = new Intl.NumberFormat(\"tr-TR\", {\r\n      minimumFractionDigits: 2,\r\n      maximumFractionDigits: 2\r\n    }).format(totalAmount);\r\n\r\n\r\ncomponents.taxAmount.qValue = formattedResultTax;\r\ncomponents.amount.qValue = formattedAmount;\r\ncomponents.totalAmount.qValue = formattedTotalAmount\r\ncomponents.currency.qValue = currency;\r\ncomponents.anotherAccountInfo.items = accountList;",
 					"C": true,
 					"HL": "TS"
 				}
@@ -378,7 +378,13 @@ let pjson = {
 																																	"HL": "QS"
 																																}
 																															},
-																															"E": {},
+																															"E": {
+																																"input": {
+																																	"H": "/*quick.EM.trace(\"change\")\r\n\r\nlet feeAmountResponse = quick.store.get(\"feeAmountResponse\");\r\n\r\nquick.EM.trace(value)\r\nquick.EM.trace(feeAmountResponse.feeAmount.unscaledValue)\r\nquick.EM.trace(feeAmountResponse.branchAuthorizedFeeAmount.unscaledValue)\r\n\r\nif (feeAmountResponse.customizationAllowed && (feeAmountResponse.feeAmount.unscaledValue == feeAmountResponse.branchAuthorizedFeeAmount.unscaledValue)) {\r\n    quick.EM.trace(\"first if\")\r\n    let maxFeeAmount = Number(feeAmountResponse.branchAuthorizedFeeAmount.unscaledValue) / Math.pow(10, 2);\r\n    quick.EM.trace(\"degerler\")\r\n    quick.EM.trace(value)\r\n    quick.EM.trace(maxFeeAmount)\r\n    if (value > maxFeeAmount) {\r\n        components.totalAmount.errorMessages = \"Belirlenen aralıktan fazla bir değer girdiniz\"\r\n    } else {\r\n        components.totalAmount.errorMessages = undefined\r\n        let totalAmount = quick.Quick.toDecimal(components.totalAmount.qValue, \",\");\r\n        let bsmv = Number(feeAmountResponse.bsmv.unscaledValue) / Math.pow(10, 5)\r\n\r\n        let taxAmount = totalAmount * bsmv;\r\n\r\n        const formattedResultTax = new Intl.NumberFormat(\"tr-TR\", {\r\n            minimumFractionDigits: 2,\r\n            maximumFractionDigits: 2\r\n            }).format(taxAmount);\r\n\r\n        components.taxAmount.qValue = formattedResultTax;\r\n        components.amount.qValue = totalAmount - taxAmount;\r\n    }\r\n}\r\n\r\n*/",
+																																	"P": "value:any",
+																																	"HL": "TS"
+																																}
+																															},
 																															"C": {},
 																															"_Editor": {
 																																"eID": "EdtrComp_32"
@@ -780,7 +786,7 @@ let pjson = {
 																															},
 																															"E": {
 																																"input": {
-																																	"H": "quick.EM.trace(\"change\")\r\n\r\nlet feeAmountResponse = quick.store.get(\"feeAmountResponse\");\r\n\r\nquick.EM.trace(value)\r\nquick.EM.trace(feeAmountResponse.feeAmount.unscaledValue)\r\nquick.EM.trace(feeAmountResponse.branchAuthorizedFeeAmount.unscaledValue)\r\n\r\nif (feeAmountResponse.customizationAllowed && (feeAmountResponse.feeAmount.unscaledValue == feeAmountResponse.branchAuthorizedFeeAmount.unscaledValue)) {\r\n    quick.EM.trace(\"first if\")\r\n    let maxFeeAmount = Number(feeAmountResponse.branchAuthorizedFeeAmount.unscaledValue) / Math.pow(10, 2);\r\n    quick.EM.trace(\"degerler\")\r\n    quick.EM.trace(value)\r\n    quick.EM.trace(maxFeeAmount)\r\n    if (value > maxFeeAmount) {\r\n        components.totalAmount.errorMessages = \"Belirlenen aralıktan fazla bir değer girdiniz\"\r\n    } else {\r\n        components.totalAmount.errorMessages = undefined\r\n        let totalAmount = quick.Quick.toDecimal(components.totalAmount.qValue, \",\");\r\n        let bsmv = Number(feeAmountResponse.bsmv.unscaledValue) / Math.pow(10, 5)\r\n\r\n        let taxAmount = totalAmount * bsmv;\r\n\r\n        const formattedResultTax = new Intl.NumberFormat(\"tr-TR\", {\r\n            minimumFractionDigits: 2,\r\n            maximumFractionDigits: 2\r\n            }).format(taxAmount);\r\n\r\n        components.taxAmount.qValue = formattedResultTax;\r\n        components.amount.qValue = totalAmount - taxAmount;\r\n    }\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n/*let scaledValue = Number(feeAmountResponse.feeAmount.unscaledValue) / Math.pow(10, 2);\r\nlet bsmv = Number(feeAmountResponse.bsmv.unscaledValue) / Math.pow(10, 5)\r\n\r\nlet taxAmount = scaledValue * bsmv;\r\n\r\nconst formattedResultTax = new Intl.NumberFormat(\"tr-TR\", {\r\n      minimumFractionDigits: 2,\r\n      maximumFractionDigits: 2\r\n    }).format(taxAmount);\r\n\r\ncomponents.taxAmount.qValue = formattedResultTax;\r\ncomponents.amount.qValue = amount;\r\n\r\n*/",
+																																	"H": "/*quick.EM.trace(\"change\")\r\n\r\nlet feeAmountResponse = quick.store.get(\"feeAmountResponse\");\r\n\r\nquick.EM.trace(value)\r\nquick.EM.trace(feeAmountResponse.feeAmount.unscaledValue)\r\nquick.EM.trace(feeAmountResponse.branchAuthorizedFeeAmount.unscaledValue)\r\n\r\nif (feeAmountResponse.customizationAllowed && (feeAmountResponse.feeAmount.unscaledValue == feeAmountResponse.branchAuthorizedFeeAmount.unscaledValue)) {\r\n    quick.EM.trace(\"first if\")\r\n    let maxFeeAmount = Number(feeAmountResponse.branchAuthorizedFeeAmount.unscaledValue) / Math.pow(10, 2);\r\n    quick.EM.trace(\"degerler\")\r\n    quick.EM.trace(value)\r\n    quick.EM.trace(maxFeeAmount)\r\n    if (value > maxFeeAmount) {\r\n        components.totalAmount.errorMessages = \"Belirlenen aralıktan fazla bir değer girdiniz\"\r\n    } else {\r\n        components.totalAmount.errorMessages = undefined\r\n        let totalAmount = quick.Quick.toDecimal(components.totalAmount.qValue, \",\");\r\n        let bsmv = Number(feeAmountResponse.bsmv.unscaledValue) / Math.pow(10, 5)\r\n\r\n        let taxAmount = totalAmount * bsmv;\r\n\r\n        const formattedResultTax = new Intl.NumberFormat(\"tr-TR\", {\r\n            minimumFractionDigits: 2,\r\n            maximumFractionDigits: 2\r\n            }).format(taxAmount);\r\n\r\n        components.taxAmount.qValue = formattedResultTax;\r\n        components.amount.qValue = totalAmount - taxAmount;\r\n    }\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nlet scaledValue = Number(feeAmountResponse.feeAmount.unscaledValue) / Math.pow(10, 2);\r\nlet bsmv = Number(feeAmountResponse.bsmv.unscaledValue) / Math.pow(10, 5)\r\n\r\nlet taxAmount = scaledValue * bsmv;\r\n\r\nconst formattedResultTax = new Intl.NumberFormat(\"tr-TR\", {\r\n      minimumFractionDigits: 2,\r\n      maximumFractionDigits: 2\r\n    }).format(taxAmount);\r\n\r\ncomponents.taxAmount.qValue = formattedResultTax;\r\ncomponents.amount.qValue = amount;\r\n\r\n*/",
 																																	"P": "value:any",
 																																	"HL": "TS"
 																																}
@@ -1770,7 +1776,7 @@ let pjson = {
 																															},
 																															"E": {
 																																"click": {
-																																	"H": "let check = false;\r\nlet checkAccount = true;\r\n\r\nquick.EM.trace(components.type.qValue)\r\nquick.EM.trace(components.anotherAccountInfo.qValue)\r\n\r\nif (components.type.qValue) {\r\n    check = true;\r\n}\r\n\r\nif (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n    if (components.anotherAccountInfo.qValue != null) {\r\n        checkAccount = false;\r\n    }\r\n}\r\n\r\nif (check) {\r\n    if (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n        if (!checkAccount) {\r\n            components.anotherAccountInfo.errorMessages = 'Lütfen seçim yapınız.'\r\n        }\r\n        quick.EM.trace(\"1\")\r\n        quick.parent.events.searchClickEvent({feeAccountInfo:components.anotherAccountInfo.qValue, feePaymentType:components.type.qValue.value});\r\n    } else {\r\n        quick.EM.trace(\"2\")\r\n        quick.parent.events.searchClickEvent({feeAccountInfo:null, feePaymentType:components.type.qValue.value});\r\n    }\r\n    //quick.parent.events.searchClickEvent({feeAccountInfo:components.anotherAccountInfo.qValue.accountId, feePaymentType:components.type.qValue.value});\r\n    components.warnDialog.qValue = false;\r\n} else {\r\n    components.type.errorMessages = 'Lütfen seçim yapınız.'\r\n}",
+																																	"H": "let check = false;\r\nlet checkAccount = true;\r\n\r\nquick.EM.trace(components.type.qValue)\r\nquick.EM.trace(components.anotherAccountInfo.qValue)\r\n\r\nif (components.type.qValue) {\r\n    check = true;\r\n}\r\nif (check) {\r\n    if (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n        if (components.anotherAccountInfo.qValue != null) {\r\n            checkAccount = false;\r\n        }\r\n    }\r\n}\r\n\r\nif (check) {\r\n    if (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n        if (!checkAccount) {\r\n            components.anotherAccountInfo.errorMessages = 'Lütfen seçim yapınız.'\r\n        }\r\n        quick.EM.trace(\"1\")\r\n        quick.parent.events.searchClickEvent({feeAccountInfo:components.anotherAccountInfo.qValue, feePaymentType:components.type.qValue.value});\r\n    } else {\r\n        quick.EM.trace(\"2\")\r\n        quick.parent.events.searchClickEvent({feeAccountInfo:null, feePaymentType:components.type.qValue.value});\r\n    }\r\n    //quick.parent.events.searchClickEvent({feeAccountInfo:components.anotherAccountInfo.qValue.accountId, feePaymentType:components.type.qValue.value});\r\n    components.warnDialog.qValue = false;\r\n} else {\r\n    components.type.errorMessages = 'Lütfen seçim yapınız.'\r\n}",
 																																	"P": "mouseEvent:unknown | undefined",
 																																	"HL": "TS"
 																																}
@@ -2003,7 +2009,7 @@ let pjson = {
 					"HL": "JS"
 				},
 				"setAmount": {
-					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"setAmount\");\r\nquick.store.set(\"feeAmountResponse\", feeAmountResponse);\r\nquick.EM.trace(\"feeAmountDialogSet\");\r\nquick.EM.trace(accountList);\r\nif (feeAmountResponse.customizationAllowed) {\r\n    components.totalAmount.readonly = false;\r\n}\r\nvar scaledValue = Number(feeAmountResponse.feeAmount.unscaledValue) / Math.pow(10, 2);\r\nvar bsmv = Number(feeAmountResponse.bsmv.unscaledValue) / Math.pow(10, 5);\r\nvar taxAmount = scaledValue * bsmv;\r\nvar formattedResultTax = new Intl.NumberFormat(\"tr-TR\", {\r\n    minimumFractionDigits: 2,\r\n    maximumFractionDigits: 2\r\n}).format(taxAmount);\r\ncomponents.taxAmount.qValue = formattedResultTax;\r\ncomponents.amount.qValue = amount;\r\ncomponents.currency.qValue = currency;\r\ncomponents.anotherAccountInfo.items = accountList;\r\n",
+					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"setAmount\");\r\nquick.store.set(\"feeAmountResponse\", feeAmountResponse);\r\nquick.EM.trace(\"feeAmountDialogSet\");\r\nquick.EM.trace(accountList);\r\nif (feeAmountResponse.customizationAllowed) {\r\n    components.amount.readonly = false;\r\n}\r\nvar scaledValue = Number(feeAmountResponse.feeAmount.unscaledValue) / Math.pow(10, 2);\r\nvar bsmv = Number(feeAmountResponse.feeAmountBsmv.unscaledValue) / Math.pow(10, 2);\r\nvar totalAmount = scaledValue + bsmv;\r\nvar formattedResultTax = new Intl.NumberFormat(\"tr-TR\", {\r\n    minimumFractionDigits: 2,\r\n    maximumFractionDigits: 2\r\n}).format(bsmv);\r\nvar formattedAmount = new Intl.NumberFormat(\"tr-TR\", {\r\n    minimumFractionDigits: 2,\r\n    maximumFractionDigits: 2\r\n}).format(scaledValue);\r\nvar formattedTotalAmount = new Intl.NumberFormat(\"tr-TR\", {\r\n    minimumFractionDigits: 2,\r\n    maximumFractionDigits: 2\r\n}).format(totalAmount);\r\ncomponents.taxAmount.qValue = formattedResultTax;\r\ncomponents.amount.qValue = formattedAmount;\r\ncomponents.totalAmount.qValue = formattedTotalAmount;\r\ncomponents.currency.qValue = currency;\r\ncomponents.anotherAccountInfo.items = accountList;\r\n",
 					"C": true,
 					"HL": "JS"
 				}
@@ -2013,8 +2019,7 @@ let pjson = {
 				"eID": "EdtrComp_1"
 			},
 			"O": {
-				"cType": "child",
-				"compDomClasses": "newDropBorder"
+				"cType": "child"
 			},
 			"S": {
 				"xs-xl": {
@@ -2184,7 +2189,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "v-icon notranslate mdi mdi-alert-octagon-outline theme--light info--text"
+																																"compDomClasses": "v-icon notranslate mdi mdi-alert-octagon-outline theme--light info--text newDropBorder"
 																															}
 																														}
 																													],
@@ -2214,7 +2219,7 @@ let pjson = {
 																													},
 																													"class": "d-flex col-1 justify-center"
 																												},
-																												"compDomClasses": "col d-flex col-1 justify-center"
+																												"compDomClasses": "col d-flex col-1 justify-center newDropBorder"
 																											}
 																										},
 																										{
@@ -2260,7 +2265,7 @@ let pjson = {
 																																	},
 																																	"class": "error--text"
 																																},
-																																"compDomClasses": "q-label  error--text"
+																																"compDomClasses": "q-label error--text newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -2292,7 +2297,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "col"
+																												"compDomClasses": "col newDropBorder"
 																											}
 																										}
 																									],
@@ -2304,7 +2309,7 @@ let pjson = {
 																							},
 																							"O": {
 																								"cType": "slot",
-																								"compDomClasses": "row"
+																								"compDomClasses": "row newDropBorder"
 																							}
 																						},
 																						{
@@ -2361,7 +2366,13 @@ let pjson = {
 																																	"HL": "QS"
 																																}
 																															},
-																															"E": {},
+																															"E": {
+																																"input": {
+																																	"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n",
+																																	"P": "value:any",
+																																	"HL": "JS"
+																																}
+																															},
 																															"C": {},
 																															"_Editor": {
 																																"eID": "EdtrComp_32"
@@ -2457,7 +2468,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined"
+																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
 																															}
 																														}
 																													],
@@ -2485,7 +2496,7 @@ let pjson = {
 																													},
 																													"class": "d-flex flex-column"
 																												},
-																												"compDomClasses": "col d-flex flex-column"
+																												"compDomClasses": "col d-flex flex-column newDropBorder"
 																											},
 																											"S": {
 																												"xs-xl": {
@@ -2659,7 +2670,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined"
+																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
 																															}
 																														}
 																													],
@@ -2687,7 +2698,7 @@ let pjson = {
 																													},
 																													"class": "d-flex flex-column"
 																												},
-																												"compDomClasses": "col d-flex flex-column"
+																												"compDomClasses": "col d-flex flex-column newDropBorder"
 																											},
 																											"S": {
 																												"xs-xl": {
@@ -2767,7 +2778,7 @@ let pjson = {
 																															},
 																															"E": {
 																																"input": {
-																																	"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nquick.EM.trace(\"change\");\r\nvar feeAmountResponse = quick.store.get(\"feeAmountResponse\");\r\nquick.EM.trace(value);\r\nquick.EM.trace(feeAmountResponse.feeAmount.unscaledValue);\r\nquick.EM.trace(feeAmountResponse.branchAuthorizedFeeAmount.unscaledValue);\r\nif (feeAmountResponse.customizationAllowed && (feeAmountResponse.feeAmount.unscaledValue == feeAmountResponse.branchAuthorizedFeeAmount.unscaledValue)) {\r\n    quick.EM.trace(\"first if\");\r\n    var maxFeeAmount = Number(feeAmountResponse.branchAuthorizedFeeAmount.unscaledValue) / Math.pow(10, 2);\r\n    quick.EM.trace(\"degerler\");\r\n    quick.EM.trace(value);\r\n    quick.EM.trace(maxFeeAmount);\r\n    if (value > maxFeeAmount) {\r\n        components.totalAmount.errorMessages = \"Belirlenen aralıktan fazla bir değer girdiniz\";\r\n    }\r\n    else {\r\n        components.totalAmount.errorMessages = undefined;\r\n        var totalAmount = quick.Quick.toDecimal(components.totalAmount.qValue, \",\");\r\n        var bsmv = Number(feeAmountResponse.bsmv.unscaledValue) / Math.pow(10, 5);\r\n        var taxAmount = totalAmount * bsmv;\r\n        var formattedResultTax = new Intl.NumberFormat(\"tr-TR\", {\r\n            minimumFractionDigits: 2,\r\n            maximumFractionDigits: 2\r\n        }).format(taxAmount);\r\n        components.taxAmount.qValue = formattedResultTax;\r\n        components.amount.qValue = totalAmount - taxAmount;\r\n    }\r\n}\r\n",
+																																	"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n",
 																																	"P": "value:any",
 																																	"HL": "JS"
 																																}
@@ -2867,7 +2878,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined"
+																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
 																															}
 																														}
 																													],
@@ -2895,7 +2906,7 @@ let pjson = {
 																													},
 																													"class": "d-flex flex-column"
 																												},
-																												"compDomClasses": "col d-flex flex-column"
+																												"compDomClasses": "col d-flex flex-column newDropBorder"
 																											},
 																											"S": {
 																												"xs-xl": {
@@ -3059,7 +3070,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined"
+																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
 																															}
 																														}
 																													],
@@ -3087,7 +3098,7 @@ let pjson = {
 																													},
 																													"class": "d-flex flex-column"
 																												},
-																												"compDomClasses": "col d-flex flex-column"
+																												"compDomClasses": "col d-flex flex-column newDropBorder"
 																											},
 																											"S": {
 																												"xs-xl": {
@@ -3272,7 +3283,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-select v-autocomplete undefined"
+																																"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-select v-autocomplete undefined newDropBorder"
 																															}
 																														}
 																													],
@@ -3300,7 +3311,7 @@ let pjson = {
 																													},
 																													"class": "d-flex flex-column"
 																												},
-																												"compDomClasses": "col d-flex flex-column"
+																												"compDomClasses": "col d-flex flex-column newDropBorder"
 																											},
 																											"S": {
 																												"xs-xl": {
@@ -3480,7 +3491,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-select v-autocomplete undefined"
+																																"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-select v-autocomplete undefined newDropBorder"
 																															}
 																														}
 																													],
@@ -3508,7 +3519,7 @@ let pjson = {
 																													},
 																													"class": "d-flex flex-column"
 																												},
-																												"compDomClasses": "col d-flex flex-column"
+																												"compDomClasses": "col d-flex flex-column newDropBorder"
 																											},
 																											"S": {
 																												"xs-xl": {
@@ -3592,7 +3603,7 @@ let pjson = {
 																							},
 																							"O": {
 																								"cType": "slot",
-																								"compDomClasses": "row"
+																								"compDomClasses": "row newDropBorder"
 																							}
 																						},
 																						{
@@ -3675,7 +3686,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "child",
-																																				"compDomClasses": "q-label "
+																																				"compDomClasses": "q-label newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -3693,7 +3704,7 @@ let pjson = {
 																																	},
 																																	"class": ""
 																																},
-																																"compDomClasses": "v-btn v-btn--depressed v-btn--flat v-btn--outlined theme--light elevation-0 v-size--default error--text"
+																																"compDomClasses": "v-btn v-btn--depressed v-btn--flat v-btn--outlined theme--light elevation-0 v-size--default error--text newDropBorder"
 																															}
 																														}
 																													],
@@ -3721,7 +3732,7 @@ let pjson = {
 																													},
 																													"class": "d-flex justify-end"
 																												},
-																												"compDomClasses": "col d-flex justify-end"
+																												"compDomClasses": "col d-flex justify-end newDropBorder"
 																											},
 																											"S": {
 																												"xs-xl": {
@@ -3769,7 +3780,7 @@ let pjson = {
 																															},
 																															"E": {
 																																"click": {
-																																	"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nvar check = false;\r\nvar checkAccount = true;\r\nquick.EM.trace(components.type.qValue);\r\nquick.EM.trace(components.anotherAccountInfo.qValue);\r\nif (components.type.qValue) {\r\n    check = true;\r\n}\r\nif (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n    if (components.anotherAccountInfo.qValue != null) {\r\n        checkAccount = false;\r\n    }\r\n}\r\nif (check) {\r\n    if (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n        if (!checkAccount) {\r\n            components.anotherAccountInfo.errorMessages = 'Lütfen seçim yapınız.';\r\n        }\r\n        quick.EM.trace(\"1\");\r\n        quick.parent.events.searchClickEvent({ feeAccountInfo: components.anotherAccountInfo.qValue, feePaymentType: components.type.qValue.value });\r\n    }\r\n    else {\r\n        quick.EM.trace(\"2\");\r\n        quick.parent.events.searchClickEvent({ feeAccountInfo: null, feePaymentType: components.type.qValue.value });\r\n    }\r\n    //quick.parent.events.searchClickEvent({feeAccountInfo:components.anotherAccountInfo.qValue.accountId, feePaymentType:components.type.qValue.value});\r\n    components.warnDialog.qValue = false;\r\n}\r\nelse {\r\n    components.type.errorMessages = 'Lütfen seçim yapınız.';\r\n}\r\n",
+																																	"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nvar check = false;\r\nvar checkAccount = true;\r\nquick.EM.trace(components.type.qValue);\r\nquick.EM.trace(components.anotherAccountInfo.qValue);\r\nif (components.type.qValue) {\r\n    check = true;\r\n}\r\nif (check) {\r\n    if (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n        if (components.anotherAccountInfo.qValue != null) {\r\n            checkAccount = false;\r\n        }\r\n    }\r\n}\r\nif (check) {\r\n    if (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n        if (!checkAccount) {\r\n            components.anotherAccountInfo.errorMessages = 'Lütfen seçim yapınız.';\r\n        }\r\n        quick.EM.trace(\"1\");\r\n        quick.parent.events.searchClickEvent({ feeAccountInfo: components.anotherAccountInfo.qValue, feePaymentType: components.type.qValue.value });\r\n    }\r\n    else {\r\n        quick.EM.trace(\"2\");\r\n        quick.parent.events.searchClickEvent({ feeAccountInfo: null, feePaymentType: components.type.qValue.value });\r\n    }\r\n    //quick.parent.events.searchClickEvent({feeAccountInfo:components.anotherAccountInfo.qValue.accountId, feePaymentType:components.type.qValue.value});\r\n    components.warnDialog.qValue = false;\r\n}\r\nelse {\r\n    components.type.errorMessages = 'Lütfen seçim yapınız.';\r\n}\r\n",
 																																	"P": "mouseEvent:unknown | undefined",
 																																	"HL": "JS"
 																																}
@@ -3797,7 +3808,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "child",
-																																				"compDomClasses": "q-label "
+																																				"compDomClasses": "q-label newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -3815,7 +3826,7 @@ let pjson = {
 																																	},
 																																	"class": ""
 																																},
-																																"compDomClasses": "v-btn v-btn--depressed v-btn--flat v-btn--outlined theme--light elevation-0 v-size--default info--text"
+																																"compDomClasses": "v-btn v-btn--depressed v-btn--flat v-btn--outlined theme--light elevation-0 v-size--default info--text newDropBorder"
 																															}
 																														}
 																													],
@@ -3843,7 +3854,7 @@ let pjson = {
 																													},
 																													"class": "d-flex justify-end"
 																												},
-																												"compDomClasses": "col d-flex justify-end"
+																												"compDomClasses": "col d-flex justify-end newDropBorder"
 																											}
 																										}
 																									],
@@ -3855,7 +3866,7 @@ let pjson = {
 																							},
 																							"O": {
 																								"cType": "slot",
-																								"compDomClasses": "row"
+																								"compDomClasses": "row newDropBorder"
 																							}
 																						}
 																					],
@@ -3875,7 +3886,7 @@ let pjson = {
 																					},
 																					"class": "mb-0"
 																				},
-																				"compDomClasses": "v-alert v-sheet theme--light elevation-4 v-alert--border v-alert--border-left mb-0"
+																				"compDomClasses": "v-alert v-sheet theme--light elevation-4 v-alert--border v-alert--border-left mb-0 newDropBorder"
 																			}
 																		}
 																	],
@@ -3886,8 +3897,7 @@ let pjson = {
 																"eID": "EdtrComp_535"
 															},
 															"O": {
-																"cType": "slot",
-																"compDomClasses": "newDropBorder"
+																"cType": "slot"
 															}
 														}
 													],
@@ -3905,8 +3915,7 @@ let pjson = {
 												"eID": "EdtrComp_3"
 											},
 											"O": {
-												"cType": "slot",
-												"compDomClasses": "col newDropBorder"
+												"cType": "slot"
 											},
 											"S": {
 												"xs-xl": {
@@ -3935,8 +3944,7 @@ let pjson = {
 								"eID": "EdtrComp_4"
 							},
 							"O": {
-								"cType": "slot",
-								"compDomClasses": "row newDropBorder"
+								"cType": "slot"
 							},
 							"S": {
 								"xs-xl": {
@@ -3963,8 +3971,7 @@ let pjson = {
 				"eID": "EdtrComp_5"
 			},
 			"O": {
-				"cType": "slot",
-				"compDomClasses": "container newDropBorder"
+				"cType": "slot"
 			},
 			"S": {
 				"xs-xl": {
