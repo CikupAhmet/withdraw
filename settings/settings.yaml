@@ -18,11 +18,15 @@ fileMap:
 - id: hf8ibfve-u9b8-xmbb-1xpm-a410mli0u0rf
   path: /static/depOperations
   name: /feeamountWithdraw.qjson
-  version: Mon Mar 16 2026 11:27:12 GMT+0300 (GMT+03:00)
+  version: Tue Mar 17 2026 10:23:01 GMT+0300 (GMT+03:00)
 - id: 7ips2y3r-mg74-oyof-euq3-elp0mli0u0dq
   path: /static/depOperations
   name: /errorDialogWithdraw.qjson
   version: Thu Mar 12 2026 17:03:56 GMT+0300 (GMT+03:00)
+- id: bl2slsjj-thfq-29u7-7fwm-h4z0mmuo6729
+  path: /static/depOperations
+  name: /Pipeline.qjson
+  version: Tue Mar 17 2026 16:50:06 GMT+0300 (GMT+03:00)
 - id: x39m77pi-f7xo-tl39-l3ts-zg20mm4o2r3j
   path: /static/css/Roboto
   name: /Roboto-BlackItalic.ttf
@@ -79,14 +83,18 @@ fileMap:
   path: /static/depOperations
   name: /menuOperationsOADetails.qjson
   version: Thu Mar 12 2026 09:51:49 GMT+0300 (GMT+03:00)
+- id: o8smu704-6gjn-db6v-2xil-psz0mlhy4xma
+  path: /static
+  name: /App Settings.appSettings
+  version: Mon Mar 16 2026 15:20:50 GMT+0300 (GMT+03:00)
 - id: qf2d8qrm-4txv-431i-c01o-j810mlhysizt
   path: /static/depOperations
   name: /withdraw.qjson
-  version: Mon Mar 16 2026 15:17:47 GMT+0300 (GMT+03:00)
+  version: Tue Mar 17 2026 16:52:28 GMT+0300 (GMT+03:00)
 - id: v6ck2cck-xrfq-835w-yo58-0hd0mlp9nk7m
   path: /static/depOperations
   name: /withdrawReview.qjson
-  version: Mon Mar 16 2026 15:20:33 GMT+0300 (GMT+03:00)
+  version: Mon Mar 16 2026 17:08:32 GMT+0300 (GMT+03:00)
 
 containerServices: <<containerServices:b61toal5-2y4f-8prx-i5kz-c9y0mlhyocpf>>
 localProxy: <<localProxy:o0m2fsej-8unm-cyd8-sj7l-on00mlhypcgh>>

@@ -13,7 +13,7 @@ let pjson = {
 					"T": "prop"
 				},
 				"externalEvents": {
-					"H": "[{name='searchClickEvent', params=['feeAccountInfo', 'feePaymentType']}]",
+					"H": "[{name='searchClickEvent', params=['feeAccountInfo', 'feePaymentType', 'feeAmount','feeTaxAmount','totalAmount']}]",
 					"T": "prop",
 					"HL": "QS"
 				}
@@ -1776,7 +1776,7 @@ let pjson = {
 																															},
 																															"E": {
 																																"click": {
-																																	"H": "let check = false;\r\nlet checkAccount = true;\r\n\r\nquick.EM.trace(components.type.qValue)\r\nquick.EM.trace(components.anotherAccountInfo.qValue)\r\n\r\nif (components.type.qValue) {\r\n    check = true;\r\n}\r\nif (check) {\r\n    if (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n        if (components.anotherAccountInfo.qValue != null) {\r\n            checkAccount = false;\r\n        }\r\n    }\r\n}\r\n\r\nif (check) {\r\n    if (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n        if (!checkAccount) {\r\n            components.anotherAccountInfo.errorMessages = 'Lütfen seçim yapınız.'\r\n        }\r\n        quick.EM.trace(\"1\")\r\n        quick.parent.events.searchClickEvent({feeAccountInfo:components.anotherAccountInfo.qValue, feePaymentType:components.type.qValue.value});\r\n    } else {\r\n        quick.EM.trace(\"2\")\r\n        quick.parent.events.searchClickEvent({feeAccountInfo:null, feePaymentType:components.type.qValue.value});\r\n    }\r\n    //quick.parent.events.searchClickEvent({feeAccountInfo:components.anotherAccountInfo.qValue.accountId, feePaymentType:components.type.qValue.value});\r\n    components.warnDialog.qValue = false;\r\n} else {\r\n    components.type.errorMessages = 'Lütfen seçim yapınız.'\r\n}",
+																																	"H": "let check = false;\r\nlet checkAccount = true;\r\n\r\nquick.EM.trace(components.type.qValue)\r\nquick.EM.trace(components.anotherAccountInfo.qValue)\r\n\r\nif (components.type.qValue) {\r\n    check = true;\r\n}\r\nif (check) {\r\n    if (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n        if (components.anotherAccountInfo.qValue != null) {\r\n            checkAccount = false;\r\n        }\r\n    }\r\n}\r\n\r\nif (check) {\r\n    if (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n        if (!checkAccount) {\r\n            components.anotherAccountInfo.errorMessages = 'Lütfen seçim yapınız.'\r\n        }\r\n        quick.EM.trace(\"1\")\r\n        quick.parent.events.searchClickEvent({feeAccountInfo:components.anotherAccountInfo.qValue, feePaymentType:components.type.qValue.value, feeAmount:components.amount.qValue, feeTaxAmount:components.taxAmount.qValue, totalAmount:components.totalAmount.qValue});\r\n    } else {\r\n        quick.EM.trace(\"2\")\r\n        quick.parent.events.searchClickEvent({feeAccountInfo:null, feePaymentType:components.type.qValue.value, feeAmount:components.amount.qValue, feeTaxAmount:components.taxAmount.qValue, totalAmount:components.totalAmount.qValue});\r\n    }\r\n    //quick.parent.events.searchClickEvent({feeAccountInfo:components.anotherAccountInfo.qValue.accountId, feePaymentType:components.type.qValue.value});\r\n    components.warnDialog.qValue = false;\r\n} else {\r\n    components.type.errorMessages = 'Lütfen seçim yapınız.'\r\n}",
 																																	"P": "mouseEvent:unknown | undefined",
 																																	"HL": "TS"
 																																}
@@ -1996,7 +1996,7 @@ let pjson = {
 					"T": "prop"
 				},
 				"externalEvents": {
-					"H": "╬[]╠{}╠=╣name╩╠'searchClickEvent'╩╩╠=╣params╩╠[]╠'feeAccountInfo'╩╠'feePaymentType'╩╩╩╩╩╩",
+					"H": "╬[]╠{}╠=╣name╩╠'searchClickEvent'╩╩╠=╣params╩╠[]╠'feeAccountInfo'╩╠'feePaymentType'╩╠'feeAmount'╩╠'feeTaxAmount'╩╠'totalAmount'╩╩╩╩╩╩",
 					"T": "prop",
 					"HL": "QS"
 				}
@@ -2019,7 +2019,8 @@ let pjson = {
 				"eID": "EdtrComp_1"
 			},
 			"O": {
-				"cType": "child"
+				"cType": "child",
+				"compDomClasses": "newDropBorder"
 			},
 			"S": {
 				"xs-xl": {
@@ -2189,7 +2190,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "v-icon notranslate mdi mdi-alert-octagon-outline theme--light info--text newDropBorder"
+																																"compDomClasses": "v-icon notranslate mdi mdi-alert-octagon-outline theme--light info--text"
 																															}
 																														}
 																													],
@@ -2219,7 +2220,7 @@ let pjson = {
 																													},
 																													"class": "d-flex col-1 justify-center"
 																												},
-																												"compDomClasses": "col d-flex col-1 justify-center newDropBorder"
+																												"compDomClasses": "col d-flex col-1 justify-center"
 																											}
 																										},
 																										{
@@ -2265,7 +2266,7 @@ let pjson = {
 																																	},
 																																	"class": "error--text"
 																																},
-																																"compDomClasses": "q-label error--text newDropBorder"
+																																"compDomClasses": "q-label  error--text"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -2297,7 +2298,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "col newDropBorder"
+																												"compDomClasses": "col"
 																											}
 																										}
 																									],
@@ -2309,7 +2310,7 @@ let pjson = {
 																							},
 																							"O": {
 																								"cType": "slot",
-																								"compDomClasses": "row newDropBorder"
+																								"compDomClasses": "row"
 																							}
 																						},
 																						{
@@ -2468,7 +2469,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
+																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined"
 																															}
 																														}
 																													],
@@ -2496,7 +2497,7 @@ let pjson = {
 																													},
 																													"class": "d-flex flex-column"
 																												},
-																												"compDomClasses": "col d-flex flex-column newDropBorder"
+																												"compDomClasses": "col d-flex flex-column"
 																											},
 																											"S": {
 																												"xs-xl": {
@@ -2670,7 +2671,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
+																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined"
 																															}
 																														}
 																													],
@@ -2698,7 +2699,7 @@ let pjson = {
 																													},
 																													"class": "d-flex flex-column"
 																												},
-																												"compDomClasses": "col d-flex flex-column newDropBorder"
+																												"compDomClasses": "col d-flex flex-column"
 																											},
 																											"S": {
 																												"xs-xl": {
@@ -2878,7 +2879,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
+																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined"
 																															}
 																														}
 																													],
@@ -2906,7 +2907,7 @@ let pjson = {
 																													},
 																													"class": "d-flex flex-column"
 																												},
-																												"compDomClasses": "col d-flex flex-column newDropBorder"
+																												"compDomClasses": "col d-flex flex-column"
 																											},
 																											"S": {
 																												"xs-xl": {
@@ -3070,7 +3071,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
+																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined"
 																															}
 																														}
 																													],
@@ -3098,7 +3099,7 @@ let pjson = {
 																													},
 																													"class": "d-flex flex-column"
 																												},
-																												"compDomClasses": "col d-flex flex-column newDropBorder"
+																												"compDomClasses": "col d-flex flex-column"
 																											},
 																											"S": {
 																												"xs-xl": {
@@ -3283,7 +3284,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-select v-autocomplete undefined newDropBorder"
+																																"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-select v-autocomplete undefined"
 																															}
 																														}
 																													],
@@ -3311,7 +3312,7 @@ let pjson = {
 																													},
 																													"class": "d-flex flex-column"
 																												},
-																												"compDomClasses": "col d-flex flex-column newDropBorder"
+																												"compDomClasses": "col d-flex flex-column"
 																											},
 																											"S": {
 																												"xs-xl": {
@@ -3491,7 +3492,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-select v-autocomplete undefined newDropBorder"
+																																"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-select v-autocomplete undefined"
 																															}
 																														}
 																													],
@@ -3519,7 +3520,7 @@ let pjson = {
 																													},
 																													"class": "d-flex flex-column"
 																												},
-																												"compDomClasses": "col d-flex flex-column newDropBorder"
+																												"compDomClasses": "col d-flex flex-column"
 																											},
 																											"S": {
 																												"xs-xl": {
@@ -3603,7 +3604,7 @@ let pjson = {
 																							},
 																							"O": {
 																								"cType": "slot",
-																								"compDomClasses": "row newDropBorder"
+																								"compDomClasses": "row"
 																							}
 																						},
 																						{
@@ -3686,7 +3687,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "child",
-																																				"compDomClasses": "q-label newDropBorder"
+																																				"compDomClasses": "q-label "
 																																			}
 																																		}
 																																	],
@@ -3704,7 +3705,7 @@ let pjson = {
 																																	},
 																																	"class": ""
 																																},
-																																"compDomClasses": "v-btn v-btn--depressed v-btn--flat v-btn--outlined theme--light elevation-0 v-size--default error--text newDropBorder"
+																																"compDomClasses": "v-btn v-btn--depressed v-btn--flat v-btn--outlined theme--light elevation-0 v-size--default error--text"
 																															}
 																														}
 																													],
@@ -3732,7 +3733,7 @@ let pjson = {
 																													},
 																													"class": "d-flex justify-end"
 																												},
-																												"compDomClasses": "col d-flex justify-end newDropBorder"
+																												"compDomClasses": "col d-flex justify-end"
 																											},
 																											"S": {
 																												"xs-xl": {
@@ -3780,7 +3781,7 @@ let pjson = {
 																															},
 																															"E": {
 																																"click": {
-																																	"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nvar check = false;\r\nvar checkAccount = true;\r\nquick.EM.trace(components.type.qValue);\r\nquick.EM.trace(components.anotherAccountInfo.qValue);\r\nif (components.type.qValue) {\r\n    check = true;\r\n}\r\nif (check) {\r\n    if (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n        if (components.anotherAccountInfo.qValue != null) {\r\n            checkAccount = false;\r\n        }\r\n    }\r\n}\r\nif (check) {\r\n    if (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n        if (!checkAccount) {\r\n            components.anotherAccountInfo.errorMessages = 'Lütfen seçim yapınız.';\r\n        }\r\n        quick.EM.trace(\"1\");\r\n        quick.parent.events.searchClickEvent({ feeAccountInfo: components.anotherAccountInfo.qValue, feePaymentType: components.type.qValue.value });\r\n    }\r\n    else {\r\n        quick.EM.trace(\"2\");\r\n        quick.parent.events.searchClickEvent({ feeAccountInfo: null, feePaymentType: components.type.qValue.value });\r\n    }\r\n    //quick.parent.events.searchClickEvent({feeAccountInfo:components.anotherAccountInfo.qValue.accountId, feePaymentType:components.type.qValue.value});\r\n    components.warnDialog.qValue = false;\r\n}\r\nelse {\r\n    components.type.errorMessages = 'Lütfen seçim yapınız.';\r\n}\r\n",
+																																	"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nvar check = false;\r\nvar checkAccount = true;\r\nquick.EM.trace(components.type.qValue);\r\nquick.EM.trace(components.anotherAccountInfo.qValue);\r\nif (components.type.qValue) {\r\n    check = true;\r\n}\r\nif (check) {\r\n    if (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n        if (components.anotherAccountInfo.qValue != null) {\r\n            checkAccount = false;\r\n        }\r\n    }\r\n}\r\nif (check) {\r\n    if (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n        if (!checkAccount) {\r\n            components.anotherAccountInfo.errorMessages = 'Lütfen seçim yapınız.';\r\n        }\r\n        quick.EM.trace(\"1\");\r\n        quick.parent.events.searchClickEvent({ feeAccountInfo: components.anotherAccountInfo.qValue, feePaymentType: components.type.qValue.value, feeAmount: components.amount.qValue, feeTaxAmount: components.taxAmount.qValue, totalAmount: components.totalAmount.qValue });\r\n    }\r\n    else {\r\n        quick.EM.trace(\"2\");\r\n        quick.parent.events.searchClickEvent({ feeAccountInfo: null, feePaymentType: components.type.qValue.value, feeAmount: components.amount.qValue, feeTaxAmount: components.taxAmount.qValue, totalAmount: components.totalAmount.qValue });\r\n    }\r\n    //quick.parent.events.searchClickEvent({feeAccountInfo:components.anotherAccountInfo.qValue.accountId, feePaymentType:components.type.qValue.value});\r\n    components.warnDialog.qValue = false;\r\n}\r\nelse {\r\n    components.type.errorMessages = 'Lütfen seçim yapınız.';\r\n}\r\n",
 																																	"P": "mouseEvent:unknown | undefined",
 																																	"HL": "JS"
 																																}
@@ -3808,7 +3809,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "child",
-																																				"compDomClasses": "q-label newDropBorder"
+																																				"compDomClasses": "q-label "
 																																			}
 																																		}
 																																	],
@@ -3826,7 +3827,7 @@ let pjson = {
 																																	},
 																																	"class": ""
 																																},
-																																"compDomClasses": "v-btn v-btn--depressed v-btn--flat v-btn--outlined theme--light elevation-0 v-size--default info--text newDropBorder"
+																																"compDomClasses": "v-btn v-btn--depressed v-btn--flat v-btn--outlined theme--light elevation-0 v-size--default info--text"
 																															}
 																														}
 																													],
@@ -3854,7 +3855,7 @@ let pjson = {
 																													},
 																													"class": "d-flex justify-end"
 																												},
-																												"compDomClasses": "col d-flex justify-end newDropBorder"
+																												"compDomClasses": "col d-flex justify-end"
 																											}
 																										}
 																									],
@@ -3866,7 +3867,7 @@ let pjson = {
 																							},
 																							"O": {
 																								"cType": "slot",
-																								"compDomClasses": "row newDropBorder"
+																								"compDomClasses": "row"
 																							}
 																						}
 																					],
@@ -3886,7 +3887,7 @@ let pjson = {
 																					},
 																					"class": "mb-0"
 																				},
-																				"compDomClasses": "v-alert v-sheet theme--light elevation-4 v-alert--border v-alert--border-left mb-0 newDropBorder"
+																				"compDomClasses": "v-alert v-sheet theme--light elevation-4 v-alert--border v-alert--border-left mb-0"
 																			}
 																		}
 																	],
@@ -3897,7 +3898,8 @@ let pjson = {
 																"eID": "EdtrComp_535"
 															},
 															"O": {
-																"cType": "slot"
+																"cType": "slot",
+																"compDomClasses": "newDropBorder"
 															}
 														}
 													],
@@ -3915,7 +3917,8 @@ let pjson = {
 												"eID": "EdtrComp_3"
 											},
 											"O": {
-												"cType": "slot"
+												"cType": "slot",
+												"compDomClasses": "col newDropBorder"
 											},
 											"S": {
 												"xs-xl": {
@@ -3944,7 +3947,8 @@ let pjson = {
 								"eID": "EdtrComp_4"
 							},
 							"O": {
-								"cType": "slot"
+								"cType": "slot",
+								"compDomClasses": "row newDropBorder"
 							},
 							"S": {
 								"xs-xl": {
@@ -3971,7 +3975,8 @@ let pjson = {
 				"eID": "EdtrComp_5"
 			},
 			"O": {
-				"cType": "slot"
+				"cType": "slot",
+				"compDomClasses": "container newDropBorder"
 			},
 			"S": {
 				"xs-xl": {
