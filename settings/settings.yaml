@@ -23,10 +23,6 @@ fileMap:
   path: /static/depOperations
   name: /errorDialogWithdraw.qjson
   version: Thu Mar 12 2026 17:03:56 GMT+0300 (GMT+03:00)
-- id: bl2slsjj-thfq-29u7-7fwm-h4z0mmuo6729
-  path: /static/depOperations
-  name: /Pipeline.qjson
-  version: Tue Mar 17 2026 16:50:06 GMT+0300 (GMT+03:00)
 - id: x39m77pi-f7xo-tl39-l3ts-zg20mm4o2r3j
   path: /static/css/Roboto
   name: /Roboto-BlackItalic.ttf
