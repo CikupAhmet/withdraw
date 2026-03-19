@@ -4,7 +4,7 @@ csspath:
 
 containerServicesPath: /settings/js/ContainerServiceFile.ts
 localproxy: /settings/localProxy.yaml
-pipelineqjson: /settings/qjson/pipeline.qjson
+pipelineqjson: /settings/qjson/pipelineLocal.qjson
 rootqjson: /static/depOperations/withdrawHome.qjson
 fileMap: 
 - id: uat07ajt-fsgb-3588-qhmd-rid0mli0u0i8
@@ -18,7 +18,7 @@ fileMap:
 - id: hf8ibfve-u9b8-xmbb-1xpm-a410mli0u0rf
   path: /static/depOperations
   name: /feeamountWithdraw.qjson
-  version: Tue Mar 17 2026 10:23:01 GMT+0300 (GMT+03:00)
+  version: Thu Mar 19 2026 10:27:16 GMT+0300 (GMT+03:00)
 - id: 7ips2y3r-mg74-oyof-euq3-elp0mli0u0dq
   path: /static/depOperations
   name: /errorDialogWithdraw.qjson
@@ -82,22 +82,22 @@ fileMap:
 - id: o8smu704-6gjn-db6v-2xil-psz0mlhy4xma
   path: /static
   name: /App Settings.appSettings
-  version: Mon Mar 16 2026 15:20:50 GMT+0300 (GMT+03:00)
+  version: Wed Mar 18 2026 14:02:57 GMT+0300 (GMT+03:00)
 - id: qf2d8qrm-4txv-431i-c01o-j810mlhysizt
   path: /static/depOperations
   name: /withdraw.qjson
-  version: Tue Mar 17 2026 16:52:28 GMT+0300 (GMT+03:00)
+  version: Thu Mar 19 2026 10:35:06 GMT+0300 (GMT+03:00)
 - id: v6ck2cck-xrfq-835w-yo58-0hd0mlp9nk7m
   path: /static/depOperations
   name: /withdrawReview.qjson
-  version: Mon Mar 16 2026 17:08:32 GMT+0300 (GMT+03:00)
+  version: Thu Mar 19 2026 10:33:44 GMT+0300 (GMT+03:00)
 
 containerServices: <<containerServices:b61toal5-2y4f-8prx-i5kz-c9y0mlhyocpf>>
 localProxy: <<localProxy:o0m2fsej-8unm-cyd8-sj7l-on00mlhypcgh>>
-pipeline: <<pipeline:gs9myibp-kz3d-7b1p-oudh-dli0mlhyosis>>
+pipeline: <<pipeline:3gtdaxlm-gxrn-1pcg-nrep-vt30mm3gz80e>>
 
 appSettings:
   general:
     containerServices: <<containerServices:b61toal5-2y4f-8prx-i5kz-c9y0mlhyocpf>>
     localProxy: <<localProxy:o0m2fsej-8unm-cyd8-sj7l-on00mlhypcgh>>
-    pipeline: <<pipeline:gs9myibp-kz3d-7b1p-oudh-dli0mlhyosis>>
+    pipeline: <<pipeline:3gtdaxlm-gxrn-1pcg-nrep-vt30mm3gz80e>>

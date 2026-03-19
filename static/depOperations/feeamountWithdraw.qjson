@@ -1164,7 +1164,7 @@ let pjson = {
 																																	"T": "prop"
 																																},
 																																"items": {
-																																	"H": "[{text = 'Nakit', value = 'CASH'},\n{ text = 'Alacaklı Hesaptan Tahsil Edilsin', value = 'ANOTHER_ACCOUNT'}]",
+																																	"H": "[{text = 'Nakit', value = 'CASH'},\n{ text = 'Vadesiz Hesaptan Tahsil Edilsin', value = 'ANOTHER_ACCOUNT'}]",
 																																	"T": "prop",
 																																	"HL": "QS"
 																																},
@@ -3161,7 +3161,7 @@ let pjson = {
 																																	"T": "prop"
 																																},
 																																"items": {
-																																	"H": "╬[]╠{}╠=╣text╩╠'Nakit'╩╩╠=╣value╩╠'CASH'╩╩╩╠{}╠=╣text╩╠'Alacaklı Hesaptan Tahsil Edilsin'╩╩╠=╣value╩╠'ANOTHER_ACCOUNT'╩╩╩╩╩",
+																																	"H": "╬[]╠{}╠=╣text╩╠'Nakit'╩╩╠=╣value╩╠'CASH'╩╩╩╠{}╠=╣text╩╠'Vadesiz Hesaptan Tahsil Edilsin'╩╩╠=╣value╩╠'ANOTHER_ACCOUNT'╩╩╩╩╩",
 																																	"T": "prop",
 																																	"HL": "QS"
 																																},
