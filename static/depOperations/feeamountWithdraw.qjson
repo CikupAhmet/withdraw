@@ -20,7 +20,7 @@ let pjson = {
 			},
 			"E": {
 				"dialogClick": {
-					"H": "declare const amount;\r\ndeclare const currency;\r\ndeclare const accountList;\r\ndeclare const feeAmountResponse;\r\ncomponents.lblWarn.text = \"Ücret Bilgileri\"\r\ncomponents.warnDialog.qValue = true\r\n\r\ncomponents.type.qValue = undefined;\r\n\r\nquick.MM.trigger('setAmount', [{amount:amount, currency:currency, accountList:accountList, feeAmountResponse: feeAmountResponse}]);\r\n",
+					"H": "declare const amount;\r\ndeclare const currency;\r\ndeclare const accountList;\r\ndeclare const feeAmountResponse;\r\ncomponents.lblWarn.text = \"Ücret Bilgileri\"\r\ncomponents.warnDialog.qValue = true\r\n\r\ncomponents.type.qValue = undefined;\r\ncomponents.anotherAccountInfo.qValue = undefined;\r\n\r\nquick.MM.trigger('setAmount', [{amount:amount, currency:currency, accountList:accountList, feeAmountResponse: feeAmountResponse}]);\r\n",
 					"C": true,
 					"EV": true,
 					"HL": "TS"
@@ -2003,7 +2003,7 @@ let pjson = {
 			},
 			"E": {
 				"dialogClick": {
-					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\ncomponents.lblWarn.text = \"Ücret Bilgileri\";\r\ncomponents.warnDialog.qValue = true;\r\ncomponents.type.qValue = undefined;\r\nquick.MM.trigger('setAmount', [{ amount: amount, currency: currency, accountList: accountList, feeAmountResponse: feeAmountResponse }]);\r\n",
+					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\ncomponents.lblWarn.text = \"Ücret Bilgileri\";\r\ncomponents.warnDialog.qValue = true;\r\ncomponents.type.qValue = undefined;\r\ncomponents.anotherAccountInfo.qValue = undefined;\r\nquick.MM.trigger('setAmount', [{ amount: amount, currency: currency, accountList: accountList, feeAmountResponse: feeAmountResponse }]);\r\n",
 					"C": true,
 					"EV": true,
 					"HL": "JS"

@@ -19,11 +19,11 @@ let pjson = {
 					"HL": "TS"
 				},
 				"EndRender": {
-					"H": "quick.store.set(\"successVirement\", false);\r\nlet params = quick.Url.getDeepLinkParams();\r\nquick.EM.trace(\"url\")\r\nquick.EM.trace(params);\r\n\r\nlet accountListRequest: IRequest = {\r\n    url: 'PREFIX/api/dep-operations/v1/api/dep-operations/retrieveOnlineApprove?approveId=' + params?.onlineApproveId,\r\n    http: 'get',\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessRetrieveOnlineApprove',\r\n    onFail: 'onFaiRetrieveOnlineApprove',\r\n    responseField: 'retrieveOnlineApprove',\r\n    data: null\r\n}\r\nquick.Request.async(accountListRequest);\r\n\r\nlet idempotentRequest: IRequest = {\r\n    url: 'PREFIX/api/dep-operations/v1/api/dep-operations/keys',\r\n    http: 'get',\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessIdempotent',\r\n    onFail: 'onFailIdempotent',\r\n    responseField: 'idempotent',\r\n    data: null\r\n}\r\nquick.Request.async(idempotentRequest);",
+					"H": "quick.store.set(\"successVirement\", false);\r\nlet params = quick.Url.getDeepLinkParams();\r\nquick.EM.trace(\"url\")\r\nquick.EM.trace(params);\r\n//  \r\n\r\nlet accountListRequest: IRequest = {\r\n    url: 'PREFIX/api/dep-operations/v1/api/dep-operations/retrieveOnlineApprove?approveId=' + params?.onlineApproveId,\r\n    http: 'get',\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessRetrieveOnlineApprove',\r\n    onFail: 'onFaiRetrieveOnlineApprove',\r\n    responseField: 'retrieveOnlineApprove',\r\n    data: null\r\n}\r\nquick.Request.async(accountListRequest);\r\n\r\nlet idempotentRequest: IRequest = {\r\n    url: 'PREFIX/api/dep-operations/v1/api/dep-operations/keys',\r\n    http: 'get',\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessIdempotent',\r\n    onFail: 'onFailIdempotent',\r\n    responseField: 'idempotent',\r\n    data: null\r\n}\r\nquick.Request.async(idempotentRequest);",
 					"HL": "TS"
 				},
 				"onSuccessRetrieveOnlineApprove": {
-					"H": "quick.EM.trace(\"onSuccessRetrieveOnlineApprove\")\r\nquick.EM.trace(response.retrieveOnlineApprove)\r\n\r\nlet onlineApprove = response.retrieveOnlineApprove;\r\n\r\nif (onlineApprove.operationType == 'deposit') {\r\n    components.summaryDebitAccount.label = 'Paranının Yatırılacağı Hesap'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Nakit Para Yatırma İşlem Onay';\r\n} else {\r\n    components.summaryDebitAccount.label = 'Paranının Çekileceği Hesap'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Nakit Para Çekme İşlem Onay';\r\n}\r\n\r\nconst formattedAccountBalance = new Intl.NumberFormat(\"tr-TR\", {\r\n    minimumFractionDigits: 2,\r\n    maximumFractionDigits: 2\r\n    }).format(onlineApprove.accountBalance);\r\n\r\nconst formattedMainAmount = new Intl.NumberFormat(\"tr-TR\", {\r\n    minimumFractionDigits: 2,\r\n    maximumFractionDigits: 2\r\n    }).format(onlineApprove.amount);\r\n\r\ncomponents.summaryDebitAccount.qValue = onlineApprove.branchCode + ' - ' + onlineApprove.accountIban + ' - ' + formattedAccountBalance + ' ' + onlineApprove.currency\r\ncomponents.summaryDescription.qValue = onlineApprove.description;\r\ncomponents.summaryAmount.qValue = formattedMainAmount + ' ' + onlineApprove.currency;\r\n\r\nif (onlineApprove.feeAmountResponse?.feeAmount != null && onlineApprove.feeAmountResponse?.feeAmount?.unscaledValue > 0) {\r\n    let scaledValue = Number(onlineApprove.feeAmountResponse.feeAmount.unscaledValue) / Math.pow(10, 2);\r\n    let bsmv = Number(onlineApprove.feeAmountResponse.feeAmountBsmv.unscaledValue) / Math.pow(10, 2);\r\n    let totalAmount = scaledValue + bsmv;\r\n\r\n    const formattedResultTax = new Intl.NumberFormat(\"tr-TR\", {\r\n      minimumFractionDigits: 2,\r\n      maximumFractionDigits: 2\r\n    }).format(bsmv);\r\n\r\n    const formattedAmount = new Intl.NumberFormat(\"tr-TR\", {\r\n        minimumFractionDigits: 2,\r\n        maximumFractionDigits: 2\r\n        }).format(scaledValue);\r\n\r\n    const formattedTotalAmount = new Intl.NumberFormat(\"tr-TR\", {\r\n        minimumFractionDigits: 2,\r\n        maximumFractionDigits: 2\r\n        }).format(totalAmount);\r\n\r\n    if (onlineApprove.feeAmountResponse.feePaymentType == 'CASH') {\r\n        components.paymentType.qValue = 'Nakit'\r\n    } else {\r\n        components.paymentType.qValue = 'Vadesiz Hesaptan Tahsil Edilecek'\r\n    }\r\n\r\n    components.feeAmount.qValue = formattedAmount;\r\n    components.feeTaxAmount.qValue = formattedResultTax;\r\n    components.feeTotalAmount.qValue = formattedTotalAmount;\r\n\r\n    components.feeRow.visible = true;\r\n    components.feeAmount.visible = true;\r\n    components.feeTaxAmount.visible = true;\r\n    components.feeTotalAmount.visible = true;\r\n    components.paymentType.visible = true;\r\n} ",
+					"H": "quick.EM.trace(\"onSuccessRetrieveOnlineApprove\")\r\nquick.EM.trace(response.retrieveOnlineApprove)\r\n\r\nlet onlineApprove = response.retrieveOnlineApprove;\r\n\r\nif (onlineApprove.operationType == 'deposit') {\r\n    components.summaryDebitAccount.label = 'Paranının Yatırılacağı Hesap'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Nakit Para Yatırma İşlem Onay';\r\n} else {\r\n    components.summaryDebitAccount.label = 'Paranının Çekileceği Hesap'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Nakit Para Çekme İşlem Onay';\r\n}\r\n\r\nconst formattedAccountBalance = new Intl.NumberFormat(\"tr-TR\", {\r\n    minimumFractionDigits: 2,\r\n    maximumFractionDigits: 2\r\n    }).format(onlineApprove.accountBalance);\r\n\r\nconst formattedMainAmount = new Intl.NumberFormat(\"tr-TR\", {\r\n    minimumFractionDigits: 2,\r\n    maximumFractionDigits: 2\r\n    }).format(onlineApprove.amount);\r\n\r\ncomponents.summaryDebitAccount.qValue = onlineApprove.branchCode + ' - ' + onlineApprove.accountIban + ' - ' + formattedAccountBalance + ' ' + onlineApprove.currency\r\ncomponents.summaryDescription.qValue = onlineApprove.description;\r\ncomponents.summaryAmount.qValue = formattedMainAmount + ' ' + onlineApprove.currency;\r\n\r\nif (onlineApprove.feeAmountResponse?.feeAmount != null && onlineApprove.feeAmountResponse?.feeAmount?.unscaledValue > 0) {\r\n    let scaledValue = Number(onlineApprove.feeAmountResponse.feeAmount.unscaledValue) / Math.pow(10, 2);\r\n    let bsmv = Number(onlineApprove.feeAmountResponse.feeAmountBsmv.unscaledValue) / Math.pow(10, 2);\r\n    let totalAmount = scaledValue + bsmv;\r\n\r\n    const formattedResultTax = new Intl.NumberFormat(\"tr-TR\", {\r\n      minimumFractionDigits: 2,\r\n      maximumFractionDigits: 2\r\n    }).format(bsmv);\r\n\r\n    const formattedAmount = new Intl.NumberFormat(\"tr-TR\", {\r\n        minimumFractionDigits: 2,\r\n        maximumFractionDigits: 2\r\n        }).format(scaledValue);\r\n\r\n    const formattedTotalAmount = new Intl.NumberFormat(\"tr-TR\", {\r\n        minimumFractionDigits: 2,\r\n        maximumFractionDigits: 2\r\n        }).format(totalAmount);\r\n\r\n    if (onlineApprove.feeAmountResponse.feePaymentType == 'CASH') {\r\n        components.paymentType.qValue = 'Nakit'\r\n    } else {\r\n        components.paymentType.qValue = 'Vadesiz Hesaptan Tahsil Edilecek'\r\n        \r\n        components.feeAnotherAccountInfo.visible = true;\r\n    }\r\n\r\n    components.feeAmount.qValue = formattedAmount;\r\n    components.feeTaxAmount.qValue = formattedResultTax;\r\n    components.feeTotalAmount.qValue = formattedTotalAmount;\r\n\r\n    components.feeRow.visible = true;\r\n    components.feeAmount.visible = true;\r\n    components.feeTaxAmount.visible = true;\r\n    components.feeTotalAmount.visible = true;\r\n    components.paymentType.visible = true;\r\n} ",
 					"C": true,
 					"HL": "TS"
 				},
@@ -1694,7 +1694,7 @@ let pjson = {
 																																																	"legendMarginLeft": "0px",
 																																																	"marginRight": "",
 																																																	"marginBottom": "",
-																																																	"marginTop": "4px",
+																																																	"marginTop": "0px",
 																																																	"paddingTop": "12px",
 																																																	"paddingBottom": "",
 																																																	"paddingLeft": "",
@@ -1713,7 +1713,7 @@ let pjson = {
 																																																	"unlinkMax": "false",
 																																																	"unlinkMin": "false",
 																																																	"isSizeCollapsed": "false",
-																																																	"dense": "",
+																																																	"dense": "true",
 																																																	"labelDefaultFontColor": "#000000",
 																																																	"labelDefaultFontFamily": "Roboto",
 																																																	"labelDefaultFontSize": "16px",
@@ -1773,7 +1773,8 @@ let pjson = {
 																																																	"innerBorderLeftWidth": "0px",
 																																																	"innerDefaultBorderColor": "#0000006b",
 																																																	"innerSides": ",Bottom",
-																																																	"outlined": ""
+																																																	"outlined": "",
+																																																	"menuFontSize": "13px"
 																																																}
 																																															},
 																																															"O": {
@@ -2048,20 +2049,124 @@ let pjson = {
 																																												"default": {
 																																													"c": [
 																																														{
-																																															"T": "Ghost",
+																																															"T": "VTextField",
 																																															"P": {
 																																																"ID": {
-																																																	"H": "EdtrComp_98",
+																																																	"H": "feeAnotherAccountInfo",
+																																																	"T": "prop",
+																																																	"HL": "QS"
+																																																},
+																																																"hideDetails": {
+																																																	"H": "false",
 																																																	"T": "prop"
+																																																},
+																																																"label": {
+																																																	"H": "'Vadesiz Hesap Bilgileri'",
+																																																	"T": "prop",
+																																																	"HL": "QS"
+																																																},
+																																																"visible": {
+																																																	"H": "false",
+																																																	"T": "prop",
+																																																	"HL": "QS"
 																																																}
 																																															},
 																																															"E": {},
 																																															"C": {},
 																																															"_Editor": {
-																																																"eID": "EdtrComp_98"
+																																																"eID": "EdtrComp_68"
+																																															},
+																																															"S": {
+																																																"xs-xl": {
+																																																	"marginLeft": "",
+																																																	"legendMarginLeft": "0px",
+																																																	"marginRight": "",
+																																																	"marginBottom": "",
+																																																	"marginTop": "0px",
+																																																	"paddingTop": "12px",
+																																																	"paddingBottom": "",
+																																																	"paddingLeft": "",
+																																																	"paddingRight": "",
+																																																	"inputPaddingTop": "",
+																																																	"inputPaddingRight": "",
+																																																	"inputPaddingBottom": "",
+																																																	"inputPaddingLeft": "",
+																																																	"width": "",
+																																																	"height": "",
+																																																	"maxWidth": "",
+																																																	"maxHeight": "",
+																																																	"minWidth": "",
+																																																	"minHeight": "",
+																																																	"unlink": "false",
+																																																	"unlinkMax": "false",
+																																																	"unlinkMin": "false",
+																																																	"isSizeCollapsed": "false",
+																																																	"dense": "true",
+																																																	"labelDefaultFontColor": "#000000",
+																																																	"labelDefaultFontFamily": "Roboto",
+																																																	"labelDefaultFontSize": "16px",
+																																																	"labelDefaultFontStyle": "normal",
+																																																	"labelDefaultFontWeight": "400",
+																																																	"labelDefaultCombinedFont": "Roboto-Regular",
+																																																	"labelDefaultThemeFont": "Custom",
+																																																	"prefixFontColor": "#000",
+																																																	"prefixFontFamily": "Roboto",
+																																																	"prefixFontSize": "16px",
+																																																	"prefixFontStyle": "normal",
+																																																	"prefixFontWeight": "400",
+																																																	"prefixCombinedFont": "Roboto-Regular",
+																																																	"prefixThemeFont": "Custom",
+																																																	"PHFontColor": "#686868",
+																																																	"PHFontFamily": "Roboto",
+																																																	"PHFontSize": "16px",
+																																																	"PHFontStyle": "normal",
+																																																	"PHFontWeight": "400",
+																																																	"PHCombinedFont": "Roboto-Regular",
+																																																	"PHThemeFont": "Custom",
+																																																	"inputFontColor": "#000",
+																																																	"inputFontFamily": "Roboto",
+																																																	"inputFontSize": "16px",
+																																																	"inputFontStyle": "normal",
+																																																	"inputFontWeight": "400",
+																																																	"inputCombinedFont": "Roboto-Regular",
+																																																	"inputDefaultThemeFont": "Custom",
+																																																	"errorMessageFontColor": "#E96767",
+																																																	"errorMessageFontFamily": "Roboto",
+																																																	"errorMessageFontSize": "12px",
+																																																	"errorMessageFontStyle": "normal",
+																																																	"errorMessageFontWeight": "400",
+																																																	"EMCombinedFont": "Roboto-Regular",
+																																																	"errorMessageThemeFont": "Custom",
+																																																	"errorMessageLineHeight": "",
+																																																	"textAlign": "left",
+																																																	"backgroundColor": "#ffffff",
+																																																	"appendIconColor": "",
+																																																	"appendOuterIconColor": "",
+																																																	"prependIconColor": "",
+																																																	"prependInnerIconColor": "",
+																																																	"innerBoxShadow": "",
+																																																	"activeBorderColor": "#1976d2",
+																																																	"innerBoxSizing": "",
+																																																	"innerBorderTopStyle": "",
+																																																	"innerBorderRightStyle": "",
+																																																	"innerBorderBottomStyle": "solid",
+																																																	"innerBorderLeftStyle": "",
+																																																	"innerBorderTopLeftRadius": "",
+																																																	"innerBorderTopRightRadius": "",
+																																																	"innerBorderBottomLeftRadius": "",
+																																																	"innerBorderBottomRightRadius": "",
+																																																	"innerBorderTopWidth": "0px",
+																																																	"innerBorderRightWidth": "0px",
+																																																	"innerBorderBottomWidth": "1px",
+																																																	"innerBorderLeftWidth": "0px",
+																																																	"innerDefaultBorderColor": "#0000006b",
+																																																	"innerSides": ",Bottom",
+																																																	"outlined": "",
+																																																	"menuFontSize": "13px"
+																																																}
 																																															},
 																																															"O": {
-																																																"cType": "child"
+																																																"cType": "slot"
 																																															}
 																																														}
 																																													],
@@ -3264,7 +3369,7 @@ let pjson = {
 																																			},
 																																			"E": {
 																																				"click": {
-																																					"H": "quick.EM.trace(\"Onaya gitmedi\")\r\nquick.store.set(\"$customConsumerCode\",'TANE.DEPVIREMENT');\r\nlet successVirementB4 = quick.store.get(\"successVirement\");\r\nif (successVirementB4 == true) {\r\n\r\n    quick.containerServices.extensions.closeWindow();\r\n} else {\r\n    components.approveButton.disabled = true\r\n    let virementRequest: any = {};\r\n\r\n    let onlineApprove = response.retrieveOnlineApprove\r\n    quick.EM.trace(onlineApprove);\r\n\r\n    let accountId = onlineApprove.accountId;\r\n    //let amount = quick.Quick.toDecimal(onlineApprove.amount, \",\").toString();\r\n    let currencyCode = onlineApprove.currency;\r\n    let description = onlineApprove.description;\r\n    let idempotent = response.idempotent.firstIdempotent\r\n\r\n    /*let feeAmountResponse = response.responseCheckWithdrawCreate?.feeAmountResponse;\r\n    let feeAccountId = undefined;\r\n    let feeAccountNumber = undefined;\r\n    let feeAccountBranchCode = undefined;\r\n\r\n    let feePaymentType = quick.store.get(\"feePaymentType\")\r\n    if(feePaymentType === \"ANOTHER_ACCOUNT\") {\r\n        feeAccountId = feeAccountInfo.accountId;\r\n        feeAccountNumber = feeAccountInfo.accountNumber;\r\n        feeAccountBranchCode = feeAccountInfo.branchCode;\r\n    }\r\n\r\n    const newResponse = {\r\n        ...feeAmountResponse,\r\n        feeAccountId: feeAccountId,\r\n        feeAccountNumber: feeAccountNumber,\r\n        feeAccountBranchCode: feeAccountBranchCode,\r\n        feePaymentType: feePaymentType\r\n    }\r\n    */\r\n\r\n    if (onlineApprove.feeAmountResponse != null && onlineApprove.feeAmountResponse.feePaymentType == null) {\r\n        onlineApprove.feeAmountResponse.feePaymentType = 'CASH';\r\n    }\r\n    \r\n    virementRequest.amount = onlineApprove.amount;\r\n    virementRequest.currencyCode = currencyCode;\r\n    virementRequest.description = description;\r\n    virementRequest.feeAmountResponse = onlineApprove.feeAmountResponse;\r\n    \r\n\r\n    let urlNew = '';\r\n\r\n    if (onlineApprove.operationType == 'deposit') {\r\n        urlNew = 'PREFIX/api/dep-operations/v1/api/dep-operations/deposit'\r\n        virementRequest.creditAccountId = accountId;\r\n        quick.store.set(\"$customConsumerCode\",'TANE.DEPDEPOSIT');\r\n    } else {\r\n        urlNew = 'PREFIX/api/dep-operations/v1/api/dep-operations/withdraw'\r\n        virementRequest.debitAccountId = accountId;\r\n        quick.store.set(\"$customConsumerCode\",'TANE.DEPWITHDRAW');\r\n    }\r\n\r\n\r\n    let withdrawCreateRequest: IRequest = {\r\n        url: urlNew,\r\n        http: 'post',\r\n        headers: { \"x-rly-idempotency-key\":  idempotent},\r\n        blockRender: true,\r\n        onSuccess: 'onSuccessWithdrawCreate',\r\n        onFail: 'onFailWithdrawCreate',\r\n        responseField: 'responseWithdrawCreate',\r\n        data: virementRequest\r\n    }\r\n    quick.Request.async(withdrawCreateRequest);\r\n}\r\n\r\n",
+																																					"H": "quick.EM.trace(\"Onaya gitmedi\")\r\nquick.store.set(\"$customConsumerCode\",'TANE.DEPVIREMENT');\r\nlet successVirementB4 = quick.store.get(\"successVirement\");\r\nif (successVirementB4 == true) {\r\n\r\n    quick.containerServices.extensions.closeWindow();\r\n} else {\r\n    components.approveButton.disabled = true\r\n    let virementRequest: any = {};\r\n\r\n    let onlineApprove = response.retrieveOnlineApprove\r\n    quick.EM.trace(onlineApprove);\r\n\r\n    let accountId = onlineApprove.accountId;\r\n    //let amount = quick.Quick.toDecimal(onlineApprove.amount, \",\").toString();\r\n    let currencyCode = onlineApprove.currency;\r\n    let description = onlineApprove.description;\r\n    let idempotent = response.idempotent.firstIdempotent\r\n\r\n    /*let feeAmountResponse = response.responseCheckWithdrawCreate?.feeAmountResponse;\r\n    let feeAccountId = undefined;\r\n    let feeAccountNumber = undefined;\r\n    let feeAccountBranchCode = undefined;\r\n\r\n    let feePaymentType = quick.store.get(\"feePaymentType\")\r\n    if(feePaymentType === \"ANOTHER_ACCOUNT\") {\r\n        feeAccountId = feeAccountInfo.accountId;\r\n        feeAccountNumber = feeAccountInfo.accountNumber;\r\n        feeAccountBranchCode = feeAccountInfo.branchCode;\r\n    }\r\n\r\n    const newResponse = {\r\n        ...feeAmountResponse,\r\n        feeAccountId: feeAccountId,\r\n        feeAccountNumber: feeAccountNumber,\r\n        feeAccountBranchCode: feeAccountBranchCode,\r\n        feePaymentType: feePaymentType\r\n    }\r\n    */\r\n\r\n    if (onlineApprove.feeAmountResponse != null && onlineApprove.feeAmountResponse.feePaymentType == null) {\r\n        onlineApprove.feeAmountResponse.feePaymentType = 'CASH';\r\n    }\r\n    \r\n    virementRequest.amount = onlineApprove.amount;\r\n    virementRequest.currencyCode = currencyCode;\r\n    virementRequest.description = description;\r\n    virementRequest.feeAmountResponse = onlineApprove.feeAmountResponse;\r\n    \r\n\r\n    let urlNew = '';\r\n\r\n    if (onlineApprove.operationType == 'deposit') {\r\n        urlNew = 'PREFIX/api/dep-operations/v1/api/dep-operations/deposit'\r\n        virementRequest.creditAccountId = accountId;\r\n        quick.store.set(\"$customConsumerCode\",'TANE.DEPDEPOSIT');\r\n        quick.store.set(\"$customCustomerNumber\",onlineApprove.customerId);\r\n    } else {\r\n        urlNew = 'PREFIX/api/dep-operations/v1/api/dep-operations/withdraw'\r\n        virementRequest.debitAccountId = accountId;\r\n        quick.store.set(\"$customConsumerCode\",'TANE.DEPWITHDRAW');\r\n        quick.store.set(\"$customCustomerNumber\",onlineApprove.customerId);\r\n    }\r\n\r\n\r\n    let withdrawCreateRequest: IRequest = {\r\n        url: urlNew,\r\n        http: 'post',\r\n        headers: { \"x-rly-idempotency-key\":  idempotent},\r\n        blockRender: true,\r\n        onSuccess: 'onSuccessWithdrawCreate',\r\n        onFail: 'onFailWithdrawCreate',\r\n        responseField: 'responseWithdrawCreate',\r\n        data: virementRequest\r\n    }\r\n    quick.Request.async(withdrawCreateRequest);\r\n}\r\n\r\n",
 																																					"P": "mouseEvent:unknown | undefined",
 																																					"HL": "TS"
 																																				},
@@ -3859,11 +3964,11 @@ let pjson = {
 					"HL": "JS"
 				},
 				"EndRender": {
-					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.store.set(\"successVirement\", false);\r\nvar params = quick.Url.getDeepLinkParams();\r\nquick.EM.trace(\"url\");\r\nquick.EM.trace(params);\r\nvar accountListRequest = {\r\n    url: 'PREFIX/api/dep-operations/v1/api/dep-operations/retrieveOnlineApprove?approveId=' + (params === null || params === void 0 ? void 0 : params.onlineApproveId),\r\n    http: 'get',\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessRetrieveOnlineApprove',\r\n    onFail: 'onFaiRetrieveOnlineApprove',\r\n    responseField: 'retrieveOnlineApprove',\r\n    data: null\r\n};\r\nquick.Request.async(accountListRequest);\r\nvar idempotentRequest = {\r\n    url: 'PREFIX/api/dep-operations/v1/api/dep-operations/keys',\r\n    http: 'get',\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessIdempotent',\r\n    onFail: 'onFailIdempotent',\r\n    responseField: 'idempotent',\r\n    data: null\r\n};\r\nquick.Request.async(idempotentRequest);\r\n",
+					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.store.set(\"successVirement\", false);\r\nvar params = quick.Url.getDeepLinkParams();\r\nquick.EM.trace(\"url\");\r\nquick.EM.trace(params);\r\n//  \r\nvar accountListRequest = {\r\n    url: 'PREFIX/api/dep-operations/v1/api/dep-operations/retrieveOnlineApprove?approveId=' + (params === null || params === void 0 ? void 0 : params.onlineApproveId),\r\n    http: 'get',\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessRetrieveOnlineApprove',\r\n    onFail: 'onFaiRetrieveOnlineApprove',\r\n    responseField: 'retrieveOnlineApprove',\r\n    data: null\r\n};\r\nquick.Request.async(accountListRequest);\r\nvar idempotentRequest = {\r\n    url: 'PREFIX/api/dep-operations/v1/api/dep-operations/keys',\r\n    http: 'get',\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessIdempotent',\r\n    onFail: 'onFailIdempotent',\r\n    responseField: 'idempotent',\r\n    data: null\r\n};\r\nquick.Request.async(idempotentRequest);\r\n",
 					"HL": "JS"
 				},
 				"onSuccessRetrieveOnlineApprove": {
-					"H": "var _a, _b, _c;\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"onSuccessRetrieveOnlineApprove\");\r\nquick.EM.trace(response.retrieveOnlineApprove);\r\nvar onlineApprove = response.retrieveOnlineApprove;\r\nif (onlineApprove.operationType == 'deposit') {\r\n    components.summaryDebitAccount.label = 'Paranının Yatırılacağı Hesap';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Nakit Para Yatırma İşlem Onay';\r\n}\r\nelse {\r\n    components.summaryDebitAccount.label = 'Paranının Çekileceği Hesap';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Nakit Para Çekme İşlem Onay';\r\n}\r\nvar formattedAccountBalance = new Intl.NumberFormat(\"tr-TR\", {\r\n    minimumFractionDigits: 2,\r\n    maximumFractionDigits: 2\r\n}).format(onlineApprove.accountBalance);\r\nvar formattedMainAmount = new Intl.NumberFormat(\"tr-TR\", {\r\n    minimumFractionDigits: 2,\r\n    maximumFractionDigits: 2\r\n}).format(onlineApprove.amount);\r\ncomponents.summaryDebitAccount.qValue = onlineApprove.branchCode + ' - ' + onlineApprove.accountIban + ' - ' + formattedAccountBalance + ' ' + onlineApprove.currency;\r\ncomponents.summaryDescription.qValue = onlineApprove.description;\r\ncomponents.summaryAmount.qValue = formattedMainAmount + ' ' + onlineApprove.currency;\r\nif (((_a = onlineApprove.feeAmountResponse) === null || _a === void 0 ? void 0 : _a.feeAmount) != null && ((_c = (_b = onlineApprove.feeAmountResponse) === null || _b === void 0 ? void 0 : _b.feeAmount) === null || _c === void 0 ? void 0 : _c.unscaledValue) > 0) {\r\n    var scaledValue = Number(onlineApprove.feeAmountResponse.feeAmount.unscaledValue) / Math.pow(10, 2);\r\n    var bsmv = Number(onlineApprove.feeAmountResponse.feeAmountBsmv.unscaledValue) / Math.pow(10, 2);\r\n    var totalAmount = scaledValue + bsmv;\r\n    var formattedResultTax = new Intl.NumberFormat(\"tr-TR\", {\r\n        minimumFractionDigits: 2,\r\n        maximumFractionDigits: 2\r\n    }).format(bsmv);\r\n    var formattedAmount = new Intl.NumberFormat(\"tr-TR\", {\r\n        minimumFractionDigits: 2,\r\n        maximumFractionDigits: 2\r\n    }).format(scaledValue);\r\n    var formattedTotalAmount = new Intl.NumberFormat(\"tr-TR\", {\r\n        minimumFractionDigits: 2,\r\n        maximumFractionDigits: 2\r\n    }).format(totalAmount);\r\n    if (onlineApprove.feeAmountResponse.feePaymentType == 'CASH') {\r\n        components.paymentType.qValue = 'Nakit';\r\n    }\r\n    else {\r\n        components.paymentType.qValue = 'Vadesiz Hesaptan Tahsil Edilecek';\r\n    }\r\n    components.feeAmount.qValue = formattedAmount;\r\n    components.feeTaxAmount.qValue = formattedResultTax;\r\n    components.feeTotalAmount.qValue = formattedTotalAmount;\r\n    components.feeRow.visible = true;\r\n    components.feeAmount.visible = true;\r\n    components.feeTaxAmount.visible = true;\r\n    components.feeTotalAmount.visible = true;\r\n    components.paymentType.visible = true;\r\n}\r\n",
+					"H": "var _a, _b, _c;\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"onSuccessRetrieveOnlineApprove\");\r\nquick.EM.trace(response.retrieveOnlineApprove);\r\nvar onlineApprove = response.retrieveOnlineApprove;\r\nif (onlineApprove.operationType == 'deposit') {\r\n    components.summaryDebitAccount.label = 'Paranının Yatırılacağı Hesap';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Nakit Para Yatırma İşlem Onay';\r\n}\r\nelse {\r\n    components.summaryDebitAccount.label = 'Paranının Çekileceği Hesap';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Nakit Para Çekme İşlem Onay';\r\n}\r\nvar formattedAccountBalance = new Intl.NumberFormat(\"tr-TR\", {\r\n    minimumFractionDigits: 2,\r\n    maximumFractionDigits: 2\r\n}).format(onlineApprove.accountBalance);\r\nvar formattedMainAmount = new Intl.NumberFormat(\"tr-TR\", {\r\n    minimumFractionDigits: 2,\r\n    maximumFractionDigits: 2\r\n}).format(onlineApprove.amount);\r\ncomponents.summaryDebitAccount.qValue = onlineApprove.branchCode + ' - ' + onlineApprove.accountIban + ' - ' + formattedAccountBalance + ' ' + onlineApprove.currency;\r\ncomponents.summaryDescription.qValue = onlineApprove.description;\r\ncomponents.summaryAmount.qValue = formattedMainAmount + ' ' + onlineApprove.currency;\r\nif (((_a = onlineApprove.feeAmountResponse) === null || _a === void 0 ? void 0 : _a.feeAmount) != null && ((_c = (_b = onlineApprove.feeAmountResponse) === null || _b === void 0 ? void 0 : _b.feeAmount) === null || _c === void 0 ? void 0 : _c.unscaledValue) > 0) {\r\n    var scaledValue = Number(onlineApprove.feeAmountResponse.feeAmount.unscaledValue) / Math.pow(10, 2);\r\n    var bsmv = Number(onlineApprove.feeAmountResponse.feeAmountBsmv.unscaledValue) / Math.pow(10, 2);\r\n    var totalAmount = scaledValue + bsmv;\r\n    var formattedResultTax = new Intl.NumberFormat(\"tr-TR\", {\r\n        minimumFractionDigits: 2,\r\n        maximumFractionDigits: 2\r\n    }).format(bsmv);\r\n    var formattedAmount = new Intl.NumberFormat(\"tr-TR\", {\r\n        minimumFractionDigits: 2,\r\n        maximumFractionDigits: 2\r\n    }).format(scaledValue);\r\n    var formattedTotalAmount = new Intl.NumberFormat(\"tr-TR\", {\r\n        minimumFractionDigits: 2,\r\n        maximumFractionDigits: 2\r\n    }).format(totalAmount);\r\n    if (onlineApprove.feeAmountResponse.feePaymentType == 'CASH') {\r\n        components.paymentType.qValue = 'Nakit';\r\n    }\r\n    else {\r\n        components.paymentType.qValue = 'Vadesiz Hesaptan Tahsil Edilecek';\r\n        components.feeAnotherAccountInfo.visible = true;\r\n    }\r\n    components.feeAmount.qValue = formattedAmount;\r\n    components.feeTaxAmount.qValue = formattedResultTax;\r\n    components.feeTotalAmount.qValue = formattedTotalAmount;\r\n    components.feeRow.visible = true;\r\n    components.feeAmount.visible = true;\r\n    components.feeTaxAmount.visible = true;\r\n    components.feeTotalAmount.visible = true;\r\n    components.paymentType.visible = true;\r\n}\r\n",
 					"C": true,
 					"HL": "JS"
 				},
@@ -5555,7 +5660,7 @@ let pjson = {
 																																																	"legendMarginLeft": "0px",
 																																																	"marginRight": "",
 																																																	"marginBottom": "",
-																																																	"marginTop": "4px",
+																																																	"marginTop": "0px",
 																																																	"paddingTop": "12px",
 																																																	"paddingBottom": "",
 																																																	"paddingLeft": "",
@@ -5574,7 +5679,7 @@ let pjson = {
 																																																	"unlinkMax": "false",
 																																																	"unlinkMin": "false",
 																																																	"isSizeCollapsed": "false",
-																																																	"dense": "",
+																																																	"dense": "true",
 																																																	"labelDefaultFontColor": "#000000",
 																																																	"labelDefaultFontFamily": "Roboto",
 																																																	"labelDefaultFontSize": "16px",
@@ -5634,12 +5739,13 @@ let pjson = {
 																																																	"innerBorderLeftWidth": "0px",
 																																																	"innerDefaultBorderColor": "#0000006b",
 																																																	"innerSides": ",Bottom",
-																																																	"outlined": ""
+																																																	"outlined": "",
+																																																	"menuFontSize": "13px"
 																																																}
 																																															},
 																																															"O": {
 																																																"cType": "slot",
-																																																"compDomClasses": "v-input theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
+																																																"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
 																																															}
 																																														}
 																																													],
@@ -5913,21 +6019,125 @@ let pjson = {
 																																												"default": {
 																																													"c": [
 																																														{
-																																															"T": "Ghost",
+																																															"T": "VTextField",
 																																															"P": {
 																																																"ID": {
-																																																	"H": "EdtrComp_98",
+																																																	"H": "feeAnotherAccountInfo",
+																																																	"T": "prop",
+																																																	"HL": "QS"
+																																																},
+																																																"hideDetails": {
+																																																	"H": "╬false╩╩",
 																																																	"T": "prop"
+																																																},
+																																																"label": {
+																																																	"H": "╬'Vadesiz Hesap Bilgileri'╩╩",
+																																																	"T": "prop",
+																																																	"HL": "QS"
+																																																},
+																																																"visible": {
+																																																	"H": "╬false╩╩",
+																																																	"T": "prop",
+																																																	"HL": "QS"
 																																																}
 																																															},
 																																															"E": {},
 																																															"C": {},
 																																															"_Editor": {
-																																																"eID": "EdtrComp_98"
+																																																"eID": "EdtrComp_68"
+																																															},
+																																															"S": {
+																																																"xs-xl": {
+																																																	"marginLeft": "",
+																																																	"legendMarginLeft": "0px",
+																																																	"marginRight": "",
+																																																	"marginBottom": "",
+																																																	"marginTop": "0px",
+																																																	"paddingTop": "12px",
+																																																	"paddingBottom": "",
+																																																	"paddingLeft": "",
+																																																	"paddingRight": "",
+																																																	"inputPaddingTop": "",
+																																																	"inputPaddingRight": "",
+																																																	"inputPaddingBottom": "",
+																																																	"inputPaddingLeft": "",
+																																																	"width": "",
+																																																	"height": "",
+																																																	"maxWidth": "",
+																																																	"maxHeight": "",
+																																																	"minWidth": "",
+																																																	"minHeight": "",
+																																																	"unlink": "false",
+																																																	"unlinkMax": "false",
+																																																	"unlinkMin": "false",
+																																																	"isSizeCollapsed": "false",
+																																																	"dense": "true",
+																																																	"labelDefaultFontColor": "#000000",
+																																																	"labelDefaultFontFamily": "Roboto",
+																																																	"labelDefaultFontSize": "16px",
+																																																	"labelDefaultFontStyle": "normal",
+																																																	"labelDefaultFontWeight": "400",
+																																																	"labelDefaultCombinedFont": "Roboto-Regular",
+																																																	"labelDefaultThemeFont": "Custom",
+																																																	"prefixFontColor": "#000",
+																																																	"prefixFontFamily": "Roboto",
+																																																	"prefixFontSize": "16px",
+																																																	"prefixFontStyle": "normal",
+																																																	"prefixFontWeight": "400",
+																																																	"prefixCombinedFont": "Roboto-Regular",
+																																																	"prefixThemeFont": "Custom",
+																																																	"PHFontColor": "#686868",
+																																																	"PHFontFamily": "Roboto",
+																																																	"PHFontSize": "16px",
+																																																	"PHFontStyle": "normal",
+																																																	"PHFontWeight": "400",
+																																																	"PHCombinedFont": "Roboto-Regular",
+																																																	"PHThemeFont": "Custom",
+																																																	"inputFontColor": "#000",
+																																																	"inputFontFamily": "Roboto",
+																																																	"inputFontSize": "16px",
+																																																	"inputFontStyle": "normal",
+																																																	"inputFontWeight": "400",
+																																																	"inputCombinedFont": "Roboto-Regular",
+																																																	"inputDefaultThemeFont": "Custom",
+																																																	"errorMessageFontColor": "#E96767",
+																																																	"errorMessageFontFamily": "Roboto",
+																																																	"errorMessageFontSize": "12px",
+																																																	"errorMessageFontStyle": "normal",
+																																																	"errorMessageFontWeight": "400",
+																																																	"EMCombinedFont": "Roboto-Regular",
+																																																	"errorMessageThemeFont": "Custom",
+																																																	"errorMessageLineHeight": "",
+																																																	"textAlign": "left",
+																																																	"backgroundColor": "#ffffff",
+																																																	"appendIconColor": "",
+																																																	"appendOuterIconColor": "",
+																																																	"prependIconColor": "",
+																																																	"prependInnerIconColor": "",
+																																																	"innerBoxShadow": "",
+																																																	"activeBorderColor": "#1976d2",
+																																																	"innerBoxSizing": "",
+																																																	"innerBorderTopStyle": "",
+																																																	"innerBorderRightStyle": "",
+																																																	"innerBorderBottomStyle": "solid",
+																																																	"innerBorderLeftStyle": "",
+																																																	"innerBorderTopLeftRadius": "",
+																																																	"innerBorderTopRightRadius": "",
+																																																	"innerBorderBottomLeftRadius": "",
+																																																	"innerBorderBottomRightRadius": "",
+																																																	"innerBorderTopWidth": "0px",
+																																																	"innerBorderRightWidth": "0px",
+																																																	"innerBorderBottomWidth": "1px",
+																																																	"innerBorderLeftWidth": "0px",
+																																																	"innerDefaultBorderColor": "#0000006b",
+																																																	"innerSides": ",Bottom",
+																																																	"outlined": "",
+																																																	"menuFontSize": "13px"
+																																																}
 																																															},
 																																															"O": {
-																																																"cType": "child",
-																																																"compDomClasses": "editor-ghost-comp newDropBorder"
+																																																"cType": "slot",
+																																																"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
 																																															}
 																																														}
 																																													],
@@ -7158,7 +7368,7 @@ let pjson = {
 																																			},
 																																			"E": {
 																																				"click": {
-																																					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nquick.EM.trace(\"Onaya gitmedi\");\r\nquick.store.set(\"$customConsumerCode\", 'TANE.DEPVIREMENT');\r\nvar successVirementB4 = quick.store.get(\"successVirement\");\r\nif (successVirementB4 == true) {\r\n    quick.containerServices.extensions.closeWindow();\r\n}\r\nelse {\r\n    components.approveButton.disabled = true;\r\n    var virementRequest = {};\r\n    var onlineApprove = response.retrieveOnlineApprove;\r\n    quick.EM.trace(onlineApprove);\r\n    var accountId = onlineApprove.accountId;\r\n    //let amount = quick.Quick.toDecimal(onlineApprove.amount, \",\").toString();\r\n    var currencyCode = onlineApprove.currency;\r\n    var description = onlineApprove.description;\r\n    var idempotent = response.idempotent.firstIdempotent;\r\n    /*let feeAmountResponse = response.responseCheckWithdrawCreate?.feeAmountResponse;\r\n    let feeAccountId = undefined;\r\n    let feeAccountNumber = undefined;\r\n    let feeAccountBranchCode = undefined;\r\n\r\n    let feePaymentType = quick.store.get(\"feePaymentType\")\r\n    if(feePaymentType === \"ANOTHER_ACCOUNT\") {\r\n        feeAccountId = feeAccountInfo.accountId;\r\n        feeAccountNumber = feeAccountInfo.accountNumber;\r\n        feeAccountBranchCode = feeAccountInfo.branchCode;\r\n    }\r\n\r\n    const newResponse = {\r\n        ...feeAmountResponse,\r\n        feeAccountId: feeAccountId,\r\n        feeAccountNumber: feeAccountNumber,\r\n        feeAccountBranchCode: feeAccountBranchCode,\r\n        feePaymentType: feePaymentType\r\n    }\r\n    */\r\n    if (onlineApprove.feeAmountResponse != null && onlineApprove.feeAmountResponse.feePaymentType == null) {\r\n        onlineApprove.feeAmountResponse.feePaymentType = 'CASH';\r\n    }\r\n    virementRequest.amount = onlineApprove.amount;\r\n    virementRequest.currencyCode = currencyCode;\r\n    virementRequest.description = description;\r\n    virementRequest.feeAmountResponse = onlineApprove.feeAmountResponse;\r\n    var urlNew = '';\r\n    if (onlineApprove.operationType == 'deposit') {\r\n        urlNew = 'PREFIX/api/dep-operations/v1/api/dep-operations/deposit';\r\n        virementRequest.creditAccountId = accountId;\r\n        quick.store.set(\"$customConsumerCode\", 'TANE.DEPDEPOSIT');\r\n    }\r\n    else {\r\n        urlNew = 'PREFIX/api/dep-operations/v1/api/dep-operations/withdraw';\r\n        virementRequest.debitAccountId = accountId;\r\n        quick.store.set(\"$customConsumerCode\", 'TANE.DEPWITHDRAW');\r\n    }\r\n    var withdrawCreateRequest = {\r\n        url: urlNew,\r\n        http: 'post',\r\n        headers: { \"x-rly-idempotency-key\": idempotent },\r\n        blockRender: true,\r\n        onSuccess: 'onSuccessWithdrawCreate',\r\n        onFail: 'onFailWithdrawCreate',\r\n        responseField: 'responseWithdrawCreate',\r\n        data: virementRequest\r\n    };\r\n    quick.Request.async(withdrawCreateRequest);\r\n}\r\n",
+																																					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nquick.EM.trace(\"Onaya gitmedi\");\r\nquick.store.set(\"$customConsumerCode\", 'TANE.DEPVIREMENT');\r\nvar successVirementB4 = quick.store.get(\"successVirement\");\r\nif (successVirementB4 == true) {\r\n    quick.containerServices.extensions.closeWindow();\r\n}\r\nelse {\r\n    components.approveButton.disabled = true;\r\n    var virementRequest = {};\r\n    var onlineApprove = response.retrieveOnlineApprove;\r\n    quick.EM.trace(onlineApprove);\r\n    var accountId = onlineApprove.accountId;\r\n    //let amount = quick.Quick.toDecimal(onlineApprove.amount, \",\").toString();\r\n    var currencyCode = onlineApprove.currency;\r\n    var description = onlineApprove.description;\r\n    var idempotent = response.idempotent.firstIdempotent;\r\n    /*let feeAmountResponse = response.responseCheckWithdrawCreate?.feeAmountResponse;\r\n    let feeAccountId = undefined;\r\n    let feeAccountNumber = undefined;\r\n    let feeAccountBranchCode = undefined;\r\n\r\n    let feePaymentType = quick.store.get(\"feePaymentType\")\r\n    if(feePaymentType === \"ANOTHER_ACCOUNT\") {\r\n        feeAccountId = feeAccountInfo.accountId;\r\n        feeAccountNumber = feeAccountInfo.accountNumber;\r\n        feeAccountBranchCode = feeAccountInfo.branchCode;\r\n    }\r\n\r\n    const newResponse = {\r\n        ...feeAmountResponse,\r\n        feeAccountId: feeAccountId,\r\n        feeAccountNumber: feeAccountNumber,\r\n        feeAccountBranchCode: feeAccountBranchCode,\r\n        feePaymentType: feePaymentType\r\n    }\r\n    */\r\n    if (onlineApprove.feeAmountResponse != null && onlineApprove.feeAmountResponse.feePaymentType == null) {\r\n        onlineApprove.feeAmountResponse.feePaymentType = 'CASH';\r\n    }\r\n    virementRequest.amount = onlineApprove.amount;\r\n    virementRequest.currencyCode = currencyCode;\r\n    virementRequest.description = description;\r\n    virementRequest.feeAmountResponse = onlineApprove.feeAmountResponse;\r\n    var urlNew = '';\r\n    if (onlineApprove.operationType == 'deposit') {\r\n        urlNew = 'PREFIX/api/dep-operations/v1/api/dep-operations/deposit';\r\n        virementRequest.creditAccountId = accountId;\r\n        quick.store.set(\"$customConsumerCode\", 'TANE.DEPDEPOSIT');\r\n        quick.store.set(\"$customCustomerNumber\", onlineApprove.customerId);\r\n    }\r\n    else {\r\n        urlNew = 'PREFIX/api/dep-operations/v1/api/dep-operations/withdraw';\r\n        virementRequest.debitAccountId = accountId;\r\n        quick.store.set(\"$customConsumerCode\", 'TANE.DEPWITHDRAW');\r\n        quick.store.set(\"$customCustomerNumber\", onlineApprove.customerId);\r\n    }\r\n    var withdrawCreateRequest = {\r\n        url: urlNew,\r\n        http: 'post',\r\n        headers: { \"x-rly-idempotency-key\": idempotent },\r\n        blockRender: true,\r\n        onSuccess: 'onSuccessWithdrawCreate',\r\n        onFail: 'onFailWithdrawCreate',\r\n        responseField: 'responseWithdrawCreate',\r\n        data: virementRequest\r\n    };\r\n    quick.Request.async(withdrawCreateRequest);\r\n}\r\n",
 																																					"P": "mouseEvent:unknown | undefined",
 																																					"HL": "JS"
 																																				},
