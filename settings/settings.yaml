@@ -79,14 +79,18 @@ fileMap:
   path: /static/depOperations
   name: /menuOperationsOADetails.qjson
   version: Thu Mar 12 2026 09:51:49 GMT+0300 (GMT+03:00)
+- id: o8smu704-6gjn-db6v-2xil-psz0mlhy4xma
+  path: /static
+  name: /App Settings.appSettings
+  version: Thu Apr 02 2026 11:18:53 GMT+0300 (GMT+03:00)
 - id: qf2d8qrm-4txv-431i-c01o-j810mlhysizt
   path: /static/depOperations
   name: /withdraw.qjson
-  version: Tue Mar 31 2026 10:32:36 GMT+0300 (GMT+03:00)
+  version: Mon Apr 06 2026 18:25:43 GMT+0300 (GMT+03:00)
 - id: v6ck2cck-xrfq-835w-yo58-0hd0mlp9nk7m
   path: /static/depOperations
   name: /withdrawReview.qjson
-  version: Thu Apr 02 2026 12:50:44 GMT+0300 (GMT+03:00)
+  version: Mon Apr 06 2026 18:26:21 GMT+0300 (GMT+03:00)
 
 containerServices: <<containerServices:l82hjea4-mvjr-h857-1zbk-19n0mm4txevl>>
 localProxy: <<localProxy:o0m2fsej-8unm-cyd8-sj7l-on00mlhypcgh>>
