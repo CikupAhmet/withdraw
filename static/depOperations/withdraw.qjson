@@ -3307,17 +3307,17 @@ let pjson = {
 																																					"HL": "TS"
 																																				},
 																																				"onFailControlWithdrawCreate": {
-																																					"H": "declare var error;\r\n\r\nquick.EM.trace('onFailVirementCreate')\r\n\r\nquick.store.set(\"successVirement\", false);\r\ncomponents.EdtrComp_191.disabled = false\r\n\r\nquick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"O\", pcuBytes: \"R\", monetaryType: \"P\"}]);\r\n\r\n\r\n\r\nlet errorMessage = \"\";\r\n\r\nif (error.response) {\r\n    if (error.response.data.responseMessage) {\r\n        errorMessage = error.response.data.responseMessage\r\n    } else {\r\n        errorMessage = \"Beklenmedik bir hata oluştu.\"\r\n    }\r\n}\r\n\r\ncomponents.errorDialogWithdraw.dialogClick({ text: errorMessage});\r\n",
+																																					"H": "declare var error;\r\n\r\nquick.EM.trace('onFailVirementCreate')\r\n\r\nquick.store.set(\"successVirement\", false);\r\ncomponents.EdtrComp_191.disabled = false;\r\n\r\n\r\n\r\n\r\nlet errorMessage = \"\";\r\n\r\nif (error.response) {\r\n    if (error.response.data.responseMessage) {\r\n        errorMessage = error.response.data.responseMessage\r\n    } else {\r\n        errorMessage = \"Beklenmedik bir hata oluştu.\"\r\n    }\r\n}\r\n\r\ncomponents.errorDialogWithdraw.dialogClick({ text: errorMessage});\r\n\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\"){\r\n    amountTLValue = components.amount.qValue;\r\n} else {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\n\r\nquick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"O\", pcuBytes: \"R\", monetaryType: \"P\", accountType:components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue}]);",
 																																					"C": true,
 																																					"HL": "TS"
 																																				},
 																																				"onSuccessWithdrawCreate": {
-																																					"H": "quick.EM.trace(\"onSuccessWithdrawCreate\")\r\nquick.store.set(\"successVirement\", true);\r\n\r\nquick.EM.trace(response.responseWithdrawCreate);\r\ncomponents.EdtrComp_191.disabled = false;\r\n\r\nlet successText = \"İşlem başarılı gerçekleşti. Lütfen \" + components.amount.qValue + \" \" + components.currency.qValue + \" tahsil ediniz.\"\r\n\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Nakit Para Yatırma İşlem Sonuç';\r\n} else {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Nakit Para Çekme İşlem Sonuç';\r\n    successText = \"İşlem başarılı gerçekleşti. Lütfen \" + components.amount.qValue + \" \" + components.currency.qValue + \" ödeyiniz.\"\r\n}\r\n\r\ncomponents.EdtrComp_192.text = 'Bitir';\r\ncomponents.EdtrComp_189.visible = false;\r\ncomponents.EdtrComp_588.visible = false;\r\n\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\"){\r\n    amountTLValue = components.amount.qValue;\r\n} else {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\n\r\nquick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"O\", pcuBytes: \"A\", monetaryType: \"K\", accountType:components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue}]);\r\n\r\nif (response.responseWithdrawCreate) {\r\n    let date = response.responseWithdrawCreate.timestamp;\r\n    quick.EM.trace(\"date\");\r\n    quick.EM.trace(date)\r\n    let correlationId = response.responseWithdrawCreate.result.correlationId;\r\n    quick.EM.trace(\"correlationId\", correlationId)\r\n    quick.EM.trace(correlationId);\r\n    const url = \"date=\" + date + \"&siid=\" + correlationId.toUpperCase();\r\n\r\n    quick.EM.trace(\"dekont-url\")\r\n    quick.EM.trace(url);\r\n\r\n    quick.containerServices.extensions.showVoucherPopUp(url);\r\n}\r\n\r\n\r\ncomponents.successDialogVirement.dialogClick({ text: successText});\r\n\r\n\r\n",
+																																					"H": "quick.EM.trace(\"onSuccessWithdrawCreate\")\r\nquick.store.set(\"successVirement\", true);\r\n\r\nquick.EM.trace(response.responseWithdrawCreate);\r\ncomponents.EdtrComp_191.disabled = false;\r\n\r\nlet successText = \"İşlem başarı ile gerçekleşti. Lütfen \" + components.amount.qValue + \" \" + components.currency.qValue + \" tahsil ediniz.\"\r\n\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Nakit Para Yatırma İşlem Sonuç';\r\n} else {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Nakit Para Çekme İşlem Sonuç';\r\n    successText = \"İşlem başarı ile gerçekleşti. Lütfen \" + components.amount.qValue + \" \" + components.currency.qValue + \" ödeyiniz.\"\r\n}\r\n\r\ncomponents.EdtrComp_192.text = 'Bitir';\r\ncomponents.EdtrComp_189.visible = false;\r\ncomponents.EdtrComp_588.visible = false;\r\n\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\"){\r\n    amountTLValue = components.amount.qValue;\r\n} else {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\n\r\nquick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"O\", pcuBytes: \"A\", monetaryType: \"K\", accountType:components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue}]);\r\n\r\nif (response.responseWithdrawCreate) {\r\n    let date = response.responseWithdrawCreate.timestamp;\r\n    quick.EM.trace(\"date\");\r\n    quick.EM.trace(date)\r\n    let correlationId = response.responseWithdrawCreate.result.correlationId;\r\n    quick.EM.trace(\"correlationId\", correlationId)\r\n    quick.EM.trace(correlationId);\r\n    const url = \"date=\" + date + \"&siid=\" + correlationId.toUpperCase();\r\n\r\n    quick.EM.trace(\"dekont-url\")\r\n    quick.EM.trace(url);\r\n\r\n    quick.containerServices.extensions.showVoucherPopUp(url);\r\n}\r\n\r\n\r\ncomponents.successDialogVirement.dialogClick({ text: successText});\r\n\r\n\r\n",
 																																					"C": true,
 																																					"HL": "TS"
 																																				},
 																																				"onFailWithdrawCreate": {
-																																					"H": "quick.EM.trace(\"fail\")\r\n\r\ndeclare var error;\r\n\r\nquick.EM.trace('onFailVirementCreate')\r\n\r\nquick.store.set(\"successVirement\", false);\r\ncomponents.EdtrComp_191.disabled = false\r\n\r\nquick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"O\", pcuBytes: \"R\", monetaryType: \"P\"}]);\r\n\r\n\r\n\r\nlet errorMessage = \"\";\r\n\r\nif (error.response) {\r\n    if (error.response.data.responseMessage) {\r\n        errorMessage = error.response.data.responseMessage\r\n    } else {\r\n        errorMessage = \"Beklenmedik bir hata oluştu.\"\r\n    }\r\n}\r\n\r\ncomponents.errorDialogWithdraw.dialogClick({ text: errorMessage});\r\n",
+																																					"H": "quick.EM.trace(\"fail\")\r\n\r\ndeclare var error;\r\n\r\nquick.EM.trace('onFailVirementCreate')\r\n\r\nquick.store.set(\"successVirement\", false);\r\ncomponents.EdtrComp_191.disabled = false\r\n\r\n\r\n\r\n\r\nlet errorMessage = \"\";\r\n\r\nif (error.response) {\r\n    if (error.response.data.responseMessage) {\r\n        errorMessage = error.response.data.responseMessage\r\n    } else {\r\n        errorMessage = \"Beklenmedik bir hata oluştu.\"\r\n    }\r\n}\r\n\r\ncomponents.errorDialogWithdraw.dialogClick({ text: errorMessage});\r\n\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\"){\r\n    amountTLValue = components.amount.qValue;\r\n} else {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\nquick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"O\", pcuBytes: \"R\", monetaryType: \"P\", accountType:components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue}]);",
 																																					"C": true,
 																																					"HL": "TS"
 																																				}
@@ -7266,7 +7266,7 @@ let pjson = {
 																													"HL": "TS"
 																												},
 																												"onSFailCheckWithdrawCreate": {
-																													"H": "declare var error;\r\n\r\ncomponents.EdtrComp_1463.disabled = false;\r\nquick.EM.trace(\"onSFailCheckWithdrawCreate\")\r\n\r\nquick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"K\", pcuBytes: \"R\", monetaryType: \"Z\"}]);\r\n\r\nquick.EM.trace(error.response.data.responseMessage)\r\nlet errorMessage = \"\";\r\n\r\nif (error.response) {\r\n    if (error.response.data.responseMessage) {\r\n        errorMessage = error.response.data.responseMessage\r\n    } else {\r\n        errorMessage = \"Beklenmedik bir hata oluştu.\"\r\n    }\r\n}\r\n\r\ncomponents.errorDialogWithdraw.dialogClick({ text: errorMessage});\r\n",
+																													"H": "declare var error;\r\n\r\ncomponents.EdtrComp_1463.disabled = false;\r\nquick.EM.trace(\"onSFailCheckWithdrawCreate\")\r\n\r\nquick.EM.trace(error.response.data.responseMessage)\r\nlet errorMessage = \"\";\r\n\r\nif (error.response) {\r\n    if (error.response.data.responseMessage) {\r\n        errorMessage = error.response.data.responseMessage\r\n    } else {\r\n        errorMessage = \"Beklenmedik bir hata oluştu.\"\r\n    }\r\n}\r\n\r\ncomponents.errorDialogWithdraw.dialogClick({ text: errorMessage});\r\n\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\"){\r\n    amountTLValue = components.amount.qValue;\r\n} else {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\nquick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"K\", pcuBytes: \"R\", monetaryType: \"Z\", accountType:components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue}]);",
 																													"C": true,
 																													"HL": "TS"
 																												}
@@ -8372,7 +8372,7 @@ let pjson = {
 																																															},
 																																															"O": {
 																																																"cType": "slot",
-																																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
+																																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined"
 																																															}
 																																														}
 																																													],
@@ -8648,7 +8648,7 @@ let pjson = {
 																																															},
 																																															"O": {
 																																																"cType": "slot",
-																																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
+																																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined"
 																																															}
 																																														}
 																																													],
@@ -8924,7 +8924,7 @@ let pjson = {
 																																															},
 																																															"O": {
 																																																"cType": "slot",
-																																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
+																																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined"
 																																															}
 																																														}
 																																													],
@@ -11148,17 +11148,17 @@ let pjson = {
 																																					"HL": "JS"
 																																				},
 																																				"onFailControlWithdrawCreate": {
-																																					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace('onFailVirementCreate');\r\nquick.store.set(\"successVirement\", false);\r\ncomponents.EdtrComp_191.disabled = false;\r\nquick.MM.trigger(\"ofsaaRequest\", [{ operationCode: \"O\", pcuBytes: \"R\", monetaryType: \"P\" }]);\r\nvar errorMessage = \"\";\r\nif (error.response) {\r\n    if (error.response.data.responseMessage) {\r\n        errorMessage = error.response.data.responseMessage;\r\n    }\r\n    else {\r\n        errorMessage = \"Beklenmedik bir hata oluştu.\";\r\n    }\r\n}\r\ncomponents.errorDialogWithdraw.dialogClick({ text: errorMessage });\r\n",
+																																					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace('onFailVirementCreate');\r\nquick.store.set(\"successVirement\", false);\r\ncomponents.EdtrComp_191.disabled = false;\r\nvar errorMessage = \"\";\r\nif (error.response) {\r\n    if (error.response.data.responseMessage) {\r\n        errorMessage = error.response.data.responseMessage;\r\n    }\r\n    else {\r\n        errorMessage = \"Beklenmedik bir hata oluştu.\";\r\n    }\r\n}\r\ncomponents.errorDialogWithdraw.dialogClick({ text: errorMessage });\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\") {\r\n    amountTLValue = components.amount.qValue;\r\n}\r\nelse {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\nquick.MM.trigger(\"ofsaaRequest\", [{ operationCode: \"O\", pcuBytes: \"R\", monetaryType: \"P\", accountType: components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue }]);\r\n",
 																																					"C": true,
 																																					"HL": "JS"
 																																				},
 																																				"onSuccessWithdrawCreate": {
-																																					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"onSuccessWithdrawCreate\");\r\nquick.store.set(\"successVirement\", true);\r\nquick.EM.trace(response.responseWithdrawCreate);\r\ncomponents.EdtrComp_191.disabled = false;\r\nvar successText = \"İşlem başarılı gerçekleşti. Lütfen \" + components.amount.qValue + \" \" + components.currency.qValue + \" tahsil ediniz.\";\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Nakit Para Yatırma İşlem Sonuç';\r\n}\r\nelse {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Nakit Para Çekme İşlem Sonuç';\r\n    successText = \"İşlem başarılı gerçekleşti. Lütfen \" + components.amount.qValue + \" \" + components.currency.qValue + \" ödeyiniz.\";\r\n}\r\ncomponents.EdtrComp_192.text = 'Bitir';\r\ncomponents.EdtrComp_189.visible = false;\r\ncomponents.EdtrComp_588.visible = false;\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\") {\r\n    amountTLValue = components.amount.qValue;\r\n}\r\nelse {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\nquick.MM.trigger(\"ofsaaRequest\", [{ operationCode: \"O\", pcuBytes: \"A\", monetaryType: \"K\", accountType: components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue }]);\r\nif (response.responseWithdrawCreate) {\r\n    var date = response.responseWithdrawCreate.timestamp;\r\n    quick.EM.trace(\"date\");\r\n    quick.EM.trace(date);\r\n    var correlationId = response.responseWithdrawCreate.result.correlationId;\r\n    quick.EM.trace(\"correlationId\", correlationId);\r\n    quick.EM.trace(correlationId);\r\n    var url = \"date=\" + date + \"&siid=\" + correlationId.toUpperCase();\r\n    quick.EM.trace(\"dekont-url\");\r\n    quick.EM.trace(url);\r\n    quick.containerServices.extensions.showVoucherPopUp(url);\r\n}\r\ncomponents.successDialogVirement.dialogClick({ text: successText });\r\n",
+																																					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"onSuccessWithdrawCreate\");\r\nquick.store.set(\"successVirement\", true);\r\nquick.EM.trace(response.responseWithdrawCreate);\r\ncomponents.EdtrComp_191.disabled = false;\r\nvar successText = \"İşlem başarı ile gerçekleşti. Lütfen \" + components.amount.qValue + \" \" + components.currency.qValue + \" tahsil ediniz.\";\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Nakit Para Yatırma İşlem Sonuç';\r\n}\r\nelse {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Nakit Para Çekme İşlem Sonuç';\r\n    successText = \"İşlem başarı ile gerçekleşti. Lütfen \" + components.amount.qValue + \" \" + components.currency.qValue + \" ödeyiniz.\";\r\n}\r\ncomponents.EdtrComp_192.text = 'Bitir';\r\ncomponents.EdtrComp_189.visible = false;\r\ncomponents.EdtrComp_588.visible = false;\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\") {\r\n    amountTLValue = components.amount.qValue;\r\n}\r\nelse {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\nquick.MM.trigger(\"ofsaaRequest\", [{ operationCode: \"O\", pcuBytes: \"A\", monetaryType: \"K\", accountType: components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue }]);\r\nif (response.responseWithdrawCreate) {\r\n    var date = response.responseWithdrawCreate.timestamp;\r\n    quick.EM.trace(\"date\");\r\n    quick.EM.trace(date);\r\n    var correlationId = response.responseWithdrawCreate.result.correlationId;\r\n    quick.EM.trace(\"correlationId\", correlationId);\r\n    quick.EM.trace(correlationId);\r\n    var url = \"date=\" + date + \"&siid=\" + correlationId.toUpperCase();\r\n    quick.EM.trace(\"dekont-url\");\r\n    quick.EM.trace(url);\r\n    quick.containerServices.extensions.showVoucherPopUp(url);\r\n}\r\ncomponents.successDialogVirement.dialogClick({ text: successText });\r\n",
 																																					"C": true,
 																																					"HL": "JS"
 																																				},
 																																				"onFailWithdrawCreate": {
-																																					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"fail\");\r\nquick.EM.trace('onFailVirementCreate');\r\nquick.store.set(\"successVirement\", false);\r\ncomponents.EdtrComp_191.disabled = false;\r\nquick.MM.trigger(\"ofsaaRequest\", [{ operationCode: \"O\", pcuBytes: \"R\", monetaryType: \"P\" }]);\r\nvar errorMessage = \"\";\r\nif (error.response) {\r\n    if (error.response.data.responseMessage) {\r\n        errorMessage = error.response.data.responseMessage;\r\n    }\r\n    else {\r\n        errorMessage = \"Beklenmedik bir hata oluştu.\";\r\n    }\r\n}\r\ncomponents.errorDialogWithdraw.dialogClick({ text: errorMessage });\r\n",
+																																					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"fail\");\r\nquick.EM.trace('onFailVirementCreate');\r\nquick.store.set(\"successVirement\", false);\r\ncomponents.EdtrComp_191.disabled = false;\r\nvar errorMessage = \"\";\r\nif (error.response) {\r\n    if (error.response.data.responseMessage) {\r\n        errorMessage = error.response.data.responseMessage;\r\n    }\r\n    else {\r\n        errorMessage = \"Beklenmedik bir hata oluştu.\";\r\n    }\r\n}\r\ncomponents.errorDialogWithdraw.dialogClick({ text: errorMessage });\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\") {\r\n    amountTLValue = components.amount.qValue;\r\n}\r\nelse {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\nquick.MM.trigger(\"ofsaaRequest\", [{ operationCode: \"O\", pcuBytes: \"R\", monetaryType: \"P\", accountType: components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue }]);\r\n",
 																																					"C": true,
 																																					"HL": "JS"
 																																				}
@@ -12769,7 +12769,7 @@ let pjson = {
 																																							},
 																																							"O": {
 																																								"cType": "slot",
-																																								"compDomClasses": "q-label "
+																																								"compDomClasses": "q-label newDropBorder"
 																																							}
 																																						}
 																																					],
@@ -12797,7 +12797,7 @@ let pjson = {
 																																					},
 																																					"class": "d-flex flex-column"
 																																				},
-																																				"compDomClasses": "col d-flex flex-column"
+																																				"compDomClasses": "col d-flex flex-column newDropBorder"
 																																			},
 																																			"S": {
 																																				"xs-xl": {
@@ -12878,7 +12878,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "row"
+																																"compDomClasses": "row newDropBorder"
 																															}
 																														}
 																													],
@@ -12935,7 +12935,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "v-card v-sheet theme--light"
+																												"compDomClasses": "v-card v-sheet theme--light newDropBorder"
 																											}
 																										},
 																										{
@@ -13113,7 +13113,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input v-input--is-label-active v-input--is-dirty v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined v-select v-autocomplete undefined"
+																																				"compDomClasses": "v-input v-input--is-label-active v-input--is-dirty v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined v-select v-autocomplete undefined newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -13141,7 +13141,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column"
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -13345,7 +13345,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined v-select v-autocomplete undefined"
+																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined v-select v-autocomplete undefined newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -13373,7 +13373,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column"
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -13457,7 +13457,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "row"
+																												"compDomClasses": "row newDropBorder"
 																											}
 																										}
 																									],
@@ -13714,7 +13714,7 @@ let pjson = {
 																																							},
 																																							"O": {
 																																								"cType": "slot",
-																																								"compDomClasses": "q-label "
+																																								"compDomClasses": "q-label newDropBorder"
 																																							}
 																																						}
 																																					],
@@ -13742,7 +13742,7 @@ let pjson = {
 																																					},
 																																					"class": "d-flex flex-column"
 																																				},
-																																				"compDomClasses": "col d-flex flex-column"
+																																				"compDomClasses": "col d-flex flex-column newDropBorder"
 																																			},
 																																			"S": {
 																																				"xs-xl": {
@@ -13823,7 +13823,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "row"
+																																"compDomClasses": "row newDropBorder"
 																															}
 																														}
 																													],
@@ -13880,7 +13880,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "v-card v-sheet theme--light"
+																												"compDomClasses": "v-card v-sheet theme--light newDropBorder"
 																											}
 																										},
 																										{
@@ -14031,7 +14031,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined"
+																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -14059,7 +14059,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column"
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -14227,7 +14227,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input v-input--is-disabled theme--light v-text-field v-text-field--is-booted undefined"
+																																				"compDomClasses": "v-input v-input--is-disabled theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -14255,7 +14255,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column"
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -14394,7 +14394,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input theme--light v-input--selection-controls v-input--checkbox"
+																																				"compDomClasses": "v-input theme--light v-input--selection-controls v-input--checkbox newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -14422,7 +14422,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column"
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -14506,7 +14506,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "row"
+																												"compDomClasses": "row newDropBorder"
 																											}
 																										}
 																									],
@@ -14534,7 +14534,7 @@ let pjson = {
 																									},
 																									"class": "d-flex flex-column"
 																								},
-																								"compDomClasses": "col d-flex flex-column"
+																								"compDomClasses": "col d-flex flex-column newDropBorder"
 																							},
 																							"S": {
 																								"xs-sm": {
@@ -14654,7 +14654,7 @@ let pjson = {
 																			},
 																			"O": {
 																				"cType": "slot",
-																				"compDomClasses": "row"
+																				"compDomClasses": "row newDropBorder"
 																			}
 																		},
 																		{
@@ -14805,7 +14805,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined"
+																												"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined newDropBorder"
 																											}
 																										}
 																									],
@@ -14833,7 +14833,7 @@ let pjson = {
 																									},
 																									"class": "d-flex flex-column"
 																								},
-																								"compDomClasses": "col d-flex flex-column"
+																								"compDomClasses": "col d-flex flex-column newDropBorder"
 																							},
 																							"S": {
 																								"xs-xl": {
@@ -14917,7 +14917,7 @@ let pjson = {
 																			},
 																			"O": {
 																				"cType": "slot",
-																				"compDomClasses": "row"
+																				"compDomClasses": "row newDropBorder"
 																			}
 																		},
 																		{
@@ -14993,7 +14993,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "child",
-																																"compDomClasses": "q-label "
+																																"compDomClasses": "q-label newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -15146,7 +15146,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "v-btn v-btn--depressed theme--light v-size--default"
+																												"compDomClasses": "v-btn v-btn--depressed theme--light v-size--default newDropBorder"
 																											}
 																										},
 																										{
@@ -15182,7 +15182,7 @@ let pjson = {
 																													"HL": "JS"
 																												},
 																												"onSFailCheckWithdrawCreate": {
-																													"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\ncomponents.EdtrComp_1463.disabled = false;\r\nquick.EM.trace(\"onSFailCheckWithdrawCreate\");\r\nquick.MM.trigger(\"ofsaaRequest\", [{ operationCode: \"K\", pcuBytes: \"R\", monetaryType: \"Z\" }]);\r\nquick.EM.trace(error.response.data.responseMessage);\r\nvar errorMessage = \"\";\r\nif (error.response) {\r\n    if (error.response.data.responseMessage) {\r\n        errorMessage = error.response.data.responseMessage;\r\n    }\r\n    else {\r\n        errorMessage = \"Beklenmedik bir hata oluştu.\";\r\n    }\r\n}\r\ncomponents.errorDialogWithdraw.dialogClick({ text: errorMessage });\r\n",
+																													"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\ncomponents.EdtrComp_1463.disabled = false;\r\nquick.EM.trace(\"onSFailCheckWithdrawCreate\");\r\nquick.EM.trace(error.response.data.responseMessage);\r\nvar errorMessage = \"\";\r\nif (error.response) {\r\n    if (error.response.data.responseMessage) {\r\n        errorMessage = error.response.data.responseMessage;\r\n    }\r\n    else {\r\n        errorMessage = \"Beklenmedik bir hata oluştu.\";\r\n    }\r\n}\r\ncomponents.errorDialogWithdraw.dialogClick({ text: errorMessage });\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\") {\r\n    amountTLValue = components.amount.qValue;\r\n}\r\nelse {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\nquick.MM.trigger(\"ofsaaRequest\", [{ operationCode: \"K\", pcuBytes: \"R\", monetaryType: \"Z\", accountType: components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue }]);\r\n",
 																													"C": true,
 																													"HL": "JS"
 																												}
@@ -15210,7 +15210,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "child",
-																																"compDomClasses": "q-label "
+																																"compDomClasses": "q-label newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -15304,7 +15304,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "v-btn v-btn--depressed theme--light v-size--default"
+																												"compDomClasses": "v-btn v-btn--depressed theme--light v-size--default newDropBorder"
 																											}
 																										}
 																									],
@@ -15332,7 +15332,7 @@ let pjson = {
 																									},
 																									"class": "d-flex flex-column"
 																								},
-																								"compDomClasses": "col d-flex flex-column"
+																								"compDomClasses": "col d-flex flex-column newDropBorder"
 																							},
 																							"S": {
 																								"xs-sm": {
@@ -15450,7 +15450,7 @@ let pjson = {
 																			},
 																			"O": {
 																				"cType": "slot",
-																				"compDomClasses": "row"
+																				"compDomClasses": "row newDropBorder"
 																			}
 																		}
 																	],
@@ -15617,7 +15617,7 @@ let pjson = {
 			"O": {
 				"cType": "child",
 				"dynProps": true,
-				"compDomClasses": ""
+				"compDomClasses": "newDropBorder"
 			}
 		},
 		{
@@ -15648,7 +15648,7 @@ let pjson = {
 			"O": {
 				"cType": "child",
 				"dynProps": true,
-				"compDomClasses": ""
+				"compDomClasses": "newDropBorder"
 			}
 		},
 		{
@@ -15680,7 +15680,7 @@ let pjson = {
 			"O": {
 				"cType": "child",
 				"dynProps": true,
-				"compDomClasses": ""
+				"compDomClasses": "newDropBorder"
 			}
 		},
 		{
@@ -15704,7 +15704,7 @@ let pjson = {
 			"O": {
 				"cType": "child",
 				"dynProps": true,
-				"compDomClasses": ""
+				"compDomClasses": "newDropBorder"
 			}
 		}
 	],
