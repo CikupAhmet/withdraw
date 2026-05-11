@@ -20,7 +20,7 @@ let pjson = {
 			},
 			"E": {
 				"dialogClick": {
-					"H": "declare const amount;\r\ndeclare const currency;\r\ndeclare const accountList;\r\ndeclare const feeAmountResponse;\r\ncomponents.lblWarn.text = \"Ücret Bilgileri\"\r\ncomponents.warnDialog.qValue = true\r\n\r\ncomponents.type.qValue = undefined;\r\ncomponents.anotherAccountInfo.qValue = undefined;\r\n\r\nquick.MM.trigger('setAmount', [{amount:amount, currency:currency, accountList:accountList, feeAmountResponse: feeAmountResponse}]);\r\n",
+					"H": "declare const amount;\r\ndeclare const currency;\r\ndeclare const accountList;\r\ndeclare const feeAmountResponse;\r\ncomponents.lblWarn.text = \"Ücret Bilgileri\"\r\ncomponents.warnDialog.qValue = true\r\n\r\ncomponents.type.qValue = undefined;\r\ncomponents.anotherAccountInfo.qValue = undefined;\r\ncomponents.type.errorMessages = [];\r\ncomponents.anotherAccountInfo.errorMessages = [];\r\ncomponents.anotherAccountInfo.visible = false;\r\n\r\nquick.MM.trigger('setAmount', [{amount:amount, currency:currency, accountList:accountList, feeAmountResponse: feeAmountResponse}]);\r\n",
 					"C": true,
 					"EV": true,
 					"HL": "TS"
@@ -380,7 +380,7 @@ let pjson = {
 																															},
 																															"E": {
 																																"input": {
-																																	"H": "quick.EM.trace(\"input value\")\r\n\r\nlet feeAmountResponse = quick.store.get(\"feeAmountResponse\");\r\n\r\nquick.EM.trace(feeAmountResponse)\r\nquick.EM.trace(value)\r\n\r\nif (feeAmountResponse.customizationAllowed) {\r\n    let maxFeeAmount = Number(feeAmountResponse.feeMaximumAmount.unscaledValue) / Math.pow(10, 2);\r\n    let minFeeAmount = Number(feeAmountResponse.feeMinumumAmount.unscaledValue) / Math.pow(10, 2);\r\n    quick.EM.trace(\"maxFeeAmount\")\r\n    quick.EM.trace(maxFeeAmount)\r\n    quick.EM.trace(minFeeAmount)\r\n\r\n}",
+																																	"H": "quick.EM.trace(\"input value\")\r\n\r\nlet feeAmountResponse = quick.store.get(\"feeAmountResponse\");\r\n\r\ntype BigDecimalLike = {\r\n  scale: number;\r\n  unscaledValue: string;\r\n};\r\n\r\nfunction compareBigDecimal(\r\n  backendValue: BigDecimalLike,\r\n  inputValue: string\r\n) {\r\n  // Backend value -> gerçek sayı\r\n  const backendNumber =\r\n    BigInt(backendValue.unscaledValue) /\r\n    BigInt(10 ** backendValue.scale);\r\n\r\n  // Virgülü noktaya çevir\r\n  const normalizedInput = inputValue.replace(\",\", \".\");\r\n\r\n  // Input değeri number yap\r\n  const inputNumber = Number(normalizedInput);\r\n\r\n  quick.EM.trace(\"karşılaştırma\")\r\n  quick.EM.trace(inputNumber);\r\n  quick.EM.trace(backendNumber);\r\n  if (inputNumber > Number(backendNumber)) {\r\n    quick.EM.trace(\"büyük oldu bilader\")\r\n  }\r\n\r\n  return true;\r\n}\r\n\r\nquick.EM.trace(feeAmountResponse)\r\nquick.EM.trace(value)\r\n\r\nif (feeAmountResponse.customizationAllowed) {\r\n    let maxFeeAmount = Number(feeAmountResponse.feeMaximumAmount.unscaledValue) / Math.pow(10, 2);\r\n    let minFeeAmount = Number(feeAmountResponse.feeMinumumAmount.unscaledValue) / Math.pow(10, 2);\r\n    quick.EM.trace(\"maxFeeAmount\")\r\n    quick.EM.trace(maxFeeAmount)\r\n    quick.EM.trace(minFeeAmount)\r\n    quick.EM.trace(value)\r\n    compareBigDecimal(\r\n        feeAmountResponse.feeMaximumAmount,\r\n        value\r\n    );\r\n\r\n}\r\n\r\n\r\n\r\n",
 																																	"P": "value:any",
 																																	"HL": "TS"
 																																}
@@ -1180,7 +1180,7 @@ let pjson = {
 																															},
 																															"E": {
 																																"change": {
-																																	"H": "quick.EM.trace(value)\r\nif (value.value == \"ANOTHER_ACCOUNT\") {\r\n    components.anotherAccountInfo.visible = true;\r\n} else {\r\n    components.anotherAccountInfo.visible = false;\r\n}",
+																																	"H": "quick.EM.trace(value)\r\nif (value.value == \"ANOTHER_ACCOUNT\") {\r\n    components.anotherAccountInfo.visible = true;\r\n} else {\r\n    components.anotherAccountInfo.visible = false;\r\n}\r\n\r\ncomponents.type.errorMessages = []",
 																																	"P": "value:any",
 																																	"HL": "TS"
 																																}
@@ -1390,7 +1390,13 @@ let pjson = {
 																																	"HL": "QS"
 																																}
 																															},
-																															"E": {},
+																															"E": {
+																																"change": {
+																																	"H": "if (value != null) {\r\n    components.anotherAccountInfo.errorMessages = []\r\n}",
+																																	"P": "value:any",
+																																	"HL": "TS"
+																																}
+																															},
 																															"C": {},
 																															"_Editor": {
 																																"eID": "EdtrComp_17"
@@ -1776,7 +1782,7 @@ let pjson = {
 																															},
 																															"E": {
 																																"click": {
-																																	"H": "let check = false;\r\nlet checkAccount = true;\r\n\r\nquick.EM.trace(components.type.qValue)\r\nquick.EM.trace(components.anotherAccountInfo.qValue)\r\n\r\nif (components.type.qValue) {\r\n    check = true;\r\n}\r\nif (check) {\r\n    if (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n        if (components.anotherAccountInfo.qValue != null) {\r\n            checkAccount = false;\r\n        }\r\n    }\r\n}\r\n\r\nif (check) {\r\n    if (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n        if (!checkAccount) {\r\n            components.anotherAccountInfo.errorMessages = 'Lütfen seçim yapınız.'\r\n        }\r\n        quick.EM.trace(\"1\")\r\n        quick.parent.events.searchClickEvent({feeAccountInfo:components.anotherAccountInfo.qValue, feePaymentType:components.type.qValue.value, feeAmount:components.amount.qValue, feeTaxAmount:components.taxAmount.qValue, totalAmount:components.totalAmount.qValue});\r\n    } else {\r\n        quick.EM.trace(\"2\")\r\n        quick.parent.events.searchClickEvent({feeAccountInfo:null, feePaymentType:components.type.qValue.value, feeAmount:components.amount.qValue, feeTaxAmount:components.taxAmount.qValue, totalAmount:components.totalAmount.qValue});\r\n    }\r\n    //quick.parent.events.searchClickEvent({feeAccountInfo:components.anotherAccountInfo.qValue.accountId, feePaymentType:components.type.qValue.value});\r\n    components.warnDialog.qValue = false;\r\n} else {\r\n    components.type.errorMessages = 'Lütfen seçim yapınız.'\r\n}",
+																																	"H": "let check = false;\r\nlet checkAccount = true;\r\n\r\nquick.EM.trace(components.type.qValue)\r\nquick.EM.trace(components.anotherAccountInfo.qValue)\r\n\r\nif (components.type.qValue) {\r\n    check = true;\r\n}\r\nif (check) {\r\n    if (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n        if (components.anotherAccountInfo.qValue != null) {\r\n            checkAccount = false;\r\n        }\r\n    }\r\n}\r\n\r\nif (check) {\r\n    if (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n        if (checkAccount) {\r\n            components.anotherAccountInfo.errorMessages = 'Lütfen seçim yapınız.'\r\n        }\r\n        quick.EM.trace(\"1\")\r\n        quick.parent.events.searchClickEvent({feeAccountInfo:components.anotherAccountInfo.qValue, feePaymentType:components.type.qValue.value, feeAmount:components.amount.qValue, feeTaxAmount:components.taxAmount.qValue, totalAmount:components.totalAmount.qValue});\r\n    } else {\r\n        quick.EM.trace(\"2\")\r\n        quick.parent.events.searchClickEvent({feeAccountInfo:null, feePaymentType:components.type.qValue.value, feeAmount:components.amount.qValue, feeTaxAmount:components.taxAmount.qValue, totalAmount:components.totalAmount.qValue});\r\n    }\r\n    //quick.parent.events.searchClickEvent({feeAccountInfo:components.anotherAccountInfo.qValue.accountId, feePaymentType:components.type.qValue.value});\r\n    components.warnDialog.qValue = false;\r\n} else {\r\n    components.type.errorMessages = 'Lütfen seçim yapınız.'\r\n}",
 																																	"P": "mouseEvent:unknown | undefined",
 																																	"HL": "TS"
 																																}
@@ -2003,7 +2009,7 @@ let pjson = {
 			},
 			"E": {
 				"dialogClick": {
-					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\ncomponents.lblWarn.text = \"Ücret Bilgileri\";\r\ncomponents.warnDialog.qValue = true;\r\ncomponents.type.qValue = undefined;\r\ncomponents.anotherAccountInfo.qValue = undefined;\r\nquick.MM.trigger('setAmount', [{ amount: amount, currency: currency, accountList: accountList, feeAmountResponse: feeAmountResponse }]);\r\n",
+					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\ncomponents.lblWarn.text = \"Ücret Bilgileri\";\r\ncomponents.warnDialog.qValue = true;\r\ncomponents.type.qValue = undefined;\r\ncomponents.anotherAccountInfo.qValue = undefined;\r\ncomponents.type.errorMessages = [];\r\ncomponents.anotherAccountInfo.errorMessages = [];\r\ncomponents.anotherAccountInfo.visible = false;\r\nquick.MM.trigger('setAmount', [{ amount: amount, currency: currency, accountList: accountList, feeAmountResponse: feeAmountResponse }]);\r\n",
 					"C": true,
 					"EV": true,
 					"HL": "JS"
@@ -2368,7 +2374,7 @@ let pjson = {
 																															},
 																															"E": {
 																																"input": {
-																																	"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nquick.EM.trace(\"input value\");\r\nvar feeAmountResponse = quick.store.get(\"feeAmountResponse\");\r\nquick.EM.trace(feeAmountResponse);\r\nquick.EM.trace(value);\r\nif (feeAmountResponse.customizationAllowed) {\r\n    var maxFeeAmount = Number(feeAmountResponse.feeMaximumAmount.unscaledValue) / Math.pow(10, 2);\r\n    var minFeeAmount = Number(feeAmountResponse.feeMinumumAmount.unscaledValue) / Math.pow(10, 2);\r\n    quick.EM.trace(\"maxFeeAmount\");\r\n    quick.EM.trace(maxFeeAmount);\r\n    quick.EM.trace(minFeeAmount);\r\n}\r\n",
+																																	"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nquick.EM.trace(\"input value\");\r\nvar feeAmountResponse = quick.store.get(\"feeAmountResponse\");\r\nfunction compareBigDecimal(backendValue, inputValue) {\r\n    // Backend value -> gerçek sayı\r\n    var backendNumber = BigInt(backendValue.unscaledValue) /\r\n        BigInt(Math.pow(10, backendValue.scale));\r\n    // Virgülü noktaya çevir\r\n    var normalizedInput = inputValue.replace(\",\", \".\");\r\n    // Input değeri number yap\r\n    var inputNumber = Number(normalizedInput);\r\n    quick.EM.trace(\"karşılaştırma\");\r\n    quick.EM.trace(inputNumber);\r\n    quick.EM.trace(backendNumber);\r\n    if (inputNumber > Number(backendNumber)) {\r\n        quick.EM.trace(\"büyük oldu bilader\");\r\n    }\r\n    return true;\r\n}\r\nquick.EM.trace(feeAmountResponse);\r\nquick.EM.trace(value);\r\nif (feeAmountResponse.customizationAllowed) {\r\n    var maxFeeAmount = Number(feeAmountResponse.feeMaximumAmount.unscaledValue) / Math.pow(10, 2);\r\n    var minFeeAmount = Number(feeAmountResponse.feeMinumumAmount.unscaledValue) / Math.pow(10, 2);\r\n    quick.EM.trace(\"maxFeeAmount\");\r\n    quick.EM.trace(maxFeeAmount);\r\n    quick.EM.trace(minFeeAmount);\r\n    quick.EM.trace(value);\r\n    compareBigDecimal(feeAmountResponse.feeMaximumAmount, value);\r\n}\r\n",
 																																	"P": "value:any",
 																																	"HL": "JS"
 																																}
@@ -3176,7 +3182,7 @@ let pjson = {
 																															},
 																															"E": {
 																																"change": {
-																																	"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nquick.EM.trace(value);\r\nif (value.value == \"ANOTHER_ACCOUNT\") {\r\n    components.anotherAccountInfo.visible = true;\r\n}\r\nelse {\r\n    components.anotherAccountInfo.visible = false;\r\n}\r\n",
+																																	"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nquick.EM.trace(value);\r\nif (value.value == \"ANOTHER_ACCOUNT\") {\r\n    components.anotherAccountInfo.visible = true;\r\n}\r\nelse {\r\n    components.anotherAccountInfo.visible = false;\r\n}\r\ncomponents.type.errorMessages = [];\r\n",
 																																	"P": "value:any",
 																																	"HL": "JS"
 																																}
@@ -3388,7 +3394,13 @@ let pjson = {
 																																	"HL": "QS"
 																																}
 																															},
-																															"E": {},
+																															"E": {
+																																"change": {
+																																	"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nif (value != null) {\r\n    components.anotherAccountInfo.errorMessages = [];\r\n}\r\n",
+																																	"P": "value:any",
+																																	"HL": "JS"
+																																}
+																															},
 																															"C": {},
 																															"_Editor": {
 																																"eID": "EdtrComp_17"
@@ -3780,7 +3792,7 @@ let pjson = {
 																															},
 																															"E": {
 																																"click": {
-																																	"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nvar check = false;\r\nvar checkAccount = true;\r\nquick.EM.trace(components.type.qValue);\r\nquick.EM.trace(components.anotherAccountInfo.qValue);\r\nif (components.type.qValue) {\r\n    check = true;\r\n}\r\nif (check) {\r\n    if (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n        if (components.anotherAccountInfo.qValue != null) {\r\n            checkAccount = false;\r\n        }\r\n    }\r\n}\r\nif (check) {\r\n    if (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n        if (!checkAccount) {\r\n            components.anotherAccountInfo.errorMessages = 'Lütfen seçim yapınız.';\r\n        }\r\n        quick.EM.trace(\"1\");\r\n        quick.parent.events.searchClickEvent({ feeAccountInfo: components.anotherAccountInfo.qValue, feePaymentType: components.type.qValue.value, feeAmount: components.amount.qValue, feeTaxAmount: components.taxAmount.qValue, totalAmount: components.totalAmount.qValue });\r\n    }\r\n    else {\r\n        quick.EM.trace(\"2\");\r\n        quick.parent.events.searchClickEvent({ feeAccountInfo: null, feePaymentType: components.type.qValue.value, feeAmount: components.amount.qValue, feeTaxAmount: components.taxAmount.qValue, totalAmount: components.totalAmount.qValue });\r\n    }\r\n    //quick.parent.events.searchClickEvent({feeAccountInfo:components.anotherAccountInfo.qValue.accountId, feePaymentType:components.type.qValue.value});\r\n    components.warnDialog.qValue = false;\r\n}\r\nelse {\r\n    components.type.errorMessages = 'Lütfen seçim yapınız.';\r\n}\r\n",
+																																	"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nvar check = false;\r\nvar checkAccount = true;\r\nquick.EM.trace(components.type.qValue);\r\nquick.EM.trace(components.anotherAccountInfo.qValue);\r\nif (components.type.qValue) {\r\n    check = true;\r\n}\r\nif (check) {\r\n    if (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n        if (components.anotherAccountInfo.qValue != null) {\r\n            checkAccount = false;\r\n        }\r\n    }\r\n}\r\nif (check) {\r\n    if (components.type.qValue.value == 'ANOTHER_ACCOUNT') {\r\n        if (checkAccount) {\r\n            components.anotherAccountInfo.errorMessages = 'Lütfen seçim yapınız.';\r\n        }\r\n        quick.EM.trace(\"1\");\r\n        quick.parent.events.searchClickEvent({ feeAccountInfo: components.anotherAccountInfo.qValue, feePaymentType: components.type.qValue.value, feeAmount: components.amount.qValue, feeTaxAmount: components.taxAmount.qValue, totalAmount: components.totalAmount.qValue });\r\n    }\r\n    else {\r\n        quick.EM.trace(\"2\");\r\n        quick.parent.events.searchClickEvent({ feeAccountInfo: null, feePaymentType: components.type.qValue.value, feeAmount: components.amount.qValue, feeTaxAmount: components.taxAmount.qValue, totalAmount: components.totalAmount.qValue });\r\n    }\r\n    //quick.parent.events.searchClickEvent({feeAccountInfo:components.anotherAccountInfo.qValue.accountId, feePaymentType:components.type.qValue.value});\r\n    components.warnDialog.qValue = false;\r\n}\r\nelse {\r\n    components.type.errorMessages = 'Lütfen seçim yapınız.';\r\n}\r\n",
 																																	"P": "mouseEvent:unknown | undefined",
 																																	"HL": "JS"
 																																}

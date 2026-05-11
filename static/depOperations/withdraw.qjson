@@ -431,6 +431,76 @@ let pjson = {
 																																"default": {
 																																	"c": [
 																																		{
+																																			"T": "QLabel",
+																																			"P": {
+																																				"ID": {
+																																					"H": "EdtrComp_155",
+																																					"T": "prop"
+																																				},
+																																				"overflow": {
+																																					"H": "'visible'",
+																																					"T": "prop"
+																																				},
+																																				"tagType": {
+																																					"H": "'span'",
+																																					"T": "prop"
+																																				},
+																																				"text": {
+																																					"H": "'Hesap Bilgileri'",
+																																					"T": "prop",
+																																					"HL": "QS"
+																																				},
+																																				"textOverflow": {
+																																					"H": "'clip'",
+																																					"T": "prop"
+																																				},
+																																				"visible": {
+																																					"H": "true",
+																																					"T": "prop"
+																																				},
+																																				"whiteSpace": {
+																																					"H": "'pre-wrap'",
+																																					"T": "prop"
+																																				},
+																																				"processHtml": {
+																																					"H": "false",
+																																					"T": "prop"
+																																				}
+																																			},
+																																			"E": {},
+																																			"C": {},
+																																			"_Editor": {
+																																				"eID": "EdtrComp_155"
+																																			},
+																																			"S": {
+																																				"xs-xl": {
+																																					"marginTop": "4px",
+																																					"marginRight": "",
+																																					"marginBottom": "",
+																																					"marginLeft": "",
+																																					"paddingTop": "",
+																																					"paddingRight": "",
+																																					"paddingBottom": "4px",
+																																					"paddingLeft": "",
+																																					"fontColor": "#000000",
+																																					"fontFamily": "Roboto",
+																																					"fontSize": "16px",
+																																					"fontStyle": "normal",
+																																					"fontWeight": "500",
+																																					"combinedFont": "Roboto-Medium",
+																																					"ThemeFont": "Custom",
+																																					"lineHeight": "20px",
+																																					"textAlign": "left",
+																																					"textDecorationLine": "none",
+																																					"textDecorationStyle": "solid",
+																																					"textDecorationColor": "#000000"
+																																				}
+																																			},
+																																			"O": {
+																																				"cType": "slot"
+																																			}
+																																		},
+																																		{
 																																			"T": "VCard",
 																																			"P": {
 																																				"ID": {
@@ -513,9 +583,8 @@ let pjson = {
 																																																	"width": "",
 																																																	"height": "",
 																																																	"maxWidth": "",
-																																																	"maxHeight": "",
 																																																	"minWidth": "",
-																																																	"minHeight": "",
+																																																	"minHeight": "40px",
 																																																	"unlink": "false",
 																																																	"unlinkMax": "false",
 																																																	"unlinkMin": "false",
@@ -624,7 +693,7 @@ let pjson = {
 																																													"marginRight": "",
 																																													"marginBottom": "",
 																																													"marginTop": "",
-																																													"paddingTop": "12px",
+																																													"paddingTop": "0px",
 																																													"paddingBottom": "0px",
 																																													"paddingLeft": "12px",
 																																													"paddingRight": "12px",
@@ -774,20 +843,16 @@ let pjson = {
 																																																	"marginRight": "",
 																																																	"marginBottom": "",
 																																																	"marginTop": "0px",
-																																																	"paddingTop": "12px",
+																																																	"paddingTop": "0px",
 																																																	"paddingBottom": "",
 																																																	"paddingLeft": "",
 																																																	"paddingRight": "",
 																																																	"inputPaddingTop": "",
 																																																	"inputPaddingRight": "",
-																																																	"inputPaddingBottom": "",
-																																																	"inputPaddingLeft": "",
 																																																	"width": "",
 																																																	"height": "",
 																																																	"maxWidth": "",
-																																																	"maxHeight": "",
 																																																	"minWidth": "",
-																																																	"minHeight": "",
 																																																	"unlink": "false",
 																																																	"unlinkMax": "false",
 																																																	"unlinkMin": "false",
@@ -853,7 +918,8 @@ let pjson = {
 																																																	"innerDefaultBorderColor": "#0000006b",
 																																																	"innerSides": ",Bottom",
 																																																	"outlined": "",
-																																																	"menuFontSize": "13px"
+																																																	"menuFontSize": "13px",
+																																																	"minHeight": "25px"
 																																																}
 																																															},
 																																															"O": {
@@ -896,8 +962,8 @@ let pjson = {
 																																													"marginRight": "",
 																																													"marginBottom": "",
 																																													"marginTop": "",
-																																													"paddingTop": "12px",
-																																													"paddingBottom": "12px",
+																																													"paddingTop": "0px",
+																																													"paddingBottom": "0px",
 																																													"paddingLeft": "12px",
 																																													"paddingRight": "12px",
 																																													"backgroundColor": "",
@@ -1168,8 +1234,8 @@ let pjson = {
 																																													"marginRight": "",
 																																													"marginBottom": "",
 																																													"marginTop": "",
-																																													"paddingTop": "12px",
-																																													"paddingBottom": "12px",
+																																													"paddingTop": "0px",
+																																													"paddingBottom": "0px",
 																																													"paddingLeft": "12px",
 																																													"paddingRight": "12px",
 																																													"backgroundColor": "",
@@ -1368,6 +1434,76 @@ let pjson = {
 																															"C": {
 																																"default": {
 																																	"c": [
+																																		{
+																																			"T": "QLabel",
+																																			"P": {
+																																				"ID": {
+																																					"H": "EdtrComp_11",
+																																					"T": "prop"
+																																				},
+																																				"overflow": {
+																																					"H": "'visible'",
+																																					"T": "prop"
+																																				},
+																																				"tagType": {
+																																					"H": "'span'",
+																																					"T": "prop"
+																																				},
+																																				"text": {
+																																					"H": "'Ücret Bilgileri'",
+																																					"T": "prop",
+																																					"HL": "QS"
+																																				},
+																																				"textOverflow": {
+																																					"H": "'clip'",
+																																					"T": "prop"
+																																				},
+																																				"visible": {
+																																					"H": "true",
+																																					"T": "prop"
+																																				},
+																																				"whiteSpace": {
+																																					"H": "'pre-wrap'",
+																																					"T": "prop"
+																																				},
+																																				"processHtml": {
+																																					"H": "false",
+																																					"T": "prop"
+																																				}
+																																			},
+																																			"E": {},
+																																			"C": {},
+																																			"_Editor": {
+																																				"eID": "EdtrComp_11"
+																																			},
+																																			"S": {
+																																				"xs-xl": {
+																																					"marginTop": "",
+																																					"marginRight": "",
+																																					"marginBottom": "",
+																																					"marginLeft": "",
+																																					"paddingTop": "",
+																																					"paddingRight": "",
+																																					"paddingBottom": "4px",
+																																					"paddingLeft": "",
+																																					"fontColor": "#000000",
+																																					"fontFamily": "Roboto",
+																																					"fontSize": "16px",
+																																					"fontStyle": "normal",
+																																					"fontWeight": "500",
+																																					"combinedFont": "Roboto-Medium",
+																																					"ThemeFont": "Custom",
+																																					"lineHeight": "20px",
+																																					"textAlign": "left",
+																																					"textDecorationLine": "none",
+																																					"textDecorationStyle": "solid",
+																																					"textDecorationColor": "#000000"
+																																				}
+																																			},
+																																			"O": {
+																																				"cType": "slot"
+																																			}
+																																		},
 																																		{
 																																			"T": "VCard",
 																																			"P": {
@@ -6805,7 +6941,7 @@ let pjson = {
 																													"HL": "QS"
 																												},
 																												"rules": {
-																													"H": "[]",
+																													"H": "[Quick.validation.required('Bu Alan Zorunludur')]",
 																													"T": "prop",
 																													"HL": "QS"
 																												}
@@ -7261,7 +7397,7 @@ let pjson = {
 																													"HL": "TS"
 																												},
 																												"onSuccessCheckWithdrawCreate": {
-																													"H": "quick.EM.trace(\"onSuccessCheckWithdrawCreate\")\r\n\r\nquick.store.set(\"validationToken\",response.responseCheckWithdrawCreate.validationToken);\r\n\r\ncomponents.EdtrComp_1463.disabled = false;\r\n\r\ndeclare const operationCode;\r\ndeclare const pcuBytes;\r\ndeclare const monetaryType;\r\n\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\"){\r\n    amountTLValue = components.amount.qValue;\r\n} else {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\n\r\nquick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"K\", pcuBytes: \"A\", monetaryType: \"Z\", accountType:components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue}]);\r\n\r\nlet feeAmountValue = response.responseCheckWithdrawCreate?.feeAmountResponse?.feeAmount\r\nquick.EM.trace(feeAmountValue)\r\nif (feeAmountValue && feeAmountValue.unscaledValue > 0) {\r\n\r\n    let scaledValue = Number(feeAmountValue.unscaledValue) / Math.pow(10, 2);\r\n    let TLAccountList = quick.store.get(\"TLAccountList\");\r\n    quick.EM.trace(\"TLAccountList\")\r\n    quick.EM.trace(TLAccountList);\r\n\r\n    components.feeAmountDialog.dialogClick({ amount: scaledValue, currency:components.currency.qValue, accountList:TLAccountList, feeAmountResponse:response.responseCheckWithdrawCreate?.feeAmountResponse});\r\n} else {\r\n    components.summaryDebitAccount.qValue = components.accountInfo.qValue.branchCode + ' - ' + components.accountInfo.qValue.iban + ' - ' + components.accountInfo.qValue.availableBalance + ' ' + components.currency.qValue\r\n    components.summaryDescription.qValue = components.description.qValue;\r\n    components.summaryAmount.qValue = components.amount.qValue + ' ' + components.currency.qValue;\r\n\r\n    if (components.operationTypeGroup.qValue == 0) {\r\n        components.summaryDebitAccount.label = 'Paranın Yatırılacağı Hesap'\r\n        components.HeaderSummary.text = 'Müşterinin Hesabına Nakit Para Yatırma İşlem Onay';\r\n    } else {\r\n        components.summaryDebitAccount.label = 'Paranın Çekileceği Hesap'\r\n        components.HeaderSummary.text = 'Müşterinin Hesabından Nakit Para Çekme İşlem Onay';\r\n    }\r\n\r\n    components.feeAmount.visible = false;\r\n\r\n    components.EdtrComp_4288.visible = false;\r\n    components.EdtrComp_4253.visible = false;\r\n    components.EdtrComp_34.visible = false;\r\n    components.EdtrComp_25.visible = false;\r\n    components.EdtrComp_41.visible = false;\r\n    components.summaryRow.visible = true;\r\n}\r\n\r\n\r\n\r\n\r\n",
+																													"H": "quick.EM.trace(\"onSuccessCheckWithdrawCreate\")\r\n\r\nquick.store.set(\"validationToken\",response.responseCheckWithdrawCreate.validationToken);\r\n\r\ncomponents.EdtrComp_1463.disabled = false;\r\n\r\ndeclare const operationCode;\r\ndeclare const pcuBytes;\r\ndeclare const monetaryType;\r\n\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\"){\r\n    amountTLValue = components.amount.qValue;\r\n} else {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\n\r\nquick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"K\", pcuBytes: \"A\", monetaryType: \"Z\", accountType:components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue}]);\r\n\r\nlet feeAmountValue = response.responseCheckWithdrawCreate?.feeAmountResponse?.feeAmount\r\nquick.EM.trace(feeAmountValue)\r\nif (feeAmountValue && feeAmountValue.unscaledValue > 0) {\r\n\r\n    let scaledValue = Number(feeAmountValue.unscaledValue) / Math.pow(10, 2);\r\n    let TLAccountList = quick.store.get(\"TLAccountList\");\r\n    quick.EM.trace(\"TLAccountList\")\r\n    quick.EM.trace(TLAccountList);\r\n\r\n    components.feeAmountDialog.dialogClick({ amount: scaledValue, currency:components.currency.qValue, accountList:TLAccountList, feeAmountResponse:response.responseCheckWithdrawCreate?.feeAmountResponse});\r\n} else {\r\n    components.summaryDebitAccount.qValue = components.accountInfo.qValue.branchCode + ' - ' + components.accountInfo.qValue.iban + ' - ' + components.accountInfo.qValue.availableBalance + ' ' + components.currency.qValue\r\n    components.summaryDescription.qValue = components.description.qValue;\r\n    components.summaryAmount.qValue = components.amount.qValue + ' ' + components.currency.qValue;\r\n\r\n    if (components.operationTypeGroup.qValue == 0) {\r\n        components.summaryDebitAccount.label = 'Paranın Yatırılacağı Hesap'\r\n        components.HeaderSummary.text = 'Müşterinin Hesabına Nakit Para Yatırma İşlem Onay';\r\n    } else {\r\n        components.summaryDebitAccount.label = 'Paranın Çekileceği Hesap'\r\n        components.HeaderSummary.text = 'Müşterinin Hesabından Nakit Para Çekme İşlem Onay';\r\n    }\r\n\r\n    components.EdtrComp_4288.visible = false;\r\n    components.EdtrComp_4253.visible = false;\r\n    components.EdtrComp_34.visible = false;\r\n    components.EdtrComp_25.visible = false;\r\n    components.EdtrComp_41.visible = false;\r\n    components.summaryRow.visible = true;\r\n}\r\n\r\n\r\n\r\n\r\n",
 																													"C": true,
 																													"HL": "TS"
 																												},
@@ -7741,7 +7877,7 @@ let pjson = {
 			},
 			"E": {
 				"searchClickEvent": {
-					"H": "quick.EM.trace(\"searchClickEvent\")\r\nquick.EM.trace(feeAccountInfo)\r\n\r\nquick.store.set(\"feeAccountInfo\", feeAccountInfo);\r\nquick.store.set(\"feePaymentType\", feePaymentType);\r\n\r\nquick.EM.trace(\"fee Amount return \")\r\nquick.EM.trace(\"response.responseCheckWithdrawCreate?.feeAmountResponse\")\r\n\r\nlet feeAmountValue = response.responseCheckWithdrawCreate?.feeAmountResponse?.feeAmount\r\nlet scaledValue = Number(feeAmountValue.unscaledValue) / Math.pow(10, 2)\r\n\r\ncomponents.summaryDebitAccount.qValue = components.accountInfo.qValue.branchCode + ' - ' + components.accountInfo.qValue.iban + ' - ' + components.accountInfo.qValue.availableBalance + ' ' + components.currency.qValue\r\ncomponents.summaryDescription.qValue = components.description.qValue;\r\ncomponents.summaryAmount.qValue = components.amount.qValue + ' ' + components.currency.qValue;\r\ncomponents.feeAmount.qValue = scaledValue + ' ' + 'TRY';\r\ncomponents.feeTaxAmount.qValue = feeTaxAmount + ' ' + 'TRY';\r\ncomponents.feeTotalAmount.qValue = totalAmount + ' ' + 'TRY';\r\nif (feePaymentType == 'CASH') {\r\n    components.paymentType.qValue = 'Nakit';\r\n    components.feeAnotherAccountInfo.qValue = undefined;\r\n    components.feeAnotherAccountInfo.visible = false;\r\n} else {\r\n    components.paymentType.qValue = 'Vadesiz Hesaptan Tahsil edilecek';\r\n    components.feeAnotherAccountInfo.qValue = feeAccountInfo.text;\r\n    components.feeAnotherAccountInfo.visible = true;\r\n}\r\n\r\n\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.summaryDebitAccount.label = 'Paranın Yatırılacağı Hesap'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Nakit Para Yatırma İşlem Onay';\r\n} else {\r\n    components.summaryDebitAccount.label = 'Paranın Çekileceği Hesap'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Nakit Para Çekme İşlem Onay';\r\n}\r\n\r\ncomponents.feeCard.visible = true;\r\n\r\ncomponents.EdtrComp_4288.visible = false;\r\ncomponents.EdtrComp_4253.visible = false;\r\ncomponents.EdtrComp_34.visible = false;\r\ncomponents.EdtrComp_25.visible = false;\r\ncomponents.EdtrComp_41.visible = false;\r\ncomponents.summaryRow.visible = true;",
+					"H": "quick.EM.trace(\"searchClickEvent\")\r\nquick.EM.trace(feeAccountInfo)\r\n\r\nquick.store.set(\"feeAccountInfo\", feeAccountInfo);\r\nquick.store.set(\"feePaymentType\", feePaymentType);\r\n\r\nquick.EM.trace(\"fee Amount return \")\r\nquick.EM.trace(\"response.responseCheckWithdrawCreate?.feeAmountResponse\")\r\n\r\nlet feeAmountValue = response.responseCheckWithdrawCreate?.feeAmountResponse?.feeAmount\r\nlet scaledValue = Number(feeAmountValue.unscaledValue) / Math.pow(10, 2)\r\n\r\ncomponents.summaryDebitAccount.qValue = components.accountInfo.qValue.branchCode + ' - ' + components.accountInfo.qValue.iban + ' - ' + components.accountInfo.qValue.availableBalance + ' ' + components.currency.qValue\r\ncomponents.summaryDescription.qValue = components.description.qValue;\r\ncomponents.summaryAmount.qValue = components.amount.qValue + ' ' + components.currency.qValue;\r\ncomponents.feeAmount.qValue = feeAmount + ' ' + 'TRY';\r\ncomponents.feeTaxAmount.qValue = feeTaxAmount + ' ' + 'TRY';\r\ncomponents.feeTotalAmount.qValue = totalAmount + ' ' + 'TRY';\r\nif (feePaymentType == 'CASH') {\r\n    components.paymentType.qValue = 'Nakit';\r\n    components.feeAnotherAccountInfo.qValue = undefined;\r\n    components.feeAnotherAccountInfo.visible = false;\r\n} else {\r\n    components.paymentType.qValue = 'Vadesiz Hesaptan Tahsil Edilecek';\r\n    components.feeAnotherAccountInfo.qValue = feeAccountInfo.text;\r\n    components.feeAnotherAccountInfo.visible = true;\r\n}\r\n\r\n\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.summaryDebitAccount.label = 'Paranın Yatırılacağı Hesap'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Nakit Para Yatırma İşlem Onay';\r\n} else {\r\n    components.summaryDebitAccount.label = 'Paranın Çekileceği Hesap'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Nakit Para Çekme İşlem Onay';\r\n}\r\n\r\ncomponents.feeCard.visible = true;\r\n\r\ncomponents.EdtrComp_4288.visible = false;\r\ncomponents.EdtrComp_4253.visible = false;\r\ncomponents.EdtrComp_34.visible = false;\r\ncomponents.EdtrComp_25.visible = false;\r\ncomponents.EdtrComp_41.visible = false;\r\ncomponents.summaryRow.visible = true;",
 					"C": true,
 					"P": "feeAccountInfo:any,feePaymentType:any,feeAmount:any,feeTaxAmount:any,totalAmount:any",
 					"HL": "TS"
@@ -8217,6 +8353,77 @@ let pjson = {
 																																"default": {
 																																	"c": [
 																																		{
+																																			"T": "QLabel",
+																																			"P": {
+																																				"ID": {
+																																					"H": "EdtrComp_155",
+																																					"T": "prop"
+																																				},
+																																				"overflow": {
+																																					"H": "╬'visible'╩╩",
+																																					"T": "prop"
+																																				},
+																																				"tagType": {
+																																					"H": "╬'span'╩╩",
+																																					"T": "prop"
+																																				},
+																																				"text": {
+																																					"H": "╬'Hesap Bilgileri'╩╩",
+																																					"T": "prop",
+																																					"HL": "QS"
+																																				},
+																																				"textOverflow": {
+																																					"H": "╬'clip'╩╩",
+																																					"T": "prop"
+																																				},
+																																				"visible": {
+																																					"H": "╬true╩╩",
+																																					"T": "prop"
+																																				},
+																																				"whiteSpace": {
+																																					"H": "╬'pre-wrap'╩╩",
+																																					"T": "prop"
+																																				},
+																																				"processHtml": {
+																																					"H": "╬false╩╩",
+																																					"T": "prop"
+																																				}
+																																			},
+																																			"E": {},
+																																			"C": {},
+																																			"_Editor": {
+																																				"eID": "EdtrComp_155"
+																																			},
+																																			"S": {
+																																				"xs-xl": {
+																																					"marginTop": "4px",
+																																					"marginRight": "",
+																																					"marginBottom": "",
+																																					"marginLeft": "",
+																																					"paddingTop": "",
+																																					"paddingRight": "",
+																																					"paddingBottom": "4px",
+																																					"paddingLeft": "",
+																																					"fontColor": "#000000",
+																																					"fontFamily": "Roboto",
+																																					"fontSize": "16px",
+																																					"fontStyle": "normal",
+																																					"fontWeight": "500",
+																																					"combinedFont": "Roboto-Medium",
+																																					"ThemeFont": "Custom",
+																																					"lineHeight": "20px",
+																																					"textAlign": "left",
+																																					"textDecorationLine": "none",
+																																					"textDecorationStyle": "solid",
+																																					"textDecorationColor": "#000000"
+																																				}
+																																			},
+																																			"O": {
+																																				"cType": "slot",
+																																				"compDomClasses": "q-label newDropBorder"
+																																			}
+																																		},
+																																		{
 																																			"T": "VCard",
 																																			"P": {
 																																				"ID": {
@@ -8299,9 +8506,8 @@ let pjson = {
 																																																	"width": "",
 																																																	"height": "",
 																																																	"maxWidth": "",
-																																																	"maxHeight": "",
 																																																	"minWidth": "",
-																																																	"minHeight": "",
+																																																	"minHeight": "40px",
 																																																	"unlink": "false",
 																																																	"unlinkMax": "false",
 																																																	"unlinkMin": "false",
@@ -8412,7 +8618,7 @@ let pjson = {
 																																													"marginRight": "",
 																																													"marginBottom": "",
 																																													"marginTop": "",
-																																													"paddingTop": "12px",
+																																													"paddingTop": "0px",
 																																													"paddingBottom": "0px",
 																																													"paddingLeft": "12px",
 																																													"paddingRight": "12px",
@@ -8564,20 +8770,16 @@ let pjson = {
 																																																	"marginRight": "",
 																																																	"marginBottom": "",
 																																																	"marginTop": "0px",
-																																																	"paddingTop": "12px",
+																																																	"paddingTop": "0px",
 																																																	"paddingBottom": "",
 																																																	"paddingLeft": "",
 																																																	"paddingRight": "",
 																																																	"inputPaddingTop": "",
 																																																	"inputPaddingRight": "",
-																																																	"inputPaddingBottom": "",
-																																																	"inputPaddingLeft": "",
 																																																	"width": "",
 																																																	"height": "",
 																																																	"maxWidth": "",
-																																																	"maxHeight": "",
 																																																	"minWidth": "",
-																																																	"minHeight": "",
 																																																	"unlink": "false",
 																																																	"unlinkMax": "false",
 																																																	"unlinkMin": "false",
@@ -8643,7 +8845,8 @@ let pjson = {
 																																																	"innerDefaultBorderColor": "#0000006b",
 																																																	"innerSides": ",Bottom",
 																																																	"outlined": "",
-																																																	"menuFontSize": "13px"
+																																																	"menuFontSize": "13px",
+																																																	"minHeight": "25px"
 																																																}
 																																															},
 																																															"O": {
@@ -8688,8 +8891,8 @@ let pjson = {
 																																													"marginRight": "",
 																																													"marginBottom": "",
 																																													"marginTop": "",
-																																													"paddingTop": "12px",
-																																													"paddingBottom": "12px",
+																																													"paddingTop": "0px",
+																																													"paddingBottom": "0px",
 																																													"paddingLeft": "12px",
 																																													"paddingRight": "12px",
 																																													"backgroundColor": "",
@@ -8964,8 +9167,8 @@ let pjson = {
 																																													"marginRight": "",
 																																													"marginBottom": "",
 																																													"marginTop": "",
-																																													"paddingTop": "12px",
-																																													"paddingBottom": "12px",
+																																													"paddingTop": "0px",
+																																													"paddingBottom": "0px",
 																																													"paddingLeft": "12px",
 																																													"paddingRight": "12px",
 																																													"backgroundColor": "",
@@ -9167,6 +9370,77 @@ let pjson = {
 																															"C": {
 																																"default": {
 																																	"c": [
+																																		{
+																																			"T": "QLabel",
+																																			"P": {
+																																				"ID": {
+																																					"H": "EdtrComp_11",
+																																					"T": "prop"
+																																				},
+																																				"overflow": {
+																																					"H": "╬'visible'╩╩",
+																																					"T": "prop"
+																																				},
+																																				"tagType": {
+																																					"H": "╬'span'╩╩",
+																																					"T": "prop"
+																																				},
+																																				"text": {
+																																					"H": "╬'Ücret Bilgileri'╩╩",
+																																					"T": "prop",
+																																					"HL": "QS"
+																																				},
+																																				"textOverflow": {
+																																					"H": "╬'clip'╩╩",
+																																					"T": "prop"
+																																				},
+																																				"visible": {
+																																					"H": "╬true╩╩",
+																																					"T": "prop"
+																																				},
+																																				"whiteSpace": {
+																																					"H": "╬'pre-wrap'╩╩",
+																																					"T": "prop"
+																																				},
+																																				"processHtml": {
+																																					"H": "╬false╩╩",
+																																					"T": "prop"
+																																				}
+																																			},
+																																			"E": {},
+																																			"C": {},
+																																			"_Editor": {
+																																				"eID": "EdtrComp_11"
+																																			},
+																																			"S": {
+																																				"xs-xl": {
+																																					"marginTop": "",
+																																					"marginRight": "",
+																																					"marginBottom": "",
+																																					"marginLeft": "",
+																																					"paddingTop": "",
+																																					"paddingRight": "",
+																																					"paddingBottom": "4px",
+																																					"paddingLeft": "",
+																																					"fontColor": "#000000",
+																																					"fontFamily": "Roboto",
+																																					"fontSize": "16px",
+																																					"fontStyle": "normal",
+																																					"fontWeight": "500",
+																																					"combinedFont": "Roboto-Medium",
+																																					"ThemeFont": "Custom",
+																																					"lineHeight": "20px",
+																																					"textAlign": "left",
+																																					"textDecorationLine": "none",
+																																					"textDecorationStyle": "solid",
+																																					"textDecorationColor": "#000000"
+																																				}
+																																			},
+																																			"O": {
+																																				"cType": "slot",
+																																				"compDomClasses": "q-label newDropBorder"
+																																			}
+																																		},
 																																		{
 																																			"T": "VCard",
 																																			"P": {
@@ -14706,7 +14980,7 @@ let pjson = {
 																													"HL": "QS"
 																												},
 																												"rules": {
-																													"H": "╬[]╩╩",
+																													"H": "╬[]╠()╣.╣.╣Quick╩╠validation╩╩╠required╩╩╠'Bu Alan Zorunludur'╩╩╩╩",
 																													"T": "prop",
 																													"HL": "QS"
 																												}
@@ -14805,7 +15079,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined newDropBorder"
+																												"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined"
 																											}
 																										}
 																									],
@@ -14993,7 +15267,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "child",
-																																"compDomClasses": "q-label newDropBorder"
+																																"compDomClasses": "q-label "
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -15146,7 +15420,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "v-btn v-btn--depressed theme--light v-size--default newDropBorder"
+																												"compDomClasses": "v-btn v-btn--depressed theme--light v-size--default"
 																											}
 																										},
 																										{
@@ -15177,7 +15451,7 @@ let pjson = {
 																													"HL": "JS"
 																												},
 																												"onSuccessCheckWithdrawCreate": {
-																													"H": "var _a, _b, _c;\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"onSuccessCheckWithdrawCreate\");\r\nquick.store.set(\"validationToken\", response.responseCheckWithdrawCreate.validationToken);\r\ncomponents.EdtrComp_1463.disabled = false;\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\") {\r\n    amountTLValue = components.amount.qValue;\r\n}\r\nelse {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\nquick.MM.trigger(\"ofsaaRequest\", [{ operationCode: \"K\", pcuBytes: \"A\", monetaryType: \"Z\", accountType: components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue }]);\r\nvar feeAmountValue = (_b = (_a = response.responseCheckWithdrawCreate) === null || _a === void 0 ? void 0 : _a.feeAmountResponse) === null || _b === void 0 ? void 0 : _b.feeAmount;\r\nquick.EM.trace(feeAmountValue);\r\nif (feeAmountValue && feeAmountValue.unscaledValue > 0) {\r\n    var scaledValue = Number(feeAmountValue.unscaledValue) / Math.pow(10, 2);\r\n    var TLAccountList = quick.store.get(\"TLAccountList\");\r\n    quick.EM.trace(\"TLAccountList\");\r\n    quick.EM.trace(TLAccountList);\r\n    components.feeAmountDialog.dialogClick({ amount: scaledValue, currency: components.currency.qValue, accountList: TLAccountList, feeAmountResponse: (_c = response.responseCheckWithdrawCreate) === null || _c === void 0 ? void 0 : _c.feeAmountResponse });\r\n}\r\nelse {\r\n    components.summaryDebitAccount.qValue = components.accountInfo.qValue.branchCode + ' - ' + components.accountInfo.qValue.iban + ' - ' + components.accountInfo.qValue.availableBalance + ' ' + components.currency.qValue;\r\n    components.summaryDescription.qValue = components.description.qValue;\r\n    components.summaryAmount.qValue = components.amount.qValue + ' ' + components.currency.qValue;\r\n    if (components.operationTypeGroup.qValue == 0) {\r\n        components.summaryDebitAccount.label = 'Paranın Yatırılacağı Hesap';\r\n        components.HeaderSummary.text = 'Müşterinin Hesabına Nakit Para Yatırma İşlem Onay';\r\n    }\r\n    else {\r\n        components.summaryDebitAccount.label = 'Paranın Çekileceği Hesap';\r\n        components.HeaderSummary.text = 'Müşterinin Hesabından Nakit Para Çekme İşlem Onay';\r\n    }\r\n    components.feeAmount.visible = false;\r\n    components.EdtrComp_4288.visible = false;\r\n    components.EdtrComp_4253.visible = false;\r\n    components.EdtrComp_34.visible = false;\r\n    components.EdtrComp_25.visible = false;\r\n    components.EdtrComp_41.visible = false;\r\n    components.summaryRow.visible = true;\r\n}\r\n",
+																													"H": "var _a, _b, _c;\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"onSuccessCheckWithdrawCreate\");\r\nquick.store.set(\"validationToken\", response.responseCheckWithdrawCreate.validationToken);\r\ncomponents.EdtrComp_1463.disabled = false;\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\") {\r\n    amountTLValue = components.amount.qValue;\r\n}\r\nelse {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\nquick.MM.trigger(\"ofsaaRequest\", [{ operationCode: \"K\", pcuBytes: \"A\", monetaryType: \"Z\", accountType: components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue }]);\r\nvar feeAmountValue = (_b = (_a = response.responseCheckWithdrawCreate) === null || _a === void 0 ? void 0 : _a.feeAmountResponse) === null || _b === void 0 ? void 0 : _b.feeAmount;\r\nquick.EM.trace(feeAmountValue);\r\nif (feeAmountValue && feeAmountValue.unscaledValue > 0) {\r\n    var scaledValue = Number(feeAmountValue.unscaledValue) / Math.pow(10, 2);\r\n    var TLAccountList = quick.store.get(\"TLAccountList\");\r\n    quick.EM.trace(\"TLAccountList\");\r\n    quick.EM.trace(TLAccountList);\r\n    components.feeAmountDialog.dialogClick({ amount: scaledValue, currency: components.currency.qValue, accountList: TLAccountList, feeAmountResponse: (_c = response.responseCheckWithdrawCreate) === null || _c === void 0 ? void 0 : _c.feeAmountResponse });\r\n}\r\nelse {\r\n    components.summaryDebitAccount.qValue = components.accountInfo.qValue.branchCode + ' - ' + components.accountInfo.qValue.iban + ' - ' + components.accountInfo.qValue.availableBalance + ' ' + components.currency.qValue;\r\n    components.summaryDescription.qValue = components.description.qValue;\r\n    components.summaryAmount.qValue = components.amount.qValue + ' ' + components.currency.qValue;\r\n    if (components.operationTypeGroup.qValue == 0) {\r\n        components.summaryDebitAccount.label = 'Paranın Yatırılacağı Hesap';\r\n        components.HeaderSummary.text = 'Müşterinin Hesabına Nakit Para Yatırma İşlem Onay';\r\n    }\r\n    else {\r\n        components.summaryDebitAccount.label = 'Paranın Çekileceği Hesap';\r\n        components.HeaderSummary.text = 'Müşterinin Hesabından Nakit Para Çekme İşlem Onay';\r\n    }\r\n    components.EdtrComp_4288.visible = false;\r\n    components.EdtrComp_4253.visible = false;\r\n    components.EdtrComp_34.visible = false;\r\n    components.EdtrComp_25.visible = false;\r\n    components.EdtrComp_41.visible = false;\r\n    components.summaryRow.visible = true;\r\n}\r\n",
 																													"C": true,
 																													"HL": "JS"
 																												},
@@ -15210,7 +15484,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "child",
-																																"compDomClasses": "q-label newDropBorder"
+																																"compDomClasses": "q-label "
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -15304,7 +15578,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "v-btn v-btn--depressed theme--light v-size--default newDropBorder"
+																												"compDomClasses": "v-btn v-btn--depressed theme--light v-size--default"
 																											}
 																										}
 																									],
@@ -15332,7 +15606,7 @@ let pjson = {
 																									},
 																									"class": "d-flex flex-column"
 																								},
-																								"compDomClasses": "col d-flex flex-column newDropBorder"
+																								"compDomClasses": "col d-flex flex-column"
 																							},
 																							"S": {
 																								"xs-sm": {
@@ -15450,7 +15724,7 @@ let pjson = {
 																			},
 																			"O": {
 																				"cType": "slot",
-																				"compDomClasses": "row newDropBorder"
+																				"compDomClasses": "row"
 																			}
 																		}
 																	],
@@ -15667,7 +15941,7 @@ let pjson = {
 			},
 			"E": {
 				"searchClickEvent": {
-					"H": "var _a, _b;\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nquick.EM.trace(\"searchClickEvent\");\r\nquick.EM.trace(feeAccountInfo);\r\nquick.store.set(\"feeAccountInfo\", feeAccountInfo);\r\nquick.store.set(\"feePaymentType\", feePaymentType);\r\nquick.EM.trace(\"fee Amount return \");\r\nquick.EM.trace(\"response.responseCheckWithdrawCreate?.feeAmountResponse\");\r\nvar feeAmountValue = (_b = (_a = response.responseCheckWithdrawCreate) === null || _a === void 0 ? void 0 : _a.feeAmountResponse) === null || _b === void 0 ? void 0 : _b.feeAmount;\r\nvar scaledValue = Number(feeAmountValue.unscaledValue) / Math.pow(10, 2);\r\ncomponents.summaryDebitAccount.qValue = components.accountInfo.qValue.branchCode + ' - ' + components.accountInfo.qValue.iban + ' - ' + components.accountInfo.qValue.availableBalance + ' ' + components.currency.qValue;\r\ncomponents.summaryDescription.qValue = components.description.qValue;\r\ncomponents.summaryAmount.qValue = components.amount.qValue + ' ' + components.currency.qValue;\r\ncomponents.feeAmount.qValue = scaledValue + ' ' + 'TRY';\r\ncomponents.feeTaxAmount.qValue = feeTaxAmount + ' ' + 'TRY';\r\ncomponents.feeTotalAmount.qValue = totalAmount + ' ' + 'TRY';\r\nif (feePaymentType == 'CASH') {\r\n    components.paymentType.qValue = 'Nakit';\r\n    components.feeAnotherAccountInfo.qValue = undefined;\r\n    components.feeAnotherAccountInfo.visible = false;\r\n}\r\nelse {\r\n    components.paymentType.qValue = 'Vadesiz Hesaptan Tahsil edilecek';\r\n    components.feeAnotherAccountInfo.qValue = feeAccountInfo.text;\r\n    components.feeAnotherAccountInfo.visible = true;\r\n}\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.summaryDebitAccount.label = 'Paranın Yatırılacağı Hesap';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Nakit Para Yatırma İşlem Onay';\r\n}\r\nelse {\r\n    components.summaryDebitAccount.label = 'Paranın Çekileceği Hesap';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Nakit Para Çekme İşlem Onay';\r\n}\r\ncomponents.feeCard.visible = true;\r\ncomponents.EdtrComp_4288.visible = false;\r\ncomponents.EdtrComp_4253.visible = false;\r\ncomponents.EdtrComp_34.visible = false;\r\ncomponents.EdtrComp_25.visible = false;\r\ncomponents.EdtrComp_41.visible = false;\r\ncomponents.summaryRow.visible = true;\r\n",
+					"H": "var _a, _b;\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nquick.EM.trace(\"searchClickEvent\");\r\nquick.EM.trace(feeAccountInfo);\r\nquick.store.set(\"feeAccountInfo\", feeAccountInfo);\r\nquick.store.set(\"feePaymentType\", feePaymentType);\r\nquick.EM.trace(\"fee Amount return \");\r\nquick.EM.trace(\"response.responseCheckWithdrawCreate?.feeAmountResponse\");\r\nvar feeAmountValue = (_b = (_a = response.responseCheckWithdrawCreate) === null || _a === void 0 ? void 0 : _a.feeAmountResponse) === null || _b === void 0 ? void 0 : _b.feeAmount;\r\nvar scaledValue = Number(feeAmountValue.unscaledValue) / Math.pow(10, 2);\r\ncomponents.summaryDebitAccount.qValue = components.accountInfo.qValue.branchCode + ' - ' + components.accountInfo.qValue.iban + ' - ' + components.accountInfo.qValue.availableBalance + ' ' + components.currency.qValue;\r\ncomponents.summaryDescription.qValue = components.description.qValue;\r\ncomponents.summaryAmount.qValue = components.amount.qValue + ' ' + components.currency.qValue;\r\ncomponents.feeAmount.qValue = feeAmount + ' ' + 'TRY';\r\ncomponents.feeTaxAmount.qValue = feeTaxAmount + ' ' + 'TRY';\r\ncomponents.feeTotalAmount.qValue = totalAmount + ' ' + 'TRY';\r\nif (feePaymentType == 'CASH') {\r\n    components.paymentType.qValue = 'Nakit';\r\n    components.feeAnotherAccountInfo.qValue = undefined;\r\n    components.feeAnotherAccountInfo.visible = false;\r\n}\r\nelse {\r\n    components.paymentType.qValue = 'Vadesiz Hesaptan Tahsil Edilecek';\r\n    components.feeAnotherAccountInfo.qValue = feeAccountInfo.text;\r\n    components.feeAnotherAccountInfo.visible = true;\r\n}\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.summaryDebitAccount.label = 'Paranın Yatırılacağı Hesap';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Nakit Para Yatırma İşlem Onay';\r\n}\r\nelse {\r\n    components.summaryDebitAccount.label = 'Paranın Çekileceği Hesap';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Nakit Para Çekme İşlem Onay';\r\n}\r\ncomponents.feeCard.visible = true;\r\ncomponents.EdtrComp_4288.visible = false;\r\ncomponents.EdtrComp_4253.visible = false;\r\ncomponents.EdtrComp_34.visible = false;\r\ncomponents.EdtrComp_25.visible = false;\r\ncomponents.EdtrComp_41.visible = false;\r\ncomponents.summaryRow.visible = true;\r\n",
 					"C": true,
 					"P": "feeAccountInfo:any,feePaymentType:any,feeAmount:any,feeTaxAmount:any,totalAmount:any",
 					"HL": "JS"
