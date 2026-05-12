@@ -201,7 +201,7 @@ let pjson = {
 																																									"T": "prop"
 																																								},
 																																								"text": {
-																																									"H": "'Müşterinin Hesabına Nakit Para Yatırma İşlem Onay'",
+																																									"H": "'Müşterinin Hesabına Muhasebe Hesabından Para Yatırma İşlem Onay'",
 																																									"T": "prop",
 																																									"HL": "QS"
 																																								},
@@ -2134,7 +2134,7 @@ let pjson = {
 																																					"HL": "TS"
 																																				},
 																																				"onSuccessFromToLedgerCreate": {
-																																					"H": "quick.EM.trace(\"onSuccessFromToLedgerCreate\")\r\nquick.store.set(\"successVirement\", true);\r\n\r\nquick.EM.trace(response.responseFromToLedgerCreate);\r\ncomponents.EdtrComp_191.disabled = false;\r\n\r\nlet successText = \"İşlem başarı ile gerçekleşti. Lütfen \" + components.amount.qValue + \" TL tahsil ediniz.\"\r\n\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Nakit Para Yatırma İşlem Sonuç';\r\n} else {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Nakit Para Çekme İşlem Sonuç';\r\n    successText = \"İşlem başarı ile gerçekleşti. Lütfen \" + components.amount.qValue + \" TL ödeyiniz.\"\r\n}\r\n\r\ncomponents.EdtrComp_192.text = 'Bitir';\r\ncomponents.EdtrComp_189.visible = false;\r\ncomponents.EdtrComp_588.visible = false;\r\n\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\"){\r\n    amountTLValue = components.amount.qValue;\r\n} else {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\n\r\nquick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"O\", pcuBytes: \"A\", monetaryType: \"K\", accountType:components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue}]);\r\n\r\nif (response.responseFromToLedgerCreate) {\r\n    let date = response.responseFromToLedgerCreate.timestamp;\r\n    quick.EM.trace(\"date\");\r\n    quick.EM.trace(date)\r\n    let correlationId = response.responseFromToLedgerCreate.result.correlationId;\r\n    quick.EM.trace(\"correlationId\", correlationId)\r\n    quick.EM.trace(correlationId);\r\n    const url = \"date=\" + date + \"&siid=\" + correlationId.toUpperCase();\r\n\r\n    quick.EM.trace(\"dekont-url\")\r\n    quick.EM.trace(url);\r\n\r\n    quick.containerServices.extensions.showVoucherPopUp(url);\r\n}\r\n\r\n\r\ncomponents.successDialogVirement.dialogClick({ text: successText});\r\n\r\n\r\n",
+																																					"H": "quick.EM.trace(\"onSuccessFromToLedgerCreate\")\r\nquick.store.set(\"successVirement\", true);\r\n\r\nquick.EM.trace(response.responseFromToLedgerCreate);\r\ncomponents.EdtrComp_191.disabled = false;\r\n\r\nlet successText = \"İşlem başarı ile gerçekleşti. Lütfen \" + components.amount.qValue + \" TL tahsil ediniz.\"\r\n\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Muhasebe Hesabından Para Yatırma İşlem Sonuç';\r\n} else {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Muhasebe Hesabına Para Çekme İşlem Sonuç';\r\n    successText = \"İşlem başarı ile gerçekleşti. Lütfen \" + components.amount.qValue + \" TL ödeyiniz.\"\r\n}\r\n\r\ncomponents.EdtrComp_192.text = 'Bitir';\r\ncomponents.EdtrComp_189.visible = false;\r\ncomponents.EdtrComp_588.visible = false;\r\n\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\"){\r\n    amountTLValue = components.amount.qValue;\r\n} else {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\n\r\nquick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"O\", pcuBytes: \"A\", monetaryType: \"K\", accountType:components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue}]);\r\n\r\nif (response.responseFromToLedgerCreate) {\r\n    let date = response.responseFromToLedgerCreate.timestamp;\r\n    quick.EM.trace(\"date\");\r\n    quick.EM.trace(date)\r\n    let correlationId = response.responseFromToLedgerCreate.result.correlationId;\r\n    quick.EM.trace(\"correlationId\", correlationId)\r\n    quick.EM.trace(correlationId);\r\n    const url = \"date=\" + date + \"&siid=\" + correlationId.toUpperCase();\r\n\r\n    quick.EM.trace(\"dekont-url\")\r\n    quick.EM.trace(url);\r\n\r\n    quick.containerServices.extensions.showVoucherPopUp(url);\r\n}\r\n\r\n\r\ncomponents.successDialogVirement.dialogClick({ text: successText});\r\n\r\n\r\n",
 																																					"C": true,
 																																					"HL": "TS"
 																																				},
@@ -4066,7 +4066,200 @@ let pjson = {
 																															},
 																															"S": {
 																																"xs-xl": {
-																																	"col": "5",
+																																	"col": "3",
+																																	"flexDirection": "column",
+																																	"alignItems": "",
+																																	"justifyContent": "",
+																																	"marginLeft": "",
+																																	"marginRight": "",
+																																	"marginBottom": "",
+																																	"marginTop": "",
+																																	"paddingTop": "0px",
+																																	"paddingBottom": "0px",
+																																	"paddingLeft": "12px",
+																																	"paddingRight": "12px",
+																																	"backgroundColor": "",
+																																	"boxShadow": "",
+																																	"boxSizing": "",
+																																	"borderTopStyle": "",
+																																	"borderRightStyle": "",
+																																	"borderBottomStyle": "",
+																																	"borderLeftStyle": "",
+																																	"borderTopLeftRadius": "",
+																																	"borderTopRightRadius": "",
+																																	"borderBottomLeftRadius": "",
+																																	"borderBottomRightRadius": "",
+																																	"borderTopWidth": "",
+																																	"borderRightWidth": "",
+																																	"borderBottomWidth": "",
+																																	"borderLeftWidth": "",
+																																	"defaultBorderColor": "",
+																																	"sides": ""
+																																}
+																															}
+																														},
+																														{
+																															"T": "VCol",
+																															"C": {
+																																"default": {
+																																	"c": [
+																																		{
+																																			"T": "VTextField",
+																																			"P": {
+																																				"ID": {
+																																					"H": "reference",
+																																					"T": "prop",
+																																					"HL": "QS"
+																																				},
+																																				"hideDetails": {
+																																					"H": "false",
+																																					"T": "prop"
+																																				},
+																																				"label": {
+																																					"H": "'Referans Numarası'",
+																																					"T": "prop",
+																																					"HL": "QS"
+																																				},
+																																				"visible": {
+																																					"H": "true",
+																																					"T": "prop"
+																																				},
+																																				"maxlength": {
+																																					"H": "4",
+																																					"T": "attr",
+																																					"HL": "QS"
+																																				}
+																																			},
+																																			"E": {},
+																																			"C": {},
+																																			"_Editor": {
+																																				"eID": "EdtrComp_80"
+																																			},
+																																			"S": {
+																																				"xs-xl": {
+																																					"marginLeft": "",
+																																					"legendMarginLeft": "12px",
+																																					"marginRight": "",
+																																					"marginBottom": "",
+																																					"marginTop": "4px",
+																																					"paddingTop": "12px",
+																																					"paddingBottom": "",
+																																					"paddingLeft": "",
+																																					"paddingRight": "",
+																																					"inputPaddingTop": "",
+																																					"inputPaddingRight": "24px",
+																																					"inputPaddingBottom": "",
+																																					"inputPaddingLeft": "24px",
+																																					"width": "",
+																																					"height": "",
+																																					"maxWidth": "",
+																																					"maxHeight": "",
+																																					"minWidth": "",
+																																					"unlink": "false",
+																																					"unlinkMax": "false",
+																																					"unlinkMin": "false",
+																																					"isSizeCollapsed": "false",
+																																					"dense": "true",
+																																					"labelDefaultFontColor": "#000000",
+																																					"labelDefaultFontFamily": "Roboto",
+																																					"labelDefaultFontSize": "16px",
+																																					"labelDefaultFontStyle": "normal",
+																																					"labelDefaultFontWeight": "400",
+																																					"labelDefaultCombinedFont": "Roboto-Regular",
+																																					"labelDefaultThemeFont": "Custom",
+																																					"prefixFontColor": "#000",
+																																					"prefixFontFamily": "Roboto",
+																																					"prefixFontSize": "16px",
+																																					"prefixFontStyle": "normal",
+																																					"prefixFontWeight": "400",
+																																					"prefixCombinedFont": "Roboto-Regular",
+																																					"prefixThemeFont": "Custom",
+																																					"PHFontColor": "#686868",
+																																					"PHFontFamily": "Roboto",
+																																					"PHFontSize": "16px",
+																																					"PHFontStyle": "normal",
+																																					"PHFontWeight": "400",
+																																					"PHCombinedFont": "Roboto-Regular",
+																																					"PHThemeFont": "Custom",
+																																					"inputFontColor": "#000",
+																																					"inputFontFamily": "Roboto",
+																																					"inputFontSize": "16px",
+																																					"inputFontStyle": "normal",
+																																					"inputFontWeight": "400",
+																																					"inputCombinedFont": "Roboto-Regular",
+																																					"inputDefaultThemeFont": "Custom",
+																																					"errorMessageFontColor": "#E96767",
+																																					"errorMessageFontFamily": "Roboto",
+																																					"errorMessageFontSize": "12px",
+																																					"errorMessageFontStyle": "normal",
+																																					"errorMessageFontWeight": "400",
+																																					"EMCombinedFont": "Roboto-Regular",
+																																					"errorMessageThemeFont": "Custom",
+																																					"errorMessageLineHeight": "",
+																																					"textAlign": "left",
+																																					"backgroundColor": "#ffffff",
+																																					"appendIconColor": "#686868",
+																																					"appendOuterIconColor": "#686868",
+																																					"prependIconColor": "#686868",
+																																					"prependInnerIconColor": "#686868",
+																																					"appendActiveIconColor": "#1976d2",
+																																					"appendActiveOuterIconColor": "#1976d2",
+																																					"prependActiveIconColor": "#1976d2",
+																																					"prependActiveInnerIconColor": "#1976d2",
+																																					"innerBoxShadow": "",
+																																					"activeBorderColor": "#1976d2",
+																																					"innerBoxSizing": "",
+																																					"innerBorderTopStyle": "solid",
+																																					"innerBorderRightStyle": "solid",
+																																					"innerBorderBottomStyle": "solid",
+																																					"innerBorderLeftStyle": "solid",
+																																					"innerBorderTopLeftRadius": "50px",
+																																					"innerBorderTopRightRadius": "50px",
+																																					"innerBorderBottomLeftRadius": "50px",
+																																					"innerBorderBottomRightRadius": "50px",
+																																					"innerBorderTopWidth": "1px",
+																																					"innerBorderRightWidth": "1px",
+																																					"innerBorderBottomWidth": "1px",
+																																					"innerBorderLeftWidth": "1px",
+																																					"innerDefaultBorderColor": "#0000006b",
+																																					"innerSides": "Top,Right,Bottom,Left",
+																																					"outlined": "true",
+																																					"menuFontSize": "13px"
+																																				}
+																																			},
+																																			"O": {
+																																				"cType": "slot"
+																																			}
+																																		}
+																																	],
+																																	"cType": "slot"
+																																}
+																															},
+																															"E": {},
+																															"P": {
+																																"ID": {
+																																	"H": "EdtrComp_79",
+																																	"T": "prop"
+																																}
+																															},
+																															"_Editor": {
+																																"eID": "EdtrComp_79"
+																															},
+																															"O": {
+																																"cType": "slot",
+																																"layout": {
+																																	"dOpt": {
+																																		"xs": [
+																																			"d:d-flex",
+																																			"fd:flex-column"
+																																		]
+																																	},
+																																	"class": "d-flex flex-column"
+																																}
+																															},
+																															"S": {
+																																"xs-xl": {
+																																	"col": "3",
 																																	"flexDirection": "column",
 																																	"alignItems": "",
 																																	"justifyContent": "",
@@ -5199,7 +5392,7 @@ let pjson = {
 																															},
 																															"S": {
 																																"xs-xl": {
-																																	"col": "5",
+																																	"col": "6",
 																																	"flexDirection": "column",
 																																	"alignItems": "",
 																																	"justifyContent": "",
@@ -6968,7 +7161,7 @@ let pjson = {
 																													"HL": "TS"
 																												},
 																												"onSuccessCheckFromToLedgerCreate": {
-																													"H": "quick.EM.trace(\"onSuccessCheckFromToLedgerCreate\")\r\n\r\nquick.store.set(\"validationToken\",response.responseCheckFromToLedgerCreate.validationToken);\r\n\r\ncomponents.EdtrComp_1463.disabled = false;\r\n\r\ndeclare const operationCode;\r\ndeclare const pcuBytes;\r\ndeclare const monetaryType;\r\n\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\"){\r\n    amountTLValue = components.amount.qValue;\r\n} else {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\n\r\nquick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"K\", pcuBytes: \"A\", monetaryType: \"Z\", accountType:components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue}]);\r\n\r\n\r\ncomponents.summaryDebitAccount.qValue = components.accountInfo.qValue.branchCode + ' - ' + components.accountInfo.qValue.iban + ' - ' + components.accountInfo.qValue.availableBalance + ' ' + components.currency.qValue\r\ncomponents.summaryDescription.qValue = components.description.qValue;\r\ncomponents.summaryAmount.qValue = components.amount.qValue + ' ' + components.currency.qValue;\r\n\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.summaryDebitAccount.label = 'Paranının Yatırılacağı Hesap'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Nakit Para Yatırma İşlem Onay';\r\n} else {\r\n    components.summaryDebitAccount.label = 'Paranının Çekileceği Hesap'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Nakit Para Çekme İşlem Onay';\r\n}\r\n\r\ncomponents.EdtrComp_4288.visible = false;\r\ncomponents.EdtrComp_4253.visible = false;\r\ncomponents.EdtrComp_34.visible = false;\r\ncomponents.EdtrComp_25.visible = false;\r\ncomponents.EdtrComp_41.visible = false;\r\ncomponents.EdtrComp_11.visible = false;\r\ncomponents.summaryRow.visible = true;\r\n\r\n\r\n\r\n\r\n\r\n",
+																													"H": "quick.EM.trace(\"onSuccessCheckFromToLedgerCreate\")\r\n\r\nquick.store.set(\"validationToken\",response.responseCheckFromToLedgerCreate.validationToken);\r\n\r\ncomponents.EdtrComp_1463.disabled = false;\r\n\r\ndeclare const operationCode;\r\ndeclare const pcuBytes;\r\ndeclare const monetaryType;\r\n\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\"){\r\n    amountTLValue = components.amount.qValue;\r\n} else {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\n\r\nquick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"K\", pcuBytes: \"A\", monetaryType: \"Z\", accountType:components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue}]);\r\n\r\n\r\ncomponents.summaryDebitAccount.qValue = components.accountInfo.qValue.branchCode + ' - ' + components.accountInfo.qValue.iban + ' - ' + components.accountInfo.qValue.availableBalance + ' ' + components.currency.qValue\r\ncomponents.summaryDescription.qValue = components.description.qValue;\r\ncomponents.summaryAmount.qValue = components.amount.qValue + ' ' + components.currency.qValue;\r\n\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.summaryDebitAccount.label = 'Paranının Yatırılacağı Hesap'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Muhasebe Hesabından Para Yatırma İşlem Onay';\r\n} else {\r\n    components.summaryDebitAccount.label = 'Paranının Çekileceği Hesap'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Muhasebe Hesabına Para Çekme İşlem Onay';\r\n}\r\n\r\ncomponents.EdtrComp_4288.visible = false;\r\ncomponents.EdtrComp_4253.visible = false;\r\ncomponents.EdtrComp_34.visible = false;\r\ncomponents.EdtrComp_25.visible = false;\r\ncomponents.EdtrComp_41.visible = false;\r\ncomponents.EdtrComp_11.visible = false;\r\ncomponents.summaryRow.visible = true;\r\n\r\n\r\n\r\n\r\n\r\n",
 																													"C": true,
 																													"HL": "TS"
 																												},
@@ -7659,7 +7852,7 @@ let pjson = {
 																																									"T": "prop"
 																																								},
 																																								"text": {
-																																									"H": "╬'Müşterinin Hesabına Nakit Para Yatırma İşlem Onay'╩╩",
+																																									"H": "╬'Müşterinin Hesabına Muhasebe Hesabından Para Yatırma İşlem Onay'╩╩",
 																																									"T": "prop",
 																																									"HL": "QS"
 																																								},
@@ -9638,7 +9831,7 @@ let pjson = {
 																																					"HL": "JS"
 																																				},
 																																				"onSuccessFromToLedgerCreate": {
-																																					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"onSuccessFromToLedgerCreate\");\r\nquick.store.set(\"successVirement\", true);\r\nquick.EM.trace(response.responseFromToLedgerCreate);\r\ncomponents.EdtrComp_191.disabled = false;\r\nvar successText = \"İşlem başarı ile gerçekleşti. Lütfen \" + components.amount.qValue + \" TL tahsil ediniz.\";\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Nakit Para Yatırma İşlem Sonuç';\r\n}\r\nelse {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Nakit Para Çekme İşlem Sonuç';\r\n    successText = \"İşlem başarı ile gerçekleşti. Lütfen \" + components.amount.qValue + \" TL ödeyiniz.\";\r\n}\r\ncomponents.EdtrComp_192.text = 'Bitir';\r\ncomponents.EdtrComp_189.visible = false;\r\ncomponents.EdtrComp_588.visible = false;\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\") {\r\n    amountTLValue = components.amount.qValue;\r\n}\r\nelse {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\nquick.MM.trigger(\"ofsaaRequest\", [{ operationCode: \"O\", pcuBytes: \"A\", monetaryType: \"K\", accountType: components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue }]);\r\nif (response.responseFromToLedgerCreate) {\r\n    var date = response.responseFromToLedgerCreate.timestamp;\r\n    quick.EM.trace(\"date\");\r\n    quick.EM.trace(date);\r\n    var correlationId = response.responseFromToLedgerCreate.result.correlationId;\r\n    quick.EM.trace(\"correlationId\", correlationId);\r\n    quick.EM.trace(correlationId);\r\n    var url = \"date=\" + date + \"&siid=\" + correlationId.toUpperCase();\r\n    quick.EM.trace(\"dekont-url\");\r\n    quick.EM.trace(url);\r\n    quick.containerServices.extensions.showVoucherPopUp(url);\r\n}\r\ncomponents.successDialogVirement.dialogClick({ text: successText });\r\n",
+																																					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"onSuccessFromToLedgerCreate\");\r\nquick.store.set(\"successVirement\", true);\r\nquick.EM.trace(response.responseFromToLedgerCreate);\r\ncomponents.EdtrComp_191.disabled = false;\r\nvar successText = \"İşlem başarı ile gerçekleşti. Lütfen \" + components.amount.qValue + \" TL tahsil ediniz.\";\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Muhasebe Hesabından Para Yatırma İşlem Sonuç';\r\n}\r\nelse {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Muhasebe Hesabına Para Çekme İşlem Sonuç';\r\n    successText = \"İşlem başarı ile gerçekleşti. Lütfen \" + components.amount.qValue + \" TL ödeyiniz.\";\r\n}\r\ncomponents.EdtrComp_192.text = 'Bitir';\r\ncomponents.EdtrComp_189.visible = false;\r\ncomponents.EdtrComp_588.visible = false;\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\") {\r\n    amountTLValue = components.amount.qValue;\r\n}\r\nelse {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\nquick.MM.trigger(\"ofsaaRequest\", [{ operationCode: \"O\", pcuBytes: \"A\", monetaryType: \"K\", accountType: components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue }]);\r\nif (response.responseFromToLedgerCreate) {\r\n    var date = response.responseFromToLedgerCreate.timestamp;\r\n    quick.EM.trace(\"date\");\r\n    quick.EM.trace(date);\r\n    var correlationId = response.responseFromToLedgerCreate.result.correlationId;\r\n    quick.EM.trace(\"correlationId\", correlationId);\r\n    quick.EM.trace(correlationId);\r\n    var url = \"date=\" + date + \"&siid=\" + correlationId.toUpperCase();\r\n    quick.EM.trace(\"dekont-url\");\r\n    quick.EM.trace(url);\r\n    quick.containerServices.extensions.showVoucherPopUp(url);\r\n}\r\ncomponents.successDialogVirement.dialogClick({ text: successText });\r\n",
 																																					"C": true,
 																																					"HL": "JS"
 																																				},
@@ -11612,7 +11805,202 @@ let pjson = {
 																															},
 																															"S": {
 																																"xs-xl": {
-																																	"col": "5",
+																																	"col": "3",
+																																	"flexDirection": "column",
+																																	"alignItems": "",
+																																	"justifyContent": "",
+																																	"marginLeft": "",
+																																	"marginRight": "",
+																																	"marginBottom": "",
+																																	"marginTop": "",
+																																	"paddingTop": "0px",
+																																	"paddingBottom": "0px",
+																																	"paddingLeft": "12px",
+																																	"paddingRight": "12px",
+																																	"backgroundColor": "",
+																																	"boxShadow": "",
+																																	"boxSizing": "",
+																																	"borderTopStyle": "",
+																																	"borderRightStyle": "",
+																																	"borderBottomStyle": "",
+																																	"borderLeftStyle": "",
+																																	"borderTopLeftRadius": "",
+																																	"borderTopRightRadius": "",
+																																	"borderBottomLeftRadius": "",
+																																	"borderBottomRightRadius": "",
+																																	"borderTopWidth": "",
+																																	"borderRightWidth": "",
+																																	"borderBottomWidth": "",
+																																	"borderLeftWidth": "",
+																																	"defaultBorderColor": "",
+																																	"sides": ""
+																																}
+																															}
+																														},
+																														{
+																															"T": "VCol",
+																															"C": {
+																																"default": {
+																																	"c": [
+																																		{
+																																			"T": "VTextField",
+																																			"P": {
+																																				"ID": {
+																																					"H": "reference",
+																																					"T": "prop",
+																																					"HL": "QS"
+																																				},
+																																				"hideDetails": {
+																																					"H": "╬false╩╩",
+																																					"T": "prop"
+																																				},
+																																				"label": {
+																																					"H": "╬'Referans Numarası'╩╩",
+																																					"T": "prop",
+																																					"HL": "QS"
+																																				},
+																																				"visible": {
+																																					"H": "╬true╩╩",
+																																					"T": "prop"
+																																				},
+																																				"maxlength": {
+																																					"H": "╬4╩╩",
+																																					"T": "attr",
+																																					"HL": "QS"
+																																				}
+																																			},
+																																			"E": {},
+																																			"C": {},
+																																			"_Editor": {
+																																				"eID": "EdtrComp_80"
+																																			},
+																																			"S": {
+																																				"xs-xl": {
+																																					"marginLeft": "",
+																																					"legendMarginLeft": "12px",
+																																					"marginRight": "",
+																																					"marginBottom": "",
+																																					"marginTop": "4px",
+																																					"paddingTop": "12px",
+																																					"paddingBottom": "",
+																																					"paddingLeft": "",
+																																					"paddingRight": "",
+																																					"inputPaddingTop": "",
+																																					"inputPaddingRight": "24px",
+																																					"inputPaddingBottom": "",
+																																					"inputPaddingLeft": "24px",
+																																					"width": "",
+																																					"height": "",
+																																					"maxWidth": "",
+																																					"maxHeight": "",
+																																					"minWidth": "",
+																																					"unlink": "false",
+																																					"unlinkMax": "false",
+																																					"unlinkMin": "false",
+																																					"isSizeCollapsed": "false",
+																																					"dense": "true",
+																																					"labelDefaultFontColor": "#000000",
+																																					"labelDefaultFontFamily": "Roboto",
+																																					"labelDefaultFontSize": "16px",
+																																					"labelDefaultFontStyle": "normal",
+																																					"labelDefaultFontWeight": "400",
+																																					"labelDefaultCombinedFont": "Roboto-Regular",
+																																					"labelDefaultThemeFont": "Custom",
+																																					"prefixFontColor": "#000",
+																																					"prefixFontFamily": "Roboto",
+																																					"prefixFontSize": "16px",
+																																					"prefixFontStyle": "normal",
+																																					"prefixFontWeight": "400",
+																																					"prefixCombinedFont": "Roboto-Regular",
+																																					"prefixThemeFont": "Custom",
+																																					"PHFontColor": "#686868",
+																																					"PHFontFamily": "Roboto",
+																																					"PHFontSize": "16px",
+																																					"PHFontStyle": "normal",
+																																					"PHFontWeight": "400",
+																																					"PHCombinedFont": "Roboto-Regular",
+																																					"PHThemeFont": "Custom",
+																																					"inputFontColor": "#000",
+																																					"inputFontFamily": "Roboto",
+																																					"inputFontSize": "16px",
+																																					"inputFontStyle": "normal",
+																																					"inputFontWeight": "400",
+																																					"inputCombinedFont": "Roboto-Regular",
+																																					"inputDefaultThemeFont": "Custom",
+																																					"errorMessageFontColor": "#E96767",
+																																					"errorMessageFontFamily": "Roboto",
+																																					"errorMessageFontSize": "12px",
+																																					"errorMessageFontStyle": "normal",
+																																					"errorMessageFontWeight": "400",
+																																					"EMCombinedFont": "Roboto-Regular",
+																																					"errorMessageThemeFont": "Custom",
+																																					"errorMessageLineHeight": "",
+																																					"textAlign": "left",
+																																					"backgroundColor": "#ffffff",
+																																					"appendIconColor": "#686868",
+																																					"appendOuterIconColor": "#686868",
+																																					"prependIconColor": "#686868",
+																																					"prependInnerIconColor": "#686868",
+																																					"appendActiveIconColor": "#1976d2",
+																																					"appendActiveOuterIconColor": "#1976d2",
+																																					"prependActiveIconColor": "#1976d2",
+																																					"prependActiveInnerIconColor": "#1976d2",
+																																					"innerBoxShadow": "",
+																																					"activeBorderColor": "#1976d2",
+																																					"innerBoxSizing": "",
+																																					"innerBorderTopStyle": "solid",
+																																					"innerBorderRightStyle": "solid",
+																																					"innerBorderBottomStyle": "solid",
+																																					"innerBorderLeftStyle": "solid",
+																																					"innerBorderTopLeftRadius": "50px",
+																																					"innerBorderTopRightRadius": "50px",
+																																					"innerBorderBottomLeftRadius": "50px",
+																																					"innerBorderBottomRightRadius": "50px",
+																																					"innerBorderTopWidth": "1px",
+																																					"innerBorderRightWidth": "1px",
+																																					"innerBorderBottomWidth": "1px",
+																																					"innerBorderLeftWidth": "1px",
+																																					"innerDefaultBorderColor": "#0000006b",
+																																					"innerSides": "Top,Right,Bottom,Left",
+																																					"outlined": "true",
+																																					"menuFontSize": "13px"
+																																				}
+																																			},
+																																			"O": {
+																																				"cType": "slot",
+																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined newDropBorder"
+																																			}
+																																		}
+																																	],
+																																	"cType": "slot"
+																																}
+																															},
+																															"E": {},
+																															"P": {
+																																"ID": {
+																																	"H": "EdtrComp_79",
+																																	"T": "prop"
+																																}
+																															},
+																															"_Editor": {
+																																"eID": "EdtrComp_79"
+																															},
+																															"O": {
+																																"cType": "slot",
+																																"layout": {
+																																	"dOpt": {
+																																		"xs": [
+																																			"d:d-flex",
+																																			"fd:flex-column"
+																																		]
+																																	},
+																																	"class": "d-flex flex-column"
+																																},
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
+																															},
+																															"S": {
+																																"xs-xl": {
+																																	"col": "3",
 																																	"flexDirection": "column",
 																																	"alignItems": "",
 																																	"justifyContent": "",
@@ -12758,7 +13146,7 @@ let pjson = {
 																															},
 																															"S": {
 																																"xs-xl": {
-																																	"col": "5",
+																																	"col": "6",
 																																	"flexDirection": "column",
 																																	"alignItems": "",
 																																	"justifyContent": "",
@@ -14558,7 +14946,7 @@ let pjson = {
 																													"HL": "JS"
 																												},
 																												"onSuccessCheckFromToLedgerCreate": {
-																													"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"onSuccessCheckFromToLedgerCreate\");\r\nquick.store.set(\"validationToken\", response.responseCheckFromToLedgerCreate.validationToken);\r\ncomponents.EdtrComp_1463.disabled = false;\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\") {\r\n    amountTLValue = components.amount.qValue;\r\n}\r\nelse {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\nquick.MM.trigger(\"ofsaaRequest\", [{ operationCode: \"K\", pcuBytes: \"A\", monetaryType: \"Z\", accountType: components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue }]);\r\ncomponents.summaryDebitAccount.qValue = components.accountInfo.qValue.branchCode + ' - ' + components.accountInfo.qValue.iban + ' - ' + components.accountInfo.qValue.availableBalance + ' ' + components.currency.qValue;\r\ncomponents.summaryDescription.qValue = components.description.qValue;\r\ncomponents.summaryAmount.qValue = components.amount.qValue + ' ' + components.currency.qValue;\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.summaryDebitAccount.label = 'Paranının Yatırılacağı Hesap';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Nakit Para Yatırma İşlem Onay';\r\n}\r\nelse {\r\n    components.summaryDebitAccount.label = 'Paranının Çekileceği Hesap';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Nakit Para Çekme İşlem Onay';\r\n}\r\ncomponents.EdtrComp_4288.visible = false;\r\ncomponents.EdtrComp_4253.visible = false;\r\ncomponents.EdtrComp_34.visible = false;\r\ncomponents.EdtrComp_25.visible = false;\r\ncomponents.EdtrComp_41.visible = false;\r\ncomponents.EdtrComp_11.visible = false;\r\ncomponents.summaryRow.visible = true;\r\n",
+																													"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"onSuccessCheckFromToLedgerCreate\");\r\nquick.store.set(\"validationToken\", response.responseCheckFromToLedgerCreate.validationToken);\r\ncomponents.EdtrComp_1463.disabled = false;\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\") {\r\n    amountTLValue = components.amount.qValue;\r\n}\r\nelse {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\nquick.MM.trigger(\"ofsaaRequest\", [{ operationCode: \"K\", pcuBytes: \"A\", monetaryType: \"Z\", accountType: components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue }]);\r\ncomponents.summaryDebitAccount.qValue = components.accountInfo.qValue.branchCode + ' - ' + components.accountInfo.qValue.iban + ' - ' + components.accountInfo.qValue.availableBalance + ' ' + components.currency.qValue;\r\ncomponents.summaryDescription.qValue = components.description.qValue;\r\ncomponents.summaryAmount.qValue = components.amount.qValue + ' ' + components.currency.qValue;\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.summaryDebitAccount.label = 'Paranının Yatırılacağı Hesap';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Muhasebe Hesabından Para Yatırma İşlem Onay';\r\n}\r\nelse {\r\n    components.summaryDebitAccount.label = 'Paranının Çekileceği Hesap';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Muhasebe Hesabına Para Çekme İşlem Onay';\r\n}\r\ncomponents.EdtrComp_4288.visible = false;\r\ncomponents.EdtrComp_4253.visible = false;\r\ncomponents.EdtrComp_34.visible = false;\r\ncomponents.EdtrComp_25.visible = false;\r\ncomponents.EdtrComp_41.visible = false;\r\ncomponents.EdtrComp_11.visible = false;\r\ncomponents.summaryRow.visible = true;\r\n",
 																													"C": true,
 																													"HL": "JS"
 																												},
@@ -14998,7 +15386,7 @@ let pjson = {
 			"O": {
 				"cType": "child",
 				"dynProps": true,
-				"compDomClasses": ""
+				"compDomClasses": "newDropBorder"
 			}
 		},
 		{
