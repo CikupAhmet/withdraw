@@ -10,91 +10,91 @@ fileMap:
 - id: uat07ajt-fsgb-3588-qhmd-rid0mli0u0i8
   path: /static/depOperations
   name: /successDialogWithdraw.qjson
-  version: Thu Mar 12 2026 17:03:36 GMT+0300 (GMT+03:00)
+  version: Thu Mar 12 2026 17:03:36 GMT+0300 (Türkiye Standart Saati)
 - id: fjnmfpdj-g9yb-prh8-xzk6-2030mli0u0vl
   path: /static/depOperations
   name: /warningDialogWithdraw.qjson
-  version: Thu Mar 12 2026 17:04:10 GMT+0300 (GMT+03:00)
+  version: Thu Mar 12 2026 17:04:10 GMT+0300 (Türkiye Standart Saati)
 - id: hf8ibfve-u9b8-xmbb-1xpm-a410mli0u0rf
   path: /static/depOperations
   name: /feeamountWithdraw.qjson
-  version: Mon May 11 2026 16:54:23 GMT+0300 (GMT+03:00)
+  version: Mon May 11 2026 16:54:23 GMT+0300 (Türkiye Standart Saati)
 - id: 7ips2y3r-mg74-oyof-euq3-elp0mli0u0dq
   path: /static/depOperations
   name: /errorDialogWithdraw.qjson
-  version: Thu Mar 12 2026 17:03:56 GMT+0300 (GMT+03:00)
+  version: Thu Mar 12 2026 17:03:56 GMT+0300 (Türkiye Standart Saati)
 - id: x39m77pi-f7xo-tl39-l3ts-zg20mm4o2r3j
   path: /static/css/Roboto
   name: /Roboto-BlackItalic.ttf
-  version: Fri Feb 27 2026 12:05:25 GMT+0300 (GMT+03:00)
+  version: Fri Feb 27 2026 12:05:25 GMT+0300 (Türkiye Standart Saati)
 - id: vfthxmw0-0dsb-kzws-8r8d-k5f0mm4o2r5i
   path: /static/css/Roboto
   name: /Roboto-Black.ttf
-  version: Fri Feb 27 2026 12:05:25 GMT+0300 (GMT+03:00)
+  version: Fri Feb 27 2026 12:05:25 GMT+0300 (Türkiye Standart Saati)
 - id: pcdhsf14-4so6-z4cm-soos-u3g0mlkpvpuh
   path: /static/depOperations
   name: /withdrawHome.qjson
-  version: Thu Feb 26 2026 15:57:33 GMT+0300 (GMT+03:00)
+  version: Thu Feb 26 2026 15:57:33 GMT+0300 (Türkiye Standart Saati)
 - id: sprf28o3-p3bd-46el-zg31-xlh0mm4o2r60
   path: /static/css/Roboto
   name: /Roboto-Bold.ttf
-  version: Fri Feb 27 2026 12:05:25 GMT+0300 (GMT+03:00)
+  version: Fri Feb 27 2026 12:05:25 GMT+0300 (Türkiye Standart Saati)
 - id: 0nx70yul-g3ig-pvaf-mto1-9ql0mm4o2rde
   path: /static/css/Roboto
   name: /Roboto-BoldItalic.ttf
-  version: Fri Feb 27 2026 12:05:25 GMT+0300 (GMT+03:00)
+  version: Fri Feb 27 2026 12:05:25 GMT+0300 (Türkiye Standart Saati)
 - id: 50u7v21f-a717-5gh2-5s1k-ba50mm4o2rmj
   path: /static/css/Roboto
   name: /Roboto-Italic.ttf
-  version: Fri Feb 27 2026 12:05:26 GMT+0300 (GMT+03:00)
+  version: Fri Feb 27 2026 12:05:26 GMT+0300 (Türkiye Standart Saati)
 - id: k1ss8g3p-qrq0-8hcb-3pmy-gmz0mm4o2s1m
   path: /static/css/Roboto
   name: /Roboto-Light.ttf
-  version: Fri Feb 27 2026 12:05:26 GMT+0300 (GMT+03:00)
+  version: Fri Feb 27 2026 12:05:26 GMT+0300 (Türkiye Standart Saati)
 - id: t2qzf6ta-9tjk-1mpj-xk2d-w6r0mm4o2t14
   path: /static/css/Roboto
   name: /Roboto-Medium.ttf
-  version: Fri Feb 27 2026 12:05:27 GMT+0300 (GMT+03:00)
+  version: Fri Feb 27 2026 12:05:27 GMT+0300 (Türkiye Standart Saati)
 - id: qa2afx0y-wtf7-3d5z-9pt4-kcl0mm4o2t3s
   path: /static/css/Roboto
   name: /Roboto-MediumItalic.ttf
-  version: Fri Feb 27 2026 12:05:28 GMT+0300 (GMT+03:00)
+  version: Fri Feb 27 2026 12:05:28 GMT+0300 (Türkiye Standart Saati)
 - id: ljsvdmpw-i29o-90ug-wzby-sqt0mm4o2t55
   path: /static/css/Roboto
   name: /Roboto-LightItalic.ttf
-  version: Fri Feb 27 2026 12:05:28 GMT+0300 (GMT+03:00)
+  version: Fri Feb 27 2026 12:05:28 GMT+0300 (Türkiye Standart Saati)
 - id: hunem3tz-m07s-1y01-9m3q-lak0mm4o2tes
   path: /static/css/Roboto
   name: /Roboto-Regular.ttf
-  version: Fri Feb 27 2026 12:05:28 GMT+0300 (GMT+03:00)
+  version: Fri Feb 27 2026 12:05:28 GMT+0300 (Türkiye Standart Saati)
 - id: xvkt4bht-fss5-ry4j-55j9-sfa0mm4o2th6
   path: /static/css/Roboto
   name: /Roboto-Thin.ttf
-  version: Fri Feb 27 2026 12:05:28 GMT+0300 (GMT+03:00)
+  version: Fri Feb 27 2026 12:05:28 GMT+0300 (Türkiye Standart Saati)
 - id: y0ab6wno-mqy9-pi4a-d9ub-o1d0mm4o2use
   path: /static/css/Roboto
   name: /Roboto-ThinItalic.ttf
-  version: Fri Feb 27 2026 12:05:30 GMT+0300 (GMT+03:00)
+  version: Fri Feb 27 2026 12:05:30 GMT+0300 (Türkiye Standart Saati)
 - id: b7ugn76d-7wgg-hhz7-hxju-t620mmn410jx
   path: /static/depOperations
   name: /menuOperationsOADetails.qjson
-  version: Thu Mar 12 2026 09:51:49 GMT+0300 (GMT+03:00)
+  version: Thu Mar 12 2026 09:51:49 GMT+0300 (Türkiye Standart Saati)
 - id: o8smu704-6gjn-db6v-2xil-psz0mlhy4xma
   path: /static
   name: /App Settings.appSettings
-  version: Thu Apr 02 2026 11:18:53 GMT+0300 (GMT+03:00)
+  version: Thu Apr 02 2026 11:18:53 GMT+0300 (Türkiye Standart Saati)
 - id: qf2d8qrm-4txv-431i-c01o-j810mlhysizt
   path: /static/depOperations
   name: /withdraw.qjson
-  version: Mon May 11 2026 16:54:12 GMT+0300 (GMT+03:00)
+  version: Mon May 18 2026 09:38:05 GMT+0300 (Türkiye Standart Saati)
 - id: v6ck2cck-xrfq-835w-yo58-0hd0mlp9nk7m
   path: /static/depOperations
   name: /withdrawReview.qjson
-  version: Mon Apr 06 2026 18:26:21 GMT+0300 (GMT+03:00)
+  version: Mon Apr 06 2026 18:26:21 GMT+0300 (Türkiye Standart Saati)
 - id: w3a7ngku-w7xf-mox8-6y5w-dfm0mo9z8cvr
   path: /static/depOperations
   name: /fromToLedger.qjson
-  version: Tue May 12 2026 10:31:07 GMT+0300 (GMT+03:00)
+  version: Mon May 18 2026 09:37:28 GMT+0300 (Türkiye Standart Saati)
 
 containerServices: <<containerServices:l82hjea4-mvjr-h857-1zbk-19n0mm4txevl>>
 localProxy: <<localProxy:o0m2fsej-8unm-cyd8-sj7l-on00mlhypcgh>>
