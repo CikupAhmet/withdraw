@@ -79,14 +79,10 @@ fileMap:
   path: /static/depOperations
   name: /menuOperationsOADetails.qjson
   version: Thu Mar 12 2026 09:51:49 GMT+0300 (Türkiye Standart Saati)
-- id: o8smu704-6gjn-db6v-2xil-psz0mlhy4xma
-  path: /static
-  name: /App Settings.appSettings
-  version: Thu Apr 02 2026 11:18:53 GMT+0300 (Türkiye Standart Saati)
 - id: qf2d8qrm-4txv-431i-c01o-j810mlhysizt
   path: /static/depOperations
   name: /withdraw.qjson
-  version: Mon May 18 2026 09:38:05 GMT+0300 (Türkiye Standart Saati)
+  version: Mon Jun 08 2026 15:18:55 GMT+0300 (Türkiye Standart Saati)
 - id: v6ck2cck-xrfq-835w-yo58-0hd0mlp9nk7m
   path: /static/depOperations
   name: /withdrawReview.qjson
@@ -94,7 +90,7 @@ fileMap:
 - id: w3a7ngku-w7xf-mox8-6y5w-dfm0mo9z8cvr
   path: /static/depOperations
   name: /fromToLedger.qjson
-  version: Mon May 18 2026 09:37:28 GMT+0300 (Türkiye Standart Saati)
+  version: Fri May 22 2026 10:21:53 GMT+0300 (Türkiye Standart Saati)
 
 containerServices: <<containerServices:l82hjea4-mvjr-h857-1zbk-19n0mm4txevl>>
 localProxy: <<localProxy:o0m2fsej-8unm-cyd8-sj7l-on00mlhypcgh>>
@@ -105,3 +101,34 @@ appSettings:
     containerServices: <<containerServices:l82hjea4-mvjr-h857-1zbk-19n0mm4txevl>>
     localProxy: <<localProxy:o0m2fsej-8unm-cyd8-sj7l-on00mlhypcgh>>
     pipeline: <<pipeline:3gtdaxlm-gxrn-1pcg-nrep-vt30mm3gz80e>>
+  tagValues:
+    tagValues:
+      - id: wd2gp0qr-viss-op7b-s4iz-tf80mnzuf8nj
+        label: ACICode
+        value: ACI76262
+        definitionSource: orgGroup
+        required: false
+        description: ''
+        predefinedValues: []
+      - id: 4dmsfu16-ss6h-2327-56h0-vpp0mq54f8ne
+        label: Channel
+        value: branch
+        definitionSource: orgGroup
+        required: false
+        description: ''
+        predefinedValues:
+          - branch
+          - IsCep
+          - Application
+          - Telefon
+          - MaximumMobil
+          - Bireysel
+          - Bankamatik
+          - Ticari
+          - Maxi
+          - Isyatirim
+          - Isbank.com.tr
+          - MaximumIsyerim
+          - Process
+          - Go
+          - Batch
