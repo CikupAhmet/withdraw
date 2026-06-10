@@ -94,7 +94,7 @@ fileMap:
 - id: w3a7ngku-w7xf-mox8-6y5w-dfm0mo9z8cvr
   path: /static/depOperations
   name: /fromToLedger.qjson
-  version: Tue Jun 09 2026 16:00:06 GMT+0300 (Türkiye Standart Saati)
+  version: Wed Jun 10 2026 11:10:07 GMT+0300 (Türkiye Standart Saati)
 
 containerServices: <<containerServices:l82hjea4-mvjr-h857-1zbk-19n0mm4txevl>>
 localProxy: <<localProxy:o0m2fsej-8unm-cyd8-sj7l-on00mlhypcgh>>
