@@ -1,5 +1,5 @@
 csspath: 
-- /static/css/Fonts
+- /static/css/styleFile.css
 - /static/css/styleFile
 
 containerServicesPath: /settings/js/containerLocalService.ts
@@ -86,7 +86,7 @@ fileMap:
 - id: qf2d8qrm-4txv-431i-c01o-j810mlhysizt
   path: /static/depOperations
   name: /withdraw.qjson
-  version: Mon Jun 15 2026 10:27:36 GMT+0300 (Türkiye Standart Saati)
+  version: Wed Jun 17 2026 14:48:50 GMT+0300 (Türkiye Standart Saati)
 - id: v6ck2cck-xrfq-835w-yo58-0hd0mlp9nk7m
   path: /static/depOperations
   name: /withdrawReview.qjson
@@ -95,6 +95,10 @@ fileMap:
   path: /static/depOperations
   name: /fromToLedger.qjson
   version: Wed Jun 10 2026 14:25:30 GMT+0300 (Türkiye Standart Saati)
+- id: 67wnkpnb-itvr-k8w8-c2ga-ci90mm4o6q5f
+  path: /static/css
+  name: /styleFile.css
+  version: Fri Feb 27 2026 12:09:08 GMT+0300 (Türkiye Standart Saati)
 
 containerServices: <<containerServices:l82hjea4-mvjr-h857-1zbk-19n0mm4txevl>>
 localProxy: <<localProxy:o0m2fsej-8unm-cyd8-sj7l-on00mlhypcgh>>
