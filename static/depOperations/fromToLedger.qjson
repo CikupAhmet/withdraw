@@ -28,7 +28,7 @@ let pjson = {
 					"HL": "TS"
 				},
 				"ofsaaRequest": {
-					"H": "declare const operationCode;\r\ndeclare const pcuBytes;\r\ndeclare const monetaryType;\r\ndeclare const accountType;\r\ndeclare const amountTL;\r\ndeclare const amountYP;\r\n\r\nlet accountNumber = components.accountInfo.qValue.accountNumber\r\nlet branchCode = components.accountInfo.qValue.branchCode\r\nlet currencyCode = components.accountInfo.qValue.currencyCode\r\nlet customerNumber = quick.store.get(\"customerValue\");\r\nlet transactionCode = \"NakitYat\"\r\n\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    quick.store.set(\"$customConsumerCode\",'TANE.DEPDEPOSIT');\r\n} else {\r\n    quick.store.set(\"$customConsumerCode\",'TANE.DEPWITHDRAW');\r\n    transactionCode = \"NakitCek\"\r\n}\r\n\r\nlet creditAccountNumber = components.accountInfo.qValue.accountNumber\r\nlet creditBranchCode = components.accountInfo.qValue.branchCode\r\n\r\nlet userContext = quick.containerServices.getUserContext() as any;\r\n\r\nlet isbClientHeader = JSON.parse(quick.containerServices.extensions.getHeader('','isbClient'));\r\nlet consumerHeader = JSON.parse(quick.containerServices.extensions.getHeader('','consumer'));\r\n\r\nlet tellerId = isbClientHeader[\"branch-v1\"]?.tellerId;\r\nlet organizationUnitCode = isbClientHeader[\"branch-v1\"]?.organizationUnitCode;\r\nlet employeeId = userContext?.userid;\r\nlet channelCode = consumerHeader[\"branchContextV1\"]?.channelCode;\r\n\r\nlet tod = 'CHECK';\r\nlet sequenceNo = 1;\r\n\r\nlet amount = null;\r\nlet amountFx= null;\r\n\r\n if(amountTL != undefined && amountTL != null && amountTL != ''){\r\n    amount = quick.Quick.toDecimal(amountTL, \",\").toString()\r\n  } \r\n\r\n if(amountYP != undefined && amountYP != null && amountYP != ''){\r\n    amountFx = quick.Quick.toDecimal(amountYP, \",\").toString()\r\n  } \r\n\r\nif (response.responseVirementCreate) {\r\n  tod = response.responseVirementCreate.result.tod\r\n  sequenceNo = response.responseVirementCreate.result.sequenceNo\r\n}\r\n\r\nlet requestData = {\r\n  part: \"0\",\r\n  type: \"A\",\r\n  groupType: \"X011\", \r\n  customerNumber: customerNumber,\r\n  accountNumber: {\r\n    branchCode: branchCode,\r\n    number: accountNumber\r\n  },\r\n  tod: tod,\r\n  amount: amount,\r\n  amountFx: amountFx,\r\n  tellerId: tellerId,\r\n  sequenceNo: sequenceNo,\r\n  employeeId: employeeId,\r\n  processingOrganizationUnit: organizationUnitCode,\r\n  channelCode: channelCode,\r\n  transactionCode: transactionCode,\r\n  operationCode: operationCode, // check-virement K, virement O \r\n  pcuBytes: pcuBytes, // hatalı olursa R, başarılı A \r\n  currencySwiftCode: currencyCode,\r\n  monetaryType: monetaryType, // check-virement Z, virement P \r\n  abmDetails: { \r\n    isVoucherPrintingNecessary: \"3\"\r\n  },\r\n  accountType: accountType, \r\n};\r\n\r\n\r\nconst req: IRequest = {\r\n  url: \"/api/dep-operations/v1/api/dep-operations/create-ofsaa\",\r\n  data: requestData,\r\n  blockRender: false,\r\n  http: \"POST\",\r\n  onFail: \"onFailOfsaRequest\",\r\n  onSuccess: \"onSuccessOfsaRequest\",\r\n  responseField: \"ofsaResponse\",\r\n  timeout: 200000,\r\n};\r\n\r\nquick.Request.async(req);",
+					"H": "declare const operationCode;\r\ndeclare const pcuBytes;\r\ndeclare const monetaryType;\r\ndeclare const accountType;\r\ndeclare const amountTL;\r\ndeclare const amountYP;\r\n\r\nlet accountNumber = components.accountInfo.qValue.accountNumber\r\nlet branchCode = components.accountInfo.qValue.branchCode\r\nlet currencyCode = components.accountInfo.qValue.currencyCode\r\nlet customerNumber = quick.store.get(\"customerValue\");\r\nlet transactionCode = \"MuhYatan\"\r\n\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    quick.store.set(\"$customConsumerCode\",'TANE.DEPFROMLEDGER');\r\n} else {\r\n    quick.store.set(\"$customConsumerCode\",'TANE.DEPTOLEDGER');\r\n    transactionCode = \"MuhCekim\"\r\n}\r\n\r\nlet creditAccountNumber = components.accountInfo.qValue.accountNumber\r\nlet creditBranchCode = components.accountInfo.qValue.branchCode\r\n\r\nlet userContext = quick.containerServices.getUserContext() as any;\r\n\r\nlet isbClientHeader = JSON.parse(quick.containerServices.extensions.getHeader('','isbClient'));\r\nlet consumerHeader = JSON.parse(quick.containerServices.extensions.getHeader('','consumer'));\r\n\r\nlet tellerId = isbClientHeader[\"branch-v1\"]?.tellerId;\r\nlet organizationUnitCode = isbClientHeader[\"branch-v1\"]?.organizationUnitCode;\r\nlet employeeId = userContext?.userid;\r\nlet channelCode = consumerHeader[\"branchContextV1\"]?.channelCode;\r\n\r\nlet tod = 'CHECK';\r\nlet sequenceNo = 1;\r\n\r\nlet amount = null;\r\nlet amountFx= null;\r\n\r\n if(amountTL != undefined && amountTL != null && amountTL != ''){\r\n    amount = quick.Quick.toDecimal(amountTL, \",\").toString()\r\n  } \r\n\r\n if(amountYP != undefined && amountYP != null && amountYP != ''){\r\n    amountFx = quick.Quick.toDecimal(amountYP, \",\").toString()\r\n  } \r\n\r\nif (response.responseVirementCreate) {\r\n  tod = response.responseVirementCreate.result.tod\r\n  sequenceNo = response.responseVirementCreate.result.sequenceNo\r\n}\r\n\r\nlet requestData = {\r\n  part: \"0\",\r\n  type: \"A\",\r\n  groupType: \"X011\", \r\n  customerNumber: customerNumber,\r\n  accountNumber: {\r\n    branchCode: branchCode,\r\n    number: accountNumber\r\n  },\r\n  tod: tod,\r\n  amount: amount,\r\n  amountFx: amountFx,\r\n  tellerId: tellerId,\r\n  sequenceNo: sequenceNo,\r\n  employeeId: employeeId,\r\n  processingOrganizationUnit: organizationUnitCode,\r\n  channelCode: channelCode,\r\n  transactionCode: transactionCode,\r\n  operationCode: operationCode, // check-virement K, virement O \r\n  pcuBytes: pcuBytes, // hatalı olursa R, başarılı A \r\n  currencySwiftCode: currencyCode,\r\n  monetaryType: monetaryType, // check-virement Z, virement P \r\n  abmDetails: { \r\n    isVoucherPrintingNecessary: \"3\"\r\n  },\r\n  accountType: accountType, \r\n};\r\n\r\n\r\nconst req: IRequest = {\r\n  url: \"/api/dep-operations/v1/api/dep-operations/create-ofsaa\",\r\n  data: requestData,\r\n  blockRender: false,\r\n  http: \"POST\",\r\n  onFail: \"onFailOfsaRequest\",\r\n  onSuccess: \"onSuccessOfsaRequest\",\r\n  responseField: \"ofsaResponse\",\r\n  timeout: 200000,\r\n};\r\n\r\nquick.Request.async(req);",
 					"C": true,
 					"HL": "TS"
 				},
@@ -2344,7 +2344,7 @@ let pjson = {
 																																					"HL": "TS"
 																																				},
 																																				"onSuccessFromToLedgerCreate": {
-																																					"H": "quick.EM.trace(\"onSuccessFromToLedgerCreate\")\r\nquick.store.set(\"successFromToLedger\", true);\r\n\r\nquick.EM.trace(response.responseFromToLedgerCreate);\r\ncomponents.EdtrComp_191.disabled = false;\r\n\r\nlet successText = \"İşlem başarı ile gerçekleşti. Lütfen \" + components.amount.qValue + \" TL tahsil ediniz.\"\r\n\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Muhasebe Hesabından Para Yatırma İşlem Sonuç';\r\n} else {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Muhasebe Hesabına Para Çekme İşlem Sonuç';\r\n    successText = \"İşlem başarı ile gerçekleşti. Lütfen \" + components.amount.qValue + \" TL ödeyiniz.\"\r\n}\r\n\r\ncomponents.EdtrComp_192.text = 'Bitir';\r\ncomponents.EdtrComp_189.visible = false;\r\ncomponents.EdtrComp_588.visible = false;\r\n\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\"){\r\n    amountTLValue = components.amount.qValue;\r\n} else {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\n\r\nquick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"O\", pcuBytes: \"A\", monetaryType: \"K\", accountType:components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue}]);\r\n\r\nif (response.responseFromToLedgerCreate) {\r\n    let date = response.responseFromToLedgerCreate.timestamp;\r\n    quick.EM.trace(\"date\");\r\n    quick.EM.trace(date)\r\n    let correlationId = response.responseFromToLedgerCreate.result.correlationId;\r\n    quick.EM.trace(\"correlationId\", correlationId)\r\n    quick.EM.trace(correlationId);\r\n    const url = \"date=\" + date + \"&siid=\" + correlationId.toUpperCase();\r\n\r\n    quick.EM.trace(\"dekont-url\")\r\n    quick.EM.trace(url);\r\n\r\n    quick.containerServices.extensions.showVoucherPopUp(url);\r\n}\r\n\r\n\r\ncomponents.successDialogVirement.dialogClick({ text: successText});\r\n\r\n\r\n",
+																																					"H": "quick.EM.trace(\"onSuccessFromToLedgerCreate\")\r\nquick.store.set(\"successFromToLedger\", true);\r\n\r\nquick.EM.trace(response.responseFromToLedgerCreate);\r\ncomponents.EdtrComp_191.disabled = false;\r\n\r\nlet successText = \"İşlem başarı ile gerçekleşti.\"\r\n\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Muhasebe Hesabından Para Yatırma İşlem Sonuç';\r\n} else {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Muhasebe Hesabına Para Çekme İşlem Sonuç';\r\n}\r\n\r\ncomponents.EdtrComp_192.text = 'Bitir';\r\ncomponents.EdtrComp_189.visible = false;\r\ncomponents.EdtrComp_588.visible = false;\r\n\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\"){\r\n    amountTLValue = components.amount.qValue;\r\n} else {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\n\r\nquick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"O\", pcuBytes: \"A\", monetaryType: \"K\", accountType:components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue}]);\r\n\r\nif (response.responseFromToLedgerCreate) {\r\n    let date = response.responseFromToLedgerCreate.timestamp;\r\n    quick.EM.trace(\"date\");\r\n    quick.EM.trace(date)\r\n    let correlationId = response.responseFromToLedgerCreate.result.correlationId;\r\n    quick.EM.trace(\"correlationId\", correlationId)\r\n    quick.EM.trace(correlationId);\r\n    const url = \"date=\" + date + \"&siid=\" + correlationId.toUpperCase();\r\n\r\n    quick.EM.trace(\"dekont-url\")\r\n    quick.EM.trace(url);\r\n\r\n    quick.containerServices.extensions.showVoucherPopUp(url);\r\n}\r\n\r\n\r\ncomponents.successDialogVirement.dialogClick({ text: successText});\r\n\r\n\r\n",
 																																					"C": true,
 																																					"HL": "TS"
 																																				},
@@ -3042,7 +3042,7 @@ let pjson = {
 																																			},
 																																			"E": {
 																																				"change": {
-																																					"H": "quick.EM.trace(value)\r\n\r\ncomponents.EdtrComp_4288.visible = true\r\ncomponents.EdtrComp_4253.visible = true\r\ncomponents.EdtrComp_34.visible = true\r\ncomponents.EdtrComp_25.visible = true\r\ncomponents.EdtrComp_11.visible = true;\r\n\r\ncomponents.accountInfo.qValue = undefined;\r\ncomponents.amount.qValue = undefined;\r\ncomponents.description.qValue = undefined;\r\ncomponents.currency.qValue = undefined;\r\ncomponents.totalAmount.qValue = undefined;\r\n\r\ncomponents.amount.rules.push(quick.Quick.validation.required());\r\n\r\nquick.Quick.resetValidation(\"amount\")\r\nquick.Quick.resetValidation(\"accountInfo\")\r\nquick.Quick.resetValidation(\"description\")\r\n\r\nif (value == 1) {\r\n    components.operationNameText.text = 'Paranın Çekileceği Hesap'\r\n    components.operationNameTextSecond.text = 'Paranın Yatırılacağı Muhasebe Hesabı'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Muhasebe Hesabuından Para Yatırma İşlem Onay'\r\n    components.totalAmount.visible = false\r\n} else {\r\n    components.operationNameText.text = 'Paranın Yatırılacağı Hesap'\r\n    components.operationNameTextSecond.text = 'Paranın Çekileceği Muhasebe Hesabı'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Muhasebe Hesabına Para Çekme İşlem Onay'\r\n    components.totalAmount.visible = true\r\n}",
+																																					"H": "quick.EM.trace(value)\r\n\r\ncomponents.EdtrComp_4288.visible = true\r\ncomponents.EdtrComp_4253.visible = true\r\ncomponents.EdtrComp_34.visible = true\r\ncomponents.EdtrComp_25.visible = true\r\ncomponents.EdtrComp_11.visible = true;\r\n\r\ncomponents.accountInfo.qValue = undefined;\r\ncomponents.amount.qValue = undefined;\r\ncomponents.description.qValue = undefined;\r\ncomponents.currency.qValue = undefined;\r\ncomponents.totalAmount.qValue = undefined;\r\n\r\ncomponents.amount.rules.push(quick.Quick.validation.required());\r\n\r\nquick.Quick.resetValidation(\"amount\")\r\nquick.Quick.resetValidation(\"accountInfo\")\r\nquick.Quick.resetValidation(\"description\")\r\n\r\nif (value == 1) {\r\n    components.operationNameText.text = 'Paranın Çekileceği Hesap'\r\n    components.operationNameTextSecond.text = 'Paranın Yatırılacağı Muhasebe Hesabı'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Muhasebe Hesabuından Para Yatırma İşlem Onay'\r\n    components.totalAmount.visible = true\r\n} else {\r\n    components.operationNameText.text = 'Paranın Yatırılacağı Hesap'\r\n    components.operationNameTextSecond.text = 'Paranın Çekileceği Muhasebe Hesabı'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Muhasebe Hesabına Para Çekme İşlem Onay'\r\n    components.totalAmount.visible = false\r\n}",
 																																					"P": "value:any",
 																																					"HL": "TS"
 																																				}
@@ -7597,7 +7597,7 @@ let pjson = {
 																													"HL": "TS"
 																												},
 																												"onSuccessCheckFromToLedgerCreate": {
-																													"H": "quick.EM.trace(\"onSuccessCheckFromToLedgerCreate\")\r\n\r\nquick.store.set(\"validationToken\",response.responseCheckFromToLedgerCreate.validationToken);\r\n\r\ncomponents.EdtrComp_1463.disabled = false;\r\n\r\ndeclare const operationCode;\r\ndeclare const pcuBytes;\r\ndeclare const monetaryType;\r\n\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\"){\r\n    amountTLValue = components.amount.qValue;\r\n} else {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\n\r\nquick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"K\", pcuBytes: \"A\", monetaryType: \"Z\", accountType:components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue}]);\r\n\r\n\r\ncomponents.summaryDebitAccount.qValue = components.accountInfo.qValue.branchCode + ' - ' + components.accountInfo.qValue.iban + ' - ' + components.accountInfo.qValue.availableBalance + ' ' + components.currency.qValue\r\ncomponents.summaryGlCode.qValue = components.branchCode.qValue + ' - ' + components.glCode.qValue\r\ncomponents.summaryDescription.qValue = components.description.qValue;\r\ncomponents.summaryAmount.qValue = components.amount.qValue + ' ' + components.currency.qValue;\r\n\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.summaryDebitAccount.label = 'Paranın Yatırılacağı Hesap'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Muhasebe Hesabından Para Yatırma İşlem Onay';\r\n} else {\r\n    components.summaryDebitAccount.label = 'Paranın Çekileceği Hesap'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Muhasebe Hesabına Para Çekme İşlem Onay';\r\n}\r\n\r\ncomponents.EdtrComp_4288.visible = false;\r\ncomponents.EdtrComp_4253.visible = false;\r\ncomponents.EdtrComp_34.visible = false;\r\ncomponents.EdtrComp_25.visible = false;\r\ncomponents.EdtrComp_41.visible = false;\r\ncomponents.EdtrComp_11.visible = false;\r\ncomponents.summaryRow.visible = true;\r\n\r\n\r\n\r\n\r\n\r\n",
+																													"H": "quick.EM.trace(\"onSuccessCheckFromToLedgerCreate\")\r\n\r\nquick.store.set(\"validationToken\",response.responseCheckFromToLedgerCreate.validationToken);\r\n\r\ncomponents.EdtrComp_1463.disabled = false;\r\n\r\ndeclare const operationCode;\r\ndeclare const pcuBytes;\r\ndeclare const monetaryType;\r\n\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\"){\r\n    amountTLValue = components.amount.qValue;\r\n} else {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\n\r\nquick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"K\", pcuBytes: \"A\", monetaryType: \"Z\", accountType:components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue}]);\r\n\r\n\r\ncomponents.summaryDebitAccount.qValue = components.accountInfo.qValue.branchCode + ' - ' + components.accountInfo.qValue.iban + ' - ' + components.accountInfo.qValue.availableBalance + ' ' + components.currency.qValue\r\ncomponents.summaryGlCode.qValue = components.branchCode.qValue + ' - ' + components.glCode.qValue\r\ncomponents.summaryDescription.qValue = components.description.qValue;\r\ncomponents.summaryAmount.qValue = components.amount.qValue + ' ' + components.currency.qValue;\r\n\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.summaryDebitAccount.label = 'Paranın Yatırılacağı Hesap'\r\n    components.summaryGlCode.label = 'Paranın çekileceği Muhasebe Hesap Bilgisi'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Muhasebe Hesabından Para Yatırma İşlem Onay';\r\n} else {\r\n    components.summaryDebitAccount.label = 'Paranın Çekileceği Hesap'\r\n    components.summaryGlCode.label = 'Paranın yatırılacağı Muhasebe Hesap Bilgisi'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Muhasebe Hesabına Para Çekme İşlem Onay';\r\n}\r\n\r\ncomponents.EdtrComp_4288.visible = false;\r\ncomponents.EdtrComp_4253.visible = false;\r\ncomponents.EdtrComp_34.visible = false;\r\ncomponents.EdtrComp_25.visible = false;\r\ncomponents.EdtrComp_41.visible = false;\r\ncomponents.EdtrComp_11.visible = false;\r\ncomponents.summaryRow.visible = true;\r\n\r\n\r\n\r\n\r\n\r\n",
 																													"C": true,
 																													"HL": "TS"
 																												},
@@ -8114,7 +8114,7 @@ let pjson = {
 					"HL": "JS"
 				},
 				"ofsaaRequest": {
-					"H": "var _a, _b, _c;\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nvar accountNumber = components.accountInfo.qValue.accountNumber;\r\nvar branchCode = components.accountInfo.qValue.branchCode;\r\nvar currencyCode = components.accountInfo.qValue.currencyCode;\r\nvar customerNumber = quick.store.get(\"customerValue\");\r\nvar transactionCode = \"NakitYat\";\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    quick.store.set(\"$customConsumerCode\", 'TANE.DEPDEPOSIT');\r\n}\r\nelse {\r\n    quick.store.set(\"$customConsumerCode\", 'TANE.DEPWITHDRAW');\r\n    transactionCode = \"NakitCek\";\r\n}\r\nvar creditAccountNumber = components.accountInfo.qValue.accountNumber;\r\nvar creditBranchCode = components.accountInfo.qValue.branchCode;\r\nvar userContext = quick.containerServices.getUserContext();\r\nvar isbClientHeader = JSON.parse(quick.containerServices.extensions.getHeader('', 'isbClient'));\r\nvar consumerHeader = JSON.parse(quick.containerServices.extensions.getHeader('', 'consumer'));\r\nvar tellerId = (_a = isbClientHeader[\"branch-v1\"]) === null || _a === void 0 ? void 0 : _a.tellerId;\r\nvar organizationUnitCode = (_b = isbClientHeader[\"branch-v1\"]) === null || _b === void 0 ? void 0 : _b.organizationUnitCode;\r\nvar employeeId = userContext === null || userContext === void 0 ? void 0 : userContext.userid;\r\nvar channelCode = (_c = consumerHeader[\"branchContextV1\"]) === null || _c === void 0 ? void 0 : _c.channelCode;\r\nvar tod = 'CHECK';\r\nvar sequenceNo = 1;\r\nvar amount = null;\r\nvar amountFx = null;\r\nif (amountTL != undefined && amountTL != null && amountTL != '') {\r\n    amount = quick.Quick.toDecimal(amountTL, \",\").toString();\r\n}\r\nif (amountYP != undefined && amountYP != null && amountYP != '') {\r\n    amountFx = quick.Quick.toDecimal(amountYP, \",\").toString();\r\n}\r\nif (response.responseVirementCreate) {\r\n    tod = response.responseVirementCreate.result.tod;\r\n    sequenceNo = response.responseVirementCreate.result.sequenceNo;\r\n}\r\nvar requestData = {\r\n    part: \"0\",\r\n    type: \"A\",\r\n    groupType: \"X011\",\r\n    customerNumber: customerNumber,\r\n    accountNumber: {\r\n        branchCode: branchCode,\r\n        number: accountNumber\r\n    },\r\n    tod: tod,\r\n    amount: amount,\r\n    amountFx: amountFx,\r\n    tellerId: tellerId,\r\n    sequenceNo: sequenceNo,\r\n    employeeId: employeeId,\r\n    processingOrganizationUnit: organizationUnitCode,\r\n    channelCode: channelCode,\r\n    transactionCode: transactionCode,\r\n    operationCode: operationCode,\r\n    pcuBytes: pcuBytes,\r\n    currencySwiftCode: currencyCode,\r\n    monetaryType: monetaryType,\r\n    abmDetails: {\r\n        isVoucherPrintingNecessary: \"3\"\r\n    },\r\n    accountType: accountType,\r\n};\r\nvar req = {\r\n    url: \"/api/dep-operations/v1/api/dep-operations/create-ofsaa\",\r\n    data: requestData,\r\n    blockRender: false,\r\n    http: \"POST\",\r\n    onFail: \"onFailOfsaRequest\",\r\n    onSuccess: \"onSuccessOfsaRequest\",\r\n    responseField: \"ofsaResponse\",\r\n    timeout: 200000,\r\n};\r\nquick.Request.async(req);\r\n",
+					"H": "var _a, _b, _c;\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nvar accountNumber = components.accountInfo.qValue.accountNumber;\r\nvar branchCode = components.accountInfo.qValue.branchCode;\r\nvar currencyCode = components.accountInfo.qValue.currencyCode;\r\nvar customerNumber = quick.store.get(\"customerValue\");\r\nvar transactionCode = \"MuhYatan\";\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    quick.store.set(\"$customConsumerCode\", 'TANE.DEPFROMLEDGER');\r\n}\r\nelse {\r\n    quick.store.set(\"$customConsumerCode\", 'TANE.DEPTOLEDGER');\r\n    transactionCode = \"MuhCekim\";\r\n}\r\nvar creditAccountNumber = components.accountInfo.qValue.accountNumber;\r\nvar creditBranchCode = components.accountInfo.qValue.branchCode;\r\nvar userContext = quick.containerServices.getUserContext();\r\nvar isbClientHeader = JSON.parse(quick.containerServices.extensions.getHeader('', 'isbClient'));\r\nvar consumerHeader = JSON.parse(quick.containerServices.extensions.getHeader('', 'consumer'));\r\nvar tellerId = (_a = isbClientHeader[\"branch-v1\"]) === null || _a === void 0 ? void 0 : _a.tellerId;\r\nvar organizationUnitCode = (_b = isbClientHeader[\"branch-v1\"]) === null || _b === void 0 ? void 0 : _b.organizationUnitCode;\r\nvar employeeId = userContext === null || userContext === void 0 ? void 0 : userContext.userid;\r\nvar channelCode = (_c = consumerHeader[\"branchContextV1\"]) === null || _c === void 0 ? void 0 : _c.channelCode;\r\nvar tod = 'CHECK';\r\nvar sequenceNo = 1;\r\nvar amount = null;\r\nvar amountFx = null;\r\nif (amountTL != undefined && amountTL != null && amountTL != '') {\r\n    amount = quick.Quick.toDecimal(amountTL, \",\").toString();\r\n}\r\nif (amountYP != undefined && amountYP != null && amountYP != '') {\r\n    amountFx = quick.Quick.toDecimal(amountYP, \",\").toString();\r\n}\r\nif (response.responseVirementCreate) {\r\n    tod = response.responseVirementCreate.result.tod;\r\n    sequenceNo = response.responseVirementCreate.result.sequenceNo;\r\n}\r\nvar requestData = {\r\n    part: \"0\",\r\n    type: \"A\",\r\n    groupType: \"X011\",\r\n    customerNumber: customerNumber,\r\n    accountNumber: {\r\n        branchCode: branchCode,\r\n        number: accountNumber\r\n    },\r\n    tod: tod,\r\n    amount: amount,\r\n    amountFx: amountFx,\r\n    tellerId: tellerId,\r\n    sequenceNo: sequenceNo,\r\n    employeeId: employeeId,\r\n    processingOrganizationUnit: organizationUnitCode,\r\n    channelCode: channelCode,\r\n    transactionCode: transactionCode,\r\n    operationCode: operationCode,\r\n    pcuBytes: pcuBytes,\r\n    currencySwiftCode: currencyCode,\r\n    monetaryType: monetaryType,\r\n    abmDetails: {\r\n        isVoucherPrintingNecessary: \"3\"\r\n    },\r\n    accountType: accountType,\r\n};\r\nvar req = {\r\n    url: \"/api/dep-operations/v1/api/dep-operations/create-ofsaa\",\r\n    data: requestData,\r\n    blockRender: false,\r\n    http: \"POST\",\r\n    onFail: \"onFailOfsaRequest\",\r\n    onSuccess: \"onSuccessOfsaRequest\",\r\n    responseField: \"ofsaResponse\",\r\n    timeout: 200000,\r\n};\r\nquick.Request.async(req);\r\n",
 					"C": true,
 					"HL": "JS"
 				},
@@ -10479,7 +10479,7 @@ let pjson = {
 																																					"HL": "JS"
 																																				},
 																																				"onSuccessFromToLedgerCreate": {
-																																					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"onSuccessFromToLedgerCreate\");\r\nquick.store.set(\"successFromToLedger\", true);\r\nquick.EM.trace(response.responseFromToLedgerCreate);\r\ncomponents.EdtrComp_191.disabled = false;\r\nvar successText = \"İşlem başarı ile gerçekleşti. Lütfen \" + components.amount.qValue + \" TL tahsil ediniz.\";\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Muhasebe Hesabından Para Yatırma İşlem Sonuç';\r\n}\r\nelse {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Muhasebe Hesabına Para Çekme İşlem Sonuç';\r\n    successText = \"İşlem başarı ile gerçekleşti. Lütfen \" + components.amount.qValue + \" TL ödeyiniz.\";\r\n}\r\ncomponents.EdtrComp_192.text = 'Bitir';\r\ncomponents.EdtrComp_189.visible = false;\r\ncomponents.EdtrComp_588.visible = false;\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\") {\r\n    amountTLValue = components.amount.qValue;\r\n}\r\nelse {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\nquick.MM.trigger(\"ofsaaRequest\", [{ operationCode: \"O\", pcuBytes: \"A\", monetaryType: \"K\", accountType: components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue }]);\r\nif (response.responseFromToLedgerCreate) {\r\n    var date = response.responseFromToLedgerCreate.timestamp;\r\n    quick.EM.trace(\"date\");\r\n    quick.EM.trace(date);\r\n    var correlationId = response.responseFromToLedgerCreate.result.correlationId;\r\n    quick.EM.trace(\"correlationId\", correlationId);\r\n    quick.EM.trace(correlationId);\r\n    var url = \"date=\" + date + \"&siid=\" + correlationId.toUpperCase();\r\n    quick.EM.trace(\"dekont-url\");\r\n    quick.EM.trace(url);\r\n    quick.containerServices.extensions.showVoucherPopUp(url);\r\n}\r\ncomponents.successDialogVirement.dialogClick({ text: successText });\r\n",
+																																					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"onSuccessFromToLedgerCreate\");\r\nquick.store.set(\"successFromToLedger\", true);\r\nquick.EM.trace(response.responseFromToLedgerCreate);\r\ncomponents.EdtrComp_191.disabled = false;\r\nvar successText = \"İşlem başarı ile gerçekleşti.\";\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Muhasebe Hesabından Para Yatırma İşlem Sonuç';\r\n}\r\nelse {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Muhasebe Hesabına Para Çekme İşlem Sonuç';\r\n}\r\ncomponents.EdtrComp_192.text = 'Bitir';\r\ncomponents.EdtrComp_189.visible = false;\r\ncomponents.EdtrComp_588.visible = false;\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\") {\r\n    amountTLValue = components.amount.qValue;\r\n}\r\nelse {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\nquick.MM.trigger(\"ofsaaRequest\", [{ operationCode: \"O\", pcuBytes: \"A\", monetaryType: \"K\", accountType: components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue }]);\r\nif (response.responseFromToLedgerCreate) {\r\n    var date = response.responseFromToLedgerCreate.timestamp;\r\n    quick.EM.trace(\"date\");\r\n    quick.EM.trace(date);\r\n    var correlationId = response.responseFromToLedgerCreate.result.correlationId;\r\n    quick.EM.trace(\"correlationId\", correlationId);\r\n    quick.EM.trace(correlationId);\r\n    var url = \"date=\" + date + \"&siid=\" + correlationId.toUpperCase();\r\n    quick.EM.trace(\"dekont-url\");\r\n    quick.EM.trace(url);\r\n    quick.containerServices.extensions.showVoucherPopUp(url);\r\n}\r\ncomponents.successDialogVirement.dialogClick({ text: successText });\r\n",
 																																					"C": true,
 																																					"HL": "JS"
 																																				},
@@ -11187,7 +11187,7 @@ let pjson = {
 																																			},
 																																			"E": {
 																																				"change": {
-																																					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nquick.EM.trace(value);\r\ncomponents.EdtrComp_4288.visible = true;\r\ncomponents.EdtrComp_4253.visible = true;\r\ncomponents.EdtrComp_34.visible = true;\r\ncomponents.EdtrComp_25.visible = true;\r\ncomponents.EdtrComp_11.visible = true;\r\ncomponents.accountInfo.qValue = undefined;\r\ncomponents.amount.qValue = undefined;\r\ncomponents.description.qValue = undefined;\r\ncomponents.currency.qValue = undefined;\r\ncomponents.totalAmount.qValue = undefined;\r\ncomponents.amount.rules.push(quick.Quick.validation.required());\r\nquick.Quick.resetValidation(\"amount\");\r\nquick.Quick.resetValidation(\"accountInfo\");\r\nquick.Quick.resetValidation(\"description\");\r\nif (value == 1) {\r\n    components.operationNameText.text = 'Paranın Çekileceği Hesap';\r\n    components.operationNameTextSecond.text = 'Paranın Yatırılacağı Muhasebe Hesabı';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Muhasebe Hesabuından Para Yatırma İşlem Onay';\r\n    components.totalAmount.visible = false;\r\n}\r\nelse {\r\n    components.operationNameText.text = 'Paranın Yatırılacağı Hesap';\r\n    components.operationNameTextSecond.text = 'Paranın Çekileceği Muhasebe Hesabı';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Muhasebe Hesabına Para Çekme İşlem Onay';\r\n    components.totalAmount.visible = true;\r\n}\r\n",
+																																					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nquick.EM.trace(value);\r\ncomponents.EdtrComp_4288.visible = true;\r\ncomponents.EdtrComp_4253.visible = true;\r\ncomponents.EdtrComp_34.visible = true;\r\ncomponents.EdtrComp_25.visible = true;\r\ncomponents.EdtrComp_11.visible = true;\r\ncomponents.accountInfo.qValue = undefined;\r\ncomponents.amount.qValue = undefined;\r\ncomponents.description.qValue = undefined;\r\ncomponents.currency.qValue = undefined;\r\ncomponents.totalAmount.qValue = undefined;\r\ncomponents.amount.rules.push(quick.Quick.validation.required());\r\nquick.Quick.resetValidation(\"amount\");\r\nquick.Quick.resetValidation(\"accountInfo\");\r\nquick.Quick.resetValidation(\"description\");\r\nif (value == 1) {\r\n    components.operationNameText.text = 'Paranın Çekileceği Hesap';\r\n    components.operationNameTextSecond.text = 'Paranın Yatırılacağı Muhasebe Hesabı';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Muhasebe Hesabuından Para Yatırma İşlem Onay';\r\n    components.totalAmount.visible = true;\r\n}\r\nelse {\r\n    components.operationNameText.text = 'Paranın Yatırılacağı Hesap';\r\n    components.operationNameTextSecond.text = 'Paranın Çekileceği Muhasebe Hesabı';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Muhasebe Hesabına Para Çekme İşlem Onay';\r\n    components.totalAmount.visible = false;\r\n}\r\n",
 																																					"P": "value:any",
 																																					"HL": "JS"
 																																				}
@@ -13046,7 +13046,7 @@ let pjson = {
 																																							},
 																																							"O": {
 																																								"cType": "slot",
-																																								"compDomClasses": "q-label "
+																																								"compDomClasses": "q-label newDropBorder"
 																																							}
 																																						}
 																																					],
@@ -13074,7 +13074,7 @@ let pjson = {
 																																					},
 																																					"class": "d-flex flex-column"
 																																				},
-																																				"compDomClasses": "col d-flex flex-column"
+																																				"compDomClasses": "col d-flex flex-column newDropBorder"
 																																			},
 																																			"S": {
 																																				"xs-xl": {
@@ -13155,7 +13155,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "row"
+																																"compDomClasses": "row newDropBorder"
 																															}
 																														}
 																													],
@@ -13212,7 +13212,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "v-card v-sheet theme--light"
+																												"compDomClasses": "v-card v-sheet theme--light newDropBorder"
 																											}
 																										},
 																										{
@@ -13374,7 +13374,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined v-select v-autocomplete undefined"
+																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined v-select v-autocomplete undefined newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -13403,7 +13403,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column"
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -13585,7 +13585,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined"
+																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -13613,7 +13613,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column"
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -13795,7 +13795,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined"
+																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -13823,7 +13823,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column"
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -13990,7 +13990,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined"
+																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -14018,7 +14018,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column"
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -14102,7 +14102,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "row"
+																												"compDomClasses": "row newDropBorder"
 																											}
 																										}
 																									],
@@ -14130,7 +14130,7 @@ let pjson = {
 																									},
 																									"class": "d-flex flex-column"
 																								},
-																								"compDomClasses": "col d-flex flex-column"
+																								"compDomClasses": "col d-flex flex-column newDropBorder"
 																							},
 																							"S": {
 																								"xs-sm": {
@@ -14250,7 +14250,7 @@ let pjson = {
 																			},
 																			"O": {
 																				"cType": "slot",
-																				"compDomClasses": "row"
+																				"compDomClasses": "row newDropBorder"
 																			}
 																		},
 																		{
@@ -14359,7 +14359,7 @@ let pjson = {
 																																							},
 																																							"O": {
 																																								"cType": "slot",
-																																								"compDomClasses": "q-label "
+																																								"compDomClasses": "q-label newDropBorder"
 																																							}
 																																						}
 																																					],
@@ -14387,7 +14387,7 @@ let pjson = {
 																																					},
 																																					"class": "d-flex flex-column"
 																																				},
-																																				"compDomClasses": "col d-flex flex-column"
+																																				"compDomClasses": "col d-flex flex-column newDropBorder"
 																																			},
 																																			"S": {
 																																				"xs-xl": {
@@ -14468,7 +14468,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "row"
+																																"compDomClasses": "row newDropBorder"
 																															}
 																														}
 																													],
@@ -14525,7 +14525,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "v-card v-sheet theme--light"
+																												"compDomClasses": "v-card v-sheet theme--light newDropBorder"
 																											}
 																										},
 																										{
@@ -14676,7 +14676,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined"
+																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -14704,7 +14704,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column"
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -14872,7 +14872,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input v-input--is-disabled theme--light v-text-field v-text-field--is-booted undefined"
+																																				"compDomClasses": "v-input v-input--is-disabled theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -14900,7 +14900,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column"
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -15039,7 +15039,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input theme--light v-input--selection-controls v-input--checkbox"
+																																				"compDomClasses": "v-input theme--light v-input--selection-controls v-input--checkbox newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -15067,7 +15067,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column"
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -15151,7 +15151,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "row"
+																												"compDomClasses": "row newDropBorder"
 																											}
 																										}
 																									],
@@ -15179,7 +15179,7 @@ let pjson = {
 																									},
 																									"class": "d-flex flex-column"
 																								},
-																								"compDomClasses": "col d-flex flex-column"
+																								"compDomClasses": "col d-flex flex-column newDropBorder"
 																							},
 																							"S": {
 																								"xs-sm": {
@@ -15299,7 +15299,7 @@ let pjson = {
 																			},
 																			"O": {
 																				"cType": "slot",
-																				"compDomClasses": "row"
+																				"compDomClasses": "row newDropBorder"
 																			}
 																		},
 																		{
@@ -15450,7 +15450,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined"
+																												"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined newDropBorder"
 																											}
 																										}
 																									],
@@ -15478,7 +15478,7 @@ let pjson = {
 																									},
 																									"class": "d-flex flex-column"
 																								},
-																								"compDomClasses": "col d-flex flex-column"
+																								"compDomClasses": "col d-flex flex-column newDropBorder"
 																							},
 																							"S": {
 																								"xs-xl": {
@@ -15562,7 +15562,7 @@ let pjson = {
 																			},
 																			"O": {
 																				"cType": "slot",
-																				"compDomClasses": "row"
+																				"compDomClasses": "row newDropBorder"
 																			}
 																		},
 																		{
@@ -15822,7 +15822,7 @@ let pjson = {
 																													"HL": "JS"
 																												},
 																												"onSuccessCheckFromToLedgerCreate": {
-																													"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"onSuccessCheckFromToLedgerCreate\");\r\nquick.store.set(\"validationToken\", response.responseCheckFromToLedgerCreate.validationToken);\r\ncomponents.EdtrComp_1463.disabled = false;\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\") {\r\n    amountTLValue = components.amount.qValue;\r\n}\r\nelse {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\nquick.MM.trigger(\"ofsaaRequest\", [{ operationCode: \"K\", pcuBytes: \"A\", monetaryType: \"Z\", accountType: components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue }]);\r\ncomponents.summaryDebitAccount.qValue = components.accountInfo.qValue.branchCode + ' - ' + components.accountInfo.qValue.iban + ' - ' + components.accountInfo.qValue.availableBalance + ' ' + components.currency.qValue;\r\ncomponents.summaryGlCode.qValue = components.branchCode.qValue + ' - ' + components.glCode.qValue;\r\ncomponents.summaryDescription.qValue = components.description.qValue;\r\ncomponents.summaryAmount.qValue = components.amount.qValue + ' ' + components.currency.qValue;\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.summaryDebitAccount.label = 'Paranın Yatırılacağı Hesap';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Muhasebe Hesabından Para Yatırma İşlem Onay';\r\n}\r\nelse {\r\n    components.summaryDebitAccount.label = 'Paranın Çekileceği Hesap';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Muhasebe Hesabına Para Çekme İşlem Onay';\r\n}\r\ncomponents.EdtrComp_4288.visible = false;\r\ncomponents.EdtrComp_4253.visible = false;\r\ncomponents.EdtrComp_34.visible = false;\r\ncomponents.EdtrComp_25.visible = false;\r\ncomponents.EdtrComp_41.visible = false;\r\ncomponents.EdtrComp_11.visible = false;\r\ncomponents.summaryRow.visible = true;\r\n",
+																													"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"onSuccessCheckFromToLedgerCreate\");\r\nquick.store.set(\"validationToken\", response.responseCheckFromToLedgerCreate.validationToken);\r\ncomponents.EdtrComp_1463.disabled = false;\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\") {\r\n    amountTLValue = components.amount.qValue;\r\n}\r\nelse {\r\n    amountYPValue = components.amount.qValue;\r\n}\r\nquick.MM.trigger(\"ofsaaRequest\", [{ operationCode: \"K\", pcuBytes: \"A\", monetaryType: \"Z\", accountType: components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue }]);\r\ncomponents.summaryDebitAccount.qValue = components.accountInfo.qValue.branchCode + ' - ' + components.accountInfo.qValue.iban + ' - ' + components.accountInfo.qValue.availableBalance + ' ' + components.currency.qValue;\r\ncomponents.summaryGlCode.qValue = components.branchCode.qValue + ' - ' + components.glCode.qValue;\r\ncomponents.summaryDescription.qValue = components.description.qValue;\r\ncomponents.summaryAmount.qValue = components.amount.qValue + ' ' + components.currency.qValue;\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    components.summaryDebitAccount.label = 'Paranın Yatırılacağı Hesap';\r\n    components.summaryGlCode.label = 'Paranın çekileceği Muhasebe Hesap Bilgisi';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Muhasebe Hesabından Para Yatırma İşlem Onay';\r\n}\r\nelse {\r\n    components.summaryDebitAccount.label = 'Paranın Çekileceği Hesap';\r\n    components.summaryGlCode.label = 'Paranın yatırılacağı Muhasebe Hesap Bilgisi';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Muhasebe Hesabına Para Çekme İşlem Onay';\r\n}\r\ncomponents.EdtrComp_4288.visible = false;\r\ncomponents.EdtrComp_4253.visible = false;\r\ncomponents.EdtrComp_34.visible = false;\r\ncomponents.EdtrComp_25.visible = false;\r\ncomponents.EdtrComp_41.visible = false;\r\ncomponents.EdtrComp_11.visible = false;\r\ncomponents.summaryRow.visible = true;\r\n",
 																													"C": true,
 																													"HL": "JS"
 																												},
