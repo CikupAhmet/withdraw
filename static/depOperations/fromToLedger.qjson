@@ -5694,7 +5694,7 @@ let pjson = {
 																																					"T": "prop"
 																																				},
 																																				"maxlength": {
-																																					"H": "4",
+																																					"H": "8",
 																																					"T": "attr",
 																																					"HL": "QS"
 																																				}
@@ -13886,7 +13886,7 @@ let pjson = {
 																																					"T": "prop"
 																																				},
 																																				"maxlength": {
-																																					"H": "╬4╩╩",
+																																					"H": "╬8╩╩",
 																																					"T": "attr",
 																																					"HL": "QS"
 																																				}
@@ -15638,7 +15638,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "child",
-																																"compDomClasses": "q-label "
+																																"compDomClasses": "q-label newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -15791,7 +15791,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "v-btn v-btn--depressed theme--light v-size--default"
+																												"compDomClasses": "v-btn v-btn--depressed theme--light v-size--default newDropBorder"
 																											}
 																										},
 																										{
@@ -15855,7 +15855,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "child",
-																																"compDomClasses": "q-label "
+																																"compDomClasses": "q-label newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -15949,7 +15949,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "v-btn v-btn--depressed theme--light v-size--default"
+																												"compDomClasses": "v-btn v-btn--depressed theme--light v-size--default newDropBorder"
 																											}
 																										}
 																									],
@@ -15977,7 +15977,7 @@ let pjson = {
 																									},
 																									"class": "d-flex flex-column"
 																								},
-																								"compDomClasses": "col d-flex flex-column"
+																								"compDomClasses": "col d-flex flex-column newDropBorder"
 																							},
 																							"S": {
 																								"xs-sm": {
@@ -16095,7 +16095,7 @@ let pjson = {
 																			},
 																			"O": {
 																				"cType": "slot",
-																				"compDomClasses": "row"
+																				"compDomClasses": "row newDropBorder"
 																			}
 																		}
 																	],
@@ -16262,7 +16262,7 @@ let pjson = {
 			"O": {
 				"cType": "child",
 				"dynProps": true,
-				"compDomClasses": ""
+				"compDomClasses": "newDropBorder"
 			}
 		},
 		{
@@ -16293,7 +16293,7 @@ let pjson = {
 			"O": {
 				"cType": "child",
 				"dynProps": true,
-				"compDomClasses": ""
+				"compDomClasses": "newDropBorder"
 			}
 		},
 		{

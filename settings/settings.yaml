@@ -86,7 +86,7 @@ fileMap:
 - id: qf2d8qrm-4txv-431i-c01o-j810mlhysizt
   path: /static/depOperations
   name: /withdraw.qjson
-  version: Tue Jun 30 2026 16:50:24 GMT+0300 (Türkiye Standart Saati)
+  version: Wed Jul 08 2026 09:22:32 GMT+0300 (Türkiye Standart Saati)
 - id: v6ck2cck-xrfq-835w-yo58-0hd0mlp9nk7m
   path: /static/depOperations
   name: /withdrawReview.qjson
@@ -94,7 +94,7 @@ fileMap:
 - id: w3a7ngku-w7xf-mox8-6y5w-dfm0mo9z8cvr
   path: /static/depOperations
   name: /fromToLedger.qjson
-  version: Fri Jul 03 2026 11:42:34 GMT+0300 (Türkiye Standart Saati)
+  version: Wed Jul 08 2026 09:22:55 GMT+0300 (Türkiye Standart Saati)
 - id: 67wnkpnb-itvr-k8w8-c2ga-ci90mm4o6q5f
   path: /static/css
   name: /styleFile.css
