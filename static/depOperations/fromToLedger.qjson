@@ -14,7 +14,7 @@ let pjson = {
 			},
 			"E": {
 				"EndRender": {
-					"H": "quick.EM.trace('End Render')\r\n\r\nquick.store.set(\"successFromToLedger\", false);\r\n\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    quick.store.set(\"$customConsumerCode\",'TANE.DEPDEPOSIT');\r\n} else {\r\n    quick.store.set(\"$customConsumerCode\",'TANE.DEPWITHDRAW');\r\n}\r\n\r\ncomponents.accountInfo.loading = true;\r\ncomponents.EdtrComp_4288.visible = false\r\ncomponents.EdtrComp_4253.visible = false\r\ncomponents.EdtrComp_34.visible = false\r\ncomponents.EdtrComp_25.visible = false\r\ncomponents.EdtrComp_11.visible = false;\r\ncomponents.acccountingTypeCombo.visible = false;\r\n\r\n\r\n\r\nlet accountTypes: { text: string; value: string }[] = [\r\n  { text: 'Vadesiz TL', value: 'DEMAND' },\r\n  {text: 'Vadesiz Döviz', value: 'FX-DEMAND'}\r\n];\r\naccountTypes.forEach(function (accountType) {\r\n    components.accountType.items.push({\r\n        text: accountType.text,\r\n        value: accountType.value\r\n    });\r\n    if (accountType.value == 'DEMAND') {\r\n        components.accountType.qValue = accountType;\r\n        (<any>components.accountType).updateValue();\r\n    }\r\n\r\n});\r\n\r\nlet idempotentRequest: IRequest = {\r\n    url: '/api/dep-operations/v1/api/dep-operations/keys',\r\n    http: 'get',\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessIdempotent',\r\n    onFail: 'onFailIdempotent',\r\n    responseField: 'idempotent',\r\n    data: null\r\n}\r\nquick.Request.async(idempotentRequest);\r\n\r\n\r\nlet customerContext = quick.containerServices.getCustomerContext() as any;\r\nlet userData = quick.containerServices.getUserContext() as any;\r\nquick.EM.trace(\"userData\");\r\nquick.EM.trace(userData)\r\nquick.store.set(\"customerValue\", customerContext.customerNumber);\r\n\r\nlet accountListRequest: IRequest = {\r\n    url: '/api/dep-operations/v1/api/dep-operations/retrieveDepositAccounts?customerId=' + quick.store.get(\"customerValue\"),\r\n    http: 'get',\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessAccountList',\r\n    onFail: 'onFailAccountList',\r\n    responseField: 'accountList',\r\n    data: null\r\n}\r\nquick.Request.async(accountListRequest);\r\n\r\n",
+					"H": "quick.EM.trace('End Render')\r\n\r\nquick.store.set(\"successFromToLedger\", false);\r\n\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    quick.store.set(\"$customConsumerCode\",'TANE.DEPDEPOSIT');\r\n} else {\r\n    quick.store.set(\"$customConsumerCode\",'TANE.DEPWITHDRAW');\r\n}\r\n\r\ncomponents.accountInfo.loading = true;\r\ncomponents.EdtrComp_4288.visible = false\r\ncomponents.EdtrComp_4253.visible = false\r\ncomponents.EdtrComp_34.visible = false\r\ncomponents.EdtrComp_25.visible = false\r\ncomponents.EdtrComp_11.visible = false;\r\ncomponents.acccountingTypeCombo.visible = false;\r\n\r\n\r\n\r\nlet accountTypes: { text: string; value: string }[] = [\r\n  { text: 'Vadesiz TL', value: 'DEMAND' },\r\n  {text: 'Vadesiz Döviz', value: 'FX-DEMAND'}\r\n];\r\naccountTypes.forEach(function (accountType) {\r\n    components.accountType.items.push({\r\n        text: accountType.text,\r\n        value: accountType.value\r\n    });\r\n    if (accountType.value == 'DEMAND') {\r\n        components.accountType.qValue = accountType;\r\n        (<any>components.accountType).updateValue();\r\n    }\r\n\r\n});\r\n\r\nlet idempotentRequest: IRequest = {\r\n    url: '/api/dep-operations/v1/api/dep-operations/keys',\r\n    http: 'get',\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessIdempotent',\r\n    onFail: 'onFailIdempotent',\r\n    responseField: 'idempotent',\r\n    data: null\r\n}\r\nquick.Request.async(idempotentRequest);\r\n\r\n\r\nlet customerContext = quick.containerServices.getCustomerContext() as any;\r\nlet userData = quick.containerServices.getUserContext() as any;\r\nquick.EM.trace(\"userData\");\r\nquick.EM.trace(userData)\r\n\r\nif (userData) {\r\n    components.branchCode.qValue = userData?.branchCode;\r\n    components.branchCode.readonly = true\r\n}\r\n\r\nquick.store.set(\"customerValue\", customerContext.customerNumber);\r\n\r\nlet accountListRequest: IRequest = {\r\n    url: '/api/dep-operations/v1/api/dep-operations/retrieveDepositAccounts?customerId=' + quick.store.get(\"customerValue\"),\r\n    http: 'get',\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessAccountList',\r\n    onFail: 'onFailAccountList',\r\n    responseField: 'accountList',\r\n    data: null\r\n}\r\nquick.Request.async(accountListRequest);\r\n\r\n",
 					"HL": "TS"
 				},
 				"onSuccessAccountList": {
@@ -3042,7 +3042,7 @@ let pjson = {
 																																			},
 																																			"E": {
 																																				"change": {
-																																					"H": "quick.EM.trace(value)\r\n\r\ncomponents.EdtrComp_4288.visible = true\r\ncomponents.EdtrComp_4253.visible = true\r\ncomponents.EdtrComp_34.visible = true\r\ncomponents.EdtrComp_25.visible = true\r\ncomponents.EdtrComp_11.visible = true;\r\n\r\ncomponents.accountInfo.qValue = undefined;\r\ncomponents.amount.qValue = undefined;\r\ncomponents.description.qValue = undefined;\r\ncomponents.currency.qValue = undefined;\r\ncomponents.totalAmount.qValue = undefined;\r\n\r\ncomponents.amount.rules.push(quick.Quick.validation.required());\r\n\r\nquick.Quick.resetValidation(\"amount\")\r\nquick.Quick.resetValidation(\"accountInfo\")\r\nquick.Quick.resetValidation(\"description\")\r\n\r\nif (value == 1) {\r\n    components.operationNameText.text = 'Paranın Çekileceği Hesap'\r\n    components.operationNameTextSecond.text = 'Paranın Yatırılacağı Muhasebe Hesabı'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Muhasebe Hesabuından Para Yatırma İşlem Onay'\r\n    components.totalAmount.visible = true\r\n} else {\r\n    components.operationNameText.text = 'Paranın Yatırılacağı Hesap'\r\n    components.operationNameTextSecond.text = 'Paranın Çekileceği Muhasebe Hesabı'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Muhasebe Hesabına Para Çekme İşlem Onay'\r\n    components.totalAmount.visible = false\r\n}",
+																																					"H": "quick.EM.trace(value)\r\n\r\ncomponents.EdtrComp_4288.visible = true\r\ncomponents.EdtrComp_4253.visible = true\r\ncomponents.EdtrComp_34.visible = true\r\ncomponents.EdtrComp_25.visible = true\r\ncomponents.EdtrComp_11.visible = true;\r\n\r\ncomponents.accountInfo.qValue = undefined;\r\ncomponents.amount.qValue = undefined;\r\ncomponents.description.qValue = undefined;\r\ncomponents.currency.qValue = undefined;\r\ncomponents.totalAmount.qValue = undefined;\r\ncomponents.glCode.qValue = undefined;\r\ncomponents.reference = undefined;\r\n\r\ncomponents.amount.rules.push(quick.Quick.validation.required());\r\n\r\nquick.Quick.resetValidation(\"amount\")\r\nquick.Quick.resetValidation(\"accountInfo\")\r\nquick.Quick.resetValidation(\"description\")\r\n\r\nif (value == 1) {\r\n    components.operationNameText.text = 'Paranın Çekileceği Hesap'\r\n    components.operationNameTextSecond.text = 'Paranın Yatırılacağı Muhasebe Hesabı'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Muhasebe Hesabuından Para Yatırma İşlem Onay'\r\n    components.totalAmount.visible = true\r\n} else {\r\n    components.operationNameText.text = 'Paranın Yatırılacağı Hesap'\r\n    components.operationNameTextSecond.text = 'Paranın Çekileceği Muhasebe Hesabı'\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Muhasebe Hesabına Para Çekme İşlem Onay'\r\n    components.totalAmount.visible = false\r\n}",
 																																					"P": "value:any",
 																																					"HL": "TS"
 																																				}
@@ -5697,6 +5697,16 @@ let pjson = {
 																																					"H": "8",
 																																					"T": "attr",
 																																					"HL": "QS"
+																																				},
+																																				"format": {
+																																					"H": "'number'",
+																																					"T": "attr",
+																																					"HL": "QS"
+																																				},
+																																				"formatValues": {
+																																					"H": "{'regex'='^[0-9]+$'}",
+																																					"T": "attr",
+																																					"HL": "QS"
 																																				}
 																																			},
 																																			"E": {},
@@ -8100,7 +8110,7 @@ let pjson = {
 			},
 			"E": {
 				"EndRender": {
-					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace('End Render');\r\nquick.store.set(\"successFromToLedger\", false);\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    quick.store.set(\"$customConsumerCode\", 'TANE.DEPDEPOSIT');\r\n}\r\nelse {\r\n    quick.store.set(\"$customConsumerCode\", 'TANE.DEPWITHDRAW');\r\n}\r\ncomponents.accountInfo.loading = true;\r\ncomponents.EdtrComp_4288.visible = false;\r\ncomponents.EdtrComp_4253.visible = false;\r\ncomponents.EdtrComp_34.visible = false;\r\ncomponents.EdtrComp_25.visible = false;\r\ncomponents.EdtrComp_11.visible = false;\r\ncomponents.acccountingTypeCombo.visible = false;\r\nvar accountTypes = [\r\n    { text: 'Vadesiz TL', value: 'DEMAND' },\r\n    { text: 'Vadesiz Döviz', value: 'FX-DEMAND' }\r\n];\r\naccountTypes.forEach(function (accountType) {\r\n    components.accountType.items.push({\r\n        text: accountType.text,\r\n        value: accountType.value\r\n    });\r\n    if (accountType.value == 'DEMAND') {\r\n        components.accountType.qValue = accountType;\r\n        components.accountType.updateValue();\r\n    }\r\n});\r\nvar idempotentRequest = {\r\n    url: '/api/dep-operations/v1/api/dep-operations/keys',\r\n    http: 'get',\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessIdempotent',\r\n    onFail: 'onFailIdempotent',\r\n    responseField: 'idempotent',\r\n    data: null\r\n};\r\nquick.Request.async(idempotentRequest);\r\nvar customerContext = quick.containerServices.getCustomerContext();\r\nvar userData = quick.containerServices.getUserContext();\r\nquick.EM.trace(\"userData\");\r\nquick.EM.trace(userData);\r\nquick.store.set(\"customerValue\", customerContext.customerNumber);\r\nvar accountListRequest = {\r\n    url: '/api/dep-operations/v1/api/dep-operations/retrieveDepositAccounts?customerId=' + quick.store.get(\"customerValue\"),\r\n    http: 'get',\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessAccountList',\r\n    onFail: 'onFailAccountList',\r\n    responseField: 'accountList',\r\n    data: null\r\n};\r\nquick.Request.async(accountListRequest);\r\n",
+					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace('End Render');\r\nquick.store.set(\"successFromToLedger\", false);\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    quick.store.set(\"$customConsumerCode\", 'TANE.DEPDEPOSIT');\r\n}\r\nelse {\r\n    quick.store.set(\"$customConsumerCode\", 'TANE.DEPWITHDRAW');\r\n}\r\ncomponents.accountInfo.loading = true;\r\ncomponents.EdtrComp_4288.visible = false;\r\ncomponents.EdtrComp_4253.visible = false;\r\ncomponents.EdtrComp_34.visible = false;\r\ncomponents.EdtrComp_25.visible = false;\r\ncomponents.EdtrComp_11.visible = false;\r\ncomponents.acccountingTypeCombo.visible = false;\r\nvar accountTypes = [\r\n    { text: 'Vadesiz TL', value: 'DEMAND' },\r\n    { text: 'Vadesiz Döviz', value: 'FX-DEMAND' }\r\n];\r\naccountTypes.forEach(function (accountType) {\r\n    components.accountType.items.push({\r\n        text: accountType.text,\r\n        value: accountType.value\r\n    });\r\n    if (accountType.value == 'DEMAND') {\r\n        components.accountType.qValue = accountType;\r\n        components.accountType.updateValue();\r\n    }\r\n});\r\nvar idempotentRequest = {\r\n    url: '/api/dep-operations/v1/api/dep-operations/keys',\r\n    http: 'get',\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessIdempotent',\r\n    onFail: 'onFailIdempotent',\r\n    responseField: 'idempotent',\r\n    data: null\r\n};\r\nquick.Request.async(idempotentRequest);\r\nvar customerContext = quick.containerServices.getCustomerContext();\r\nvar userData = quick.containerServices.getUserContext();\r\nquick.EM.trace(\"userData\");\r\nquick.EM.trace(userData);\r\nif (userData) {\r\n    components.branchCode.qValue = userData === null || userData === void 0 ? void 0 : userData.branchCode;\r\n    components.branchCode.readonly = true;\r\n}\r\nquick.store.set(\"customerValue\", customerContext.customerNumber);\r\nvar accountListRequest = {\r\n    url: '/api/dep-operations/v1/api/dep-operations/retrieveDepositAccounts?customerId=' + quick.store.get(\"customerValue\"),\r\n    http: 'get',\r\n    blockRender: true,\r\n    onSuccess: 'onSuccessAccountList',\r\n    onFail: 'onFailAccountList',\r\n    responseField: 'accountList',\r\n    data: null\r\n};\r\nquick.Request.async(accountListRequest);\r\n",
 					"HL": "JS"
 				},
 				"onSuccessAccountList": {
@@ -11187,7 +11197,7 @@ let pjson = {
 																																			},
 																																			"E": {
 																																				"change": {
-																																					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nquick.EM.trace(value);\r\ncomponents.EdtrComp_4288.visible = true;\r\ncomponents.EdtrComp_4253.visible = true;\r\ncomponents.EdtrComp_34.visible = true;\r\ncomponents.EdtrComp_25.visible = true;\r\ncomponents.EdtrComp_11.visible = true;\r\ncomponents.accountInfo.qValue = undefined;\r\ncomponents.amount.qValue = undefined;\r\ncomponents.description.qValue = undefined;\r\ncomponents.currency.qValue = undefined;\r\ncomponents.totalAmount.qValue = undefined;\r\ncomponents.amount.rules.push(quick.Quick.validation.required());\r\nquick.Quick.resetValidation(\"amount\");\r\nquick.Quick.resetValidation(\"accountInfo\");\r\nquick.Quick.resetValidation(\"description\");\r\nif (value == 1) {\r\n    components.operationNameText.text = 'Paranın Çekileceği Hesap';\r\n    components.operationNameTextSecond.text = 'Paranın Yatırılacağı Muhasebe Hesabı';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Muhasebe Hesabuından Para Yatırma İşlem Onay';\r\n    components.totalAmount.visible = true;\r\n}\r\nelse {\r\n    components.operationNameText.text = 'Paranın Yatırılacağı Hesap';\r\n    components.operationNameTextSecond.text = 'Paranın Çekileceği Muhasebe Hesabı';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Muhasebe Hesabına Para Çekme İşlem Onay';\r\n    components.totalAmount.visible = false;\r\n}\r\n",
+																																					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nquick.EM.trace(value);\r\ncomponents.EdtrComp_4288.visible = true;\r\ncomponents.EdtrComp_4253.visible = true;\r\ncomponents.EdtrComp_34.visible = true;\r\ncomponents.EdtrComp_25.visible = true;\r\ncomponents.EdtrComp_11.visible = true;\r\ncomponents.accountInfo.qValue = undefined;\r\ncomponents.amount.qValue = undefined;\r\ncomponents.description.qValue = undefined;\r\ncomponents.currency.qValue = undefined;\r\ncomponents.totalAmount.qValue = undefined;\r\ncomponents.glCode.qValue = undefined;\r\ncomponents.reference = undefined;\r\ncomponents.amount.rules.push(quick.Quick.validation.required());\r\nquick.Quick.resetValidation(\"amount\");\r\nquick.Quick.resetValidation(\"accountInfo\");\r\nquick.Quick.resetValidation(\"description\");\r\nif (value == 1) {\r\n    components.operationNameText.text = 'Paranın Çekileceği Hesap';\r\n    components.operationNameTextSecond.text = 'Paranın Yatırılacağı Muhasebe Hesabı';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Muhasebe Hesabuından Para Yatırma İşlem Onay';\r\n    components.totalAmount.visible = true;\r\n}\r\nelse {\r\n    components.operationNameText.text = 'Paranın Yatırılacağı Hesap';\r\n    components.operationNameTextSecond.text = 'Paranın Çekileceği Muhasebe Hesabı';\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Muhasebe Hesabına Para Çekme İşlem Onay';\r\n    components.totalAmount.visible = false;\r\n}\r\n",
 																																					"P": "value:any",
 																																					"HL": "JS"
 																																				}
@@ -13585,7 +13595,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined newDropBorder"
+																																				"compDomClasses": "v-input v-input--is-label-active v-input--is-dirty v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -13887,6 +13897,16 @@ let pjson = {
 																																				},
 																																				"maxlength": {
 																																					"H": "╬8╩╩",
+																																					"T": "attr",
+																																					"HL": "QS"
+																																				},
+																																				"format": {
+																																					"H": "╬'number'╩╩",
+																																					"T": "attr",
+																																					"HL": "QS"
+																																				},
+																																				"formatValues": {
+																																					"H": "╬{}╠=╣'regex'╩╠'^[0-9]+$'╩╩╩╩",
 																																					"T": "attr",
 																																					"HL": "QS"
 																																				}
@@ -15855,7 +15875,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "child",
-																																"compDomClasses": "q-label newDropBorder"
+																																"compDomClasses": "q-label "
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -16262,7 +16282,7 @@ let pjson = {
 			"O": {
 				"cType": "child",
 				"dynProps": true,
-				"compDomClasses": "newDropBorder"
+				"compDomClasses": ""
 			}
 		},
 		{
@@ -16293,7 +16313,7 @@ let pjson = {
 			"O": {
 				"cType": "child",
 				"dynProps": true,
-				"compDomClasses": "newDropBorder"
+				"compDomClasses": ""
 			}
 		},
 		{
