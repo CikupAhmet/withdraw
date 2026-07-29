@@ -83,8 +83,24 @@ let pjson = {
 	},
 	"description": {},
 	"opt": {
-		"otelDiag": "ACI76262.pipeline.PlateauUI.ISBANK.Mevduat.NakitParaYatirmaCekme.gs9myibp-kz3d-7b1p-oudh-dli0mlhyosis",
-		"otelChannel": "branch"
+		"studio": {
+			"tags": {
+				"ACICode": "ACI76262",
+				"Channel": "branch"
+			},
+			"app": {
+				"name": "NakitParaYatirmaCekme",
+				"id": "vp0tyyde-uoi2-zknm-5nyt-45t0mlhw3uf8"
+			},
+			"model": {
+				"name": "pipeline",
+				"id": "gs9myibp-kz3d-7b1p-oudh-dli0mlhyosis"
+			},
+			"org": {
+				"name": "Mevduat"
+			},
+			"orgGroupName": "ISBANK"
+		}
 	}
 };
 export default pjson;
