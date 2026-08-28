@@ -90,7 +90,7 @@ fileMap:
 - id: v6ck2cck-xrfq-835w-yo58-0hd0mlp9nk7m
   path: /static/depOperations
   name: /withdrawReview.qjson
-  version: Thu Aug 27 2026 14:21:40 GMT+0300 (Türkiye Standart Saati)
+  version: Fri Aug 28 2026 16:18:28 GMT+0300 (Türkiye Standart Saati)
 - id: w3a7ngku-w7xf-mox8-6y5w-dfm0mo9z8cvr
   path: /static/depOperations
   name: /fromToLedger.qjson
