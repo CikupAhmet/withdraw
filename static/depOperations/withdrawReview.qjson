@@ -3384,7 +3384,7 @@ let pjson = {
 																																					"HL": "TS"
 																																				},
 																																				"onSuccessApproveRecord": {
-																																					"H": "quick.EM.trace(\"onSuccessWithdrawCreate\")\r\nquick.store.set(\"successVirement\", true);\r\n\r\nquick.EM.trace(response.responseWithdrawCreate);\r\ncomponents.approveButton.disabled = false;\r\nlet onlineApprove = response.retrieveOnlineApprove;\r\nlet successText = \"İşlem başarı ile gerçekleşti. Lütfen \" + onlineApprove.amount + \" TL tahsil ediniz.\"\r\n\r\nif (onlineApprove.operationType == 'deposit') {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Nakit Para Yatırma İşlem Sonuç';\r\n} else {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Nakit Para Çekme İşlem Sonuç';\r\n    successText = \"İşlem başarı ile gerçekleşti. Lütfen \" + onlineApprove.amount + \" TL ödeyiniz.\"\r\n}\r\n\r\ncomponents.approveButtonText.text = 'Bitir';\r\ncomponents.closeButton.visible = false;\r\n\r\n//quick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"O\", pcuBytes: \"A\", monetaryType: \"K\"}]);\r\n\r\nif (response.responseWithdrawCreate) {\r\n    let date = response.responseWithdrawCreate.timestamp;\r\n    quick.EM.trace(\"date\");\r\n    quick.EM.trace(date)\r\n    let correlationId = response.responseWithdrawCreate.result.correlationId;\r\n    quick.EM.trace(\"correlationId\", correlationId)\r\n    quick.EM.trace(correlationId);\r\n    const url = \"date=\" + date + \"&siid=\" + correlationId.toUpperCase();\r\n\r\n    quick.EM.trace(\"dekont-url\")\r\n    quick.EM.trace(url);\r\n\r\n    quick.containerServices.extensions.showVoucherPopUp(url);\r\n}\r\n\r\n\r\ncomponents.successDialogVirement.dialogClick({ text: successText});",
+																																					"H": "quick.EM.trace(\"onSuccessWithdrawCreate\")\r\nquick.store.set(\"successVirement\", true);\r\n\r\nquick.EM.trace(response.responseWithdrawCreate);\r\ncomponents.approveButton.disabled = false;\r\nlet onlineApprove = response.retrieveOnlineApprove;\r\n\r\n\r\nlet textSucess = undefined;\r\n\r\nlet currency = onlineApprove.currency;\r\nlet amount = quick.Quick.toDecimal(onlineApprove.amount, \",\").toString();\r\nlet amountValue = Number(amount);\r\n\r\nconst formatter = new Intl.NumberFormat(\"tr-TR\", {\r\n    minimumFractionDigits: 2,\r\n    maximumFractionDigits: 2\r\n});\r\n\r\nlet formattedAmount;\r\nlet parsedAmount;\r\nlet totalFeeAmount;\r\nlet parsedTotalFeeAmount;\r\nlet monetaryType = \"K\";\r\n\r\nconst feePaymentType = onlineApprove?.feeAmountResponse?.feePaymentType;\r\nconst feeCash = feePaymentType != undefined && feePaymentType === \"CASH\";\r\n\r\nif (feeCash) {\r\n    const feeAmountValue =\r\n        onlineApprove?.feeAmountResponse?.feeAmount;\r\n\r\n    const feeAmountBsmvValue =\r\n        onlineApprove?.feeAmountResponse?.feeAmountBsmv;\r\n\r\n    const feeAmount =\r\n        Number(feeAmountValue.unscaledValue) / 100;\r\n\r\n    const feeTaxAmount =\r\n        Number(feeAmountBsmvValue.unscaledValue) / 100;\r\n\r\n    totalFeeAmount = feeAmount + feeTaxAmount;\r\n    parsedTotalFeeAmount = formatter.format(totalFeeAmount);\r\n}\r\n\r\nconst isCollection = onlineApprove == 'deposit';\r\nconst isTry = currency == \"TRY\";\r\n\r\n// Tutar hesaplama\r\nif (feeCash && isTry) {\r\n    formattedAmount = isCollection\r\n        ? amountValue + totalFeeAmount\r\n        : amountValue - totalFeeAmount;\r\n\r\n    parsedAmount = formatter.format(formattedAmount);\r\n} else {\r\n    parsedAmount = formatter.format(amountValue);\r\n}\r\n\r\n// Mesaj oluşturma\r\nconst actionText = isCollection ? \"tahsil ediniz.\" : \"ödeyiniz.\";\r\n\r\ntextSucess =\r\n    `İşlem başarı ile gerçekleşti. Lütfen ${parsedAmount} ${currency} ${actionText}`;\r\n\r\nif (!isTry && feeCash) {\r\n    textSucess += `${parsedTotalFeeAmount} TRY tahsil ediniz.`;\r\n}\r\n\r\ncomponents.approveButtonText.text = 'Bitir';\r\ncomponents.closeButton.visible = false;\r\n\r\n//quick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"O\", pcuBytes: \"A\", monetaryType: \"K\"}]);\r\n\r\nif (response.responseWithdrawCreate) {\r\n    let date = response.responseWithdrawCreate.timestamp;\r\n    quick.EM.trace(\"date\");\r\n    quick.EM.trace(date)\r\n    let correlationId = response.responseWithdrawCreate.result.correlationId;\r\n    quick.EM.trace(\"correlationId\", correlationId)\r\n    quick.EM.trace(correlationId);\r\n    const url = \"date=\" + date + \"&siid=\" + correlationId.toUpperCase();\r\n\r\n    quick.EM.trace(\"dekont-url\")\r\n    quick.EM.trace(url);\r\n\r\n    quick.containerServices.extensions.showVoucherPopUp(url);\r\n}\r\n\r\n\r\ncomponents.successDialogVirement.dialogClick({ text: textSucess});",
 																																					"C": true,
 																																					"HL": "TS"
 																																				},
@@ -3964,7 +3964,8 @@ let pjson = {
 				},
 				"triggerOnRestored": {
 					"H": "╬false╩╩",
-					"T": "prop"
+					"T": "prop",
+					"HL": "QS"
 				}
 			},
 			"E": {
@@ -4010,15 +4011,18 @@ let pjson = {
 				},
 				"class": {
 					"H": "╬'container'╩╩",
-					"T": "class"
+					"T": "class",
+					"HL": "QS"
 				},
 				"visible": {
 					"H": "╬true╩╩",
-					"T": "prop"
+					"T": "prop",
+					"HL": "QS"
 				},
 				"eager": {
 					"H": "╬true╩╩",
-					"T": "prop"
+					"T": "prop",
+					"HL": "QS"
 				}
 			},
 			"E": {},
@@ -4051,7 +4055,8 @@ let pjson = {
 																},
 																"visible": {
 																	"H": "╬true╩╩",
-																	"T": "prop"
+																	"T": "prop",
+																	"HL": "QS"
 																}
 															},
 															"E": {},
@@ -4090,7 +4095,8 @@ let pjson = {
 																												},
 																												"visible": {
 																													"H": "╬true╩╩",
-																													"T": "prop"
+																													"T": "prop",
+																													"HL": "QS"
 																												}
 																											},
 																											"E": {},
@@ -4124,7 +4130,8 @@ let pjson = {
 																																								},
 																																								"tagType": {
 																																									"H": "╬'span'╩╩",
-																																									"T": "prop"
+																																									"T": "prop",
+																																									"HL": "QS"
 																																								},
 																																								"text": {
 																																									"H": "╬'Müşterinin Hesabına Nakit Para Yatırma İşlem Onay'╩╩",
@@ -4133,11 +4140,13 @@ let pjson = {
 																																								},
 																																								"visible": {
 																																									"H": "╬true╩╩",
-																																									"T": "prop"
+																																									"T": "prop",
+																																									"HL": "QS"
 																																								},
 																																								"processHtml": {
 																																									"H": "╬false╩╩",
-																																									"T": "prop"
+																																									"T": "prop",
+																																									"HL": "QS"
 																																								}
 																																							},
 																																							"E": {},
@@ -4369,7 +4378,8 @@ let pjson = {
 																																				},
 																																				"visible": {
 																																					"H": "╬true╩╩",
-																																					"T": "prop"
+																																					"T": "prop",
+																																					"HL": "QS"
 																																				}
 																																			},
 																																			"E": {},
@@ -4403,7 +4413,8 @@ let pjson = {
 																																																},
 																																																"hideDetails": {
 																																																	"H": "╬false╩╩",
-																																																	"T": "prop"
+																																																	"T": "prop",
+																																																	"HL": "QS"
 																																																},
 																																																"label": {
 																																																	"H": "╬'Paranın Çekileceği Hesap'╩╩",
@@ -4412,7 +4423,8 @@ let pjson = {
 																																																},
 																																																"visible": {
 																																																	"H": "╬true╩╩",
-																																																	"T": "prop"
+																																																	"T": "prop",
+																																																	"HL": "QS"
 																																																},
 																																																"disabled": {
 																																																	"H": "╬false╩╩",
@@ -4690,7 +4702,8 @@ let pjson = {
 																																																},
 																																																"hideDetails": {
 																																																	"H": "╬false╩╩",
-																																																	"T": "prop"
+																																																	"T": "prop",
+																																																	"HL": "QS"
 																																																},
 																																																"label": {
 																																																	"H": "╬'Toplam İşlem Tutarı'╩╩",
@@ -4699,7 +4712,8 @@ let pjson = {
 																																																},
 																																																"visible": {
 																																																	"H": "╬true╩╩",
-																																																	"T": "prop"
+																																																	"T": "prop",
+																																																	"HL": "QS"
 																																																},
 																																																"disabled": {
 																																																	"H": "╬false╩╩",
@@ -4977,7 +4991,8 @@ let pjson = {
 																																																},
 																																																"hideDetails": {
 																																																	"H": "╬false╩╩",
-																																																	"T": "prop"
+																																																	"T": "prop",
+																																																	"HL": "QS"
 																																																},
 																																																"label": {
 																																																	"H": "╬'Açıklama'╩╩",
@@ -4986,7 +5001,8 @@ let pjson = {
 																																																},
 																																																"visible": {
 																																																	"H": "╬true╩╩",
-																																																	"T": "prop"
+																																																	"T": "prop",
+																																																	"HL": "QS"
 																																																},
 																																																"disabled": {
 																																																	"H": "╬false╩╩",
@@ -5416,7 +5432,8 @@ let pjson = {
 																																				},
 																																				"visible": {
 																																					"H": "╬true╩╩",
-																																					"T": "prop"
+																																					"T": "prop",
+																																					"HL": "QS"
 																																				}
 																																			},
 																																			"E": {},
@@ -5450,7 +5467,8 @@ let pjson = {
 																																																},
 																																																"hideDetails": {
 																																																	"H": "╬false╩╩",
-																																																	"T": "prop"
+																																																	"T": "prop",
+																																																	"HL": "QS"
 																																																},
 																																																"label": {
 																																																	"H": "╬'Ücret Tutarı'╩╩",
@@ -5646,7 +5664,8 @@ let pjson = {
 																																																},
 																																																"hideDetails": {
 																																																	"H": "╬false╩╩",
-																																																	"T": "prop"
+																																																	"T": "prop",
+																																																	"HL": "QS"
 																																																},
 																																																"label": {
 																																																	"H": "╬'Ücret Tahsil Yöntemi'╩╩",
@@ -5837,7 +5856,8 @@ let pjson = {
 																																																},
 																																																"hideDetails": {
 																																																	"H": "╬false╩╩",
-																																																	"T": "prop"
+																																																	"T": "prop",
+																																																	"HL": "QS"
 																																																},
 																																																"label": {
 																																																	"H": "╬'Vergi Tutarı'╩╩",
@@ -6038,7 +6058,8 @@ let pjson = {
 																																																},
 																																																"hideDetails": {
 																																																	"H": "╬false╩╩",
-																																																	"T": "prop"
+																																																	"T": "prop",
+																																																	"HL": "QS"
 																																																},
 																																																"label": {
 																																																	"H": "╬'Vadesiz Hesap Bilgileri'╩╩",
@@ -6229,7 +6250,8 @@ let pjson = {
 																																																},
 																																																"hideDetails": {
 																																																	"H": "╬false╩╩",
-																																																	"T": "prop"
+																																																	"T": "prop",
+																																																	"HL": "QS"
 																																																},
 																																																"label": {
 																																																	"H": "╬'Toplam Ücret Tutarı'╩╩",
@@ -7151,11 +7173,13 @@ let pjson = {
 																																				},
 																																				"depressed": {
 																																					"H": "╬true╩╩",
-																																					"T": "prop"
+																																					"T": "prop",
+																																					"HL": "QS"
 																																				},
 																																				"visible": {
 																																					"H": "╬true╩╩",
-																																					"T": "prop"
+																																					"T": "prop",
+																																					"HL": "QS"
 																																				},
 																																				"DiscardSettings": {
 																																					"H": "╬true╩╩",
@@ -7364,11 +7388,13 @@ let pjson = {
 																																				},
 																																				"depressed": {
 																																					"H": "╬true╩╩",
-																																					"T": "prop"
+																																					"T": "prop",
+																																					"HL": "QS"
 																																				},
 																																				"visible": {
 																																					"H": "╬true╩╩",
-																																					"T": "prop"
+																																					"T": "prop",
+																																					"HL": "QS"
 																																				},
 																																				"DiscardSettings": {
 																																					"H": "╬true╩╩",
@@ -7393,7 +7419,7 @@ let pjson = {
 																																					"HL": "JS"
 																																				},
 																																				"onSuccessApproveRecord": {
-																																					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"onSuccessWithdrawCreate\");\r\nquick.store.set(\"successVirement\", true);\r\nquick.EM.trace(response.responseWithdrawCreate);\r\ncomponents.approveButton.disabled = false;\r\nvar onlineApprove = response.retrieveOnlineApprove;\r\nvar successText = \"İşlem başarı ile gerçekleşti. Lütfen \" + onlineApprove.amount + \" TL tahsil ediniz.\";\r\nif (onlineApprove.operationType == 'deposit') {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabına Nakit Para Yatırma İşlem Sonuç';\r\n}\r\nelse {\r\n    components.HeaderSummary.text = 'Müşterinin Hesabından Nakit Para Çekme İşlem Sonuç';\r\n    successText = \"İşlem başarı ile gerçekleşti. Lütfen \" + onlineApprove.amount + \" TL ödeyiniz.\";\r\n}\r\ncomponents.approveButtonText.text = 'Bitir';\r\ncomponents.closeButton.visible = false;\r\n//quick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"O\", pcuBytes: \"A\", monetaryType: \"K\"}]);\r\nif (response.responseWithdrawCreate) {\r\n    var date = response.responseWithdrawCreate.timestamp;\r\n    quick.EM.trace(\"date\");\r\n    quick.EM.trace(date);\r\n    var correlationId = response.responseWithdrawCreate.result.correlationId;\r\n    quick.EM.trace(\"correlationId\", correlationId);\r\n    quick.EM.trace(correlationId);\r\n    var url = \"date=\" + date + \"&siid=\" + correlationId.toUpperCase();\r\n    quick.EM.trace(\"dekont-url\");\r\n    quick.EM.trace(url);\r\n    quick.containerServices.extensions.showVoucherPopUp(url);\r\n}\r\ncomponents.successDialogVirement.dialogClick({ text: successText });\r\n",
+																																					"H": "var _a, _b, _c;\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"onSuccessWithdrawCreate\");\r\nquick.store.set(\"successVirement\", true);\r\nquick.EM.trace(response.responseWithdrawCreate);\r\ncomponents.approveButton.disabled = false;\r\nvar onlineApprove = response.retrieveOnlineApprove;\r\nvar textSucess = undefined;\r\nvar currency = onlineApprove.currency;\r\nvar amount = quick.Quick.toDecimal(onlineApprove.amount, \",\").toString();\r\nvar amountValue = Number(amount);\r\nvar formatter = new Intl.NumberFormat(\"tr-TR\", {\r\n    minimumFractionDigits: 2,\r\n    maximumFractionDigits: 2\r\n});\r\nvar formattedAmount;\r\nvar parsedAmount;\r\nvar totalFeeAmount;\r\nvar parsedTotalFeeAmount;\r\nvar monetaryType = \"K\";\r\nvar feePaymentType = (_a = onlineApprove === null || onlineApprove === void 0 ? void 0 : onlineApprove.feeAmountResponse) === null || _a === void 0 ? void 0 : _a.feePaymentType;\r\nvar feeCash = feePaymentType != undefined && feePaymentType === \"CASH\";\r\nif (feeCash) {\r\n    var feeAmountValue = (_b = onlineApprove === null || onlineApprove === void 0 ? void 0 : onlineApprove.feeAmountResponse) === null || _b === void 0 ? void 0 : _b.feeAmount;\r\n    var feeAmountBsmvValue = (_c = onlineApprove === null || onlineApprove === void 0 ? void 0 : onlineApprove.feeAmountResponse) === null || _c === void 0 ? void 0 : _c.feeAmountBsmv;\r\n    var feeAmount = Number(feeAmountValue.unscaledValue) / 100;\r\n    var feeTaxAmount = Number(feeAmountBsmvValue.unscaledValue) / 100;\r\n    totalFeeAmount = feeAmount + feeTaxAmount;\r\n    parsedTotalFeeAmount = formatter.format(totalFeeAmount);\r\n}\r\nvar isCollection = onlineApprove == 'deposit';\r\nvar isTry = currency == \"TRY\";\r\n// Tutar hesaplama\r\nif (feeCash && isTry) {\r\n    formattedAmount = isCollection\r\n        ? amountValue + totalFeeAmount\r\n        : amountValue - totalFeeAmount;\r\n    parsedAmount = formatter.format(formattedAmount);\r\n}\r\nelse {\r\n    parsedAmount = formatter.format(amountValue);\r\n}\r\n// Mesaj oluşturma\r\nvar actionText = isCollection ? \"tahsil ediniz.\" : \"ödeyiniz.\";\r\ntextSucess =\r\n    \"\\u0130\\u015Flem ba\\u015Far\\u0131 ile ger\\u00E7ekle\\u015Fti. L\\u00FCtfen \" + parsedAmount + \" \" + currency + \" \" + actionText;\r\nif (!isTry && feeCash) {\r\n    textSucess += parsedTotalFeeAmount + \" TRY tahsil ediniz.\";\r\n}\r\ncomponents.approveButtonText.text = 'Bitir';\r\ncomponents.closeButton.visible = false;\r\n//quick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"O\", pcuBytes: \"A\", monetaryType: \"K\"}]);\r\nif (response.responseWithdrawCreate) {\r\n    var date = response.responseWithdrawCreate.timestamp;\r\n    quick.EM.trace(\"date\");\r\n    quick.EM.trace(date);\r\n    var correlationId = response.responseWithdrawCreate.result.correlationId;\r\n    quick.EM.trace(\"correlationId\", correlationId);\r\n    quick.EM.trace(correlationId);\r\n    var url = \"date=\" + date + \"&siid=\" + correlationId.toUpperCase();\r\n    quick.EM.trace(\"dekont-url\");\r\n    quick.EM.trace(url);\r\n    quick.containerServices.extensions.showVoucherPopUp(url);\r\n}\r\ncomponents.successDialogVirement.dialogClick({ text: textSucess });\r\n",
 																																					"C": true,
 																																					"HL": "JS"
 																																				},
