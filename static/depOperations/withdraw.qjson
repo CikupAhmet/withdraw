@@ -3462,7 +3462,7 @@ let pjson = {
 																																					"HL": "TS"
 																																				},
 																																				"onSuccessWithdrawCreate": {
-																																					"H": "quick.EM.trace(\"onSuccessWithdrawCreate\")\r\nquick.store.set(\"successVirement\", true);\r\n\r\nquick.EM.trace(response.responseWithdrawCreate);\r\ncomponents.EdtrComp_191.disabled = false;\r\n\r\nlet textSucess = undefined;\r\n\r\nlet currency = components.currency.qValue;\r\nlet amount = quick.Quick.toDecimal(components.amount.qValue, \",\").toString();\r\nlet amountValue = Number(amount);\r\n\r\nconst formatter = new Intl.NumberFormat(\"tr-TR\", {\r\n    minimumFractionDigits: 2,\r\n    maximumFractionDigits: 2\r\n});\r\n\r\nlet formattedAmount;\r\nlet parsedAmount;\r\nlet totalFeeAmount;\r\nlet parsedTotalFeeAmount;\r\nlet monetaryType = \"K\";\r\n\r\nconst feePaymentType = quick.store.get(\"feePaymentType\");\r\nconst feeCash = feePaymentType != undefined && feePaymentType === \"CASH\";\r\n\r\nif (feeCash) {\r\n    const feeAmountValue =\r\n        response.responseCheckWithdrawCreate?.feeAmountResponse?.feeAmount;\r\n\r\n    const feeAmountBsmvValue =\r\n        response.responseCheckWithdrawCreate?.feeAmountResponse?.feeAmountBsmv;\r\n\r\n    const feeAmount =\r\n        Number(feeAmountValue.unscaledValue) / 100;\r\n\r\n    const feeTaxAmount =\r\n        Number(feeAmountBsmvValue.unscaledValue) / 100;\r\n\r\n    totalFeeAmount = feeAmount + feeTaxAmount;\r\n    parsedTotalFeeAmount = formatter.format(totalFeeAmount);\r\n}\r\n\r\nconst isCollection = components.operationTypeGroup.qValue == 0;\r\nconst isTry = currency == \"TRY\";\r\n\r\n// Tutar hesaplama\r\nif (feeCash && isTry) {\r\n    formattedAmount = isCollection\r\n        ? amountValue + totalFeeAmount\r\n        : amountValue - totalFeeAmount;\r\n\r\n    parsedAmount = formatter.format(formattedAmount);\r\n} else {\r\n    parsedAmount = formatter.format(amountValue);\r\n}\r\n\r\n// Mesaj oluşturma\r\nconst actionText = isCollection ? \"tahsil ediniz.\" : \"ödeyiniz.\";\r\n\r\ntextSucess =\r\n    `İşlem başarı ile gerçekleşti. Lütfen ${parsedAmount} ${components.currency.qValue} ${actionText}`;\r\n\r\nif (!isTry && feeCash) {\r\n    textSucess += `${parsedTotalFeeAmount} TRY tahsil ediniz.`;\r\n}\r\n\r\ncomponents.successDialogVirement.dialogClick({ text: textSucess});\r\n\r\ncomponents.EdtrComp_192.text = 'Bitir';\r\ncomponents.EdtrComp_189.visible = false;\r\ncomponents.EdtrComp_588.visible = false;\r\n\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\"){\r\n    amountTLValue = quick.Quick.toDecimal(components.amount.qValue, \",\").toString();;\r\n} else {\r\n    amountTLValue = response.responseWithdrawCreate.result.amountTL\r\n    amountYPValue = components.amount.qValue;\r\n}\r\n\r\nquick.EM.trace(\"feeamount response\")\r\nquick.EM.trace(amountTLValue)\r\nquick.EM.trace(response.responseCheckWithdrawCreate?.feeAmountResponse)\r\nvar amountCommission = null;\r\nif (response.responseCheckWithdrawCreate?.feeAmountResponse?.feeAmount != null && response.responseCheckWithdrawCreate?.feeAmountResponse?.feeAmount != undefined) {\r\n    const feeAmount = Number(response.responseCheckWithdrawCreate?.feeAmountResponse?.feeAmount.unscaledValue) / 100;\r\n    amountCommission  = feeAmount\r\n}\r\n\r\nquick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"O\", pcuBytes: \"A\", monetaryType: monetaryType, accountType:components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue, commisionAmount:amountCommission}]);\r\n\r\nif (response.responseWithdrawCreate) {\r\n    let date = response.responseWithdrawCreate.timestamp;\r\n    quick.EM.trace(\"date\");\r\n    quick.EM.trace(date)\r\n    let correlationId = response.responseWithdrawCreate.result.correlationId;\r\n    quick.EM.trace(\"correlationId\", correlationId)\r\n    quick.EM.trace(correlationId);\r\n    const url = \"date=\" + date + \"&siid=\" + correlationId.toUpperCase();\r\n\r\n    quick.EM.trace(\"dekont-url\")\r\n    quick.EM.trace(url);\r\n\r\n    quick.containerServices.extensions.showVoucherPopUp(url);\r\n}\r\n\r\n\r\n\r\n\r\n\r\n",
+																																					"H": "quick.EM.trace(\"onSuccessWithdrawCreate\")\r\nquick.store.set(\"successVirement\", true);\r\n\r\nquick.EM.trace(response.responseWithdrawCreate);\r\ncomponents.EdtrComp_191.disabled = false;\r\n\r\nlet textSucess = undefined;\r\n\r\nlet currency = components.currency.qValue;\r\nlet amountValue = Number(components.amount.qValue);\r\n\r\nconst formatter = new Intl.NumberFormat(\"tr-TR\", {\r\n    minimumFractionDigits: 2,\r\n    maximumFractionDigits: 2\r\n});\r\n\r\nlet formattedAmount;\r\nlet parsedAmount;\r\nlet totalFeeAmount;\r\nlet parsedTotalFeeAmount;\r\nlet monetaryType = \"K\";\r\n\r\nconst feePaymentType = quick.store.get(\"feePaymentType\");\r\nconst feeCash = feePaymentType != undefined && feePaymentType === \"CASH\";\r\n\r\nif (feeCash) {\r\n    const feeAmountValue =\r\n        response.responseCheckWithdrawCreate?.feeAmountResponse?.feeAmount;\r\n\r\n    const feeAmountBsmvValue =\r\n        response.responseCheckWithdrawCreate?.feeAmountResponse?.feeAmountBsmv;\r\n\r\n    const feeAmount =\r\n        Number(feeAmountValue.unscaledValue) / 100;\r\n\r\n    const feeTaxAmount =\r\n        Number(feeAmountBsmvValue.unscaledValue) / 100;\r\n\r\n    totalFeeAmount = feeAmount + feeTaxAmount;\r\n    parsedTotalFeeAmount = formatter.format(totalFeeAmount);\r\n}\r\n\r\nconst isCollection = components.operationTypeGroup.qValue == 0;\r\nconst isTry = currency == \"TRY\";\r\n\r\n// Tutar hesaplama\r\nif (feeCash && isTry) {\r\n    formattedAmount = isCollection\r\n        ? amountValue + totalFeeAmount\r\n        : amountValue - totalFeeAmount;\r\n\r\n    parsedAmount = formatter.format(formattedAmount);\r\n} else {\r\n    parsedAmount = formatter.format(amountValue);\r\n}\r\n\r\n// Mesaj oluşturma\r\nconst actionText = isCollection ? \"tahsil ediniz.\" : \"ödeyiniz.\";\r\n\r\ntextSucess =\r\n    `İşlem başarı ile gerçekleşti. Lütfen ${parsedAmount} ${components.currency.qValue} ${actionText}`;\r\n\r\nif (!isTry && feeCash) {\r\n    textSucess += `${parsedTotalFeeAmount} TRY tahsil ediniz.`;\r\n}\r\n\r\ncomponents.successDialogVirement.dialogClick({ text: textSucess});\r\n\r\ncomponents.EdtrComp_192.text = 'Bitir';\r\ncomponents.EdtrComp_189.visible = false;\r\ncomponents.EdtrComp_588.visible = false;\r\n\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\"){\r\n    amountTLValue = quick.Quick.toDecimal(components.amount.qValue, \",\").toString();;\r\n} else {\r\n    amountTLValue = response.responseWithdrawCreate.result.amountTL\r\n    amountYPValue = components.amount.qValue;\r\n}\r\n\r\nquick.EM.trace(\"feeamount response\")\r\nquick.EM.trace(amountTLValue)\r\nquick.EM.trace(response.responseCheckWithdrawCreate?.feeAmountResponse)\r\nvar amountCommission = null;\r\nif (response.responseCheckWithdrawCreate?.feeAmountResponse?.feeAmount != null && response.responseCheckWithdrawCreate?.feeAmountResponse?.feeAmount != undefined) {\r\n    const feeAmount = Number(response.responseCheckWithdrawCreate?.feeAmountResponse?.feeAmount.unscaledValue) / 100;\r\n    amountCommission  = feeAmount\r\n}\r\n\r\nquick.MM.trigger(\"ofsaaRequest\", [{operationCode: \"O\", pcuBytes: \"A\", monetaryType: monetaryType, accountType:components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue, commisionAmount:amountCommission}]);\r\n\r\nif (response.responseWithdrawCreate) {\r\n    let date = response.responseWithdrawCreate.timestamp;\r\n    quick.EM.trace(\"date\");\r\n    quick.EM.trace(date)\r\n    let correlationId = response.responseWithdrawCreate.result.correlationId;\r\n    quick.EM.trace(\"correlationId\", correlationId)\r\n    quick.EM.trace(correlationId);\r\n    const url = \"date=\" + date + \"&siid=\" + correlationId.toUpperCase();\r\n\r\n    quick.EM.trace(\"dekont-url\")\r\n    quick.EM.trace(url);\r\n\r\n    quick.containerServices.extensions.showVoucherPopUp(url);\r\n}\r\n\r\n\r\n\r\n\r\n\r\n",
 																																					"C": true,
 																																					"HL": "TS"
 																																				},
@@ -5506,7 +5506,7 @@ let pjson = {
 																																			},
 																																			"E": {
 																																				"change": {
-																																					"H": "quick.EM.trace(value)\r\ncomponents.currency.qValue = value.currencyCode\r\n\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    let blockedAmount = quick.Quick.toDecimal(value.blockedAmount, \",\").toString();\r\n    let blockedAmountParsed = Number(blockedAmount);\r\n    quick.EM.trace(blockedAmountParsed)\r\n    if (blockedAmountParsed > 0) {\r\n        components.availableBalance.visible = true\r\n        components.availableBalance.qValue = blockedAmountParsed\r\n        components.infoDialogWithdraw.dialogClick({ text: 'Para yatırmak istediğiniz hesapta bloke bulunmaktadır. Bu bilgi ile işleme devam edebilirsiniz.'});\r\n    } else {\r\n        components.availableBalance.visible = false;\r\n    }\r\n}\r\n\r\nif (value.currencyCode != 'TRY') {\r\n    components.amount.formatValues = {'alias':'decimal','groupSeparator':'.','radixPoint':',','digits':0,'enforceDigitOnBlur':true};\r\n} else {\r\n    components.amount.formatValues = {'alias':'decimal','groupSeparator':'.','radixPoint':',','digits':2,'enforceDigitOnBlur':true};\r\n}\r\n\r\nif (components.totalAmount.qValue) {\r\n    components.amount.qValue = value.availableBalance\r\n}\r\ncomponents.totalAmount.errorMessages = undefined;",
+																																					"H": "quick.EM.trace(value)\r\ncomponents.currency.qValue = value.currencyCode\r\n\r\nlet blockedAmount = quick.Quick.toDecimal(value.blockedAmount, \",\").toString();\r\nlet blockedAmountParsed = Number(blockedAmount);\r\n/*if (components.operationTypeGroup.qValue == 0) {\r\n    quick.EM.trace(blockedAmountParsed)\r\n    if (blockedAmountParsed > 0) {\r\n        quick.EM.trace(\"bloke\")\r\n        if (components.operationTypeGroup.qValue == 1) {\r\n\r\n        }\r\n        \r\n    } else {\r\n        components.availableBalance.visible = false;\r\n    }\r\n} else {\r\n\r\n}\r\n*/\r\n\r\nif (blockedAmountParsed > 0) {\r\n    if (components.operationTypeGroup.qValue == 0) {\r\n        components.infoDialogWithdraw.dialogClick({ text: 'Para yatırmak istediğiniz hesapta bloke bulunmaktadır. Bu bilgi ile işleme devam edebilirsiniz.'});\r\n    } else {\r\n        components.availableBalance.visible = true\r\n        components.availableBalance.qValue = value.availableBalance\r\n    }\r\n} else {\r\n    components.availableBalance.visible = false\r\n}\r\n\r\nif (value.currencyCode != 'TRY') {\r\n    components.amount.formatValues = {'alias':'decimal','groupSeparator':'.','radixPoint':',','digits':0,'enforceDigitOnBlur':true};\r\n} else {\r\n    components.amount.formatValues = {'alias':'decimal','groupSeparator':'.','radixPoint':',','digits':2,'enforceDigitOnBlur':true};\r\n}\r\n\r\nif (components.totalAmount.qValue) {\r\n    components.amount.qValue = value.availableBalance\r\n}\r\ncomponents.totalAmount.errorMessages = undefined;",
 																																					"P": "value:any",
 																																					"HL": "TS"
 																																				}
@@ -8852,7 +8852,7 @@ let pjson = {
 																																															},
 																																															"O": {
 																																																"cType": "slot",
-																																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
+																																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined"
 																																															}
 																																														}
 																																													],
@@ -9126,7 +9126,7 @@ let pjson = {
 																																															},
 																																															"O": {
 																																																"cType": "slot",
-																																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
+																																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined"
 																																															}
 																																														}
 																																													],
@@ -9404,7 +9404,7 @@ let pjson = {
 																																															},
 																																															"O": {
 																																																"cType": "slot",
-																																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
+																																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined"
 																																															}
 																																														}
 																																													],
@@ -9883,7 +9883,7 @@ let pjson = {
 																																															},
 																																															"O": {
 																																																"cType": "slot",
-																																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
+																																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined"
 																																															}
 																																														}
 																																													],
@@ -10076,7 +10076,7 @@ let pjson = {
 																																															},
 																																															"O": {
 																																																"cType": "slot",
-																																																"compDomClasses": "v-input v-input--is-readonly theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
+																																																"compDomClasses": "v-input v-input--is-readonly theme--light v-text-field v-text-field--is-booted undefined"
 																																															}
 																																														}
 																																													],
@@ -10268,7 +10268,7 @@ let pjson = {
 																																															},
 																																															"O": {
 																																																"cType": "slot",
-																																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
+																																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined"
 																																															}
 																																														}
 																																													],
@@ -10462,7 +10462,7 @@ let pjson = {
 																																															},
 																																															"O": {
 																																																"cType": "slot",
-																																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
+																																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined"
 																																															}
 																																														}
 																																													],
@@ -10656,7 +10656,7 @@ let pjson = {
 																																															},
 																																															"O": {
 																																																"cType": "slot",
-																																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
+																																																"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted undefined"
 																																															}
 																																														}
 																																													],
@@ -11726,7 +11726,7 @@ let pjson = {
 																																					"HL": "JS"
 																																				},
 																																				"onSuccessWithdrawCreate": {
-																																					"H": "var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"onSuccessWithdrawCreate\");\r\nquick.store.set(\"successVirement\", true);\r\nquick.EM.trace(response.responseWithdrawCreate);\r\ncomponents.EdtrComp_191.disabled = false;\r\nvar textSucess = undefined;\r\nvar currency = components.currency.qValue;\r\nvar amount = quick.Quick.toDecimal(components.amount.qValue, \",\").toString();\r\nvar amountValue = Number(amount);\r\nvar formatter = new Intl.NumberFormat(\"tr-TR\", {\r\n    minimumFractionDigits: 2,\r\n    maximumFractionDigits: 2\r\n});\r\nvar formattedAmount;\r\nvar parsedAmount;\r\nvar totalFeeAmount;\r\nvar parsedTotalFeeAmount;\r\nvar monetaryType = \"K\";\r\nvar feePaymentType = quick.store.get(\"feePaymentType\");\r\nvar feeCash = feePaymentType != undefined && feePaymentType === \"CASH\";\r\nif (feeCash) {\r\n    var feeAmountValue = (_b = (_a = response.responseCheckWithdrawCreate) === null || _a === void 0 ? void 0 : _a.feeAmountResponse) === null || _b === void 0 ? void 0 : _b.feeAmount;\r\n    var feeAmountBsmvValue = (_d = (_c = response.responseCheckWithdrawCreate) === null || _c === void 0 ? void 0 : _c.feeAmountResponse) === null || _d === void 0 ? void 0 : _d.feeAmountBsmv;\r\n    var feeAmount = Number(feeAmountValue.unscaledValue) / 100;\r\n    var feeTaxAmount = Number(feeAmountBsmvValue.unscaledValue) / 100;\r\n    totalFeeAmount = feeAmount + feeTaxAmount;\r\n    parsedTotalFeeAmount = formatter.format(totalFeeAmount);\r\n}\r\nvar isCollection = components.operationTypeGroup.qValue == 0;\r\nvar isTry = currency == \"TRY\";\r\n// Tutar hesaplama\r\nif (feeCash && isTry) {\r\n    formattedAmount = isCollection\r\n        ? amountValue + totalFeeAmount\r\n        : amountValue - totalFeeAmount;\r\n    parsedAmount = formatter.format(formattedAmount);\r\n}\r\nelse {\r\n    parsedAmount = formatter.format(amountValue);\r\n}\r\n// Mesaj oluşturma\r\nvar actionText = isCollection ? \"tahsil ediniz.\" : \"ödeyiniz.\";\r\ntextSucess =\r\n    \"\\u0130\\u015Flem ba\\u015Far\\u0131 ile ger\\u00E7ekle\\u015Fti. L\\u00FCtfen \" + parsedAmount + \" \" + components.currency.qValue + \" \" + actionText;\r\nif (!isTry && feeCash) {\r\n    textSucess += parsedTotalFeeAmount + \" TRY tahsil ediniz.\";\r\n}\r\ncomponents.successDialogVirement.dialogClick({ text: textSucess });\r\ncomponents.EdtrComp_192.text = 'Bitir';\r\ncomponents.EdtrComp_189.visible = false;\r\ncomponents.EdtrComp_588.visible = false;\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\") {\r\n    amountTLValue = quick.Quick.toDecimal(components.amount.qValue, \",\").toString();\r\n    ;\r\n}\r\nelse {\r\n    amountTLValue = response.responseWithdrawCreate.result.amountTL;\r\n    amountYPValue = components.amount.qValue;\r\n}\r\nquick.EM.trace(\"feeamount response\");\r\nquick.EM.trace(amountTLValue);\r\nquick.EM.trace((_e = response.responseCheckWithdrawCreate) === null || _e === void 0 ? void 0 : _e.feeAmountResponse);\r\nvar amountCommission = null;\r\nif (((_g = (_f = response.responseCheckWithdrawCreate) === null || _f === void 0 ? void 0 : _f.feeAmountResponse) === null || _g === void 0 ? void 0 : _g.feeAmount) != null && ((_j = (_h = response.responseCheckWithdrawCreate) === null || _h === void 0 ? void 0 : _h.feeAmountResponse) === null || _j === void 0 ? void 0 : _j.feeAmount) != undefined) {\r\n    var feeAmount = Number((_l = (_k = response.responseCheckWithdrawCreate) === null || _k === void 0 ? void 0 : _k.feeAmountResponse) === null || _l === void 0 ? void 0 : _l.feeAmount.unscaledValue) / 100;\r\n    amountCommission = feeAmount;\r\n}\r\nquick.MM.trigger(\"ofsaaRequest\", [{ operationCode: \"O\", pcuBytes: \"A\", monetaryType: monetaryType, accountType: components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue, commisionAmount: amountCommission }]);\r\nif (response.responseWithdrawCreate) {\r\n    var date = response.responseWithdrawCreate.timestamp;\r\n    quick.EM.trace(\"date\");\r\n    quick.EM.trace(date);\r\n    var correlationId = response.responseWithdrawCreate.result.correlationId;\r\n    quick.EM.trace(\"correlationId\", correlationId);\r\n    quick.EM.trace(correlationId);\r\n    var url = \"date=\" + date + \"&siid=\" + correlationId.toUpperCase();\r\n    quick.EM.trace(\"dekont-url\");\r\n    quick.EM.trace(url);\r\n    quick.containerServices.extensions.showVoucherPopUp(url);\r\n}\r\n",
+																																					"H": "var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"onSuccessWithdrawCreate\");\r\nquick.store.set(\"successVirement\", true);\r\nquick.EM.trace(response.responseWithdrawCreate);\r\ncomponents.EdtrComp_191.disabled = false;\r\nvar textSucess = undefined;\r\nvar currency = components.currency.qValue;\r\nvar amountValue = Number(components.amount.qValue);\r\nvar formatter = new Intl.NumberFormat(\"tr-TR\", {\r\n    minimumFractionDigits: 2,\r\n    maximumFractionDigits: 2\r\n});\r\nvar formattedAmount;\r\nvar parsedAmount;\r\nvar totalFeeAmount;\r\nvar parsedTotalFeeAmount;\r\nvar monetaryType = \"K\";\r\nvar feePaymentType = quick.store.get(\"feePaymentType\");\r\nvar feeCash = feePaymentType != undefined && feePaymentType === \"CASH\";\r\nif (feeCash) {\r\n    var feeAmountValue = (_b = (_a = response.responseCheckWithdrawCreate) === null || _a === void 0 ? void 0 : _a.feeAmountResponse) === null || _b === void 0 ? void 0 : _b.feeAmount;\r\n    var feeAmountBsmvValue = (_d = (_c = response.responseCheckWithdrawCreate) === null || _c === void 0 ? void 0 : _c.feeAmountResponse) === null || _d === void 0 ? void 0 : _d.feeAmountBsmv;\r\n    var feeAmount = Number(feeAmountValue.unscaledValue) / 100;\r\n    var feeTaxAmount = Number(feeAmountBsmvValue.unscaledValue) / 100;\r\n    totalFeeAmount = feeAmount + feeTaxAmount;\r\n    parsedTotalFeeAmount = formatter.format(totalFeeAmount);\r\n}\r\nvar isCollection = components.operationTypeGroup.qValue == 0;\r\nvar isTry = currency == \"TRY\";\r\n// Tutar hesaplama\r\nif (feeCash && isTry) {\r\n    formattedAmount = isCollection\r\n        ? amountValue + totalFeeAmount\r\n        : amountValue - totalFeeAmount;\r\n    parsedAmount = formatter.format(formattedAmount);\r\n}\r\nelse {\r\n    parsedAmount = formatter.format(amountValue);\r\n}\r\n// Mesaj oluşturma\r\nvar actionText = isCollection ? \"tahsil ediniz.\" : \"ödeyiniz.\";\r\ntextSucess =\r\n    \"\\u0130\\u015Flem ba\\u015Far\\u0131 ile ger\\u00E7ekle\\u015Fti. L\\u00FCtfen \" + parsedAmount + \" \" + components.currency.qValue + \" \" + actionText;\r\nif (!isTry && feeCash) {\r\n    textSucess += parsedTotalFeeAmount + \" TRY tahsil ediniz.\";\r\n}\r\ncomponents.successDialogVirement.dialogClick({ text: textSucess });\r\ncomponents.EdtrComp_192.text = 'Bitir';\r\ncomponents.EdtrComp_189.visible = false;\r\ncomponents.EdtrComp_588.visible = false;\r\nvar amountTLValue = null;\r\nvar amountYPValue = null;\r\nif (components.accountType.qValue.value == \"DEMAND\") {\r\n    amountTLValue = quick.Quick.toDecimal(components.amount.qValue, \",\").toString();\r\n    ;\r\n}\r\nelse {\r\n    amountTLValue = response.responseWithdrawCreate.result.amountTL;\r\n    amountYPValue = components.amount.qValue;\r\n}\r\nquick.EM.trace(\"feeamount response\");\r\nquick.EM.trace(amountTLValue);\r\nquick.EM.trace((_e = response.responseCheckWithdrawCreate) === null || _e === void 0 ? void 0 : _e.feeAmountResponse);\r\nvar amountCommission = null;\r\nif (((_g = (_f = response.responseCheckWithdrawCreate) === null || _f === void 0 ? void 0 : _f.feeAmountResponse) === null || _g === void 0 ? void 0 : _g.feeAmount) != null && ((_j = (_h = response.responseCheckWithdrawCreate) === null || _h === void 0 ? void 0 : _h.feeAmountResponse) === null || _j === void 0 ? void 0 : _j.feeAmount) != undefined) {\r\n    var feeAmount = Number((_l = (_k = response.responseCheckWithdrawCreate) === null || _k === void 0 ? void 0 : _k.feeAmountResponse) === null || _l === void 0 ? void 0 : _l.feeAmount.unscaledValue) / 100;\r\n    amountCommission = feeAmount;\r\n}\r\nquick.MM.trigger(\"ofsaaRequest\", [{ operationCode: \"O\", pcuBytes: \"A\", monetaryType: monetaryType, accountType: components.accountType.qValue.value, amountTL: amountTLValue, amountYP: amountYPValue, commisionAmount: amountCommission }]);\r\nif (response.responseWithdrawCreate) {\r\n    var date = response.responseWithdrawCreate.timestamp;\r\n    quick.EM.trace(\"date\");\r\n    quick.EM.trace(date);\r\n    var correlationId = response.responseWithdrawCreate.result.correlationId;\r\n    quick.EM.trace(\"correlationId\", correlationId);\r\n    quick.EM.trace(correlationId);\r\n    var url = \"date=\" + date + \"&siid=\" + correlationId.toUpperCase();\r\n    quick.EM.trace(\"dekont-url\");\r\n    quick.EM.trace(url);\r\n    quick.containerServices.extensions.showVoucherPopUp(url);\r\n}\r\n",
 																																					"C": true,
 																																					"HL": "JS"
 																																				},
@@ -12537,7 +12537,7 @@ let pjson = {
 																																															},
 																																															"O": {
 																																																"cType": "slot",
-																																																"compDomClasses": "v-radio theme--light newDropBorder"
+																																																"compDomClasses": "v-radio theme--light"
 																																															}
 																																														}
 																																													],
@@ -12565,7 +12565,7 @@ let pjson = {
 																																													},
 																																													"class": "d-flex flex-column"
 																																												},
-																																												"compDomClasses": "col d-flex flex-column newDropBorder"
+																																												"compDomClasses": "col d-flex flex-column"
 																																											},
 																																											"S": {
 																																												"xs-xl": {
@@ -12682,7 +12682,7 @@ let pjson = {
 																																															},
 																																															"O": {
 																																																"cType": "slot",
-																																																"compDomClasses": "v-radio theme--light newDropBorder"
+																																																"compDomClasses": "v-radio theme--light"
 																																															}
 																																														}
 																																													],
@@ -12710,7 +12710,7 @@ let pjson = {
 																																													},
 																																													"class": "d-flex flex-column"
 																																												},
-																																												"compDomClasses": "col d-flex flex-column newDropBorder"
+																																												"compDomClasses": "col d-flex flex-column"
 																																											},
 																																											"S": {
 																																												"xs-xl": {
@@ -12794,7 +12794,7 @@ let pjson = {
 																																							},
 																																							"O": {
 																																								"cType": "slot",
-																																								"compDomClasses": "row newDropBorder"
+																																								"compDomClasses": "row"
 																																							}
 																																						}
 																																					],
@@ -12897,7 +12897,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input theme--light v-input--selection-controls v-input--radio-group v-input--radio-group--column newDropBorder"
+																																				"compDomClasses": "v-input theme--light v-input--selection-controls v-input--radio-group v-input--radio-group--column"
 																																			}
 																																		}
 																																	],
@@ -12925,7 +12925,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column newDropBorder"
+																																"compDomClasses": "col d-flex flex-column"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -12981,7 +12981,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "child",
-																																				"compDomClasses": "editor-ghost-comp newDropBorder"
+																																				"compDomClasses": "editor-ghost-comp"
 																																			}
 																																		}
 																																	],
@@ -13009,7 +13009,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column newDropBorder"
+																																"compDomClasses": "col d-flex flex-column"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -13093,7 +13093,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "row newDropBorder"
+																												"compDomClasses": "row"
 																											}
 																										}
 																									],
@@ -13355,7 +13355,7 @@ let pjson = {
 																																							},
 																																							"O": {
 																																								"cType": "slot",
-																																								"compDomClasses": "q-label newDropBorder"
+																																								"compDomClasses": "q-label "
 																																							}
 																																						}
 																																					],
@@ -13383,7 +13383,7 @@ let pjson = {
 																																					},
 																																					"class": "d-flex flex-column"
 																																				},
-																																				"compDomClasses": "col d-flex flex-column newDropBorder"
+																																				"compDomClasses": "col d-flex flex-column"
 																																			},
 																																			"S": {
 																																				"xs-xl": {
@@ -13464,7 +13464,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "row newDropBorder"
+																																"compDomClasses": "row"
 																															}
 																														}
 																													],
@@ -13521,7 +13521,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "v-card v-sheet theme--light newDropBorder"
+																												"compDomClasses": "v-card v-sheet theme--light"
 																											}
 																										},
 																										{
@@ -13703,7 +13703,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input v-input--is-label-active v-input--is-dirty v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined v-select v-autocomplete undefined newDropBorder"
+																																				"compDomClasses": "v-input v-input--is-label-active v-input--is-dirty v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined v-select v-autocomplete undefined"
 																																			}
 																																		}
 																																	],
@@ -13731,7 +13731,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column newDropBorder"
+																																"compDomClasses": "col d-flex flex-column"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -13833,7 +13833,7 @@ let pjson = {
 																																			},
 																																			"E": {
 																																				"change": {
-																																					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nquick.EM.trace(value);\r\ncomponents.currency.qValue = value.currencyCode;\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    var blockedAmount = quick.Quick.toDecimal(value.blockedAmount, \",\").toString();\r\n    var blockedAmountParsed = Number(blockedAmount);\r\n    quick.EM.trace(blockedAmountParsed);\r\n    if (blockedAmountParsed > 0) {\r\n        components.availableBalance.visible = true;\r\n        components.availableBalance.qValue = blockedAmountParsed;\r\n        components.infoDialogWithdraw.dialogClick({ text: 'Para yatırmak istediğiniz hesapta bloke bulunmaktadır. Bu bilgi ile işleme devam edebilirsiniz.' });\r\n    }\r\n    else {\r\n        components.availableBalance.visible = false;\r\n    }\r\n}\r\nif (value.currencyCode != 'TRY') {\r\n    components.amount.formatValues = { 'alias': 'decimal', 'groupSeparator': '.', 'radixPoint': ',', 'digits': 0, 'enforceDigitOnBlur': true };\r\n}\r\nelse {\r\n    components.amount.formatValues = { 'alias': 'decimal', 'groupSeparator': '.', 'radixPoint': ',', 'digits': 2, 'enforceDigitOnBlur': true };\r\n}\r\nif (components.totalAmount.qValue) {\r\n    components.amount.qValue = value.availableBalance;\r\n}\r\ncomponents.totalAmount.errorMessages = undefined;\r\n",
+																																					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nquick.EM.trace(value);\r\ncomponents.currency.qValue = value.currencyCode;\r\nvar blockedAmount = quick.Quick.toDecimal(value.blockedAmount, \",\").toString();\r\nvar blockedAmountParsed = Number(blockedAmount);\r\n/*if (components.operationTypeGroup.qValue == 0) {\r\n    quick.EM.trace(blockedAmountParsed)\r\n    if (blockedAmountParsed > 0) {\r\n        quick.EM.trace(\"bloke\")\r\n        if (components.operationTypeGroup.qValue == 1) {\r\n\r\n        }\r\n        \r\n    } else {\r\n        components.availableBalance.visible = false;\r\n    }\r\n} else {\r\n\r\n}\r\n*/\r\nif (blockedAmountParsed > 0) {\r\n    if (components.operationTypeGroup.qValue == 0) {\r\n        components.infoDialogWithdraw.dialogClick({ text: 'Para yatırmak istediğiniz hesapta bloke bulunmaktadır. Bu bilgi ile işleme devam edebilirsiniz.' });\r\n    }\r\n    else {\r\n        components.availableBalance.visible = true;\r\n        components.availableBalance.qValue = value.availableBalance;\r\n    }\r\n}\r\nelse {\r\n    components.availableBalance.visible = false;\r\n}\r\nif (value.currencyCode != 'TRY') {\r\n    components.amount.formatValues = { 'alias': 'decimal', 'groupSeparator': '.', 'radixPoint': ',', 'digits': 0, 'enforceDigitOnBlur': true };\r\n}\r\nelse {\r\n    components.amount.formatValues = { 'alias': 'decimal', 'groupSeparator': '.', 'radixPoint': ',', 'digits': 2, 'enforceDigitOnBlur': true };\r\n}\r\nif (components.totalAmount.qValue) {\r\n    components.amount.qValue = value.availableBalance;\r\n}\r\ncomponents.totalAmount.errorMessages = undefined;\r\n",
 																																					"P": "value:any",
 																																					"HL": "JS"
 																																				}
@@ -13939,7 +13939,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined v-select v-autocomplete undefined newDropBorder"
+																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined v-select v-autocomplete undefined"
 																																			}
 																																		}
 																																	],
@@ -13967,7 +13967,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column newDropBorder"
+																																"compDomClasses": "col d-flex flex-column"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -14136,7 +14136,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined newDropBorder"
+																																				"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined"
 																																			}
 																																		}
 																																	],
@@ -14164,7 +14164,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column newDropBorder"
+																																"compDomClasses": "col d-flex flex-column"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -14248,7 +14248,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "row newDropBorder"
+																												"compDomClasses": "row"
 																											}
 																										}
 																									],
@@ -14276,7 +14276,7 @@ let pjson = {
 																									},
 																									"class": "d-flex flex-column"
 																								},
-																								"compDomClasses": "col d-flex flex-column newDropBorder"
+																								"compDomClasses": "col d-flex flex-column"
 																							},
 																							"S": {
 																								"xs-sm": {
@@ -14396,7 +14396,7 @@ let pjson = {
 																			},
 																			"O": {
 																				"cType": "slot",
-																				"compDomClasses": "row newDropBorder"
+																				"compDomClasses": "row"
 																			}
 																		},
 																		{
@@ -14509,7 +14509,7 @@ let pjson = {
 																																							},
 																																							"O": {
 																																								"cType": "slot",
-																																								"compDomClasses": "q-label newDropBorder"
+																																								"compDomClasses": "q-label "
 																																							}
 																																						}
 																																					],
@@ -14537,7 +14537,7 @@ let pjson = {
 																																					},
 																																					"class": "d-flex flex-column"
 																																				},
-																																				"compDomClasses": "col d-flex flex-column newDropBorder"
+																																				"compDomClasses": "col d-flex flex-column"
 																																			},
 																																			"S": {
 																																				"xs-xl": {
@@ -14618,7 +14618,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "row newDropBorder"
+																																"compDomClasses": "row"
 																															}
 																														}
 																													],
@@ -14675,7 +14675,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "v-card v-sheet theme--light newDropBorder"
+																												"compDomClasses": "v-card v-sheet theme--light"
 																											}
 																										},
 																										{
@@ -14839,7 +14839,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined newDropBorder"
+																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined"
 																																			}
 																																		}
 																																	],
@@ -14867,7 +14867,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column newDropBorder"
+																																"compDomClasses": "col d-flex flex-column"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -15037,7 +15037,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input v-input--is-disabled theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
+																																				"compDomClasses": "v-input v-input--is-disabled theme--light v-text-field v-text-field--is-booted undefined"
 																																			}
 																																		}
 																																	],
@@ -15065,7 +15065,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column newDropBorder"
+																																"compDomClasses": "col d-flex flex-column"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -15206,7 +15206,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input theme--light v-input--selection-controls v-input--checkbox newDropBorder"
+																																				"compDomClasses": "v-input theme--light v-input--selection-controls v-input--checkbox"
 																																			}
 																																		}
 																																	],
@@ -15234,7 +15234,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column newDropBorder"
+																																"compDomClasses": "col d-flex flex-column"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -15318,7 +15318,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "row newDropBorder"
+																												"compDomClasses": "row"
 																											}
 																										}
 																									],
@@ -15346,7 +15346,7 @@ let pjson = {
 																									},
 																									"class": "d-flex flex-column"
 																								},
-																								"compDomClasses": "col d-flex flex-column newDropBorder"
+																								"compDomClasses": "col d-flex flex-column"
 																							},
 																							"S": {
 																								"xs-sm": {
@@ -15466,7 +15466,7 @@ let pjson = {
 																			},
 																			"O": {
 																				"cType": "slot",
-																				"compDomClasses": "row newDropBorder"
+																				"compDomClasses": "row"
 																			}
 																		},
 																		{
@@ -15619,7 +15619,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined newDropBorder"
+																												"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined"
 																											}
 																										}
 																									],
@@ -15647,7 +15647,7 @@ let pjson = {
 																									},
 																									"class": "d-flex flex-column"
 																								},
-																								"compDomClasses": "col d-flex flex-column newDropBorder"
+																								"compDomClasses": "col d-flex flex-column"
 																							},
 																							"S": {
 																								"xs-xl": {
@@ -15731,7 +15731,7 @@ let pjson = {
 																			},
 																			"O": {
 																				"cType": "slot",
-																				"compDomClasses": "row newDropBorder"
+																				"compDomClasses": "row"
 																			}
 																		},
 																		{
