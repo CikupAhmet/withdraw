@@ -24,7 +24,7 @@ let pjson = {
 					"HL": "TS"
 				},
 				"getProfilesRequestSuccess": {
-					"H": "let profileList = response?.getProfilesReponse?.resultList ?? [];\r\n\r\nlet tmpOnlyItem = profileList.filter((item) => item.profileCode == \"VF\")[0];\r\n\r\nlet tmpProfileList = [\r\n    {\r\n        'text': tmpOnlyItem?.desc,\r\n        'value': tmpOnlyItem\r\n    }\r\n];\r\n\r\ncomponents.sel_profile.items = tmpProfileList;\r\ncomponents.sel_profile.qValue = tmpOnlyItem;\r\n\r\ncomponents.col_tcknVknYkn.visible = true;\r\ncomponents.row_customerNumberAndDesc.visible = true;\r\ncomponents.row_btn_apply.visible = true;\r\nquick.MM.trigger('btnApplyDisabled');\r\n\r\ncomponents.loadingCustomComp.close();",
+					"H": "let profileList = response?.getProfilesReponse?.result ?? [];\r\n\r\nlet tmpOnlyItem = profileList.filter((item) => item.profileCode == \"VF\")[0];\r\n\r\nlet tmpProfileList = [\r\n    {\r\n        'text': tmpOnlyItem?.desc,\r\n        'value': tmpOnlyItem\r\n    }\r\n];\r\n\r\ncomponents.sel_profile.items = tmpProfileList;\r\ncomponents.sel_profile.qValue = tmpOnlyItem;\r\n\r\ncomponents.col_tcknVknYkn.visible = true;\r\ncomponents.row_customerNumberAndDesc.visible = true;\r\ncomponents.row_btn_apply.visible = true;\r\nquick.MM.trigger('btnApplyDisabled');\r\n\r\ncomponents.loadingCustomComp.close();",
 					"C": true,
 					"HL": "TS"
 				},
@@ -9088,7 +9088,7 @@ let pjson = {
 					"HL": "JS"
 				},
 				"getProfilesRequestSuccess": {
-					"H": "var _a, _b;\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nvar profileList = (_b = (_a = response === null || response === void 0 ? void 0 : response.getProfilesReponse) === null || _a === void 0 ? void 0 : _a.resultList) !== null && _b !== void 0 ? _b : [];\r\nvar tmpOnlyItem = profileList.filter(function (item) { return item.profileCode == \"VF\"; })[0];\r\nvar tmpProfileList = [\r\n    {\r\n        'text': tmpOnlyItem === null || tmpOnlyItem === void 0 ? void 0 : tmpOnlyItem.desc,\r\n        'value': tmpOnlyItem\r\n    }\r\n];\r\ncomponents.sel_profile.items = tmpProfileList;\r\ncomponents.sel_profile.qValue = tmpOnlyItem;\r\ncomponents.col_tcknVknYkn.visible = true;\r\ncomponents.row_customerNumberAndDesc.visible = true;\r\ncomponents.row_btn_apply.visible = true;\r\nquick.MM.trigger('btnApplyDisabled');\r\ncomponents.loadingCustomComp.close();\r\n",
+					"H": "var _a, _b;\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nvar profileList = (_b = (_a = response === null || response === void 0 ? void 0 : response.getProfilesReponse) === null || _a === void 0 ? void 0 : _a.result) !== null && _b !== void 0 ? _b : [];\r\nvar tmpOnlyItem = profileList.filter(function (item) { return item.profileCode == \"VF\"; })[0];\r\nvar tmpProfileList = [\r\n    {\r\n        'text': tmpOnlyItem === null || tmpOnlyItem === void 0 ? void 0 : tmpOnlyItem.desc,\r\n        'value': tmpOnlyItem\r\n    }\r\n];\r\ncomponents.sel_profile.items = tmpProfileList;\r\ncomponents.sel_profile.qValue = tmpOnlyItem;\r\ncomponents.col_tcknVknYkn.visible = true;\r\ncomponents.row_customerNumberAndDesc.visible = true;\r\ncomponents.row_btn_apply.visible = true;\r\nquick.MM.trigger('btnApplyDisabled');\r\ncomponents.loadingCustomComp.close();\r\n",
 					"C": true,
 					"HL": "JS"
 				},
