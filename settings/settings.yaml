@@ -90,11 +90,11 @@ fileMap:
 - id: qf2d8qrm-4txv-431i-c01o-j810mlhysizt
   path: /static/depOperations
   name: /withdraw.qjson
-  version: Tue Oct 13 2026 16:38:15 GMT+0300 (Türkiye Standart Saati)
+  version: Thu Oct 15 2026 15:49:40 GMT+0300 (Türkiye Standart Saati)
 - id: v6ck2cck-xrfq-835w-yo58-0hd0mlp9nk7m
   path: /static/depOperations
   name: /withdrawReview.qjson
-  version: Mon Oct 12 2026 15:48:48 GMT+0300 (Türkiye Standart Saati)
+  version: Tue Oct 20 2026 10:52:33 GMT+0300 (Türkiye Standart Saati)
 - id: w3a7ngku-w7xf-mox8-6y5w-dfm0mo9z8cvr
   path: /static/depOperations
   name: /fromToLedger.qjson
