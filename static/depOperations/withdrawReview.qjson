@@ -3938,20 +3938,16 @@ let pjson = {
 					"HL": "QS"
 				},
 				"QJsonPath": {
-					"H": "'/narMicroUI/dep-operations/static/depOperations/successDialogWithdraw.qjson'",
-					"T": "prop",
-					"HL": "QS"
+					"H": "'/narMicroUI/dep-operations/static/depOperations/successDialogWithdrawReview.qjson'",
+					"T": "prop"
 				}
 			},
 			"E": {},
 			"C": {},
 			"_Editor": {
-				"eID": "EdtrComp_583"
+				"eID": "EdtrComp_2"
 			},
-			"O": {
-				"cType": "child",
-				"dynProps": true
-			}
+			"O": {}
 		}
 	],
 	"cJson": [
@@ -7984,7 +7980,7 @@ let pjson = {
 					"HL": "QS"
 				},
 				"QJsonPath": {
-					"H": "╬'/narMicroUI/dep-operations/static/depOperations/successDialogWithdraw.qjson'╩╩",
+					"H": "╬'/narMicroUI/dep-operations/static/depOperations/successDialogWithdrawReview.qjson'╩╩",
 					"T": "prop",
 					"HL": "QS"
 				}
@@ -7992,11 +7988,10 @@ let pjson = {
 			"E": {},
 			"C": {},
 			"_Editor": {
-				"eID": "EdtrComp_583"
+				"eID": "EdtrComp_2"
 			},
 			"O": {
 				"cType": "child",
-				"dynProps": true,
 				"compDomClasses": "newDropBorder"
 			}
 		}
