@@ -17222,7 +17222,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined"
+																												"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined newDropBorder"
 																											}
 																										}
 																									],
@@ -17250,7 +17250,7 @@ let pjson = {
 																									},
 																									"class": "d-flex flex-column"
 																								},
-																								"compDomClasses": "col d-flex flex-column"
+																								"compDomClasses": "col d-flex flex-column newDropBorder"
 																							},
 																							"S": {
 																								"xs-xl": {
@@ -17334,7 +17334,7 @@ let pjson = {
 																			},
 																			"O": {
 																				"cType": "slot",
-																				"compDomClasses": "row"
+																				"compDomClasses": "row newDropBorder"
 																			}
 																		},
 																		{

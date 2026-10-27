@@ -112,7 +112,7 @@ let pjson = {
 																					"T": "prop"
 																				},
 																				"color": {
-																					"H": "'primary'",
+																					"H": "'secondary'",
 																					"T": "prop",
 																					"HL": "QS"
 																				},
@@ -178,7 +178,7 @@ let pjson = {
 																																	"T": "prop"
 																																},
 																																"color": {
-																																	"H": "'primary'",
+																																	"H": "'secondary'",
 																																	"T": "prop",
 																																	"HL": "QS"
 																																}
@@ -318,8 +318,9 @@ let pjson = {
 																																	"T": "prop"
 																																},
 																																"color": {
-																																	"H": "'success'",
-																																	"T": "prop"
+																																	"H": "'secondary'",
+																																	"T": "prop",
+																																	"HL": "QS"
 																																},
 																																"depressed": {
 																																	"H": "true",
@@ -659,7 +660,7 @@ let pjson = {
 																					"T": "prop"
 																				},
 																				"color": {
-																					"H": "╬'primary'╩╩",
+																					"H": "╬'secondary'╩╩",
 																					"T": "prop",
 																					"HL": "QS"
 																				},
@@ -733,7 +734,7 @@ let pjson = {
 																																	"HL": "QS"
 																																},
 																																"color": {
-																																	"H": "╬'primary'╩╩",
+																																	"H": "╬'secondary'╩╩",
 																																	"T": "prop",
 																																	"HL": "QS"
 																																}
@@ -745,7 +746,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "v-icon notranslate mdi mdi-check-circle theme--light primary--text newDropBorder"
+																																"compDomClasses": "v-icon notranslate mdi mdi-check-circle theme--light secondary--text newDropBorder"
 																															}
 																														}
 																													],
@@ -881,7 +882,7 @@ let pjson = {
 																																	"T": "prop"
 																																},
 																																"color": {
-																																	"H": "╬'success'╩╩",
+																																	"H": "╬'secondary'╩╩",
 																																	"T": "prop",
 																																	"HL": "QS"
 																																},
@@ -948,7 +949,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "v-btn v-btn--depressed v-btn--flat v-btn--outlined theme--light v-size--default success--text newDropBorder"
+																																"compDomClasses": "v-btn v-btn--depressed v-btn--flat v-btn--outlined theme--light v-size--default secondary--text newDropBorder"
 																															}
 																														}
 																													],

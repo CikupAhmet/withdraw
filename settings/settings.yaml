@@ -30,7 +30,7 @@ fileMap:
 - id: mecs5igm-0s9g-0ssr-84p7-1jo0mvox8w9m
   path: /static/depOperations
   name: /successDialogWithdrawReview.qjson
-  version: Mon Oct 26 2026 10:16:00 GMT+0300 (Türkiye Standart Saati)
+  version: Mon Oct 26 2026 16:24:32 GMT+0300 (Türkiye Standart Saati)
 - id: x39m77pi-f7xo-tl39-l3ts-zg20mm4o2r3j
   path: /static/css/Roboto
   name: /Roboto-BlackItalic.ttf
@@ -94,11 +94,11 @@ fileMap:
 - id: qf2d8qrm-4txv-431i-c01o-j810mlhysizt
   path: /static/depOperations
   name: /withdraw.qjson
-  version: Mon Oct 26 2026 10:12:17 GMT+0300 (Türkiye Standart Saati)
+  version: Mon Oct 26 2026 18:14:27 GMT+0300 (Türkiye Standart Saati)
 - id: v6ck2cck-xrfq-835w-yo58-0hd0mlp9nk7m
   path: /static/depOperations
   name: /withdrawReview.qjson
-  version: Mon Oct 26 2026 10:18:17 GMT+0300 (Türkiye Standart Saati)
+  version: Mon Oct 26 2026 18:13:16 GMT+0300 (Türkiye Standart Saati)
 - id: w3a7ngku-w7xf-mox8-6y5w-dfm0mo9z8cvr
   path: /static/depOperations
   name: /fromToLedger.qjson
