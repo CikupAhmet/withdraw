@@ -7,38 +7,18 @@ localproxy: /settings/localProxy.yaml
 pipelineqjson: /settings/qjson/pipelineLocal.qjson
 rootqjson: /static/depOperations/withdrawHome.qjson
 fileMap: 
-- id: uat07ajt-fsgb-3588-qhmd-rid0mli0u0i8
-  path: /static/depOperations
-  name: /successDialogWithdraw.qjson
-  version: Thu Mar 12 2026 17:03:36 GMT+0300 (Türkiye Standart Saati)
-- id: fjnmfpdj-g9yb-prh8-xzk6-2030mli0u0vl
-  path: /static/depOperations
-  name: /warningDialogWithdraw.qjson
-  version: Thu Mar 12 2026 17:04:10 GMT+0300 (Türkiye Standart Saati)
-- id: hf8ibfve-u9b8-xmbb-1xpm-a410mli0u0rf
-  path: /static/depOperations
-  name: /feeamountWithdraw.qjson
-  version: Mon May 11 2026 16:54:23 GMT+0300 (Türkiye Standart Saati)
-- id: 7ips2y3r-mg74-oyof-euq3-elp0mli0u0dq
-  path: /static/depOperations
-  name: /errorDialogWithdraw.qjson
-  version: Thu Mar 12 2026 17:03:56 GMT+0300 (Türkiye Standart Saati)
-- id: fqy7ixbt-fl3s-hvo6-g59k-2i50mtv5kz21
-  path: /static/depOperations
-  name: /infoDialogWithdraw.qjson
-  version: Thu Sep 10 2026 14:14:57 GMT+0300 (Türkiye Standart Saati)
 - id: mecs5igm-0s9g-0ssr-84p7-1jo0mvox8w9m
   path: /static/depOperations
   name: /successDialogWithdrawReview.qjson
-  version: Mon Oct 26 2026 16:24:32 GMT+0300 (Türkiye Standart Saati)
+  version: Wed Nov 04 2026 11:47:06 GMT+0300 (Türkiye Standart Saati)
+- id: qf2d8qrm-4txv-431i-c01o-j810mlhysizt
+  path: /static/depOperations
+  name: /withdraw.qjson
+  version: Tue Nov 03 2026 13:03:18 GMT+0300 (Türkiye Standart Saati)
 - id: x39m77pi-f7xo-tl39-l3ts-zg20mm4o2r3j
   path: /static/css/Roboto
   name: /Roboto-BlackItalic.ttf
   version: Fri Oct 02 2026 19:45:58 GMT+0300 (Türkiye Standart Saati)
-- id: pcdhsf14-4so6-z4cm-soos-u3g0mlkpvpuh
-  path: /static/depOperations
-  name: /withdrawHome.qjson
-  version: Thu Feb 26 2026 15:57:33 GMT+0300 (Türkiye Standart Saati)
 - id: vfthxmw0-0dsb-kzws-8r8d-k5f0mm4o2r5i
   path: /static/css/Roboto
   name: /Roboto-Black.ttf
@@ -47,6 +27,10 @@ fileMap:
   path: /static/css/Roboto
   name: /Roboto-Bold.ttf
   version: Fri Oct 02 2026 19:46:00 GMT+0300 (Türkiye Standart Saati)
+- id: pcdhsf14-4so6-z4cm-soos-u3g0mlkpvpuh
+  path: /static/depOperations
+  name: /withdrawHome.qjson
+  version: Thu Feb 26 2026 15:57:33 GMT+0300 (Türkiye Standart Saati)
 - id: 0nx70yul-g3ig-pvaf-mto1-9ql0mm4o2rde
   path: /static/css/Roboto
   name: /Roboto-BoldItalic.ttf
@@ -79,6 +63,26 @@ fileMap:
   path: /static/css/Roboto
   name: /Roboto-Thin.ttf
   version: Fri Oct 02 2026 19:46:05 GMT+0300 (Türkiye Standart Saati)
+- id: uat07ajt-fsgb-3588-qhmd-rid0mli0u0i8
+  path: /static/depOperations
+  name: /successDialogWithdraw.qjson
+  version: Thu Mar 12 2026 17:03:36 GMT+0300 (Türkiye Standart Saati)
+- id: fjnmfpdj-g9yb-prh8-xzk6-2030mli0u0vl
+  path: /static/depOperations
+  name: /warningDialogWithdraw.qjson
+  version: Thu Mar 12 2026 17:04:10 GMT+0300 (Türkiye Standart Saati)
+- id: hf8ibfve-u9b8-xmbb-1xpm-a410mli0u0rf
+  path: /static/depOperations
+  name: /feeamountWithdraw.qjson
+  version: Mon May 11 2026 16:54:23 GMT+0300 (Türkiye Standart Saati)
+- id: 7ips2y3r-mg74-oyof-euq3-elp0mli0u0dq
+  path: /static/depOperations
+  name: /errorDialogWithdraw.qjson
+  version: Thu Mar 12 2026 17:03:56 GMT+0300 (Türkiye Standart Saati)
+- id: fqy7ixbt-fl3s-hvo6-g59k-2i50mtv5kz21
+  path: /static/depOperations
+  name: /infoDialogWithdraw.qjson
+  version: Thu Sep 10 2026 14:14:57 GMT+0300 (Türkiye Standart Saati)
 - id: y0ab6wno-mqy9-pi4a-d9ub-o1d0mm4o2use
   path: /static/css/Roboto
   name: /Roboto-ThinItalic.ttf
@@ -91,10 +95,22 @@ fileMap:
   path: /static
   name: /App Settings.appSettings
   version: Mon Jun 08 2026 14:22:49 GMT+0300 (Türkiye Standart Saati)
-- id: qf2d8qrm-4txv-431i-c01o-j810mlhysizt
+- id: 7ips2y3r-mg74-oyof-euq3-elp0mli0u0dq
   path: /static/depOperations
-  name: /withdraw.qjson
-  version: Tue Oct 27 2026 10:36:23 GMT+0300 (Türkiye Standart Saati)
+  name: /errorDialogWithdraw.qjson
+  version: Thu Mar 12 2026 17:03:56 GMT+0300 (Türkiye Standart Saati)
+- id: uat07ajt-fsgb-3588-qhmd-rid0mli0u0i8
+  path: /static/depOperations
+  name: /successDialogWithdraw.qjson
+  version: Thu Mar 12 2026 17:03:36 GMT+0300 (Türkiye Standart Saati)
+- id: hf8ibfve-u9b8-xmbb-1xpm-a410mli0u0rf
+  path: /static/depOperations
+  name: /feeamountWithdraw.qjson
+  version: Mon May 11 2026 16:54:23 GMT+0300 (Türkiye Standart Saati)
+- id: fjnmfpdj-g9yb-prh8-xzk6-2030mli0u0vl
+  path: /static/depOperations
+  name: /warningDialogWithdraw.qjson
+  version: Thu Mar 12 2026 17:04:10 GMT+0300 (Türkiye Standart Saati)
 - id: v6ck2cck-xrfq-835w-yo58-0hd0mlp9nk7m
   path: /static/depOperations
   name: /withdrawReview.qjson
@@ -103,6 +119,10 @@ fileMap:
   path: /static/depOperations
   name: /fromToLedger.qjson
   version: Tue Sep 01 2026 17:09:07 GMT+0300 (Türkiye Standart Saati)
+- id: fqy7ixbt-fl3s-hvo6-g59k-2i50mtv5kz21
+  path: /static/depOperations
+  name: /infoDialogWithdraw.qjson
+  version: Thu Sep 10 2026 14:14:57 GMT+0300 (Türkiye Standart Saati)
 - id: 67wnkpnb-itvr-k8w8-c2ga-ci90mm4o6q5f
   path: /static/css
   name: /styleFile.css

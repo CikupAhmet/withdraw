@@ -1,1 +1,3 @@
-/api/dep-operations/v1/:  http://localhost:8085/
+/api/dep-operations/v1/:  http://localhost:8080/
+
+#/api/dep-operations/v1/:  https://plateau-edge-deposit-platform.kube.uatisbank/dep-operations-service/api/dep-operations/v1/

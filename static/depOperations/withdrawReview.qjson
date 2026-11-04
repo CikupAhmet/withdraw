@@ -7220,7 +7220,7 @@ let pjson = {
 																																							},
 																																							"O": {
 																																								"cType": "child",
-																																								"compDomClasses": "q-label "
+																																								"compDomClasses": "q-label newDropBorder"
 																																							},
 																																							"S": {
 																																								"xs-xl": {
@@ -7373,7 +7373,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-btn v-btn--depressed theme--light v-size--default"
+																																				"compDomClasses": "v-btn v-btn--depressed theme--light v-size--default newDropBorder"
 																																			}
 																																		},
 																																		{
@@ -7451,7 +7451,7 @@ let pjson = {
 																																							},
 																																							"O": {
 																																								"cType": "child",
-																																								"compDomClasses": "q-label "
+																																								"compDomClasses": "q-label newDropBorder"
 																																							},
 																																							"S": {
 																																								"xs-xl": {
@@ -7545,7 +7545,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-btn v-btn--depressed theme--light v-size--default"
+																																				"compDomClasses": "v-btn v-btn--depressed theme--light v-size--default newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -7970,7 +7970,7 @@ let pjson = {
 			"O": {
 				"cType": "child",
 				"dynProps": true,
-				"compDomClasses": ""
+				"compDomClasses": "newDropBorder"
 			}
 		},
 		{
@@ -7994,7 +7994,7 @@ let pjson = {
 			},
 			"O": {
 				"cType": "child",
-				"compDomClasses": ""
+				"compDomClasses": "newDropBorder"
 			}
 		}
 	],

@@ -68,7 +68,7 @@ let pjson = {
 					"HL": "TS"
 				},
 				"onSuccessWithdrawAccountList": {
-					"H": "quick.EM.trace(\"onSuccessWithdrawAccountList\")\r\n\r\ncomponents.accountInfo.loading = false;\r\n\r\nconst accountType = components.accountType.qValue?.value;\r\nconst selectedAccountIdDebit = components.accountInfo.qValue?.accountId;\r\nconst excludedCurrencies: string[] = [\"XAU\", \"XAG\", \"XPT\",\"XPD\"];\r\ncomponents.accountInfo.items = [];\r\n\r\nconst depositResponse = Array.isArray(response.withdrawAccountList)\r\n  ? response.withdrawAccountList\r\n  : Object.keys(response.withdrawAccountList).map(k => (response.withdrawAccountList as any)[k]);\r\n\r\nconst toAccountObj = (item: any) => {\r\n  const result = Math.max(0, Number(item.availableBalance));\r\n  const formattedResult = item.isHidden \r\n  ? item.balance \r\n  : new Intl.NumberFormat(\"tr-TR\", {\r\n      minimumFractionDigits: 2,\r\n      maximumFractionDigits: 2\r\n    }).format(result);\r\n  const formattedBalance = item.isHidden \r\n  ? item.balance \r\n  : new Intl.NumberFormat(\"tr-TR\", {\r\n      minimumFractionDigits: 2,\r\n      maximumFractionDigits: 2\r\n    }).format(item.netBalance);\r\n  const formattedAvailableBalanceRaw = item.isHidden \r\n  ? item.balance \r\n  : new Intl.NumberFormat(\"tr-TR\", {\r\n      minimumFractionDigits: 2,\r\n      maximumFractionDigits: 2\r\n    }).format(item.availableBalance);\r\n  return {\r\n    text: `${item.branchCode} - ${item.iban} - ${formattedBalance} ${item.currencyCode}`,\r\n    value: item.accountId,\r\n    overdraftFlag: item.overdraftFlag === true,\r\n    availableBalanceRaw: item.availableBalance,\r\n    formattedAvailableBalanceRaw :formattedAvailableBalanceRaw,\r\n    netBalance: item.netBalance,\r\n    availableDepositBalance: item.availableDepositBalance,\r\n    blockedAmountRaw: item.blockedAmount,\r\n    iban: item.iban,\r\n    availableBalance: formattedResult,\r\n    blockedAmount: item.blockedAmount,\r\n    balance: item.balance,\r\n    accountNumber: item.accountNumber,\r\n    branchCode: item.branchCode,\r\n    isSolidary: item.isSolidary,\r\n    currencyCode: item.currencyCode,\r\n    savingCode: item.savingCode,\r\n    productId: item.productId,\r\n    accountId: item.accountId,\r\n  };\r\n};\r\n\r\ndepositResponse\r\n  .filter((item: any) => item.accountType === accountType && excludedCurrencies.indexOf(item.currencyCode) === -1)\r\n  .forEach((item: any) => {\r\n    const account = toAccountObj(item);\r\n\r\n    if (item.accountId === selectedAccountIdDebit) {\r\n      // debit'te seçili, credit'ten çıkar (debit kendi listesinde kalsın)\r\n      components.accountInfo.items.push(account);\r\n      return;\r\n    }\r\n\r\n    // normal durum: iki listeye de ekle\r\n    components.accountInfo.items.push(account);\r\n  });\r\n\r\n\r\nif (accountType == 'DEMAND') {\r\n    quick.EM.trace(\"demand\")\r\n    quick.store.set(\"TLAccountList\", components.accountInfo.items);\r\n}\r\n",
+					"H": "quick.EM.trace(\"onSuccessWithdrawAccountList\")\r\n\r\ncomponents.accountInfo.loading = false;\r\n\r\nconst accountType = components.accountType.qValue?.value;\r\nconst selectedAccountIdDebit = components.accountInfo.qValue?.accountId;\r\nconst excludedCurrencies: string[] = [\"XAU\", \"XAG\", \"XPT\",\"XPD\"];\r\ncomponents.accountInfo.items = [];\r\n\r\nconst depositResponse = Array.isArray(response.withdrawAccountList)\r\n  ? response.withdrawAccountList\r\n  : Object.keys(response.withdrawAccountList).map(k => (response.withdrawAccountList as any)[k]);\r\n\r\nconst toAccountObj = (item: any) => {\r\n  const result = Math.max(0, Number(item.availableBalance));\r\n  const formattedResult = item.isHidden \r\n  ? item.balance \r\n  : new Intl.NumberFormat(\"tr-TR\", {\r\n      minimumFractionDigits: 2,\r\n      maximumFractionDigits: 2\r\n    }).format(result);\r\n  const formattedBalance = item.isHidden \r\n  ? item.balance \r\n  : new Intl.NumberFormat(\"tr-TR\", {\r\n      minimumFractionDigits: 2,\r\n      maximumFractionDigits: 2\r\n    }).format(item.balance);\r\n  const formattedAvailableBalanceRaw = item.isHidden \r\n  ? item.balance \r\n  : new Intl.NumberFormat(\"tr-TR\", {\r\n      minimumFractionDigits: 2,\r\n      maximumFractionDigits: 2\r\n    }).format(item.availableBalance);\r\n  return {\r\n    text: `${item.branchCode} - ${item.iban} - ${formattedBalance} ${item.currencyCode}`,\r\n    value: item.accountId,\r\n    overdraftFlag: item.overdraftFlag === true,\r\n    availableBalanceRaw: item.availableBalance,\r\n    formattedAvailableBalanceRaw :formattedAvailableBalanceRaw,\r\n    netBalance: item.netBalance,\r\n    availableDepositBalance: item.availableDepositBalance,\r\n    blockedAmountRaw: item.blockedAmount,\r\n    iban: item.iban,\r\n    availableBalance: formattedResult,\r\n    blockedAmount: item.blockedAmount,\r\n    balance: item.balance,\r\n    accountNumber: item.accountNumber,\r\n    branchCode: item.branchCode,\r\n    isSolidary: item.isSolidary,\r\n    currencyCode: item.currencyCode,\r\n    savingCode: item.savingCode,\r\n    productId: item.productId,\r\n    accountId: item.accountId,\r\n  };\r\n};\r\n\r\ndepositResponse\r\n  .filter((item: any) => item.accountType === accountType && excludedCurrencies.indexOf(item.currencyCode) === -1)\r\n  .forEach((item: any) => {\r\n    const account = toAccountObj(item);\r\n\r\n    if (item.accountId === selectedAccountIdDebit) {\r\n      // debit'te seçili, credit'ten çıkar (debit kendi listesinde kalsın)\r\n      components.accountInfo.items.push(account);\r\n      return;\r\n    }\r\n\r\n    // normal durum: iki listeye de ekle\r\n    components.accountInfo.items.push(account);\r\n  });\r\n\r\n\r\nif (accountType == 'DEMAND') {\r\n    quick.EM.trace(\"demand\")\r\n    quick.store.set(\"TLAccountList\", components.accountInfo.items);\r\n}\r\n",
 					"C": true,
 					"HL": "TS"
 				},
@@ -5696,7 +5696,7 @@ let pjson = {
 																																			},
 																																			"E": {
 																																				"change": {
-																																					"H": "quick.EM.trace(value)\r\nlet fmtAmount = function (v: any): string {\r\n    return new Intl.NumberFormat(\"tr-TR\", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(Number(v));\r\n};\r\ncomponents.currency.qValue = value.currencyCode\r\ncomponents.blockedCollection.visible = (Number(value.blockedAmount) > 0);\r\ncomponents.overdraftUsage.visible = (value.overdraftFlag == true);\r\nif (Number(value.blockedAmount) <= 0 && components.blockedCollection.qValue) {\r\n    components.blockedCollection.qValue = false;\r\n    components.blockedCollectionAmount.visible = false;\r\n    components.blockedCollectionAmount.qValue = undefined;\r\n} \r\n\r\nif (value.overdraftFlag != true && components.overdraftUsage.qValue) {\r\n    components.overdraftUsage.qValue = false;\r\n}\r\n\r\nlet blockedAmount = quick.Quick.toDecimal(value.blockedAmount, \",\").toString();\r\nlet blockedAmountParsed = Number(blockedAmount);\r\n\r\n\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    if (blockedAmountParsed > 0) {\r\n        components.infoDialogWithdraw.dialogClick({ text: 'Para yatırmak istediğiniz hesapta bloke bulunmaktadır. Bu bilgi ile işleme devam edebilirsiniz.'});\r\n    }\r\n    components.availableBalance.visible = false\r\n} else {\r\n    if (value.overdraftFlag || (Number(value.blockedAmount) > 0)) {\r\n        components.availableBalance.visible = true\r\n        components.availableBalance.qValue = (value.overdraftFlag == true && value.availableBalanceRaw != undefined) ? fmtAmount(value.availableBalanceRaw) : value.availableBalance\r\n    } else {\r\n        components.availableBalance.visible = false\r\n    }\r\n}\r\n\r\nif (value.currencyCode != 'TRY') {\r\n    components.amount.formatValues = {'alias':'decimal','groupSeparator':'.','radixPoint':',','digits':0,'enforceDigitOnBlur':true};\r\n} else {\r\n    components.amount.formatValues = {'alias':'decimal','groupSeparator':'.','radixPoint':',','digits':2,'enforceDigitOnBlur':true};\r\n}\r\n/*\r\nif (components.operationTypeGroup.qValue == 1) {\r\n    components.blockedCollection.visible = (Number(value.blockedAmount) > 0);\r\n    const capRule = function (): boolean | string {\r\n        const av = components.accountInfo.qValue;\r\n        if (!av) return true;\r\n        let capValue: any;\r\n        if (components.overdraftUsage.qValue) {\r\n            capValue = av.availableBalanceRaw;\r\n        } else if (components.blockedCollection.qValue) {\r\n            capValue = av.balance;\r\n        } else {\r\n            capValue = av.availableDepositBalance != undefined ? av.availableDepositBalance : av.availableBalanceRaw;\r\n        }\r\n\r\n        let parsedAmount = quick.Quick.toDecimal(components.amount.qValue, \",\").toString();\r\n\r\n        const availableAmount = Number(capValue);\r\n        const valueAmount = Number(parsedAmount);\r\n        if (valueAmount > availableAmount) {\r\n            return components.blockedCollection.qValue\r\n                ? 'Tutar, net bakiyeden büyük olamaz.'\r\n                : 'Tutar, kullanılabilir bakiyeden büyük olamaz.';\r\n        }\r\n        return true;\r\n    };\r\n    components.amount.rules = [quick.Quick.validation.required('Bu Alan Zorunludur'), capRule];\r\n\r\n    let amountCap: any;\r\n    if (components.overdraftUsage.qValue) {\r\n        amountCap = value.availableBalanceRaw;\r\n    } else if (components.blockedCollection.qValue) {\r\n        amountCap = value.balance;\r\n    } else {\r\n        amountCap = value.availableDepositBalance != undefined ? value.availableDepositBalance : value.availableBalanceRaw;\r\n    }\r\n    if (components.totalAmount.qValue || components.overdraftUsage.qValue || components.blockedCollection.qValue) {\r\n        components.amount.qValue = fmtAmount(amountCap);\r\n    }\r\n    components.blockedCollectionAmount.visible = components.blockedCollection.qValue == true;\r\n    components.totalAmount.errorMessages = undefined;\r\n}\r\n*/",
+																																					"H": "quick.EM.trace(value)\r\nlet fmtAmount = function (v: any): string {\r\n    return new Intl.NumberFormat(\"tr-TR\", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(Number(v));\r\n};\r\ncomponents.currency.qValue = value.currencyCode\r\n\r\nif (Number(value.blockedAmount) <= 0 && components.blockedCollection.qValue) {\r\n    components.blockedCollection.qValue = false;\r\n    components.blockedCollectionAmount.visible = false;\r\n    components.blockedCollectionAmount.qValue = undefined;\r\n} \r\n\r\nif (value.overdraftFlag != true && components.overdraftUsage.qValue) {\r\n    components.overdraftUsage.qValue = false;\r\n}\r\n\r\nlet blockedAmount = quick.Quick.toDecimal(value.blockedAmount, \",\").toString();\r\nlet blockedAmountParsed = Number(blockedAmount);\r\n\r\n\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    if (blockedAmountParsed > 0) {\r\n        components.infoDialogWithdraw.dialogClick({ text: 'Para yatırmak istediğiniz hesapta bloke bulunmaktadır. Bu bilgi ile işleme devam edebilirsiniz.'});\r\n    }\r\n    components.availableBalance.visible = false\r\n} else {\r\n    components.blockedCollection.visible = (Number(value.blockedAmount) > 0);\r\n    components.overdraftUsage.visible = (value.overdraftFlag == true);\r\n    if (value.overdraftFlag || (Number(value.blockedAmount) > 0)) {\r\n        components.availableBalance.visible = true\r\n        components.availableBalance.qValue = (value.overdraftFlag == true && value.availableBalanceRaw != undefined) ? fmtAmount(value.availableBalanceRaw) : value.availableBalance\r\n    } else {\r\n        components.availableBalance.visible = false\r\n    }\r\n}\r\n\r\nif (value.currencyCode != 'TRY') {\r\n    components.amount.formatValues = {'alias':'decimal','groupSeparator':'.','radixPoint':',','digits':0,'enforceDigitOnBlur':true};\r\n} else {\r\n    components.amount.formatValues = {'alias':'decimal','groupSeparator':'.','radixPoint':',','digits':2,'enforceDigitOnBlur':true};\r\n}\r\n/*\r\nif (components.operationTypeGroup.qValue == 1) {\r\n    components.blockedCollection.visible = (Number(value.blockedAmount) > 0);\r\n    const capRule = function (): boolean | string {\r\n        const av = components.accountInfo.qValue;\r\n        if (!av) return true;\r\n        let capValue: any;\r\n        if (components.overdraftUsage.qValue) {\r\n            capValue = av.availableBalanceRaw;\r\n        } else if (components.blockedCollection.qValue) {\r\n            capValue = av.balance;\r\n        } else {\r\n            capValue = av.availableDepositBalance != undefined ? av.availableDepositBalance : av.availableBalanceRaw;\r\n        }\r\n\r\n        let parsedAmount = quick.Quick.toDecimal(components.amount.qValue, \",\").toString();\r\n\r\n        const availableAmount = Number(capValue);\r\n        const valueAmount = Number(parsedAmount);\r\n        if (valueAmount > availableAmount) {\r\n            return components.blockedCollection.qValue\r\n                ? 'Tutar, net bakiyeden büyük olamaz.'\r\n                : 'Tutar, kullanılabilir bakiyeden büyük olamaz.';\r\n        }\r\n        return true;\r\n    };\r\n    components.amount.rules = [quick.Quick.validation.required('Bu Alan Zorunludur'), capRule];\r\n\r\n    let amountCap: any;\r\n    if (components.overdraftUsage.qValue) {\r\n        amountCap = value.availableBalanceRaw;\r\n    } else if (components.blockedCollection.qValue) {\r\n        amountCap = value.balance;\r\n    } else {\r\n        amountCap = value.availableDepositBalance != undefined ? value.availableDepositBalance : value.availableBalanceRaw;\r\n    }\r\n    if (components.totalAmount.qValue || components.overdraftUsage.qValue || components.blockedCollection.qValue) {\r\n        components.amount.qValue = fmtAmount(amountCap);\r\n    }\r\n    components.blockedCollectionAmount.visible = components.blockedCollection.qValue == true;\r\n    components.totalAmount.errorMessages = undefined;\r\n}\r\n*/",
 																																					"P": "value:any",
 																																					"HL": "TS"
 																																				}
@@ -8405,7 +8405,7 @@ let pjson = {
 																											},
 																											"E": {
 																												"click": {
-																													"H": "quick.MM.trigger(\"checkAvailableBalance\");\r\n\r\nquick.EM.trace((quick.store.get(\"#idempotentKey\") || (response && response.idempotent && response.idempotent.firstIdempotent) || \"\").toString())\r\nquick.EM.trace(quick.Quick.toDecimal(components.amount.qValue, \",\").toString())\r\nlet amountX = Number(components.amount.qValue)\r\nquick.EM.trace(amountX)\r\ncomponents.feeCard.visible = false;\r\nlet validated: boolean = quick.Quick.validateAll(false, false);\r\n        if (components.amount.errorMessages != undefined && components.amount.errorMessages != null && components.amount.errorMessages != '') {\r\n            validated = false;\r\n        }\r\n        if (components.blockedCollectionAmount.visible && components.blockedCollectionAmount.errorMessages != undefined && components.blockedCollectionAmount.errorMessages != null && components.blockedCollectionAmount.errorMessages != '') {\r\n            validated = false;\r\n        }\r\n\r\nlet isSolidary = components.accountInfo.qValue.isSolidary;\r\nquick.EM.trace(isSolidary)\r\n\r\nlet descriptionLength =  components.description.qValue.length;\r\n\r\nif (descriptionLength < 3) {\r\n    components.description.errorMessages = \"Açıklama alanı minimum 3 karakter olmalıdır.\"\r\n    validated = validated && false;\r\n}\r\n\r\nif (isSolidary && validated && (components.operationTypeGroup.qValue == 1)) {\r\n    components.warningDialogVirement.dialogClick({ accountId: components.accountInfo.qValue.accountId});\r\n} else {\r\n\r\n    if (validated) {\r\n\r\n        components.EdtrComp_1463.disabled = true\r\n\r\n        let virementRequest: any = {};\r\n        quick.EM.trace(components.accountInfo.qValue)\r\n\r\n        let accountId = components.accountInfo.qValue.accountId;\r\n        let amount = quick.Quick.toDecimal(components.amount.qValue, \",\").toString();\r\n        let currencyCode = components.currency.qValue;\r\n        let description = components.description.qValue;\r\n\r\n        virementRequest.amount = amount;\r\n        virementRequest.currencyCode = currencyCode;\r\n        virementRequest.description = description;\r\n\r\n        let urlNew = '';\r\n\r\n        if (components.operationTypeGroup.qValue == 0) {\r\n            urlNew = '/api/dep-operations/v1/api/dep-operations/checkDeposit'\r\n            virementRequest.creditAccountId = accountId;\r\n            quick.store.set(\"$customConsumerCode\",'TANE.DEPDEPOSIT');\r\n        } else {\r\n            urlNew = '/api/dep-operations/v1/api/dep-operations/checkWithdraw'\r\n            virementRequest.useOverdraft = components.overdraftUsage.qValue == true;\r\n            virementRequest.blockageCollectionProvisionId = components.blockedCollectionAmount.qValue;\r\n            virementRequest.debitAccountId = accountId;\r\n            quick.store.set(\"$customConsumerCode\",'TANE.DEPWITHDRAW');\r\n        }\r\n\r\n        let virementCheckCreateRequest: IRequest = {\r\n            url: urlNew,\r\n            http: 'post',\r\n            blockRender: true,\r\n            onSuccess: 'onSuccessCheckWithdrawCreate',\r\n            onFail: 'onSFailCheckWithdrawCreate',\r\n            responseField: 'responseCheckWithdrawCreate',\r\n            data: virementRequest\r\n        }\r\n        quick.Request.async(virementCheckCreateRequest);\r\n    }\r\n}",
+																													"H": "//quick.MM.trigger(\"checkAvailableBalance\");\r\n\r\nquick.EM.trace((quick.store.get(\"#idempotentKey\") || (response && response.idempotent && response.idempotent.firstIdempotent) || \"\").toString())\r\n\r\ncomponents.feeCard.visible = false;\r\nlet validated: boolean = quick.Quick.validateAll(false, false);\r\n        if (components.amount.errorMessages != undefined && components.amount.errorMessages != null && components.amount.errorMessages != '') {\r\n            validated = false;\r\n        }\r\n        if (components.blockedCollectionAmount.visible && components.blockedCollectionAmount.errorMessages != undefined && components.blockedCollectionAmount.errorMessages != null && components.blockedCollectionAmount.errorMessages != '') {\r\n            validated = false;\r\n        }\r\n\r\nlet isSolidary = components.accountInfo.qValue.isSolidary;\r\nquick.EM.trace(isSolidary)\r\n\r\nlet descriptionLength =  components.description.qValue.length;\r\n\r\nif (descriptionLength < 3) {\r\n    components.description.errorMessages = \"Açıklama alanı minimum 3 karakter olmalıdır.\"\r\n    validated = validated && false;\r\n}\r\n\r\nif (isSolidary && validated && (components.operationTypeGroup.qValue == 1)) {\r\n    components.warningDialogVirement.dialogClick({ accountId: components.accountInfo.qValue.accountId});\r\n} else {\r\n\r\n    if (validated) {\r\n\r\n        components.EdtrComp_1463.disabled = true\r\n\r\n        let virementRequest: any = {};\r\n        quick.EM.trace(components.accountInfo.qValue)\r\n\r\n        let accountId = components.accountInfo.qValue.accountId;\r\n        let amount = quick.Quick.toDecimal(components.amount.qValue, \",\").toString();\r\n        let currencyCode = components.currency.qValue;\r\n        let description = components.description.qValue;\r\n\r\n        virementRequest.amount = amount;\r\n        virementRequest.currencyCode = currencyCode;\r\n        virementRequest.description = description;\r\n\r\n        let urlNew = '';\r\n\r\n        if (components.operationTypeGroup.qValue == 0) {\r\n            urlNew = '/api/dep-operations/v1/api/dep-operations/checkDeposit'\r\n            virementRequest.creditAccountId = accountId;\r\n            quick.store.set(\"$customConsumerCode\",'TANE.DEPDEPOSIT');\r\n        } else {\r\n            urlNew = '/api/dep-operations/v1/api/dep-operations/checkWithdraw'\r\n            virementRequest.useOverdraft = components.overdraftUsage.qValue == true;\r\n            virementRequest.blockageCollectionProvisionId = components.blockedCollectionAmount.qValue;\r\n            virementRequest.debitAccountId = accountId;\r\n            quick.store.set(\"$customConsumerCode\",'TANE.DEPWITHDRAW');\r\n        }\r\n\r\n        let virementCheckCreateRequest: IRequest = {\r\n            url: urlNew,\r\n            http: 'post',\r\n            blockRender: true,\r\n            onSuccess: 'onSuccessCheckWithdrawCreate',\r\n            onFail: 'onSFailCheckWithdrawCreate',\r\n            responseField: 'responseCheckWithdrawCreate',\r\n            data: virementRequest\r\n        }\r\n        quick.Request.async(virementCheckCreateRequest);\r\n    }\r\n}",
 																													"P": "mouseEvent:unknown | undefined",
 																													"HL": "TS"
 																												},
@@ -9021,7 +9021,7 @@ let pjson = {
 					"HL": "JS"
 				},
 				"onSuccessWithdrawAccountList": {
-					"H": "var _a, _b;\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"onSuccessWithdrawAccountList\");\r\ncomponents.accountInfo.loading = false;\r\nvar accountType = (_a = components.accountType.qValue) === null || _a === void 0 ? void 0 : _a.value;\r\nvar selectedAccountIdDebit = (_b = components.accountInfo.qValue) === null || _b === void 0 ? void 0 : _b.accountId;\r\nvar excludedCurrencies = [\"XAU\", \"XAG\", \"XPT\", \"XPD\"];\r\ncomponents.accountInfo.items = [];\r\nvar depositResponse = Array.isArray(response.withdrawAccountList)\r\n    ? response.withdrawAccountList\r\n    : Object.keys(response.withdrawAccountList).map(function (k) { return response.withdrawAccountList[k]; });\r\nvar toAccountObj = function (item) {\r\n    var result = Math.max(0, Number(item.availableBalance));\r\n    var formattedResult = item.isHidden\r\n        ? item.balance\r\n        : new Intl.NumberFormat(\"tr-TR\", {\r\n            minimumFractionDigits: 2,\r\n            maximumFractionDigits: 2\r\n        }).format(result);\r\n    var formattedBalance = item.isHidden\r\n        ? item.balance\r\n        : new Intl.NumberFormat(\"tr-TR\", {\r\n            minimumFractionDigits: 2,\r\n            maximumFractionDigits: 2\r\n        }).format(item.netBalance);\r\n    var formattedAvailableBalanceRaw = item.isHidden\r\n        ? item.balance\r\n        : new Intl.NumberFormat(\"tr-TR\", {\r\n            minimumFractionDigits: 2,\r\n            maximumFractionDigits: 2\r\n        }).format(item.availableBalance);\r\n    return {\r\n        text: item.branchCode + \" - \" + item.iban + \" - \" + formattedBalance + \" \" + item.currencyCode,\r\n        value: item.accountId,\r\n        overdraftFlag: item.overdraftFlag === true,\r\n        availableBalanceRaw: item.availableBalance,\r\n        formattedAvailableBalanceRaw: formattedAvailableBalanceRaw,\r\n        netBalance: item.netBalance,\r\n        availableDepositBalance: item.availableDepositBalance,\r\n        blockedAmountRaw: item.blockedAmount,\r\n        iban: item.iban,\r\n        availableBalance: formattedResult,\r\n        blockedAmount: item.blockedAmount,\r\n        balance: item.balance,\r\n        accountNumber: item.accountNumber,\r\n        branchCode: item.branchCode,\r\n        isSolidary: item.isSolidary,\r\n        currencyCode: item.currencyCode,\r\n        savingCode: item.savingCode,\r\n        productId: item.productId,\r\n        accountId: item.accountId,\r\n    };\r\n};\r\ndepositResponse\r\n    .filter(function (item) { return item.accountType === accountType && excludedCurrencies.indexOf(item.currencyCode) === -1; })\r\n    .forEach(function (item) {\r\n    var account = toAccountObj(item);\r\n    if (item.accountId === selectedAccountIdDebit) {\r\n        // debit'te seçili, credit'ten çıkar (debit kendi listesinde kalsın)\r\n        components.accountInfo.items.push(account);\r\n        return;\r\n    }\r\n    // normal durum: iki listeye de ekle\r\n    components.accountInfo.items.push(account);\r\n});\r\nif (accountType == 'DEMAND') {\r\n    quick.EM.trace(\"demand\");\r\n    quick.store.set(\"TLAccountList\", components.accountInfo.items);\r\n}\r\n",
+					"H": "var _a, _b;\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n;\r\nquick.EM.trace(\"onSuccessWithdrawAccountList\");\r\ncomponents.accountInfo.loading = false;\r\nvar accountType = (_a = components.accountType.qValue) === null || _a === void 0 ? void 0 : _a.value;\r\nvar selectedAccountIdDebit = (_b = components.accountInfo.qValue) === null || _b === void 0 ? void 0 : _b.accountId;\r\nvar excludedCurrencies = [\"XAU\", \"XAG\", \"XPT\", \"XPD\"];\r\ncomponents.accountInfo.items = [];\r\nvar depositResponse = Array.isArray(response.withdrawAccountList)\r\n    ? response.withdrawAccountList\r\n    : Object.keys(response.withdrawAccountList).map(function (k) { return response.withdrawAccountList[k]; });\r\nvar toAccountObj = function (item) {\r\n    var result = Math.max(0, Number(item.availableBalance));\r\n    var formattedResult = item.isHidden\r\n        ? item.balance\r\n        : new Intl.NumberFormat(\"tr-TR\", {\r\n            minimumFractionDigits: 2,\r\n            maximumFractionDigits: 2\r\n        }).format(result);\r\n    var formattedBalance = item.isHidden\r\n        ? item.balance\r\n        : new Intl.NumberFormat(\"tr-TR\", {\r\n            minimumFractionDigits: 2,\r\n            maximumFractionDigits: 2\r\n        }).format(item.balance);\r\n    var formattedAvailableBalanceRaw = item.isHidden\r\n        ? item.balance\r\n        : new Intl.NumberFormat(\"tr-TR\", {\r\n            minimumFractionDigits: 2,\r\n            maximumFractionDigits: 2\r\n        }).format(item.availableBalance);\r\n    return {\r\n        text: item.branchCode + \" - \" + item.iban + \" - \" + formattedBalance + \" \" + item.currencyCode,\r\n        value: item.accountId,\r\n        overdraftFlag: item.overdraftFlag === true,\r\n        availableBalanceRaw: item.availableBalance,\r\n        formattedAvailableBalanceRaw: formattedAvailableBalanceRaw,\r\n        netBalance: item.netBalance,\r\n        availableDepositBalance: item.availableDepositBalance,\r\n        blockedAmountRaw: item.blockedAmount,\r\n        iban: item.iban,\r\n        availableBalance: formattedResult,\r\n        blockedAmount: item.blockedAmount,\r\n        balance: item.balance,\r\n        accountNumber: item.accountNumber,\r\n        branchCode: item.branchCode,\r\n        isSolidary: item.isSolidary,\r\n        currencyCode: item.currencyCode,\r\n        savingCode: item.savingCode,\r\n        productId: item.productId,\r\n        accountId: item.accountId,\r\n    };\r\n};\r\ndepositResponse\r\n    .filter(function (item) { return item.accountType === accountType && excludedCurrencies.indexOf(item.currencyCode) === -1; })\r\n    .forEach(function (item) {\r\n    var account = toAccountObj(item);\r\n    if (item.accountId === selectedAccountIdDebit) {\r\n        // debit'te seçili, credit'ten çıkar (debit kendi listesinde kalsın)\r\n        components.accountInfo.items.push(account);\r\n        return;\r\n    }\r\n    // normal durum: iki listeye de ekle\r\n    components.accountInfo.items.push(account);\r\n});\r\nif (accountType == 'DEMAND') {\r\n    quick.EM.trace(\"demand\");\r\n    quick.store.set(\"TLAccountList\", components.accountInfo.items);\r\n}\r\n",
 					"C": true,
 					"HL": "JS"
 				},
@@ -13525,7 +13525,7 @@ let pjson = {
 																																															},
 																																															"O": {
 																																																"cType": "slot",
-																																																"compDomClasses": "v-radio theme--light"
+																																																"compDomClasses": "v-radio theme--light newDropBorder"
 																																															}
 																																														}
 																																													],
@@ -13553,7 +13553,7 @@ let pjson = {
 																																													},
 																																													"class": "d-flex flex-column"
 																																												},
-																																												"compDomClasses": "col d-flex flex-column"
+																																												"compDomClasses": "col d-flex flex-column newDropBorder"
 																																											},
 																																											"S": {
 																																												"xs-xl": {
@@ -13670,7 +13670,7 @@ let pjson = {
 																																															},
 																																															"O": {
 																																																"cType": "slot",
-																																																"compDomClasses": "v-radio theme--light"
+																																																"compDomClasses": "v-radio theme--light newDropBorder"
 																																															}
 																																														}
 																																													],
@@ -13698,7 +13698,7 @@ let pjson = {
 																																													},
 																																													"class": "d-flex flex-column"
 																																												},
-																																												"compDomClasses": "col d-flex flex-column"
+																																												"compDomClasses": "col d-flex flex-column newDropBorder"
 																																											},
 																																											"S": {
 																																												"xs-xl": {
@@ -13782,7 +13782,7 @@ let pjson = {
 																																							},
 																																							"O": {
 																																								"cType": "slot",
-																																								"compDomClasses": "row"
+																																								"compDomClasses": "row newDropBorder"
 																																							}
 																																						}
 																																					],
@@ -13885,7 +13885,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input theme--light v-input--selection-controls v-input--radio-group v-input--radio-group--column"
+																																				"compDomClasses": "v-input theme--light v-input--selection-controls v-input--radio-group v-input--radio-group--column newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -13913,7 +13913,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column"
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -13969,7 +13969,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "child",
-																																				"compDomClasses": "editor-ghost-comp"
+																																				"compDomClasses": "editor-ghost-comp newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -13997,7 +13997,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column"
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -14081,7 +14081,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "row"
+																												"compDomClasses": "row newDropBorder"
 																											}
 																										}
 																									],
@@ -14343,7 +14343,7 @@ let pjson = {
 																																							},
 																																							"O": {
 																																								"cType": "slot",
-																																								"compDomClasses": "q-label "
+																																								"compDomClasses": "q-label newDropBorder"
 																																							}
 																																						}
 																																					],
@@ -14371,7 +14371,7 @@ let pjson = {
 																																					},
 																																					"class": "d-flex flex-column"
 																																				},
-																																				"compDomClasses": "col d-flex flex-column"
+																																				"compDomClasses": "col d-flex flex-column newDropBorder"
 																																			},
 																																			"S": {
 																																				"xs-xl": {
@@ -14452,7 +14452,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "row"
+																																"compDomClasses": "row newDropBorder"
 																															}
 																														}
 																													],
@@ -14509,7 +14509,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "v-card v-sheet theme--light"
+																												"compDomClasses": "v-card v-sheet theme--light newDropBorder"
 																											}
 																										},
 																										{
@@ -14691,7 +14691,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input v-input--is-label-active v-input--is-dirty v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined v-select v-autocomplete undefined"
+																																				"compDomClasses": "v-input v-input--is-label-active v-input--is-dirty v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined v-select v-autocomplete undefined newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -14719,7 +14719,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column"
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -14821,7 +14821,7 @@ let pjson = {
 																																			},
 																																			"E": {
 																																				"change": {
-																																					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nquick.EM.trace(value);\r\nvar fmtAmount = function (v) {\r\n    return new Intl.NumberFormat(\"tr-TR\", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(Number(v));\r\n};\r\ncomponents.currency.qValue = value.currencyCode;\r\ncomponents.blockedCollection.visible = (Number(value.blockedAmount) > 0);\r\ncomponents.overdraftUsage.visible = (value.overdraftFlag == true);\r\nif (Number(value.blockedAmount) <= 0 && components.blockedCollection.qValue) {\r\n    components.blockedCollection.qValue = false;\r\n    components.blockedCollectionAmount.visible = false;\r\n    components.blockedCollectionAmount.qValue = undefined;\r\n}\r\nif (value.overdraftFlag != true && components.overdraftUsage.qValue) {\r\n    components.overdraftUsage.qValue = false;\r\n}\r\nvar blockedAmount = quick.Quick.toDecimal(value.blockedAmount, \",\").toString();\r\nvar blockedAmountParsed = Number(blockedAmount);\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    if (blockedAmountParsed > 0) {\r\n        components.infoDialogWithdraw.dialogClick({ text: 'Para yatırmak istediğiniz hesapta bloke bulunmaktadır. Bu bilgi ile işleme devam edebilirsiniz.' });\r\n    }\r\n    components.availableBalance.visible = false;\r\n}\r\nelse {\r\n    if (value.overdraftFlag || (Number(value.blockedAmount) > 0)) {\r\n        components.availableBalance.visible = true;\r\n        components.availableBalance.qValue = (value.overdraftFlag == true && value.availableBalanceRaw != undefined) ? fmtAmount(value.availableBalanceRaw) : value.availableBalance;\r\n    }\r\n    else {\r\n        components.availableBalance.visible = false;\r\n    }\r\n}\r\nif (value.currencyCode != 'TRY') {\r\n    components.amount.formatValues = { 'alias': 'decimal', 'groupSeparator': '.', 'radixPoint': ',', 'digits': 0, 'enforceDigitOnBlur': true };\r\n}\r\nelse {\r\n    components.amount.formatValues = { 'alias': 'decimal', 'groupSeparator': '.', 'radixPoint': ',', 'digits': 2, 'enforceDigitOnBlur': true };\r\n}\r\n",
+																																					"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nquick.EM.trace(value);\r\nvar fmtAmount = function (v) {\r\n    return new Intl.NumberFormat(\"tr-TR\", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(Number(v));\r\n};\r\ncomponents.currency.qValue = value.currencyCode;\r\nif (Number(value.blockedAmount) <= 0 && components.blockedCollection.qValue) {\r\n    components.blockedCollection.qValue = false;\r\n    components.blockedCollectionAmount.visible = false;\r\n    components.blockedCollectionAmount.qValue = undefined;\r\n}\r\nif (value.overdraftFlag != true && components.overdraftUsage.qValue) {\r\n    components.overdraftUsage.qValue = false;\r\n}\r\nvar blockedAmount = quick.Quick.toDecimal(value.blockedAmount, \",\").toString();\r\nvar blockedAmountParsed = Number(blockedAmount);\r\nif (components.operationTypeGroup.qValue == 0) {\r\n    if (blockedAmountParsed > 0) {\r\n        components.infoDialogWithdraw.dialogClick({ text: 'Para yatırmak istediğiniz hesapta bloke bulunmaktadır. Bu bilgi ile işleme devam edebilirsiniz.' });\r\n    }\r\n    components.availableBalance.visible = false;\r\n}\r\nelse {\r\n    components.blockedCollection.visible = (Number(value.blockedAmount) > 0);\r\n    components.overdraftUsage.visible = (value.overdraftFlag == true);\r\n    if (value.overdraftFlag || (Number(value.blockedAmount) > 0)) {\r\n        components.availableBalance.visible = true;\r\n        components.availableBalance.qValue = (value.overdraftFlag == true && value.availableBalanceRaw != undefined) ? fmtAmount(value.availableBalanceRaw) : value.availableBalance;\r\n    }\r\n    else {\r\n        components.availableBalance.visible = false;\r\n    }\r\n}\r\nif (value.currencyCode != 'TRY') {\r\n    components.amount.formatValues = { 'alias': 'decimal', 'groupSeparator': '.', 'radixPoint': ',', 'digits': 0, 'enforceDigitOnBlur': true };\r\n}\r\nelse {\r\n    components.amount.formatValues = { 'alias': 'decimal', 'groupSeparator': '.', 'radixPoint': ',', 'digits': 2, 'enforceDigitOnBlur': true };\r\n}\r\n",
 																																					"P": "value:any",
 																																					"HL": "JS"
 																																				}
@@ -14927,7 +14927,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined v-select v-autocomplete undefined"
+																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined v-select v-autocomplete undefined newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -14955,7 +14955,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column"
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -15124,7 +15124,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined"
+																																				"compDomClasses": "v-input v-input--is-readonly v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -15152,7 +15152,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column"
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -15236,7 +15236,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "row"
+																												"compDomClasses": "row newDropBorder"
 																											}
 																										}
 																									],
@@ -15264,7 +15264,7 @@ let pjson = {
 																									},
 																									"class": "d-flex flex-column"
 																								},
-																								"compDomClasses": "col d-flex flex-column"
+																								"compDomClasses": "col d-flex flex-column newDropBorder"
 																							},
 																							"S": {
 																								"xs-sm": {
@@ -15384,7 +15384,7 @@ let pjson = {
 																			},
 																			"O": {
 																				"cType": "slot",
-																				"compDomClasses": "row"
+																				"compDomClasses": "row newDropBorder"
 																			}
 																		},
 																		{
@@ -15497,7 +15497,7 @@ let pjson = {
 																																							},
 																																							"O": {
 																																								"cType": "slot",
-																																								"compDomClasses": "q-label "
+																																								"compDomClasses": "q-label newDropBorder"
 																																							}
 																																						}
 																																					],
@@ -15525,7 +15525,7 @@ let pjson = {
 																																					},
 																																					"class": "d-flex flex-column"
 																																				},
-																																				"compDomClasses": "col d-flex flex-column"
+																																				"compDomClasses": "col d-flex flex-column newDropBorder"
 																																			},
 																																			"S": {
 																																				"xs-xl": {
@@ -15606,7 +15606,7 @@ let pjson = {
 																															},
 																															"O": {
 																																"cType": "slot",
-																																"compDomClasses": "row"
+																																"compDomClasses": "row newDropBorder"
 																															}
 																														}
 																													],
@@ -15663,7 +15663,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "v-card v-sheet theme--light"
+																												"compDomClasses": "v-card v-sheet theme--light newDropBorder"
 																											}
 																										},
 																										{
@@ -15784,7 +15784,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input theme--light v-input--selection-controls v-input--checkbox"
+																																				"compDomClasses": "v-input theme--light v-input--selection-controls v-input--checkbox newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -15812,7 +15812,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column"
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -15953,7 +15953,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input theme--light v-input--selection-controls v-input--checkbox"
+																																				"compDomClasses": "v-input theme--light v-input--selection-controls v-input--checkbox newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -15981,7 +15981,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column"
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -16122,7 +16122,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input theme--light v-input--selection-controls v-input--checkbox"
+																																				"compDomClasses": "v-input theme--light v-input--selection-controls v-input--checkbox newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -16150,7 +16150,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column"
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -16341,7 +16341,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined"
+																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -16363,7 +16363,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column"
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -16447,7 +16447,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "row"
+																												"compDomClasses": "row newDropBorder"
 																											}
 																										},
 																										{
@@ -16611,7 +16611,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined"
+																																				"compDomClasses": "v-input v-input--dense theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined undefined newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -16639,7 +16639,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column"
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -16809,7 +16809,7 @@ let pjson = {
 																																			},
 																																			"O": {
 																																				"cType": "slot",
-																																				"compDomClasses": "v-input v-input--is-disabled theme--light v-text-field v-text-field--is-booted undefined"
+																																				"compDomClasses": "v-input v-input--is-disabled theme--light v-text-field v-text-field--is-booted undefined newDropBorder"
 																																			}
 																																		}
 																																	],
@@ -16837,7 +16837,7 @@ let pjson = {
 																																	},
 																																	"class": "d-flex flex-column"
 																																},
-																																"compDomClasses": "col d-flex flex-column"
+																																"compDomClasses": "col d-flex flex-column newDropBorder"
 																															},
 																															"S": {
 																																"xs-xl": {
@@ -16921,7 +16921,7 @@ let pjson = {
 																											},
 																											"O": {
 																												"cType": "slot",
-																												"compDomClasses": "row"
+																												"compDomClasses": "row newDropBorder"
 																											}
 																										}
 																									],
@@ -16949,7 +16949,7 @@ let pjson = {
 																									},
 																									"class": "d-flex flex-column"
 																								},
-																								"compDomClasses": "col d-flex flex-column"
+																								"compDomClasses": "col d-flex flex-column newDropBorder"
 																							},
 																							"S": {
 																								"xs-sm": {
@@ -17069,7 +17069,7 @@ let pjson = {
 																			},
 																			"O": {
 																				"cType": "slot",
-																				"compDomClasses": "row"
+																				"compDomClasses": "row newDropBorder"
 																			}
 																		},
 																		{
@@ -17593,7 +17593,7 @@ let pjson = {
 																											},
 																											"E": {
 																												"click": {
-																													"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nquick.MM.trigger(\"checkAvailableBalance\");\r\nquick.EM.trace((quick.store.get(\"#idempotentKey\") || (response && response.idempotent && response.idempotent.firstIdempotent) || \"\").toString());\r\nquick.EM.trace(quick.Quick.toDecimal(components.amount.qValue, \",\").toString());\r\nvar amountX = Number(components.amount.qValue);\r\nquick.EM.trace(amountX);\r\ncomponents.feeCard.visible = false;\r\nvar validated = quick.Quick.validateAll(false, false);\r\nif (components.amount.errorMessages != undefined && components.amount.errorMessages != null && components.amount.errorMessages != '') {\r\n    validated = false;\r\n}\r\nif (components.blockedCollectionAmount.visible && components.blockedCollectionAmount.errorMessages != undefined && components.blockedCollectionAmount.errorMessages != null && components.blockedCollectionAmount.errorMessages != '') {\r\n    validated = false;\r\n}\r\nvar isSolidary = components.accountInfo.qValue.isSolidary;\r\nquick.EM.trace(isSolidary);\r\nvar descriptionLength = components.description.qValue.length;\r\nif (descriptionLength < 3) {\r\n    components.description.errorMessages = \"Açıklama alanı minimum 3 karakter olmalıdır.\";\r\n    validated = validated && false;\r\n}\r\nif (isSolidary && validated && (components.operationTypeGroup.qValue == 1)) {\r\n    components.warningDialogVirement.dialogClick({ accountId: components.accountInfo.qValue.accountId });\r\n}\r\nelse {\r\n    if (validated) {\r\n        components.EdtrComp_1463.disabled = true;\r\n        var virementRequest = {};\r\n        quick.EM.trace(components.accountInfo.qValue);\r\n        var accountId = components.accountInfo.qValue.accountId;\r\n        var amount = quick.Quick.toDecimal(components.amount.qValue, \",\").toString();\r\n        var currencyCode = components.currency.qValue;\r\n        var description = components.description.qValue;\r\n        virementRequest.amount = amount;\r\n        virementRequest.currencyCode = currencyCode;\r\n        virementRequest.description = description;\r\n        var urlNew = '';\r\n        if (components.operationTypeGroup.qValue == 0) {\r\n            urlNew = '/api/dep-operations/v1/api/dep-operations/checkDeposit';\r\n            virementRequest.creditAccountId = accountId;\r\n            quick.store.set(\"$customConsumerCode\", 'TANE.DEPDEPOSIT');\r\n        }\r\n        else {\r\n            urlNew = '/api/dep-operations/v1/api/dep-operations/checkWithdraw';\r\n            virementRequest.useOverdraft = components.overdraftUsage.qValue == true;\r\n            virementRequest.blockageCollectionProvisionId = components.blockedCollectionAmount.qValue;\r\n            virementRequest.debitAccountId = accountId;\r\n            quick.store.set(\"$customConsumerCode\", 'TANE.DEPWITHDRAW');\r\n        }\r\n        var virementCheckCreateRequest = {\r\n            url: urlNew,\r\n            http: 'post',\r\n            blockRender: true,\r\n            onSuccess: 'onSuccessCheckWithdrawCreate',\r\n            onFail: 'onSFailCheckWithdrawCreate',\r\n            responseField: 'responseCheckWithdrawCreate',\r\n            data: virementRequest\r\n        };\r\n        quick.Request.async(virementCheckCreateRequest);\r\n    }\r\n}\r\n",
+																													"H": "Object.defineProperty(exports, \"__esModule\", { value: true });\r\nquick.EM.trace((quick.store.get(\"#idempotentKey\") || (response && response.idempotent && response.idempotent.firstIdempotent) || \"\").toString());\r\ncomponents.feeCard.visible = false;\r\nvar validated = quick.Quick.validateAll(false, false);\r\nif (components.amount.errorMessages != undefined && components.amount.errorMessages != null && components.amount.errorMessages != '') {\r\n    validated = false;\r\n}\r\nif (components.blockedCollectionAmount.visible && components.blockedCollectionAmount.errorMessages != undefined && components.blockedCollectionAmount.errorMessages != null && components.blockedCollectionAmount.errorMessages != '') {\r\n    validated = false;\r\n}\r\nvar isSolidary = components.accountInfo.qValue.isSolidary;\r\nquick.EM.trace(isSolidary);\r\nvar descriptionLength = components.description.qValue.length;\r\nif (descriptionLength < 3) {\r\n    components.description.errorMessages = \"Açıklama alanı minimum 3 karakter olmalıdır.\";\r\n    validated = validated && false;\r\n}\r\nif (isSolidary && validated && (components.operationTypeGroup.qValue == 1)) {\r\n    components.warningDialogVirement.dialogClick({ accountId: components.accountInfo.qValue.accountId });\r\n}\r\nelse {\r\n    if (validated) {\r\n        components.EdtrComp_1463.disabled = true;\r\n        var virementRequest = {};\r\n        quick.EM.trace(components.accountInfo.qValue);\r\n        var accountId = components.accountInfo.qValue.accountId;\r\n        var amount = quick.Quick.toDecimal(components.amount.qValue, \",\").toString();\r\n        var currencyCode = components.currency.qValue;\r\n        var description = components.description.qValue;\r\n        virementRequest.amount = amount;\r\n        virementRequest.currencyCode = currencyCode;\r\n        virementRequest.description = description;\r\n        var urlNew = '';\r\n        if (components.operationTypeGroup.qValue == 0) {\r\n            urlNew = '/api/dep-operations/v1/api/dep-operations/checkDeposit';\r\n            virementRequest.creditAccountId = accountId;\r\n            quick.store.set(\"$customConsumerCode\", 'TANE.DEPDEPOSIT');\r\n        }\r\n        else {\r\n            urlNew = '/api/dep-operations/v1/api/dep-operations/checkWithdraw';\r\n            virementRequest.useOverdraft = components.overdraftUsage.qValue == true;\r\n            virementRequest.blockageCollectionProvisionId = components.blockedCollectionAmount.qValue;\r\n            virementRequest.debitAccountId = accountId;\r\n            quick.store.set(\"$customConsumerCode\", 'TANE.DEPWITHDRAW');\r\n        }\r\n        var virementCheckCreateRequest = {\r\n            url: urlNew,\r\n            http: 'post',\r\n            blockRender: true,\r\n            onSuccess: 'onSuccessCheckWithdrawCreate',\r\n            onFail: 'onSFailCheckWithdrawCreate',\r\n            responseField: 'responseCheckWithdrawCreate',\r\n            data: virementRequest\r\n        };\r\n        quick.Request.async(virementCheckCreateRequest);\r\n    }\r\n}\r\n",
 																													"P": "mouseEvent:unknown | undefined",
 																													"HL": "JS"
 																												},
